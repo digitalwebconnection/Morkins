@@ -107,7 +107,7 @@ const PRODUCTS: Product[] = [
 ]
 
 export default function ProductGrid({ onAddToCart }: ProductGridProps) {
-  const [showAll, setShowAll] = useState(false)
+  const [showAll] = useState(false)
 
   const visibleProducts = showAll ? PRODUCTS : PRODUCTS.slice(0, 4)
 
@@ -201,7 +201,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
 
         <div className="mt-10 text-center">
           <button
-            onClick={() => setShowAll(!showAll)}
+            
 
             className="inline-flex w-fit px-12 py-4.5 rounded-full bg-[#41677a] text-white font-semibold uppercase tracking-wider text-xs hover:bg-[#5f5e5e] transition-all duration-300 shadow-md hover:shadow-lg  cursor-pointer hover:-translate-y-0.5 active:translate-y-0"
           >

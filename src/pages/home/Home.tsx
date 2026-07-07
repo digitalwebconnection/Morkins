@@ -20,7 +20,7 @@ export default function Home({ onAddToCart }: HomeProps) {
       {/* Interactive Ingredients Spotlight */}
       <IngredientsSpotlight />
 
- {/* Brand Story and Statistics Section */}
+      {/* Brand Story and Statistics Section */}
       <OurStory />
 
       {/* Product Section: Displays 4 products (expandable) */}

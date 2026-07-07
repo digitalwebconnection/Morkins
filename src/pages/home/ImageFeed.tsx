@@ -5,44 +5,58 @@ const IMAGES = [
   'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=400&q=80',
   'https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=400&q=80',
   'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1598440947570-5b5f2575b6e6?auto=format&fit=crop&w=400&q=80',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHUeNMSMlVE4ESLjMd56rUTifmJ-rMfwUAWbGUIEEIHRjZ2rsdpkMUjnUe&s=10',
   'https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=400&q=80',
+  'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&w=400&q=80',
+  'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=400&q=80',
+  'https://hips.hearstapps.com/hmg-prod/images/best-korean-skincare-brands-6733bba672bc1.png?crop=0.502xw:1.00xh;0.498xw,0&resize=640:*',
+  'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=400&q=80',
+  'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVxiBkVbL9dKz9f5G9no60lhvEFK830MYjnxHr95pdGA&s=10',
 ]
 
 export default function ImageFeed() {
   const [startIndex, setStartIndex] = useState(0)
 
-  const handleNext = () => {
-    setStartIndex((prev) => (prev + 1) % (IMAGES.length - 3))
-  }
-
-  const handlePrev = () => {
-    setStartIndex((prev) => (prev - 1 + (IMAGES.length - 3)) % (IMAGES.length - 3))
+  const scroll = (direction: 'left' | 'right') => {
+    if (direction === 'left') {
+      setStartIndex((prev) => (prev - 1 + (IMAGES.length - 3)) % (IMAGES.length - 3))
+    } else {
+      setStartIndex((prev) => (prev + 1) % (IMAGES.length - 3))
+    }
   }
 
   return (
     <section className="py-20 bg-brand-cream text-brand-dark overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-0">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6">
           <div>
-            <span className="text-xs font-bold tracking-widest text-[#195641] uppercase">Social Feed</span>
-            <h2 className="font-serif text-4xl font-normal mt-2 leading-tight">Follow Our Journey</h2>
-            <p className="text-brand-dark/60 text-sm mt-2">Tag us @morkinsofficial to share your routine and be featured.</p>
+         
+         
+            <h2 className="font-serif text-4xl font-normal mt-2  text-[#17335A] leading-tight">Follow Our Journey</h2>
+            <p className="text-brand-dark tracking-wide text-md  mt-2">Tag us @morkinsofficial to share your routine and be featured.</p>
           </div>
-          <div className="flex items-center gap-2 mt-6 sm:mt-0">
+          <div className="flex items-center gap-6">
+            {/* Left Arrow Button */}
             <button
-              onClick={handlePrev}
-              className="w-10 h-10 rounded-full border border-brand-dark/20 flex items-center justify-center hover:bg-brand-dark hover:text-white transition-all cursor-pointer"
-              aria-label="Previous images"
+              onClick={() => scroll('left')}
+              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#5c7886] hover:text-white hover:border-[#5c7886] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+              aria-label="Scroll left"
             >
-              &larr;
+              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
+
+            {/* Right Arrow Button */}
             <button
-              onClick={handleNext}
-              className="w-10 h-10 rounded-full border border-brand-dark/20 flex items-center justify-center hover:bg-brand-dark hover:text-white transition-all cursor-pointer"
-              aria-label="Next images"
+              onClick={() => scroll('right')}
+              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#5c7886] hover:text-white hover:border-[#5c7886] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+              aria-label="Scroll right"
             >
-              &rarr;
+              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
@@ -52,7 +66,7 @@ export default function ImageFeed() {
             {IMAGES.slice(startIndex, startIndex + 4).map((img, i) => (
               <div
                 key={i}
-                className="group relative aspect-square rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 border border-brand-dark/5"
+                className="group relative aspect-square rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 border border-brand-dark/5"
               >
                 <img
                   src={img}

@@ -33,19 +33,19 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
         {/* LEFT SECTION: Nav Links */}
         <nav className="hidden md:flex space-x-4 items-center font-serif text-xl font-semibold tracking-wide h-full">
           <a href="#shop" className="text-black hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group">
-            Shop
+            Product
             <span className="absolute bottom-4 left-0 w-full h-[2px] bg-brand-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
           </a>
           <a href="#concerns" className="text-black hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group">
-            Skin Concerns
+            Best sellers
             <span className="absolute bottom-4 left-0 w-full h-[2px] bg-brand-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
           </a>
           <a href="#discover" className="text-black hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group">
-            Discover
+            New Arrivals
             <span className="absolute bottom-4 left-0 w-full h-[2px] bg-brand-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
           </a>
           <a href="#blog" className="text-black hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group">
-            Skincare Blog
+           About
             <span className="absolute bottom-4 left-0 w-full h-[2px] bg-brand-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
           </a>
         </nav>

@@ -21,15 +21,7 @@ const topFeatures = [
     title: 'All-India Delivery',
     desc: 'We deliver pan-India',
   },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    title: '24/7 Support',
-    desc: 'Always here to help',
-  },
+
   {
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
@@ -78,15 +70,15 @@ export default function Footer() {
       {/* TOP FEATURES BAR */}
       <div className="bg-[#112744] border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-0 py-5">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
             {topFeatures.map((f) => (
               <div key={f.title} className="flex items-start gap-3 group">
                 <div className="text-[#C1D3DF] shrink-0 mt-0.5 group-hover:text-white transition-colors duration-200">
                   {f.icon}
                 </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-white leading-tight">{f.title}</p>
-                  <p className="text-[11px] text-white/60 mt-0.5 leading-snug">{f.desc}</p>
+                  <p className="text-[16px] font-semibold text-white leading-tight">{f.title}</p>
+                  <p className="text-[11px] text-white/90 mt-0.5 leading-snug">{f.desc}</p>
                 </div>
               </div>
             ))}
@@ -96,14 +88,14 @@ export default function Footer() {
 
       {/* MAIN FOOTER BODY */}
       <div className="max-w-7xl mx-auto px-6 lg:px-0 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-32">
 
           {/* LEFT: Logo + Newsletter + Socials */}
           <div className="flex flex-col gap-6">
             <a href="/">
               <img src={navbar} alt="Morkins" className="h-9 w-auto object-contain brightness-0 invert" />
             </a>
-            <p className="text-white/50 text-sm leading-relaxed max-w-[240px]">
+            <p className="text-white/90 text-sm leading-relaxed max-w-[240px]">
               Premium skincare crafted for every skin type. Science-backed, nature-inspired.
             </p>
 
@@ -141,7 +133,7 @@ export default function Footer() {
                   { label: 'YouTube', path: 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z' },
                 ].map(({ label, path }) => (
                   <a key={label} href="#" aria-label={label}
-                    className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/40 transition-all duration-200">
+                    className="w-8 h-8 rounded-full border border-white/60 flex items-center justify-center text-white/90 hover:text-white hover:border-white/40 transition-all duration-200">
                     <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                       <path d={path} />
                     </svg>
@@ -152,13 +144,23 @@ export default function Footer() {
           </div>
 
           {/* RIGHT: Three Link Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3  gap-8">
 
             {/* Our Products */}
             <div>
-              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/35 mb-4">Our Products</h4>
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">Our Products</h4>
               <ul className="space-y-2.5">
-                {['Cleansers & Toners', 'Serums & Treatments', 'Moisturizers', 'Sunscreens & SPF', 'Eye Care', 'Face Masks', 'Body Care', 'Gift Sets & Minis'].map(item => (
+                {[
+                  'Cleansers & Face Wash',
+                  'Toners & Mists',
+                  'Serums & Treatments',
+                  'Moisturizers & Creams',
+                  'Sunscreens & SPF',
+                  'Eye Care',
+                  'Face Masks & Scrubs',
+                  'Lip Care',
+                
+                ].map(item => (
                   <li key={item}>
                     <a href="#" className="text-sm text-white/65 hover:text-white transition-colors duration-200 leading-snug block">
                       {item}
@@ -170,9 +172,19 @@ export default function Footer() {
 
             {/* Customer Support */}
             <div>
-              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/35 mb-4">Customer Support</h4>
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">Customer Support</h4>
               <ul className="space-y-2.5">
-                {['FAQs', 'Return Policy', 'Privacy Policy', 'Terms & Conditions', 'Shipping Policy', 'Contact Us', 'Track My Order', 'Blog'].map(item => (
+                {[
+                  'FAQs',
+                  'Return & Refund Policy',
+                  'Privacy Policy',
+                  'Terms & Conditions',
+                  'Shipping Policy',
+                  'Track My Order',
+                  'Contact Us',
+                  'WhatsApp Support',
+                
+                ].map(item => (
                   <li key={item}>
                     <a href="#" className="text-sm text-white/65 hover:text-white transition-colors duration-200 leading-snug block">
                       {item}
@@ -184,9 +196,19 @@ export default function Footer() {
 
             {/* Our Company */}
             <div>
-              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/35 mb-4">Our Company</h4>
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">Our Company</h4>
               <ul className="space-y-2.5">
-                {['About Morkins', 'Our Story', 'Ingredients We Use', 'Sustainability', 'Careers', 'Press & Media', 'Morkins Rewards', 'Blog'].map(item => (
+                {[
+                  'About Morkins',
+                  'Our Story',
+                  'Our Mission & Values',
+                  'Ingredients We Use',
+                  'Dermatologist Approved',
+                  'Sustainability',
+                  'Cruelty Free Promise',
+                  
+                  'Blog',
+                ].map(item => (
                   <li key={item}>
                     <a href="#" className="text-sm text-white/65 hover:text-white transition-colors duration-200 leading-snug block">
                       {item}
@@ -201,16 +223,16 @@ export default function Footer() {
       </div>
 
       {/* BOTTOM BAR */}
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-white/35 text-xs">
+      <div className="border-t border-white/20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-0 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-white/90 text-xs">
             © {new Date().getFullYear()} Morkins. All Rights Reserved.
           </p>
           <div className="flex items-center gap-5">
-            <a href="#" className="text-white/35 hover:text-white/60 text-xs transition-colors">Terms & Conditions</a>
-            <a href="#" className="text-white/35 hover:text-white/60 text-xs transition-colors">Privacy Policy</a>
-            <span className="text-white/20 text-xs">|</span>
-            <span className="text-white/30 text-xs">Developed by <span className="text-[#C1D3DF]/70 font-semibold">DWC</span></span>
+            <a href="#" className="text-white/90 hover:text-white/60 text-xs transition-colors">Terms & Conditions</a>
+            <a href="#" className="text-white/90 hover:text-white/60 text-xs transition-colors">Privacy Policy</a>
+            <span className="text-white/90 text-xs">|</span>
+            <span className="text-white/90 text-xs">Developed by <span className="text-[#C1D3DF]/70 font-semibold">DWC</span></span>
           </div>
         </div>
       </div>
