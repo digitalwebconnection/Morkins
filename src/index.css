@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --color-brand-dark: #5C7887;
+  --color-brand-light: #195641;
+  --color-brand-cream: #fffef8;
+  --color-brand-cream-dark: #F3F1E8;
+  --color-brand-accent: #D4CDBC;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-[#fffef8]  text-brand-dark antialiased;
+    margin: 0;
+  }
+}
