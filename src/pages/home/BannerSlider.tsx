@@ -118,7 +118,7 @@ export default function BannerSlider() {
 
           {/* Subtext */}
           <p
-            className={`text-white/75 text-sm sm:text-base leading-relaxed max-w-md mt-5 transition-all duration-700 ease-out ${
+            className={`text-white/75 text-sm sm:text-base leading-relaxed max-w-xl mt-10 transition-all duration-700 ease-out ${
               isTransitioning ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0 delay-300'
             }`}
           >
@@ -127,13 +127,13 @@ export default function BannerSlider() {
 
           {/* CTA */}
           <div
-            className={`flex items-center gap-4 mt-8 transition-all duration-700 ease-out ${
+            className={`flex items-center gap-4 mt-12 transition-all duration-700 ease-out ${
               isTransitioning ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0 delay-500'
             }`}
           >
             <a
               href="#products"
-              className="px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full bg-white text-[#17335A] hover:bg-[#17335A] hover:text-white border-2 border-white shadow-lg transition-all duration-300"
+              className="px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full bg-white text-[#17335A] hover:bg-[#17335A] hover:text-white   shadow-lg transition-all duration-300"
             >
               {b.cta}
             </a>

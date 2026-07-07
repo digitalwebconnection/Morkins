@@ -56,7 +56,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
             <img
               src={navbarLogo}
               alt="Morkins Logo"
-              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-10 w-auto object-contain transition-transform duration-300 "
             />
           </Link>
         </div>
@@ -74,7 +74,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
               className="w-32 focus:w-48 bg-transparent border-b border-brand-dark/30 focus:border-brand-dark focus:outline-none text-[11px] uppercase tracking-wider text-brand-dark pb-1 transition-all duration-500 placeholder-brand-dark/40"
             />
             <svg
-              className="w-3.5 h-3.5 text-black absolute right-0 bottom-1.5 opacity-60 pointer-events-none group-hover:scale-110 transition-transform duration-300"
+              className="w-3.5 h-3.5 text-black absolute right-0 bottom-1.5 opacity-60 pointer-events-none  transition-transform duration-300"
               fill="none"
               stroke="currentColor"
               strokeWidth="2.5"
@@ -86,7 +86,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
 
           {/* User Profile Icon */}
           <a href="#login" className="relative flex items-center text-black hover:text-brand-light transition-colors duration-300 cursor-pointer group" aria-label="User Account">
-            <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5">
+            <div className="relative flex items-center justify-center transition-transform duration-300  ">
               <svg
                 className="w-6 h-6"
                 viewBox="0 0 24 24"
@@ -108,7 +108,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
             className="relative flex items-center text-black hover:text-brand-light transition-colors duration-300 cursor-pointer group border-none bg-transparent p-0 outline-none"
             aria-label="Shopping Bag"
           >
-            <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5">
+            <div className="relative flex items-center justify-center transition-transform duration-300 ">
               <svg
                 className="w-6 h-6"
                 viewBox="0 0 24 24"
@@ -123,7 +123,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
               </svg>
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-[#195641] text-white text-[9px] font-sans font-extrabold w-4 h-4 rounded-full flex items-center justify-center shadow-sm animate-scale-up">
+                <span className="absolute -top-1.5 -right-1.5 bg-[#17335A] text-white text-[9px] font-sans font-extrabold w-4 h-4 rounded-full flex items-center justify-center shadow-sm animate-scale-up">
                   {cartCount}
                 </span>
               )}

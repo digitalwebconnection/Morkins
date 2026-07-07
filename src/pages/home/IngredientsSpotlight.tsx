@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import serumImg from '../../assets/skincare_serum.png'
 import moisturizerImg from '../../assets/skincare_moisturizer.png'
-import sunscreenImg from '../../assets/skincare_sunscreen.png'
+// import sunscreenImg from '../../assets/skincare_sunscreen.png'
 import vitamincImg from '../../assets/skincare_vitaminc.png'
 
 interface Ingredient {
@@ -43,7 +43,7 @@ const INGREDIENTS: Ingredient[] = [
     name: 'GLYCOLIC\nACID',
     benefit: 'Gently exfoliate & renew skin cells',
     img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: sunscreenImg,
+    hoverImg: serumImg,
     textColor: '#E6F0DC', // pale green
   },
   {
@@ -51,7 +51,7 @@ const INGREDIENTS: Ingredient[] = [
     name: 'HYALURONIC ACID',
     benefit: 'Deeply hydrate & plump skin layers',
     img: 'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=400&q=80',
+    hoverImg: serumImg,
     textColor: '#F0F9FF', // pale water blue
   },
   {
@@ -59,7 +59,7 @@ const INGREDIENTS: Ingredient[] = [
     name: 'SALICYLIC ACID',
     benefit: 'Clear pores & prevent breakout blemishes',
     img: 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=400&q=80',
+    hoverImg: serumImg,
     textColor: '#FDF2F8', // pale rose pink
   }
 ]

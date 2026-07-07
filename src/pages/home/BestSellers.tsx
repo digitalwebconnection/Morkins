@@ -38,14 +38,7 @@ const BEST_SELLERS: Product[] = [
     category: 'Facial Oils',
     img: 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=400&q=80',
   },
-  {
-    id: 2,
-    name: 'Barrier Restore Moisturizer',
-    price: 28.00,
-    rating: 4.8,
-    category: 'Moisturizers',
-    img: 'https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&w=400&q=80',
-  }
+
 ]
 
 export default function BestSellers({ onAddToCart }: BestSellersProps) {
