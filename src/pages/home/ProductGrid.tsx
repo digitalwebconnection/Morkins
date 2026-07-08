@@ -156,7 +156,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                   />
 
                   {p.badge && (
-                    <span className={`absolute top-4 left-4 text-white text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-xs z-10 ${p.badge === 'Best Seller' ? 'bg-[#17335A]' : p.badge === 'New' ? 'bg-[#195641]' : 'bg-[#D4CDBC] text-black font-bold'
+                    <span className={`absolute top-4 left-4 text-white text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-xs z-10 ${p.badge === 'Best Seller' ? 'bg-[#17335A]' : p.badge === 'New' ? 'bg-brand-light' : 'bg-brand-accent text-black font-bold'
                       }`}>
                       {p.badge}
                     </span>

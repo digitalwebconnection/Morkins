@@ -180,7 +180,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
           {/* Left Arrow Button (shows crescent when not hovered, slides to semi-circle when hovered) */}
           <button
             onClick={() => handleScroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[85%] opacity-30 z-20 w-25 h-25 rounded-full bg-black/20 hover:bg-white/85 flex items-center justify-end pr-4.5 text-black transition-all duration-500 group-hover/slider:opacity-100 group-hover/slider:-translate-x-[40%] cursor-pointer active:scale-95"
+            className="absolute left-0 top-1/2 -translate-y-1/2 translate-x-[-85%] opacity-30 z-20 w-25 h-25 rounded-full bg-black/20 hover:bg-white/85 flex items-center justify-end pr-4.5 text-black transition-all duration-500 group-hover/slider:opacity-100 group-hover/slider:translate-x-[-40%] cursor-pointer active:scale-95"
             aria-label="Scroll Left"
           >
             <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
@@ -233,7 +233,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
                 />
 
                 {/* Glassmorphic Play Overlay (Center) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 opacity-0 group-hover/card:opacity-100 transition-all duration-500 flex items-center justify-center z-10">
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/20 opacity-0 group-hover/card:opacity-100 transition-all duration-500 flex items-center justify-center z-10">
                   <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transform scale-90 group-hover/card:scale-100 hover:bg-white hover:text-[#17335A] transition-all duration-300 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]">
                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z" />
@@ -299,7 +299,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
             </button>
 
             {/* Left Column: Video Player */}
-            <div className="relative w-full md:w-[42%] h-[45%] md:h-full bg-black flex-shrink-0">
+            <div className="relative w-full md:w-[42%] h-[45%] md:h-full bg-black shrink-0">
               <video
                 src={selectedPost.videoUrl}
                 autoPlay
@@ -336,7 +336,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
             {/* Right Column: Product Info & Actions */}
             <div className="w-full md:w-[58%] h-[55%] md:h-full p-6 md:p-8 flex flex-col justify-between overflow-y-auto no-scrollbar bg-white">
               <div className="flex flex-col">
-                <span className="text-[10px] font-bold tracking-widest text-[#195641] uppercase">MORKINS BEAUTY</span>
+                <span className="text-[10px] font-bold tracking-widest text-brand-light uppercase">MORKINS BEAUTY</span>
                 <h3 className="font-serif text-[#17335A] text-2xl font-normal mt-1 leading-tight">{selectedPost.productName}</h3>
                 
                 {/* Product Rating */}
@@ -394,7 +394,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
                 <button 
                   onClick={handleAddToCartClick}
                   className={`flex-1 h-12 text-white font-bold text-xs tracking-widest uppercase rounded-lg shadow-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${
-                    showSuccess ? 'bg-[#195641]' : 'bg-[#41677a] hover:bg-[#17335A]'
+                    showSuccess ? 'bg-brand-light' : 'bg-[#41677a] hover:bg-[#17335A]'
                   }`}
                 >
                   {showSuccess ? (

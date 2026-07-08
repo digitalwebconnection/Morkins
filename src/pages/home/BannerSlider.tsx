@@ -99,7 +99,7 @@ export default function BannerSlider() {
       />
 
       {/* Dark Gradient Overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-black/10 z-[1]" />
+      <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-black/10 z-1" />
 
       {/* Slide Content */}
       <div className="absolute inset-0 flex items-center z-10 max-w-7xl mx-auto px-10 sm:px-16 md:px-0">
