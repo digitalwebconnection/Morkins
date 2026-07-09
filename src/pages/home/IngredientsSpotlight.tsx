@@ -91,7 +91,7 @@ export default function IngredientsSpotlight() {
         }
       `}} />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-0 relative">
+      <div className="max-w-7xl mx-auto px-6 lg:px-4 relative">
         {/* Section Header with Navigation Arrows in One Line */}
         <div className="mb-5 flex items-center justify-between">
           <h2 className="font-serif text-3xl  font-normal tracking-wider  text-[#17335A] uppercase">

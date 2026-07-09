@@ -162,7 +162,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
         `
       }} />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-0 relative">
+      <div className="max-w-7xl mx-auto px-6 lg:px-4 relative">
         
         {/* Section Header */}
         <div className="mb-6 flex flex-col text-left">

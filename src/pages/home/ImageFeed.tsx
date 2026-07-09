@@ -28,7 +28,7 @@ export default function ImageFeed() {
 
   return (
     <section className="py-20 bg-brand-cream text-brand-dark overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-0">
+      <div className="max-w-7xl mx-auto px-6 lg:px-4">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6">
           <div>
          

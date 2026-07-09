@@ -13,7 +13,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-40 bg-brand-cream backdrop-blur-md border-b border-brand-dark/10 transition-shadow duration-300 hover:shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 h-20 flex items-center justify-between relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 h-20 flex items-center justify-between relative">
 
         {/* Mobile Menu Toggle button */}
         <button

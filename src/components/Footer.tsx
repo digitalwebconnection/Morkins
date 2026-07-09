@@ -69,7 +69,7 @@ export default function Footer() {
 
       {/* TOP FEATURES BAR */}
       <div className="bg-[#112744] border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-0 py-5">
+        <div className="max-w-7xl mx-auto px-6 lg:px-4 py-5">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
             {topFeatures.map((f) => (
               <div key={f.title} className="flex items-start gap-3 group">
@@ -87,7 +87,7 @@ export default function Footer() {
       </div>
 
       {/* MAIN FOOTER BODY */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-0 py-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-32">
 
           {/* LEFT: Logo + Newsletter + Socials */}
@@ -224,15 +224,15 @@ export default function Footer() {
 
       {/* BOTTOM BAR */}
       <div className="border-t border-white/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-0 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="max-w-7xl mx-auto px-6 lg:px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-white/90 text-xs">
             © {new Date().getFullYear()} Morkins. All Rights Reserved.
           </p>
           <div className="flex items-center gap-5">
             <a href="#" className="text-white/90 hover:text-white/60 text-xs transition-colors">Terms & Conditions</a>
             <a href="#" className="text-white/90 hover:text-white/60 text-xs transition-colors">Privacy Policy</a>
-            <span className="text-white/90 text-xs">|</span>
-            <span className="text-white/90 text-xs">Developed by <span className="text-[#C1D3DF]/70 font-semibold">DWC</span></span>
+            {/* <span className="text-white/90 text-xs">|</span> */}
+            {/* <span className="text-white/90 text-xs">Developed by <span className="text-[#C1D3DF]/70 font-semibold">DWC</span></span> */}
           </div>
         </div>
       </div>

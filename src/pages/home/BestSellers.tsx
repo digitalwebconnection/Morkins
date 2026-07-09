@@ -54,7 +54,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
 
   return (
     <section className="py-14 bg-brand-cream text-brand-dark overflow-hidden border-b border-brand-dark/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-0">
+      <div className="max-w-7xl mx-auto px-6 lg:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
           {/* LEFT SIDE: Best Sellers Carousel */}

@@ -113,7 +113,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
 
   return (
     <section id="products" className="py-5 ">
-      <div className="max-w-7xl mx-auto px-6 lg:px-0">
+      <div className="max-w-7xl mx-auto px-6 lg:px-4">
         <div className="text-center max-w-3xl mx-auto mb-10 animate-fade-in">
 
           <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#17335A] mt-2 leading-tight">Shop Our Favorites</h2>
