@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import PromoBar from './PromoBar'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Home from '../pages/home/Home'
+import AboutUs from '../pages/aboutus/AboutUs'
 import CartDrawer from './CartDrawer'
 import type { CartItem } from './CartDrawer'
 
@@ -53,8 +55,11 @@ export default function MainSection() {
       {/* Header Navigation Bar */}
       <Navbar onCartClick={() => setIsCartOpen(true)} cartCount={cartCount} />
 
-      {/* Home Page Content */}
-      <Home onAddToCart={handleAddToCart} />
+      {/* Page Content */}
+      <Routes>
+        <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
+        <Route path="/about" element={<AboutUs />} />
+      </Routes>
 
       {/* Page Footer */}
       <Footer />

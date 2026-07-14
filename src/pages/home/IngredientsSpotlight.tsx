@@ -1,8 +1,7 @@
 import { useRef } from 'react'
-import serumImg from '../../assets/skincare_serum.png'
-import moisturizerImg from '../../assets/skincare_moisturizer.png'
-// import sunscreenImg from '../../assets/skincare_sunscreen.png'
-import vitamincImg from '../../assets/skincare_vitaminc.png'
+import p1 from '../../assets/product/12.png'
+import p2 from '../../assets/product/13.png'
+import p4 from '../../assets/product/14.png'
 
 interface Ingredient {
   id: number
@@ -19,7 +18,7 @@ const INGREDIENTS: Ingredient[] = [
     name: 'RETINOL / AL',
     benefit: 'Target signs of aging & smooth fine lines',
     img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: serumImg,
+    hoverImg: p1,
     textColor: '#E2ECD5', // light sage green
   },
   {
@@ -27,15 +26,15 @@ const INGREDIENTS: Ingredient[] = [
     name: 'VITAMIN C',
     benefit: 'Brighten complexion & fade dark spots',
     img: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: vitamincImg,
+    hoverImg: p4,
     textColor: '#FFFDF0', // light ivory cream
   },
   {
     id: 3,
     name: 'NIACINAMIDE',
     benefit: 'Refine skin texture & tighten pores',
-    img: serumImg,
-    hoverImg: moisturizerImg,
+    img: p1,
+    hoverImg: p2,
     textColor: '#E4F0EC', // pale ice blue/green
   },
   {
@@ -43,7 +42,7 @@ const INGREDIENTS: Ingredient[] = [
     name: 'GLYCOLIC\nACID',
     benefit: 'Gently exfoliate & renew skin cells',
     img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: serumImg,
+    hoverImg: p1,
     textColor: '#E6F0DC', // pale green
   },
   {
@@ -51,7 +50,7 @@ const INGREDIENTS: Ingredient[] = [
     name: 'HYALURONIC ACID',
     benefit: 'Deeply hydrate & plump skin layers',
     img: 'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: serumImg,
+    hoverImg: p1,
     textColor: '#F0F9FF', // pale water blue
   },
   {
@@ -59,7 +58,7 @@ const INGREDIENTS: Ingredient[] = [
     name: 'SALICYLIC ACID',
     benefit: 'Clear pores & prevent breakout blemishes',
     img: 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: serumImg,
+    hoverImg: p1,
     textColor: '#FDF2F8', // pale rose pink
   }
 ]

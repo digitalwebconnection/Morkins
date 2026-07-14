@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import serumImg from '../../assets/skincare_serum.png'
-import moisturizerImg from '../../assets/skincare_moisturizer.png'
-import vitamincImg from '../../assets/skincare_vitaminc.png'
+import { PRODUCTS } from './productsData'
 
 interface ProductRecommendation {
   id: number
@@ -36,7 +34,19 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
     setStep(3)
   }
 
-
+  const getProductById = (id: number, stepLabel: string): ProductRecommendation => {
+    const product = PRODUCTS.find((p) => p.id === id)
+    if (!product) {
+      throw new Error(`Product with ID ${id} not found`)
+    }
+    return {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      img: product.img,
+      stepLabel
+    }
+  }
 
   // Determine recommendation based on quiz selections
   const getRecommendation = (): RoutineRecommendation => {
@@ -45,9 +55,9 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
         title: 'Nourishing Hydration Regimen',
         description: 'Designed specifically to drench parched skin cells, repair compromised lipid barriers, and seal in lasting botanical moisture.',
         products: [
-          { id: 6, name: 'Gentle Hydrating Cleanser', price: 18.00, img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80', stepLabel: 'STEP 01: PREP' },
-          { id: 1, name: 'Glow Boosting Serum', price: 32.00, img: serumImg, stepLabel: 'STEP 02: TREAT' },
-          { id: 8, name: 'Squalane Nourishing Facial Oil', price: 42.00, img: 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=400&q=80', stepLabel: 'STEP 03: MOISTURIZE' }
+          getProductById(6, 'STEP 01: PREP'),
+          getProductById(1, 'STEP 02: TREAT'),
+          getProductById(8, 'STEP 03: MOISTURIZE')
         ]
       }
     } else if (skinType === 'oily') {
@@ -55,9 +65,9 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
         title: 'Balancing Clarity Regimen',
         description: 'Formulated to regulate excess sebum, clarify clogged pores, and provide oil-free hydration for a fresh, matte finish.',
         products: [
-          { id: 7, name: 'Rosewater Balancing Toner', price: 20.00, img: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=400&q=80', stepLabel: 'STEP 01: PREP' },
-          { id: 5, name: 'Clarifying Clay Mask', price: 22.00, img: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=400&q=80', stepLabel: 'STEP 02: TREAT' },
-          { id: 4, name: 'Vitamin C Brightening Gel', price: 36.00, img: vitamincImg, stepLabel: 'STEP 03: MOISTURIZE' }
+          getProductById(7, 'STEP 01: PREP'),
+          getProductById(5, 'STEP 02: TREAT'),
+          getProductById(4, 'STEP 03: MOISTURIZE')
         ]
       }
     } else if (skinType === 'dull') {
@@ -65,9 +75,9 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
         title: 'Radiance & Glow Regimen',
         description: 'Infused with high-potency Vitamin C and botanical brighteners to target hyperpigmentation and reveal glowing skin.',
         products: [
-          { id: 6, name: 'Gentle Hydrating Cleanser', price: 18.00, img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80', stepLabel: 'STEP 01: PREP' },
-          { id: 4, name: 'Vitamin C Brightening Gel', price: 36.00, img: vitamincImg, stepLabel: 'STEP 02: TREAT' },
-          { id: 2, name: 'Barrier Restore Moisturizer', price: 28.00, img: moisturizerImg, stepLabel: 'STEP 03: MOISTURIZE' }
+          getProductById(6, 'STEP 01: PREP'),
+          getProductById(4, 'STEP 02: TREAT'),
+          getProductById(2, 'STEP 03: MOISTURIZE')
         ]
       }
     } else {
@@ -76,9 +86,9 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
         title: 'Restorative Barrier Regimen',
         description: 'Meticulously crafted with bio-compatible ceramides and botanical complexes to soothe redness and lock in youth-preserving nutrients.',
         products: [
-          { id: 6, name: 'Gentle Hydrating Cleanser', price: 18.00, img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80', stepLabel: 'STEP 01: PREP' },
-          { id: 1, name: 'Glow Boosting Serum', price: 32.00, img: serumImg, stepLabel: 'STEP 02: TREAT' },
-          { id: 2, name: 'Barrier Restore Moisturizer', price: 28.00, img: moisturizerImg, stepLabel: 'STEP 03: MOISTURIZE' }
+          getProductById(6, 'STEP 01: PREP'),
+          getProductById(1, 'STEP 02: TREAT'),
+          getProductById(2, 'STEP 03: MOISTURIZE')
         ]
       }
     }
@@ -106,7 +116,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
   return (
     <section className="py-16  text-brand-dark border-b border-brand-dark/5">
       <div className="max-w-7xl mx-auto px-4 relative">
-        
+
         {/* Title Block */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs font-bold tracking-widest text-[#5c7886] uppercase">Interactive Routine Builder</span>
@@ -120,11 +130,11 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
 
         {/* Quiz Container with Glassmorphism */}
         <div className=" relative min-h-[280px] flex flex-col py-10 overflow-hidden">
-          
+
           {/* Progress Indicator */}
           <div className="absolute top-0 left-0 w-full h-1  ">
-            <div 
-              className="h-full bg-[#17335a] transition-all duration-500" 
+            <div
+              className="h-full bg-[#17335a] transition-all duration-500"
               style={{ width: `${(step / 3) * 100}%` }}
             />
           </div>
@@ -134,7 +144,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
             <div className="animate-fade-in text-center">
               <span className="text-[10px] font-bold tracking-widest text-black uppercase">QUESTION 01</span>
               <h3 className="font-serif text-2xl text-[#17335A] mt-2 mb-8 font-semibold">How would you describe your skin?</h3>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
                 {[
                   { id: 'dry', label: 'Dry / Flaky', desc: 'Lacks oil, feels tight, shows texture.' },
@@ -160,7 +170,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
             <div className="animate-fade-in text-center">
               <span className="text-[10px] font-bold tracking-widest text-[#5c7886] uppercase">QUESTION 02</span>
               <h3 className="font-serif text-2xl text-[#17335A] mt-2 mb-8 font-normal">What is your primary skin goal?</h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
                 {[
                   { id: 'glow', label: 'Drape in Dewy Glow', desc: 'Hydrate skin cells, restore barrier.' },
@@ -170,7 +180,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                   <button
                     key={item.id}
                     onClick={() => handleSelectGoal(item.id)}
-                    className="flex flex-col items-center justify-center p-6 bg-white hover:bg-[#17335A] border border-[#195641]/10 hover:border-[#17335A] text-black hover:text-white rounded-xl shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer hover:-translate-y-1"
+                    className="flex flex-col items-center justify-center p-6 bg-white hover:bg-[#17335A] border border-brand-light/10 hover:border-[#17335A] text-black hover:text-white rounded-xl shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer hover:-translate-y-1"
                   >
                     <span className="font-bold text-lg uppercase tracking-wider">{item.label}</span>
                     <span className="text-[14px] mt-2 opacity-80 group-hover:opacity-100 leading-normal ">{item.desc}</span>
@@ -178,7 +188,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                 ))}
               </div>
 
-              <button 
+              <button
                 onClick={() => setStep(1)}
                 className="mt-8 text-xs font-bold tracking-widest uppercase text-[#5c7886] hover:text-[#17335A] transition-colors duration-200 cursor-pointer"
               >
@@ -191,10 +201,10 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
           {step === 3 && (
             <div className="animate-fade-in">
               <div className="flex flex-col lg:flex-row gap-10 items-center justify-between">
-                
+
                 {/* Left Result Details */}
                 <div className="lg:w-[35%] text-left">
-                  <span className="text-[10px] font-extrabold tracking-widest text-black bg-[#195641]/10 px-3 py-1 rounded-full uppercase">
+                  <span className="text-[10px] font-extrabold tracking-widest text-black bg-brand-light/10 px-3 py-1 rounded-full uppercase">
                     Your Diagnosis
                   </span>
                   <h4 className="font-serif text-3xl font-normal text-[#17335A] mt-4 mb-3 leading-snug">
@@ -211,7 +221,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-bold text-[#17335A]">Bundle Price (15% Off)</span>
-                      <span className="text-lg font-bold text-[#5C7887] font-mono">${bundlePrice.toFixed(2)}</span>
+                      <span className="text-lg font-bold text-brand-dark font-mono">${bundlePrice.toFixed(2)}</span>
                     </div>
                   </div>
 
@@ -219,11 +229,10 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                     <button
                       onClick={handleAddBundleToCart}
                       disabled={isAddingAll}
-                      className={`w-full py-3.5 rounded-full text-white text-xs font-bold tracking-widest uppercase shadow-md transition-all duration-300 cursor-pointer active:scale-98 ${
-                        addedAllSuccess 
+                      className={`w-full py-3.5 rounded-full text-white text-xs font-bold tracking-widest uppercase shadow-md transition-all duration-300 cursor-pointer active:scale-98 ${addedAllSuccess
                           ? 'bg-[#17335A] hover:bg-[#17335A]/90'
-                          : 'bg-[#5C7887] hover:bg-[#17335A]/90' 
-                      }`}
+                          : 'bg-brand-dark hover:bg-[#17335A]/90'
+                        }`}
                     >
                       {isAddingAll ? (
                         'Adding Regimen...'
@@ -234,7 +243,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                       )}
                     </button>
 
-                    
+
                   </div>
                 </div>
 
@@ -243,23 +252,21 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                   {recommendation.products.map((p) => {
                     const isLocal = !p.img.startsWith('http')
                     return (
-                      <div 
-                        key={p.id} 
+                      <div
+                        key={p.id}
                         className="bg-white rounded-xl p-4  border border-brand-dark/5 flex flex-col items-center justify-between text-center relative group"
                       >
                         <span className="text-[8px] font-bold text-gray-900 uppercase tracking-widest mb-2 block">
                           {p.stepLabel}
                         </span>
 
-                        <div className={`w-34 h-34 flex items-center justify-center rounded-lg mb-3 ${
-                          isLocal ? 'bg-[#5c7886]/10 p-2' : 'bg-brand-cream-dark'
-                        }`}>
-                          <img 
-                            src={p.img} 
-                            alt={p.name} 
-                            className={`object-contain transition-transform duration-500 group-hover:scale-105 ${
-                              isLocal ? 'max-h-full w-auto' : 'w-full h-full object-fill'
-                            }`}
+                        <div className={`w-34 h-34 flex items-center justify-center rounded-lg mb-3 ${isLocal ? 'bg-[#5c7886]/10 p-2' : 'bg-brand-cream-dark'
+                          }`}>
+                          <img
+                            src={p.img}
+                            alt={p.name}
+                            className={`object-contain transition-transform duration-500 group-hover:scale-105 ${isLocal ? 'max-h-full w-auto' : 'w-full h-full object-fill'
+                              }`}
                           />
                         </div>
 
@@ -272,7 +279,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                               ${p.price.toFixed(2)}
                             </span>
                           </div>
-                          
+
                           <button
                             onClick={() => onAddToCart({ id: p.id, name: p.name, price: p.price, img: p.img })}
                             className="mt-3 py-1.5 px-3 bg-[#17335a] hover:bg-[#17335A] text-white text-[9px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 cursor-pointer active:scale-95 whitespace-nowrap"

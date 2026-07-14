@@ -1,45 +1,12 @@
 import { useState } from 'react'
-
-interface Product {
-  id: number
-  name: string
-  price: number
-  rating: number
-  category: string
-  img: string
-}
+import { PRODUCTS } from './productsData'
+import type { Product } from './productsData'
 
 interface BestSellersProps {
   onAddToCart: (product: { id: number; name: string; price: number; img: string }) => void
 }
 
-const BEST_SELLERS: Product[] = [
-  {
-    id: 1,
-    name: 'Glow Boosting Serum',
-    price: 32.00,
-    rating: 4.9,
-    category: 'Serums',
-    img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80',
-  },
-  {
-    id: 9,
-    name: 'Age-Defying Retinol Serum',
-    price: 45.00,
-    rating: 4.8,
-    category: 'Treatments',
-    img: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=400&q=80',
-  },
-  {
-    id: 10,
-    name: 'Rosehip Replenishing Oil',
-    price: 38.00,
-    rating: 4.9,
-    category: 'Facial Oils',
-    img: 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=400&q=80',
-  },
-
-]
+const BEST_SELLERS: Product[] = PRODUCTS.filter(p => [1, 9, 10].includes(p.id))
 
 export default function BestSellers({ onAddToCart }: BestSellersProps) {
   const [startIndex, setStartIndex] = useState(0)
@@ -53,7 +20,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
   }
 
   return (
-    <section className="py-14 bg-brand-cream text-brand-dark overflow-hidden border-b border-brand-dark/5">
+    <section id="bestsellers" className="py-14 bg-brand-cream text-brand-dark overflow-hidden border-b border-brand-dark/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
@@ -64,29 +31,29 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                 <span className="text-xs font-bold tracking-widest text-[#5c7886] uppercase">Customer Favorites</span>
                 <h2 className="font-serif text-4xl sm:text-5xl font-normal mt-2 leading-tight text-[#17335A]">Best Sellers</h2>
               </div>
-                 <div className="flex items-center gap-6">
-            {/* Left Arrow Button */}
-            <button
-              onClick={handlePrev}
-              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#5c7886] hover:text-white hover:border-[#5c7886] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-              aria-label="Scroll left"
-            >
-              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
+              <div className="flex items-center gap-6">
+                {/* Left Arrow Button */}
+                <button
+                  onClick={handlePrev}
+                  className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#5c7886] hover:text-white hover:border-[#5c7886] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                  aria-label="Scroll left"
+                >
+                  <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
 
-            {/* Right Arrow Button */}
-            <button
-              onClick={handleNext}
-              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#5c7886] hover:text-white hover:border-[#5c7886] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-              aria-label="Scroll right"
-            >
-              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
+                {/* Right Arrow Button */}
+                <button
+                  onClick={handleNext}
+                  className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#5c7886] hover:text-white hover:border-[#5c7886] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                  aria-label="Scroll right"
+                >
+                  <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
             {/* Sliding Product list */}
@@ -152,7 +119,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                 <span className="text-xs font-bold tracking-widest uppercase opacity-75">Clean Beauty</span>
                 <h3 className="font-serif text-3xl sm:text-4xl font-normal mt-2 leading-tight">Naturally Radiant</h3>
                 <p className="text-sm mt-3 opacity-90 font-light max-w-sm">Every bottle is packed with biological-grade botanicals that yield active results for your daily skin rejuvenation.</p>
-                
+
               </div>
             </div>
           </div>

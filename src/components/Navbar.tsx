@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import navbarLogo from "../assets/morkins_logo-removebg-preview.png"
 
 interface NavbarProps {
@@ -10,6 +10,12 @@ interface NavbarProps {
 export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const location = useLocation();
+
+  const isAboutActive = location.pathname === '/about';
+  const isProductsActive = location.pathname === '/' && location.hash === '#products';
+  const isBestsellersActive = location.pathname === '/' && location.hash === '#bestsellers';
+  const isNewArrivalsActive = location.pathname === '/' && location.hash === '#new-arrivals';
 
   return (
     <header className="sticky top-0 z-40 bg-brand-cream backdrop-blur-md border-b border-brand-dark/10 transition-shadow duration-300 hover:shadow-sm">
@@ -32,22 +38,58 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
 
         {/* LEFT SECTION: Nav Links */}
         <nav className="hidden md:flex space-x-4 items-center font-serif text-xl font-semibold tracking-wide h-full">
-          <a href="#shop" className="text-black hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group">
+          <Link
+            to="/#products"
+            className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${
+              isProductsActive ? 'text-brand-light font-bold' : 'text-black'
+            }`}
+          >
             Product
-            <span className="absolute bottom-4 left-0 w-full h-[2px] bg-brand-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-          </a>
-          <a href="#concerns" className="text-black hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group">
+            <span
+              className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${
+                isProductsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
+            />
+          </Link>
+          <Link
+            to="/#bestsellers"
+            className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${
+              isBestsellersActive ? 'text-brand-light font-bold' : 'text-black'
+            }`}
+          >
             Best sellers
-            <span className="absolute bottom-4 left-0 w-full h-[2px] bg-brand-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-          </a>
-          <a href="#discover" className="text-black hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group">
+            <span
+              className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${
+                isBestsellersActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
+            />
+          </Link>
+          <Link
+            to="/#new-arrivals"
+            className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${
+              isNewArrivalsActive ? 'text-brand-light font-bold' : 'text-black'
+            }`}
+          >
             New Arrivals
-            <span className="absolute bottom-4 left-0 w-full h-[2px] bg-brand-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-          </a>
-          <a href="#blog" className="text-black hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group">
+            <span
+              className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${
+                isNewArrivalsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
+            />
+          </Link>
+          <Link
+            to="/about"
+            className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${
+              isAboutActive ? 'text-brand-light font-bold' : 'text-black'
+            }`}
+          >
            About
-            <span className="absolute bottom-4 left-0 w-full h-[2px] bg-brand-light scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-          </a>
+            <span
+              className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${
+                isAboutActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
+            />
+          </Link>
         </nav>
 
         {/* CENTER SECTION: Logo (absolutely centered) */}
@@ -149,10 +191,42 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
             </svg>
           </div>
           <nav className="flex flex-col space-y-3 font-semibold text-[15px] text-brand-dark">
-            <a href="#shop" className="py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Shop All</a>
-            <a href="#concerns" className="py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Skin Concerns</a>
-            <a href="#discover" className="py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Discover</a>
-            <a href="#blog" className="py-1 hover:text-brand-light transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Skincare Blog</a>
+            <Link
+              to="/#products"
+              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${
+                isProductsActive ? 'text-brand-light font-bold' : ''
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Product Grid
+            </Link>
+            <Link
+              to="/#bestsellers"
+              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${
+                isBestsellersActive ? 'text-brand-light font-bold' : ''
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Best Sellers
+            </Link>
+            <Link
+              to="/#new-arrivals"
+              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${
+                isNewArrivalsActive ? 'text-brand-light font-bold' : ''
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              New Arrivals
+            </Link>
+            <Link
+              to="/about"
+              className={`py-1 hover:text-brand-light transition-colors ${
+                isAboutActive ? 'text-brand-light font-bold' : ''
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              About Us
+            </Link>
           </nav>
         </div>
       )}

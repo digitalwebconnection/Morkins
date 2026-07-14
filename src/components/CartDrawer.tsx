@@ -57,7 +57,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQty, on
                       <ul role="list" className="-my-6 divide-y divide-brand-dark/10">
                         {cartItems.map((item) => (
                           <li key={item.id} className="flex py-6">
-                            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl border border-brand-dark/5 bg-brand-cream-dark">
+                            <div className="h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-brand-dark/5 bg-brand-cream-dark">
                               <img
                                 src={item.img}
                                 alt={item.name}

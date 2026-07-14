@@ -5,7 +5,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainSection />} />
+        <Route path="/*" element={<MainSection />} />
       </Routes>
     </BrowserRouter>
   )
