@@ -1,16 +1,35 @@
 import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import PromoBar from './PromoBar'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Home from '../pages/home/Home'
 import AboutUs from '../pages/aboutus/AboutUs'
+import UserProfile from '../pages/profile/UserProfile'
+
 import CartDrawer from './CartDrawer'
 import type { CartItem } from './CartDrawer'
+import AuthModal from './AuthModal'
 
 export default function MainSection() {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+
+  const handleUserClick = () => {
+    const user = localStorage.getItem('morkins_logged_in_user');
+    if (user) {
+      navigate('/profile');
+    } else {
+      setIsAuthOpen(true);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('morkins_logged_in_user');
+    navigate('/');
+  };
 
   const handleAddToCart = (product: { id: number; name: string; price: number; img: string }, openCart = true) => {
     setCartItems(prevItems => {
@@ -53,12 +72,13 @@ export default function MainSection() {
       <PromoBar />
 
       {/* Header Navigation Bar */}
-      <Navbar onCartClick={() => setIsCartOpen(true)} cartCount={cartCount} />
+      <Navbar onCartClick={() => setIsCartOpen(true)} onUserClick={handleUserClick} cartCount={cartCount} />
 
       {/* Page Content */}
       <Routes>
         <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/profile" element={<UserProfile onAddToCart={handleAddToCart} onLogout={handleLogout} />} />
       </Routes>
 
       {/* Page Footer */}
@@ -71,6 +91,12 @@ export default function MainSection() {
         cartItems={cartItems}
         onUpdateQty={handleUpdateQty}
         onRemove={handleRemoveItem}
+      />
+
+      {/* User Authentication Modal Popup */}
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
       />
     </>
   )

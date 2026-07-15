@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useLanguage } from '../../context/LanguageContext'
 
 import p1 from '../../assets/product/12.png'
 import p2 from '../../assets/product/13.png'
@@ -67,6 +68,7 @@ const SLIDES: Slide[] = [
 ]
 
 export default function New() {
+  const { t } = useLanguage()
   const [selectedSlideIdx, setSelectedSlideIdx] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [hoveredHotspotIdx, setHoveredHotspotIdx] = useState<number | null>(0)
@@ -159,14 +161,14 @@ export default function New() {
               className={`font-serif text-3xl sm:text-4xl lg:text-4xl font-normal text-[#17335A] leading-tight tracking-wide mb-6 transition-all duration-700 transform ${isTransitioning ? 'opacity-0 ' : 'opacity-100 translate-y-0'
                 }`}
             >
-              {activeSlide.title}
+              {t('slide_' + activeSlide.id + '_title')}
             </h2>
 
             <p
               className={`text-gray-900 text-sm sm:text-base leading-relaxed mb-8 max-w-md transition-all duration-700 delay-75 transform ${isTransitioning ? 'opacity-0 translate-y-3' : 'opacity-100 translate-y-0'
                 }`}
             >
-              {activeSlide.subtitle}
+              {t('slide_' + activeSlide.id + '_sub')}
             </p>
 
             <div
@@ -188,7 +190,7 @@ export default function New() {
                   e.currentTarget.style.color = '#ffffff';
                 }}
               >
-                {activeSlide.buttonText}
+                {t('slide_' + activeSlide.id + '_btn')}
               </button>
 
               <button
@@ -238,7 +240,7 @@ export default function New() {
               {/* Main Slide Image */}
               <img
                 src={activeSlide.image}
-                alt={activeSlide.title}
+                alt={t('slide_' + activeSlide.id + '_title')}
                 className="w-full h-full object-fill transition-transform duration-1000 ease-out"
                 loading="lazy"
               />
@@ -247,6 +249,8 @@ export default function New() {
               {activeSlide.hotspots.map((spot, hIdx) => {
                 const isHovered = hoveredHotspotIdx === hIdx
                 const isLeft = parseInt(spot.x) > 50
+                const labelText = t('spot_' + activeSlide.id + '_' + hIdx + '_label')
+                const tooltipText = t('spot_' + activeSlide.id + '_' + hIdx + '_tooltip')
                 return (
                   <div
                     key={hIdx}
@@ -332,12 +336,12 @@ export default function New() {
                       className={`absolute top-1/2 -translate-y-1/2 ml-12 left-0 whitespace-nowrap bg-black backdrop-blur-xs text-white text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded shadow-sm transition-all duration-300 pointer-events-none ${isHovered ? 'opacity-100 scale-105' : 'opacity-90'
                         }`}
                     >
-                      {spot.label}
+                      {labelText}
                     </div>
 
                     {/* Rich Tooltip Detail Popup (Positions at end of callout line with transition delay) */}
                     <div
-                      className={`absolute w-52 mt-10 bg-[#17335A] text-[#17335A] rounded-lg p-3 shadow-xl border border-brand-dark/5 text-left transition-all duration-500 z-30 ${isHovered
+                      className={`absolute w-52 mt-10 bg-[#17335A] text-white rounded-lg p-3 shadow-xl border border-brand-dark/5 text-left transition-all duration-500 z-30 ${isHovered
                           ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
                           : 'opacity-0 translate-y-2 scale-95 pointer-events-none'
                         }`}
@@ -349,9 +353,9 @@ export default function New() {
                         transitionDelay: isHovered ? '600ms' : '0ms' // Displays after leader line fully draws
                       }}
                     >
-                      <div className="text-[8px] font-bold uppercase tracking-wider text-white mb-0.5">SCAN INDEX</div>
-                      <div className="font-semibold text-xs text-white">{spot.label}: {spot.value}</div>
-                      <div className="text-[9px] text-gray-100 mt-1 leading-normal">{spot.tooltip}</div>
+                      <div className="text-[8px] font-bold uppercase tracking-wider text-white/60 mb-0.5">SCAN INDEX</div>
+                      <div className="font-semibold text-xs text-white">{labelText}: {spot.value}</div>
+                      <div className="text-[9px] text-gray-100 mt-1 leading-normal">{tooltipText}</div>
                     </div>
                   </div>
                 )

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import navbar from '../assets/morkins_logo-removebg-preview.png'
+import { useLanguage } from '../context/LanguageContext'
 
 const topFeatures = [
   {
@@ -8,8 +9,8 @@ const topFeatures = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
     ),
-    title: 'Cash on Delivery',
-    desc: 'Pay when you receive',
+    titleKey: 'feat_cod_title',
+    descKey: 'feat_cod_desc',
   },
   {
     icon: (
@@ -18,18 +19,17 @@ const topFeatures = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    title: 'All-India Delivery',
-    desc: 'We deliver pan-India',
+    titleKey: 'feat_deliv_title',
+    descKey: 'feat_deliv_desc',
   },
-
   {
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
-    title: '100% Authentic',
-    desc: 'Genuine products only',
+    titleKey: 'feat_auth_title',
+    descKey: 'feat_auth_desc',
   },
   {
     icon: (
@@ -37,8 +37,8 @@ const topFeatures = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M16 15v-1a4 4 0 00-4-4H8m0 0l3 3m-3-3l3-3m9 14V5a2 2 0 00-2-2H6a2 2 0 00-2 2v16l4-2 2 2 2-2 2 2 2-2 4 2z" />
       </svg>
     ),
-    title: 'Easy Returns',
-    desc: '7-day hassle-free returns',
+    titleKey: 'feat_return_title',
+    descKey: 'feat_return_desc',
   },
   {
     icon: (
@@ -46,12 +46,13 @@ const topFeatures = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
       </svg>
     ),
-    title: 'Secure Payments',
-    desc: 'UPI, Cards & Net Banking',
+    titleKey: 'feat_pay_title',
+    descKey: 'feat_pay_desc',
   },
 ]
 
 export default function Footer() {
+  const { t } = useLanguage();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -72,13 +73,13 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 lg:px-4 py-5">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
             {topFeatures.map((f) => (
-              <div key={f.title} className="flex items-start gap-3 group">
+              <div key={f.titleKey} className="flex items-start gap-3 group">
                 <div className="text-[#C1D3DF] shrink-0 mt-0.5 group-hover:text-white transition-colors duration-200">
                   {f.icon}
                 </div>
                 <div>
-                  <p className="text-[16px] font-semibold text-white leading-tight">{f.title}</p>
-                  <p className="text-[11px] text-white/90 mt-0.5 leading-snug">{f.desc}</p>
+                  <p className="text-[16px] font-semibold text-white leading-tight">{t(f.titleKey)}</p>
+                  <p className="text-[11px] text-white/90 mt-0.5 leading-snug">{t(f.descKey)}</p>
                 </div>
               </div>
             ))}
@@ -96,35 +97,35 @@ export default function Footer() {
               <img src={navbar} alt="Morkins" className="h-9 w-auto object-contain brightness-0 invert" />
             </a>
             <p className="text-white/90 text-sm leading-relaxed max-w-[240px]">
-              Premium skincare crafted for every skin type. Science-backed, nature-inspired.
+              {t('foot_mission')}
             </p>
 
             {/* Email Signup */}
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/35 mb-2">Stay Updated</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-white/35 mb-2">{t('foot_routine')}</p>
               <form onSubmit={handleSubscribe} className="flex border border-white/20 rounded-sm overflow-hidden">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email address"
+                  placeholder={t('foot_placeholder_email')}
                   className="flex-1 bg-transparent text-white text-sm px-3 py-2.5 placeholder-white/30 focus:outline-none min-w-0"
                 />
                 <button
                   type="submit"
                   className="bg-white text-[#17335A] text-[11px] font-bold uppercase tracking-widest px-3 py-2.5 hover:bg-[#C1D3DF] transition-colors duration-200 cursor-pointer shrink-0"
                 >
-                  Subscribe
+                  {t('foot_sub_btn')}
                 </button>
               </form>
               {subscribed && (
-                <p className="text-[#C1D3DF] text-xs mt-2">✓ Thank you for subscribing!</p>
+                <p className="text-[#C1D3DF] text-xs mt-2">{t('foot_subscribed')}</p>
               )}
             </div>
 
             {/* Social Icons */}
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/35 mb-3">Follow Us</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-white/35 mb-3">{t('foot_follow_us')}</p>
               <div className="flex items-center gap-4">
                 {[
                   { label: 'Instagram', path: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z' },
@@ -144,26 +145,25 @@ export default function Footer() {
           </div>
 
           {/* RIGHT: Three Link Columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-3  gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
 
             {/* Our Products */}
             <div>
-              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">Our Products</h4>
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">{t('foot_col_products')}</h4>
               <ul className="space-y-2.5">
                 {[
-                  'Cleansers & Face Wash',
-                  'Toners & Mists',
-                  'Serums & Treatments',
-                  'Moisturizers & Creams',
-                  'Sunscreens & SPF',
-                  'Eye Care',
-                  'Face Masks & Scrubs',
-                  'Lip Care',
-                
+                  { key: 'foot_prod_1' },
+                  { key: 'foot_prod_2' },
+                  { key: 'foot_prod_3' },
+                  { key: 'foot_prod_4' },
+                  { key: 'foot_prod_5' },
+                  { key: 'foot_prod_6' },
+                  { key: 'foot_prod_7' },
+                  { key: 'foot_prod_8' },
                 ].map(item => (
-                  <li key={item}>
+                  <li key={item.key}>
                     <a href="#" className="text-sm text-white/65 hover:text-white transition-colors duration-200 leading-snug block">
-                      {item}
+                      {t(item.key)}
                     </a>
                   </li>
                 ))}
@@ -172,22 +172,21 @@ export default function Footer() {
 
             {/* Customer Support */}
             <div>
-              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">Customer Support</h4>
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">{t('foot_col_support')}</h4>
               <ul className="space-y-2.5">
                 {[
-                  'FAQs',
-                  'Return & Refund Policy',
-                  'Privacy Policy',
-                  'Terms & Conditions',
-                  'Shipping Policy',
-                  'Track My Order',
-                  'Contact Us',
-                  'WhatsApp Support',
-                
+                  { key: 'foot_supp_1' },
+                  { key: 'foot_supp_2' },
+                  { key: 'foot_supp_3' },
+                  { key: 'foot_supp_4' },
+                  { key: 'foot_supp_5' },
+                  { key: 'foot_supp_6' },
+                  { key: 'foot_supp_7' },
+                  { key: 'foot_supp_8' },
                 ].map(item => (
-                  <li key={item}>
+                  <li key={item.key}>
                     <a href="#" className="text-sm text-white/65 hover:text-white transition-colors duration-200 leading-snug block">
-                      {item}
+                      {t(item.key)}
                     </a>
                   </li>
                 ))}
@@ -196,22 +195,21 @@ export default function Footer() {
 
             {/* Our Company */}
             <div>
-              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">Our Company</h4>
+              <h4 className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">{t('foot_col_company')}</h4>
               <ul className="space-y-2.5">
                 {[
-                  'About Morkins',
-                  'Our Story',
-                  'Our Mission & Values',
-                  'Ingredients We Use',
-                  'Dermatologist Approved',
-                  'Sustainability',
-                  'Cruelty Free Promise',
-                  
-                  'Blog',
+                  { key: 'foot_comp_1' },
+                  { key: 'foot_comp_2' },
+                  { key: 'foot_comp_3' },
+                  { key: 'foot_comp_4' },
+                  { key: 'foot_comp_5' },
+                  { key: 'foot_comp_6' },
+                  { key: 'foot_comp_7' },
+                  { key: 'foot_comp_8' },
                 ].map(item => (
-                  <li key={item}>
+                  <li key={item.key}>
                     <a href="#" className="text-sm text-white/65 hover:text-white transition-colors duration-200 leading-snug block">
-                      {item}
+                      {t(item.key)}
                     </a>
                   </li>
                 ))}
@@ -229,10 +227,8 @@ export default function Footer() {
             © {new Date().getFullYear()} Morkins. All Rights Reserved.
           </p>
           <div className="flex items-center gap-5">
-            <a href="#" className="text-white/90 hover:text-white/60 text-xs transition-colors">Terms & Conditions</a>
-            <a href="#" className="text-white/90 hover:text-white/60 text-xs transition-colors">Privacy Policy</a>
-            {/* <span className="text-white/90 text-xs">|</span> */}
-            {/* <span className="text-white/90 text-xs">Developed by <span className="text-[#C1D3DF]/70 font-semibold">DWC</span></span> */}
+            <a href="#" className="text-white/90 hover:text-white/60 text-xs transition-colors">{t('foot_supp_4')}</a>
+            <a href="#" className="text-white/90 hover:text-white/60 text-xs transition-colors">{t('foot_supp_3')}</a>
           </div>
         </div>
       </div>

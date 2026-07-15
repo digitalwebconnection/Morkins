@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import navbarLogo from "../assets/morkins_logo-removebg-preview.png"
+import { useLanguage } from '../context/LanguageContext'
 
 interface NavbarProps {
   onCartClick: () => void;
+  onUserClick: () => void;
   cartCount: number;
 }
 
-export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
+export default function Navbar({ onCartClick, onUserClick, cartCount }: NavbarProps) {
+  const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
@@ -44,7 +47,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
               isProductsActive ? 'text-brand-light font-bold' : 'text-black'
             }`}
           >
-            Product
+            {t('nav_products')}
             <span
               className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${
                 isProductsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
@@ -57,7 +60,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
               isBestsellersActive ? 'text-brand-light font-bold' : 'text-black'
             }`}
           >
-            Best sellers
+            {t('nav_bestsellers')}
             <span
               className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${
                 isBestsellersActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
@@ -70,7 +73,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
               isNewArrivalsActive ? 'text-brand-light font-bold' : 'text-black'
             }`}
           >
-            New Arrivals
+            {t('nav_newarrivals')}
             <span
               className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${
                 isNewArrivalsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
@@ -83,7 +86,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
               isAboutActive ? 'text-brand-light font-bold' : 'text-black'
             }`}
           >
-           About
+           {t('nav_about')}
             <span
               className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${
                 isAboutActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
@@ -110,7 +113,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
           <div className="relative hidden lg:flex items-center group">
             <input
               type="text"
-              placeholder="Search"
+              placeholder={t('nav_search_placeholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-32 focus:w-48 bg-transparent border-b border-brand-dark/30 focus:border-brand-dark focus:outline-none text-[11px] uppercase tracking-wider text-brand-dark pb-1 transition-all duration-500 placeholder-brand-dark/40"
@@ -127,7 +130,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
           </div>
 
           {/* User Profile Icon */}
-          <a href="#login" className="relative flex items-center text-black hover:text-brand-light transition-colors duration-300 cursor-pointer group" aria-label="User Account">
+          <button onClick={onUserClick} className="relative flex items-center text-black hover:text-brand-light transition-colors duration-300 cursor-pointer group" aria-label="User Account">
             <div className="relative flex items-center justify-center transition-transform duration-300  ">
               <svg
                 className="w-6 h-6"
@@ -142,7 +145,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
                 <circle cx="12" cy="7" r="4" />
               </svg>
             </div>
-          </a>
+          </button>
 
           {/* Shopping Bag Icon */}
           <button
@@ -181,7 +184,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
           <div className="relative flex items-center mb-3">
             <input
               type="text"
-              placeholder="Search Skincare..."
+              placeholder={t('nav_search_placeholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full px-4 py-2 pr-10 rounded-full border border-brand-dark/30 focus:outline-none text-sm bg-transparent text-brand-dark placeholder-brand-dark/40"
@@ -198,7 +201,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Product Grid
+              {t('nav_products')}
             </Link>
             <Link
               to="/#bestsellers"
@@ -207,7 +210,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Best Sellers
+              {t('nav_bestsellers')}
             </Link>
             <Link
               to="/#new-arrivals"
@@ -216,7 +219,7 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              New Arrivals
+              {t('nav_newarrivals')}
             </Link>
             <Link
               to="/about"
@@ -225,8 +228,17 @@ export default function Navbar({ onCartClick, cartCount }: NavbarProps) {
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              About Us
+              {t('nav_about')}
             </Link>
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                onUserClick();
+              }}
+              className="w-full text-left py-1 hover:text-brand-light transition-colors border-t border-brand-dark/10 pt-2 cursor-pointer font-semibold text-[15px] text-brand-dark"
+            >
+              {t('nav_signin')}
+            </button>
           </nav>
         </div>
       )}

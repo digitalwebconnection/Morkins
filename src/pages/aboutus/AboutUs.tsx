@@ -17,10 +17,10 @@ export default function AboutUs() {
       <AboutHero />
       <AboutDetails />
       <AboutMission />
-         <AboutAppointment />
+      <AboutAppointment />
       <AboutJourney />
       <AboutTeam />
-   
+
     </>
   )
 }
