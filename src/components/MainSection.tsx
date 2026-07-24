@@ -6,6 +6,8 @@ import Footer from './Footer'
 import Home from '../pages/home/Home'
 import AboutUs from '../pages/aboutus/AboutUs'
 import UserProfile from '../pages/profile/UserProfile'
+import ProductsPage from '../pages/products/ProductsPage'
+import ProductDetailsPage from '../pages/products/ProductDetailsPage'
 
 import CartDrawer from './CartDrawer'
 import type { CartItem } from './CartDrawer'
@@ -77,6 +79,8 @@ export default function MainSection() {
       {/* Page Content */}
       <Routes>
         <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
+        <Route path="/products" element={<ProductsPage onAddToCart={handleAddToCart} />} />
+        <Route path="/products/:id" element={<ProductDetailsPage onAddToCart={handleAddToCart} />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/profile" element={<UserProfile onAddToCart={handleAddToCart} onLogout={handleLogout} />} />
       </Routes>

@@ -16,7 +16,7 @@ export default function Navbar({ onCartClick, onUserClick, cartCount }: NavbarPr
   const location = useLocation();
 
   const isAboutActive = location.pathname === '/about';
-  const isProductsActive = location.pathname === '/' && location.hash === '#products';
+  const isProductsActive = location.pathname === '/products';
   const isBestsellersActive = location.pathname === '/' && location.hash === '#bestsellers';
   const isNewArrivalsActive = location.pathname === '/' && location.hash === '#new-arrivals';
 
@@ -42,7 +42,7 @@ export default function Navbar({ onCartClick, onUserClick, cartCount }: NavbarPr
         {/* LEFT SECTION: Nav Links */}
         <nav className="hidden md:flex space-x-4 items-center font-serif text-xl font-semibold tracking-wide h-full">
           <Link
-            to="/#products"
+            to="/products"
             className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${
               isProductsActive ? 'text-brand-light font-bold' : 'text-black'
             }`}
@@ -195,7 +195,7 @@ export default function Navbar({ onCartClick, onUserClick, cartCount }: NavbarPr
           </div>
           <nav className="flex flex-col space-y-3 font-semibold text-[15px] text-brand-dark">
             <Link
-              to="/#products"
+              to="/products"
               className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${
                 isProductsActive ? 'text-brand-light font-bold' : ''
               }`}
