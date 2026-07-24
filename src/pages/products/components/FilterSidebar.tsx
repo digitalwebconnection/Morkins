@@ -30,7 +30,7 @@ export default function FilterSidebar({
 
   const handleCategoryChange = (cat: string) => {
     setFilters(prev => ({ ...prev, category: prev.category === cat ? '' : cat }));
-  };
+  }; 
 
   const handleRatingChange = (rating: number) => {
     setFilters(prev => ({ ...prev, rating: prev.rating === rating ? 0 : rating }));
