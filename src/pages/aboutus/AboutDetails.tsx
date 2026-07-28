@@ -9,7 +9,7 @@ export default function AboutDetails() {
             <span className="text-xs font-bold tracking-widest text-[#5c7886] uppercase">OUR PHILOSOPHY</span>
             <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#17335A] leading-tight">
               Honoring Your Skin’s <br />
-              <span className="italic font-light text-[#303030]">Natural Intelligence</span>
+              <span className=" font-light text-[#303030]">Natural Intelligence</span>
             </h2>
             <p className="text-neutral-900 text-base leading-relaxed font-light">
               Your skin is a living, breathing ecosystem. Rather than stripping it with aggressive chemicals, Morkins supports its innate biological functions. We believe true radiance comes from a fully restored lipid barrier, protected by biocompatible nourishment.

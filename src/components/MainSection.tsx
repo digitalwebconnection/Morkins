@@ -18,6 +18,8 @@ export default function MainSection() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [lastAddedItem, setLastAddedItem] = useState<CartItem | null>(null);
+  const [showCartPopover, setShowCartPopover] = useState(false);
 
   const handleUserClick = () => {
     const user = localStorage.getItem('morkins_logged_in_user');
@@ -33,16 +35,21 @@ export default function MainSection() {
     navigate('/');
   };
 
-  const handleAddToCart = (product: { id: number; name: string; price: number; img: string }, openCart = true) => {
+  const handleAddToCart = (product: { id: number; name: string; price: number; img: string }, openCart = false) => {
+    let finalQty = 1;
     setCartItems(prevItems => {
       const existing = prevItems.find(item => item.id === product.id);
       if (existing) {
+        finalQty = existing.qty + 1;
         return prevItems.map(item =>
           item.id === product.id ? { ...item, qty: item.qty + 1 } : item
         );
       }
+      finalQty = 1;
       return [...prevItems, { ...product, qty: 1 }];
     });
+    setLastAddedItem({ ...product, qty: finalQty });
+    setShowCartPopover(true);
     if (openCart) {
       setIsCartOpen(true);
     }
@@ -73,8 +80,14 @@ export default function MainSection() {
       {/* Announcements Promo Slider */}
       <PromoBar />
 
-      {/* Header Navigation Bar */}
-      <Navbar onCartClick={() => setIsCartOpen(true)} onUserClick={handleUserClick} cartCount={cartCount} />
+      <Navbar 
+        onCartClick={() => setIsCartOpen(true)} 
+        onUserClick={handleUserClick} 
+        cartCount={cartCount} 
+        lastAddedItem={lastAddedItem}
+        showCartPopover={showCartPopover}
+        onCloseCartPopover={() => setShowCartPopover(false)}
+      />
 
       {/* Page Content */}
       <Routes>

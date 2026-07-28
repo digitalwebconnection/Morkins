@@ -71,7 +71,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                     {translatedName}
                   </h3>
 
-                  <div className="flex items-center justify-between  mt-3 pt-3 border-t border-[#17335A]/35">
+                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#17335A]/35">
                     <span className="text-base font-bold text-[#17335A]">${p.price.toFixed(2)}</span>
                     <button
                       onClick={() => onAddToCart({ id: p.id, name: translatedName, price: p.price, img: p.img })}

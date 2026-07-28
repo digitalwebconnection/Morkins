@@ -92,13 +92,13 @@ export default function AboutAppointment() {
           </div>
 
           {/* Content — above both arch masks */}
-          <div className="relative w-full max-w-6xl mx-auto px-8 sm:px-12 py-12 text-center" style={{ zIndex: 10 }}>
+          <div className="relative w-full max-w-7xl mx-auto px-8 sm:px-12 py-12 text-center" style={{ zIndex: 10 }}>
 
             {/* Title */}
             <h2
-              className={`font-serif font-medium leading-tight mb-20 text-3xl sm:text-[2.2rem] md:text-[2.6rem]
+              className={`font-serif font-medium leading-tight mb-20 text-3xl sm:text-[2.2rem] md:text-[2.6rem] text-[#17335A]
                 ${visible ? 'appt-fade-up appt-d1' : 'opacity-0'}`}
-              style={{ color: '#4A2B2B' }}
+    
             >
               How To Make An Appointment
             </h2>
@@ -115,8 +115,8 @@ export default function AboutAppointment() {
                   >
                     {/* Icon badge — white rounded square matching reference */}
                     <div
-                      className="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center shadow-sm"
-                      style={{ backgroundColor: 'rgba(255,255,255,0.82)', color: '#7a4545' }}
+                      className="shrink-0 w-12 h-12 rounded-lg mt-3 flex items-center justify-center shadow-sm"
+                      style={{ backgroundColor: 'rgba(255,255,255,0.82)', color: '#000000' }}
                     >
                       {step.icon}
                     </div>

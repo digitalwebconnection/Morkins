@@ -40,9 +40,9 @@ export default function Home({ onAddToCart }: HomeProps) {
 
       {/* Brand Story and Statistics Section */}
       {/* <OurStory /> */}
-      <New/>
+      <New />
 
-    
+
 
       {/* Product Section: Displays 4 products (expandable) */}
       <ProductGrid onAddToCart={onAddToCart} />
