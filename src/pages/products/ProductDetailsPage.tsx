@@ -33,7 +33,7 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
       <div className="min-h-[60vh] flex flex-col items-center justify-center bg-brand-cream/20">
         <h2 className="text-3xl font-serif font-bold text-brand-dark mb-4">Product Not Found</h2>
         <p className="text-brand-dark/70 mb-8">We couldn't find the product you're looking for.</p>
-        <button 
+        <button
           onClick={() => navigate('/products')}
           className="px-8 py-3 bg-brand-dark text-white rounded-full font-semibold tracking-wide hover:bg-brand-dark/90 transition-colors"
         >
@@ -46,16 +46,16 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
   return (
     <div className="min-h-screen bg-brand-cream/20 pt-8 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
 
         {/* Main Product Section */}
         <div className=" overflow-hidden flex flex-col lg:flex-row mb-16">
-          
+
           {/* Left Side: Image */}
-          <div className="w-full lg:w-1/2 bg-brand-cream/30 relative flex items-center justify-center p-12">
-            <img 
-              src={product.img} 
-              alt={product.name} 
+          <div className="w-full lg:w-1/3 bg-brand-cream/30 relative flex items-center justify-center p-12">
+            <img
+              src={product.img}
+              alt={product.name}
               className="w-full max-w-md object-contain mix-blend-multiply transition-transform duration-700 hover:scale-105"
             />
             {product.badge && (
@@ -66,7 +66,7 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
           </div>
 
           {/* Right Side: Details */}
-          <div className="w-full lg:w-1/2 p-8 lg:p-16 flex flex-col justify-center">
+          <div className="w-full lg:w-2/3 p-8 lg:p-16 flex flex-col justify-center">
             <p className="text-sm font-semibold text-brand-light uppercase tracking-widest mb-3">
               {product.brand} • {product.category}
             </p>
@@ -112,40 +112,39 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
               </p>
             </div>
 
-            <button 
+            <button
               onClick={() => onAddToCart(product)}
               disabled={!product.inStock}
-              className={`w-full md:w-auto px-12 py-4 rounded-xl font-bold tracking-wide transition-all shadow-md flex items-center justify-center gap-3 ${
-                product.inStock 
-                  ? 'bg-brand-dark text-white hover:bg-brand-dark/90 hover:-translate-y-1 hover:shadow-xl' 
+              className={`w-full md:w-auto px-12 py-4 rounded-xl font-bold tracking-wide transition-all shadow-md flex items-center justify-center gap-3 ${product.inStock
+                  ? 'bg-brand-dark text-white hover:bg-brand-dark/90 hover:-translate-y-1 hover:shadow-xl'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              }`}
+                }`}
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
               {product.inStock ? 'Add to Cart' : 'Out of Stock'}
             </button>
-            
+
             {/* Additional Info Badges */}
             <div className="mt-10 grid grid-cols-3 gap-4 border-t border-brand-dark/10 pt-8">
               <div className="flex flex-col items-center text-center">
                 <svg className="w-8 h-8 text-brand-light mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-xs text-brand-dark/80 font-medium uppercase tracking-wider">Dermatologist<br/>Tested</span>
+                <span className="text-xs text-brand-dark/80 font-medium uppercase tracking-wider">Dermatologist<br />Tested</span>
               </div>
               <div className="flex flex-col items-center text-center">
                 <svg className="w-8 h-8 text-brand-light mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span className="text-xs text-brand-dark/80 font-medium uppercase tracking-wider">Cruelty<br/>Free</span>
+                <span className="text-xs text-brand-dark/80 font-medium uppercase tracking-wider">Cruelty<br />Free</span>
               </div>
               <div className="flex flex-col items-center text-center">
                 <svg className="w-8 h-8 text-brand-light mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 </svg>
-                <span className="text-xs text-brand-dark/80 font-medium uppercase tracking-wider">Sustainable<br/>Packaging</span>
+                <span className="text-xs text-brand-dark/80 font-medium uppercase tracking-wider">Sustainable<br />Packaging</span>
               </div>
             </div>
 
@@ -161,13 +160,13 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
                 View All Products &rarr;
               </Link>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map(rp => (
                 <ProductCard key={rp.id} product={rp} onAddToCart={onAddToCart} />
               ))}
             </div>
-            
+
             <div className="mt-8 text-center sm:hidden">
               <Link to="/products" className="inline-block px-6 py-3 border-2 border-brand-dark text-brand-dark rounded-full font-semibold hover:bg-brand-dark hover:text-white transition-colors">
                 View All Products

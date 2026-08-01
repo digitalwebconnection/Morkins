@@ -70,7 +70,7 @@ export default function Navbar({
           >
             {t('nav_products')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${isProductsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-brand-light transition-transform duration-300 origin-left ${isProductsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
             />
           </Link>
@@ -81,7 +81,7 @@ export default function Navbar({
           >
             {t('nav_bestsellers')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${isBestsellersActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-brand-light transition-transform duration-300 origin-left ${isBestsellersActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
             />
           </Link>
@@ -92,7 +92,7 @@ export default function Navbar({
           >
             {t('nav_newarrivals')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${isNewArrivalsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-brand-light transition-transform duration-300 origin-left ${isNewArrivalsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
             />
           </Link>
@@ -103,7 +103,7 @@ export default function Navbar({
           >
             {t('nav_about')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-[2px] bg-brand-light transition-transform duration-300 origin-left ${isAboutActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-brand-light transition-transform duration-300 origin-left ${isAboutActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
             />
           </Link>
@@ -192,7 +192,7 @@ export default function Navbar({
 
             {/* Added to Cart Popover */}
             {showCartPopover && lastAddedItem && (
-              <div className="absolute right-[-8px] top-full mt-3 w-80 max-w-[calc(100vw-32px)] bg-white border border-brand-dark/15 rounded-2xl shadow-2xl z-50 p-4 animate-popover-enter">
+              <div className="absolute -right-2 top-full mt-3 w-80 max-w-[calc(100vw-32px)] bg-white border border-brand-dark/15 rounded-2xl shadow-2xl z-50 p-4 animate-popover-enter">
                 {/* Arrow pointing up */}
                 <div className="absolute -top-2 right-4 w-3.5 h-3.5 bg-white border-t border-l border-brand-dark/15 rotate-45 z-10"></div>
                 
