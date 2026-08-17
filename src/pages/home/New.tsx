@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 
-import p1 from '../../assets/product/12.png'
-import p2 from '../../assets/product/13.png'
-import p4 from '../../assets/product/14.png'
+import p1 from '../../assets/product/p1.jpg'
+import p2 from '../../assets/product/p2.jpg'
+import p4 from '../../assets/product/p4.jpg'
 
 interface Hotspot {
   x: string

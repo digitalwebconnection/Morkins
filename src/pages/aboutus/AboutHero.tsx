@@ -1,8 +1,8 @@
-import hero5 from '../../assets/hero/6.jpg'
+import hero5 from '../../assets/hero/ab.jpeg'
 
 export default function AboutHero() {
   return (
-    <section className="relative w-full h-[500px] sm:h-screen overflow-hidden">
+    <section className="relative w-full h-100 sm:h-150 overflow-hidden">
       {/* Full-bleed Background Image */}
       <img
         src={hero5}

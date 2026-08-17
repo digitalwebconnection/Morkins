@@ -1,189 +1,124 @@
-import { useRef } from 'react'
-import p1 from '../../assets/product/12.png'
-import p2 from '../../assets/product/13.png'
-import p4 from '../../assets/product/14.png'
+import { useNavigate } from 'react-router-dom'
 
-interface Ingredient {
+interface CategoryCard {
   id: number
-  name: string
-  benefit: string
-  img: string
-  hoverImg: string
-  textColor: string
+  titleLine1: string
+  titleLine2: string
+  subtext: string
+  bgColor: string
+  subtextColor: string
+  link: string
+  accentColor: string
 }
 
-const INGREDIENTS: Ingredient[] = [
+const CATEGORIES: CategoryCard[] = [
   {
     id: 1,
-    name: 'RETINOL / AL',
-    benefit: 'Target signs of aging & smooth fine lines',
-    img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: p1,
-    textColor: '#E2ECD5', // light sage green
+    titleLine1: 'Face',
+    titleLine2: 'Serums',
+    subtext: '6 FORMULATIONS',
+    bgColor: '#0D1E36', // Deep Navy Blue
+    subtextColor: '#88A2C4',
+    accentColor: '#1A3359',
+    link: '/products',
   },
   {
     id: 2,
-    name: 'VITAMIN C',
-    benefit: 'Brighten complexion & fade dark spots',
-    img: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: p4,
-    textColor: '#FFFDF0', // light ivory cream
+    titleLine1: 'Hair',
+    titleLine2: 'Serums',
+    subtext: '7 FORMULATIONS',
+    bgColor: '#5C3D28', // Rich Earthy Warm Brown
+    subtextColor: '#D9B89A',
+    accentColor: '#7A5236',
+    link: '/products',
   },
   {
     id: 3,
-    name: 'NIACINAMIDE',
-    benefit: 'Refine skin texture & tighten pores',
-    img: p1,
-    hoverImg: p2,
-    textColor: '#E4F0EC', // pale ice blue/green
+    titleLine1: 'Face',
+    titleLine2: 'Wash',
+    subtext: '1 FORMULATION',
+    bgColor: '#235E4F', // Deep Jade Forest Emerald
+    subtextColor: '#A2CFC1',
+    accentColor: '#2F7563',
+    link: '/products',
   },
   {
     id: 4,
-    name: 'GLYCOLIC\nACID',
-    benefit: 'Gently exfoliate & renew skin cells',
-    img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: p1,
-    textColor: '#E6F0DC', // pale green
+    titleLine1: 'Our',
+    titleLine2: 'Story',
+    subtext: 'FOUNDER & MANIFESTO',
+    bgColor: '#423254', // Royal Plum Purple
+    subtextColor: '#BFAED6',
+    accentColor: '#58446E',
+    link: '/about',
   },
-  {
-    id: 5,
-    name: 'HYALURONIC ACID',
-    benefit: 'Deeply hydrate & plump skin layers',
-    img: 'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: p1,
-    textColor: '#F0F9FF', // pale water blue
-  },
-  {
-    id: 6,
-    name: 'SALICYLIC ACID',
-    benefit: 'Clear pores & prevent breakout blemishes',
-    img: 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=600&h=600&q=80',
-    hoverImg: p1,
-    textColor: '#FDF2F8', // pale rose pink
-  }
 ]
 
 export default function IngredientsSpotlight() {
-  const scrollRef = useRef<HTMLDivElement>(null)
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current
-      const scrollTo = direction === 'left'
-        ? scrollLeft - clientWidth / 2
-        : scrollLeft + clientWidth / 2
-      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' })
-    }
-  }
+  const navigate = useNavigate()
 
   return (
-    <section className="py-10  text-brand-dark overflow-hidde ">
-      {/* Self-contained styling to hide horizontal scrollbars across all browsers */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-        }
-      `}} />
+    <section className="py-14 sm:py-20 bg-[#F0F4F8] text-brand-dark relative overflow-hidden">
+      {/* Background Ambient Luxury Glows */}
+      <div className="absolute -top-24 left-1/4 w-[500px] h-[500px] bg-[#235E4F]/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 right-1/4 w-[500px] h-[500px] bg-[#B58A57]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-10 w-96 h-96 bg-[#423254]/6 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-4 relative">
-        {/* Section Header with Navigation Arrows in One Line */}
-        <div className="mb-5 flex items-center justify-between">
-          <h2 className="font-serif text-3xl  font-normal tracking-wider  text-[#184433] uppercase">
-            Skin-Loving Ingredients
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-10 sm:mb-12">
+          <p className="text-[11px] sm:text-xs font-bold tracking-[0.28em] text-[#B58A57] uppercase">
+            SHOP BY CATEGORY
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] font-normal tracking-tight mt-2.5">
+            Three Ranges. One Active Each.
           </h2>
-
-          <div className="flex items-center gap-6">
-            {/* Left Arrow Button */}
-            <button
-              onClick={() => scroll('left')}
-              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#184433] hover:text-white hover:border-[#184433] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-              aria-label="Scroll left"
-            >
-              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            {/* Right Arrow Button */}
-            <button
-              onClick={() => scroll('right')}
-              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#184433] hover:text-white hover:border-[#184433] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-              aria-label="Scroll right"
-            >
-              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
         </div>
 
-        {/* Carousel Wrapper */}
-        <div className="relative group/carousel">
+        {/* 4 Category Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 items-stretch">
+          {CATEGORIES.map((cat) => (
+            <div
+              key={cat.id}
+              onClick={() => navigate(cat.link)}
+              style={{ backgroundColor: cat.bgColor }}
+              className="group relative rounded-3xl p-7 sm:p-8 min-h-[340px] sm:min-h-[380px] flex flex-col justify-end cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(0,0,0,0.22)] overflow-hidden"
+            >
+              {/* Subtle Ambient Radial Highlight inside Card */}
+              <div
+                className="absolute -top-16 -right-16 w-56 h-56 rounded-full blur-2xl opacity-40 group-hover:opacity-70 group-hover:scale-125 transition-all duration-700 pointer-events-none"
+                style={{ backgroundColor: cat.accentColor }}
+              />
 
-
-          {/* Sliding Grid */}
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 px-1"
-          >
-            {INGREDIENTS.map((item) => {
-              const isLocalHover = !item.hoverImg.startsWith('http')
-              return (
-                <div
-                  key={item.id}
-                  className="min-w-67.5 sm:min-w-75 md:min-w-65 lg:min-w-[calc(25%-18px)] h-85 flex-1 snap-start relative aspect-square rounded-xl overflow-hidden group  hover:shadow-[0_12px_30px_rgba(24,68,51,0.15)] bg-linear-to-br from-brand-cream-dark to-brand-accent/30 transition-all duration-500"
-                >
-                  {/* Texture Background Image (fades down on hover to reveal the product/gradient) */}
-                  <img
-                    src={item.img}
-                    alt={item.name.replace('\n', ' ')}
-                    className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:opacity-5 group-hover:scale-105 group-hover:blur-[1px] transition-all duration-700 ease-out"
-                  />
-
-                  {/* Product Image Overlay (appears on hover) */}
-                  {isLocalHover ? (
-                    <img
-                      src={item.hoverImg}
-                      alt="Skincare Product"
-                      className="absolute bottom-30  right-0 h-[65%] w-auto object-contain opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-700 ease-out drop-shadow-[0_12px_24px_rgba(0,0,0,0.15)] z-10 pointer-events-none"
-                    />
-                  ) : (
-                    <div className="absolute bottom-4 right-4 w-20 h-20 rounded-xl overflow-hidden bg-white border border-brand-dark/10 shadow-md opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-700 ease-out z-10 pointer-events-none">
-                      <img
-                        src={item.hoverImg}
-                        alt="Product preview"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-
-                  {/* Overlay Gradient (slightly shifts intensity on hover) */}
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent group-hover:from-black/90 group-hover:via-black/30 transition-all duration-500" />
-
-                  {/* Content */}
-                  <div className="absolute inset-0 p-6 flex flex-col justify-end z-10 pointer-events-none">
-                    {/* Ingredient Name */}
-                    <h3
-                      className="w-full font-sans text-3xl sm:text-4xl font-black tracking-wider uppercase leading-[0.9] whitespace-pre-line text-left filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)] transition-transform duration-500 ease-out group-hover:-translate-y-14"
-                      style={{ color: item.textColor }}
-                    >
-                      {item.name}
-                    </h3>
-
-                    {/* Benefit Subtext */}
-                    <p className="absolute bottom-6  left-6 right-6 text-white text-[13px] sm:text-base font-semibold tracking-wide text-left opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                      {item.benefit}
-                    </p>
-                  </div>
+              {/* Decorative Subtle Watermark Outline */}
+              <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-1 group-hover:translate-x-0">
+                <div className="w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white backdrop-blur-xs">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
                 </div>
-              )
-            })}
-          </div>
+              </div>
+
+              {/* Card Bottom Text & Formulations Count */}
+              <div className="relative z-10 flex items-end justify-between gap-3 w-full">
+                {/* 2-line Serif Title */}
+                <h3 className="font-serif text-2xl sm:text-[28px] text-white font-normal leading-[1.08] tracking-tight group-hover:translate-x-1 transition-transform duration-300">
+                  {cat.titleLine1}
+                  <br />
+                  {cat.titleLine2}
+                </h3>
+
+                {/* Formulations Count / Subtext */}
+                <span
+                  style={{ color: cat.subtextColor }}
+                  className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest leading-tight shrink-0 pb-1 text-right group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  {cat.subtext}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

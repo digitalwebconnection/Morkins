@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BannerSlider from './BannerSlider'
-import TrustPillars from './TrustPillars'
+import TopFeaturesBar from './TopFeaturesBar'
 import ProductGrid from './ProductGrid'
 import IngredientsSpotlight from './IngredientsSpotlight'
 import FeaturedProductSection from './FeaturedProductSection'
@@ -11,7 +11,7 @@ import ImageFeed from './ImageFeed'
 import New from './New'
 // import SourcingTimeline from './SourcingTimeline'
 import SkinQuiz from './SkinQuiz'
-// import ClinicalStudy from './ClinicalStudy'
+import ClinicalStudy from './ClinicalStudy'
 
 interface HomeProps {
   onAddToCart: (product: { id: number; name: string; price: number; img: string }, openCart?: boolean) => void
@@ -36,8 +36,8 @@ export default function Home({ onAddToCart }: HomeProps) {
       {/* Auto-advancing promotional banner carousel (Hero Section) */}
       <BannerSlider />
 
-      {/* Trust & Efficacy Pillars (Pharma Tested, Zero Fillers, Visible Results, Free Shipping) */}
-      <TrustPillars />
+      {/* Top Features Strip (Cash on Delivery, Free Delivery, 100% Authentic, 7 Days Replacement, 100% Safe Payments) */}
+      <TopFeaturesBar />
 
       {/* Interactive Ingredients Spotlight */}
       <IngredientsSpotlight />
@@ -58,7 +58,7 @@ export default function Home({ onAddToCart }: HomeProps) {
       <BestSellers onAddToCart={onAddToCart} />
 
       {/* Clinical Study Results & Efficacy */}
-      {/* <ClinicalStudy /> */}
+      <ClinicalStudy />
 
       {/* Parallax Featured Products Section */}
       <FeaturedProductSection />

@@ -240,13 +240,7 @@ export default function BannerSlider() {
         </div>
       </div>
 
-      {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-0.5 bg-white/10 z-20">
-        <div
-          className="h-full transition-none"
-          style={{ width: `${progress}%`, background: b.accent }}
-        />
-      </div>
+     
 
       {/* Dots */}
       <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
