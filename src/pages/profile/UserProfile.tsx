@@ -405,8 +405,8 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
                 }}
                 className={`w-full flex items-center justify-between px-5 py-3.5 rounded-2xl text-left text-xs font-extrabold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   activeTab === tab.id 
-                    ? 'bg-[#134031] text-white shadow-md scale-[1.01]' 
-                    : 'text-brand-light/75 hover:text-[#134031] hover:bg-brand-cream-dark/30'
+                    ? 'bg-[#184433] text-white shadow-md scale-[1.01]' 
+                    : 'text-brand-light/75 hover:text-[#184433] hover:bg-brand-cream-dark/30'
                 }`}
               >
                 <div className="flex items-center space-x-3.5">

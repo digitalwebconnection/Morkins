@@ -6,7 +6,7 @@ export default function AboutMission() {
       desc: 'Our formulations mimic the skin’s natural lipid structures, ensuring active ingredients are readily absorbed without triggering irritation or immune response.',
       img: 'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=500&q=80',
       icon: (
-        <svg className="w-5 h-5 text-[#17335A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <svg className="w-5 h-5 text-[#184433]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
         </svg>
       )
@@ -17,7 +17,7 @@ export default function AboutMission() {
       desc: 'We do not rely on marketing buzzwords. Every single product is subjected to clinical assessment under dermatologist supervision to guarantee quantifiable results.',
       img: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=500&q=80',
       icon: (
-        <svg className="w-5 h-5 text-[#17335A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <svg className="w-5 h-5 text-[#184433]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v17.792M14.25 3.104v17.792M4.5 12h15" />
         </svg>
       )
@@ -28,7 +28,7 @@ export default function AboutMission() {
       desc: 'From our cold-pressing mills to our glass bottles, we optimize our entire supply chain to leave minimal footprint while preserving formula potency.',
       img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=500&q=80',
       icon: (
-        <svg className="w-5 h-5 text-[#17335A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <svg className="w-5 h-5 text-[#184433]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18m9-9H3M18.75 6.75l-13.5 13.5M18.75 17.25l-13.5-13.5" />
         </svg>
       )
@@ -38,11 +38,11 @@ export default function AboutMission() {
   return (
     <section className="py-14  relative overflow-hidden">
       {/* Abstract background circles */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-[#17335a]/5 blur-3xl pointer-events-none -translate-x-1/2" />
+      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-[#184433]/5 blur-3xl pointer-events-none -translate-x-1/2" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#17335A] mt-2">Driven by Purpose</h2>
+          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] mt-2">Driven by Purpose</h2>
           <p className="text-neutral-900 mt-4 text-base sm:text-lg font-light leading-relaxed">
             We operate with complete clarity. By stripping away fillers and focusing exclusively on science, we elevate your daily routine to clinical care.
           </p>
@@ -72,12 +72,12 @@ export default function AboutMission() {
               <div className="p-5 pt-10 text-left relative flex-1 flex flex-col justify-between">
                 
                 {/* Overlapping Icon Badge */}
-                <div className="absolute top-0 left-8 -translate-y-1/2 w-12 h-12 rounded-full bg-white border border-brand-dark/5 shadow-md flex items-center justify-center group-hover:border-[#17335A]/20 transition-colors duration-300">
+                <div className="absolute top-0 left-8 -translate-y-1/2 w-12 h-12 rounded-full bg-white border border-brand-dark/5 shadow-md flex items-center justify-center group-hover:border-[#184433]/20 transition-colors duration-300">
                   {val.icon}
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="font-serif text-2xl font-normal text-[#17335A]">
+                  <h3 className="font-serif text-2xl font-normal text-[#184433]">
                     {val.title}
                   </h3>
                   <p className="text-neutral-600 text-sm leading-relaxed font-light">
@@ -86,7 +86,7 @@ export default function AboutMission() {
                 </div>
 
                 {/* Subtle bottom accent line */}
-                <div className="w-full h-px bg-brand-dark/5 mt-8 group-hover:bg-[#17335A]/20 transition-colors duration-500" />
+                <div className="w-full h-px bg-brand-dark/5 mt-8 group-hover:bg-[#184433]/20 transition-colors duration-500" />
               </div>
             </div>
           ))}

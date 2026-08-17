@@ -17,7 +17,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
       <div className="max-w-7xl mx-auto px-6 lg:px-4">
         <div className="text-center max-w-3xl mx-auto mb-10 animate-fade-in">
 
-          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#17335A] mt-2 leading-tight">{t('sec_favorites')}</h2>
+          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] mt-2 leading-tight">{t('sec_favorites')}</h2>
 
           <p className="text-brand-dark tracking-wide text-md">{t('sec_favorites_desc')}</p>
         </div>
@@ -30,10 +30,10 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
             return (
               <div
                 key={p.id}
-                className="group relative flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(23,51,90,0.08)]  transition-all duration-500 border border-brand-dark/5"
+                className="group relative flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(24,68,51,0.12)]  transition-all duration-500 border border-brand-dark/5"
               >
                 {/* Image Wrapper */}
-                <div className={`relative aspect-square w-full overflow-hidden flex items-center justify-center transition-all duration-500 ${isLocal ? 'bg-[#5c7886]/50 ' : 'bg-brand-cream-dark'
+                <div className={`relative aspect-square w-full overflow-hidden flex items-center justify-center transition-all duration-500 ${isLocal ? 'bg-[#184433]/10 ' : 'bg-brand-cream-dark'
                   }`}>
                   {isLocal && (
                     <div className="absolute inset-0 bg-radial from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -51,7 +51,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                   />
 
                   {p.badge && (
-                    <span className={`absolute top-4 left-4 text-white text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-xs z-10 ${p.badge === 'Best Seller' ? 'bg-[#17335A]' : p.badge === 'New' ? 'bg-brand-light' : 'bg-brand-accent text-black font-bold'
+                    <span className={`absolute top-4 left-4 text-white text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow-xs z-10 ${p.badge === 'Best Seller' ? 'bg-[#184433]' : p.badge === 'New' ? 'bg-brand-light' : 'bg-brand-accent text-black font-bold'
                       }`}>
                       {t(badgeKey)}
                     </span>
@@ -71,11 +71,11 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                     {translatedName}
                   </h3>
 
-                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#17335A]/35">
-                    <span className="text-base font-bold text-[#17335A]">${p.price.toFixed(2)}</span>
+                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#184433]/25">
+                    <span className="text-base font-bold text-[#184433]">${p.price.toFixed(2)}</span>
                     <button
                       onClick={() => onAddToCart({ id: p.id, name: translatedName, price: p.price, img: p.img })}
-                      className="group/btn flex items-center justify-center gap-0 hover:gap-1.5 px-3.5 py-2.5 bg-[#5c7886]  text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer active:scale-95"
+                      className="group/btn flex items-center justify-center gap-0 hover:gap-1.5 px-3.5 py-2.5 bg-[#184433] hover:bg-[#1F4D3A] text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer active:scale-95"
                     >
                       <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <circle cx="9" cy="21" r="1" />
@@ -97,7 +97,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
         <div className="mt-10 text-center">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="inline-flex w-fit px-12 py-4.5 rounded-full bg-[#41677a] text-white font-semibold uppercase tracking-wider text-xs hover:bg-[#5f5e5e] transition-all duration-300 shadow-md hover:shadow-lg  cursor-pointer hover:-translate-y-0.5 active:translate-y-0"
+            className="inline-flex w-fit px-12 py-4.5 rounded-full bg-[#184433] text-white font-semibold uppercase tracking-wider text-xs hover:bg-[#1F4D3A] transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer hover:-translate-y-0.5 active:translate-y-0"
           >
             {showAll ? t('btn_show_less') : t('btn_show_more')}
           </button>

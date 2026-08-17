@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BannerSlider from './BannerSlider'
+import TrustPillars from './TrustPillars'
 import ProductGrid from './ProductGrid'
 import IngredientsSpotlight from './IngredientsSpotlight'
 import FeaturedProductSection from './FeaturedProductSection'
@@ -34,6 +35,9 @@ export default function Home({ onAddToCart }: HomeProps) {
     <main>
       {/* Auto-advancing promotional banner carousel (Hero Section) */}
       <BannerSlider />
+
+      {/* Trust & Efficacy Pillars (Pharma Tested, Zero Fillers, Visible Results, Free Shipping) */}
+      <TrustPillars />
 
       {/* Interactive Ingredients Spotlight */}
       <IngredientsSpotlight />

@@ -7,47 +7,47 @@ export default function AboutJourney() {
       title: 'The Scientific Genesis',
       desc: 'Morkins was founded by a collective of molecular biologists and leading dermatologists. Dissatisfied with the high rate of barrier damage in clients, they dedicated 18 months to isolating plant-lipid fractions that naturally mimic skin sebum.',
       img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=500&q=80',
-      bgClass: 'bg-[#5c7886] text-white'
+      bgClass: 'bg-[#184433] text-white'
     },
     {
       year: '2022',
       title: 'Biocompatibility Patent',
       desc: 'Our labs patented the Liposome-Carrier Delivery System. This innovation wraps active botanical compounds inside a bio-compatible lecithin sheath, allowing deep absorption into the epidermis without causing sensitizing friction.',
       img: 'https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&w=500&q=80',
-      bgClass: 'bg-[#5c7886] text-white'
+      bgClass: 'bg-[#184433] text-white'
     },
     {
       year: '2023',
       title: 'The Core Catalog Launch',
       desc: 'We officially released our initial formulations: the Glow Boosting Serum and the Barrier Restore Moisturizer. Backed by rigorous peer-reviewed clinical studies, the line sold out within three weeks of its clinical release.',
       img: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=500&q=80',
-      bgClass: 'bg-[#5c7886] text-white'
+      bgClass: 'bg-[#184433] text-white'
     },
     {
       year: '2024',
       title: 'Zero-Waste Mill Sourcing',
       desc: 'Committed to sustainability, we acquired cold-pressing mills in southern France. This gave us direct ownership of our ingredient extraction pipelines, ensuring that every plant lipid enters our formula fresh and at peak potency.',
       img: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=500&q=80',
-      bgClass: 'bg-[#5c7886] text-white'
+      bgClass: 'bg-[#184433] text-white'
     },
     {
       year: '2026',
       title: 'AI Diagnostics & Catalog Expansion',
       desc: 'Recognizing that skincare is not one-size-fits-all, we launched our smart AI Diagnosis Skin Quiz alongside 10 new specialized formulas (Products 12 to 24) to offer high-precision, customized regimens.',
       img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=500&q=80',
-      bgClass: 'bg-[#5c7886] text-white'
+      bgClass: 'bg-[#184433] text-white'
     }
   ];
 
   return (
     <section className="py-14  relative overflow-hidden">
       {/* Background glow decorator */}
-      <div className="absolute bottom-10 right-0 w-96 h-96 rounded-full bg-[#5c7886]/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-0 w-96 h-96 rounded-full bg-[#184433]/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-0">
        
-          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#17335A] mt-2">Evolution of Morkins</h2>
+          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] mt-2">Evolution of Morkins</h2>
           <p className="text-neutral-500 mt-4 text-sm sm:text-base font-light leading-relaxed">
             Scroll down to see the path we paved to redefine transdermal science.
           </p>

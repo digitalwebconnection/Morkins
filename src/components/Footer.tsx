@@ -66,15 +66,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#17335A] text-white relative overflow-hidden">
+    <footer className="bg-[#184433] text-white relative overflow-hidden">
 
       {/* TOP FEATURES BAR */}
-      <div className="bg-[#112744] border-b border-white/10">
+      <div className="bg-[#112F24] border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-4 py-5">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
             {topFeatures.map((f) => (
               <div key={f.titleKey} className="flex items-start gap-3 group">
-                <div className="text-[#C1D3DF] shrink-0 mt-0.5 group-hover:text-white transition-colors duration-200">
+                <div className="text-[#B8D5C8] shrink-0 mt-0.5 group-hover:text-white transition-colors duration-200">
                   {f.icon}
                 </div>
                 <div>
@@ -113,13 +113,13 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="bg-white text-[#17335A] text-[11px] font-bold uppercase tracking-widest px-3 py-2.5 hover:bg-[#C1D3DF] transition-colors duration-200 cursor-pointer shrink-0"
+                  className="bg-white text-[#184433] text-[11px] font-bold uppercase tracking-widest px-3 py-2.5 hover:bg-[#B8D5C8] transition-colors duration-200 cursor-pointer shrink-0"
                 >
                   {t('foot_sub_btn')}
                 </button>
               </form>
               {subscribed && (
-                <p className="text-[#C1D3DF] text-xs mt-2">{t('foot_subscribed')}</p>
+                <p className="text-[#B8D5C8] text-xs mt-2">{t('foot_subscribed')}</p>
               )}
             </div>
 

@@ -22,7 +22,7 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
       </div>
 
       {/* VIP Foiled Gift Card Voucher */}
-      <div className="bg-linear-to-tr from-[#134031] to-brand-light text-white rounded-[32px] p-6 md:p-8 text-center space-y-6 shadow-md relative overflow-hidden border border-brand-light/20">
+      <div className="bg-linear-to-tr from-[#184433] to-[#1F4D3A] text-white rounded-[32px] p-6 md:p-8 text-center space-y-6 shadow-md relative overflow-hidden border border-brand-light/20">
         <div className="absolute right-0 bottom-0 translate-y-1/4 translate-x-1/4 w-48 h-48 bg-white/5 rounded-full blur-3xl" />
         <div className="absolute left-0 top-0 -translate-y-1/4 -translate-x-1/4 w-36 h-36 bg-brand-accent/20 rounded-full blur-2xl" />
 

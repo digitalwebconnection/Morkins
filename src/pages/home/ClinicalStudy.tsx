@@ -94,8 +94,8 @@ export default function ClinicalStudy() {
         
         {/* Section Header */}
         <div className="text-center max-w-7xl mx-auto mb-14">
-          <span className="text-xs font-bold tracking-widest text-[#5c7886] uppercase">Proven by Science</span>
-          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#17335A] mt-2 leading-tight uppercase">
+          <span className="text-xs font-bold tracking-widest text-[#184433] uppercase">Proven by Science</span>
+          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] mt-2 leading-tight uppercase">
             Clinical Efficacy & Results
           </h2>
           <p className="text-gray-900 tracking-wide text-sm mt-3">
@@ -108,7 +108,7 @@ export default function ClinicalStudy() {
           
           {/* Left Column: Interactive Before/After Image Slider */}
           <div className="lg:col-span-6 flex flex-col items-center">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#5c7886] mb-4">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#184433] mb-4">
               Interactive Skin Progress (Drag to Compare)
             </span>
             
@@ -141,7 +141,7 @@ export default function ClinicalStudy() {
                   className="absolute inset-0 w-full h-full object-fill max-w-none pointer-events-none"
                   style={{ width: sliderRef.current?.getBoundingClientRect().width }}
                 />
-                <div className="absolute top-4 left-4 z-10 bg-[#17335A]/80 backdrop-blur-xs text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full border border-white/10 whitespace-nowrap">
+                <div className="absolute top-4 left-4 z-10 bg-[#184433]/80 backdrop-blur-xs text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full border border-white/10 whitespace-nowrap">
                   After 4 Weeks
                 </div>
               </div>
@@ -152,7 +152,7 @@ export default function ClinicalStudy() {
                 style={{ left: `${sliderPosition}%` }}
               >
                 {/* Handle Circle */}
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-[#17335A] border border-brand-dark/20 flex items-center justify-center shadow-lg pointer-events-auto transition-transform hover:scale-110 active:scale-95">
+                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-[#184433] border border-brand-dark/20 flex items-center justify-center shadow-lg pointer-events-auto transition-transform hover:scale-110 active:scale-95">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l-4 4 4 4m8 0l4-4-4-4" />
                   </svg>
@@ -174,8 +174,8 @@ export default function ClinicalStudy() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`py-3 px-4 text-xs font-bold uppercase tracking-wider border-b-2 transition-all duration-300 whitespace-nowrap cursor-pointer ${
                     activeTab === tab.id
-                      ? 'border-[#17335A] text-[#17335A]'
-                      : 'border-transparent text-brand-dark/60 hover:text-[#17335A]'
+                      ? 'border-[#184433] text-[#184433]'
+                      : 'border-transparent text-brand-dark/60 hover:text-[#184433]'
                   }`}
                 >
                   {tab.title}
@@ -215,7 +215,7 @@ export default function ClinicalStudy() {
                           cy="32"
                           r={radius}
                           fill="none"
-                          stroke="#195641"
+                          stroke="#184433"
                           strokeWidth="3.5"
                           strokeDasharray={circumference}
                           strokeDashoffset={strokeDashoffset}
@@ -224,14 +224,14 @@ export default function ClinicalStudy() {
                         />
                       </svg>
                       {/* Inner Percentage Text */}
-                      <span className="absolute inset-0 flex items-center justify-center text-xs font-extrabold text-[#17335A]">
+                      <span className="absolute inset-0 flex items-center justify-center text-xs font-extrabold text-[#184433]">
                         {stat.percentage}%
                       </span>
                     </div>
 
                     {/* Stat Copy */}
                     <div className="flex flex-col">
-                      <h4 className="font-sans text-base font-bold text-[#17335A] group-hover/stat:text-brand-light transition-colors duration-300">
+                      <h4 className="font-sans text-base font-bold text-[#184433] group-hover/stat:text-brand-light transition-colors duration-300">
                         {stat.label}
                       </h4>
                       <p className="text-gray-600 text-xs mt-1 leading-relaxed">

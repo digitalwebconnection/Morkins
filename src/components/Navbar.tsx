@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import navbarLogo from "../assets/morkins_logo-removebg-preview.png"
+import navbarLogo from "../assets/logo.png"
 import { useLanguage } from '../context/LanguageContext'
 
 interface NavbarProps {
@@ -66,7 +66,7 @@ export default function Navbar({
             <img
               src={navbarLogo}
               alt="Morkins Logo"
-              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-20  w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
         </div>
@@ -182,7 +182,7 @@ export default function Navbar({
                   <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                 </svg>
                 {cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 bg-[#17335A] text-white text-[9px] font-sans font-extrabold w-4 h-4 rounded-full flex items-center justify-center shadow-sm animate-scale-up">
+                  <span className="absolute -top-1.5 -right-1.5 bg-[#184433] text-white text-[9px] font-sans font-extrabold w-4 h-4 rounded-full flex items-center justify-center shadow-sm animate-scale-up">
                     {cartCount}
                   </span>
                 )}
@@ -241,7 +241,7 @@ export default function Navbar({
                     if (onCloseCartPopover) onCloseCartPopover();
                     onCartClick();
                   }}
-                  className="w-full mt-4 bg-brand-cream hover:bg-brand-cream-dark border border-[#17335A] text-[#17335A] text-[10px] font-bold uppercase tracking-widest py-2.5 rounded-xl transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md text-center active:scale-98 flex items-center justify-center gap-1.5"
+                  className="w-full mt-4 bg-brand-cream hover:bg-brand-cream-dark border border-[#184433] text-[#184433] text-[10px] font-bold uppercase tracking-widest py-2.5 rounded-xl transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md text-center active:scale-98 flex items-center justify-center gap-1.5"
                 >
                   <span>Go to Cart</span>
                   <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

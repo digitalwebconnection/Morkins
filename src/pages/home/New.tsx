@@ -31,8 +31,8 @@ const SLIDES: Slide[] = [
     subtitle: 'Plus a 100% personalized, science-backed skincare regimen',
     buttonText: 'TAKE THE QUIZ',
     image: p1,
-    themeColor: '#17335A', // Forest Green
-    titleColor: 'text-[#195641]',
+    themeColor: '#184433', // Luxury Forest Green
+    titleColor: 'text-[#184433]',
     hotspots: [
       { x: '58%', y: '26%', value: '90', label: 'Breakouts', tooltip: 'Dermal clarity index indicates minimal active congestion.' },
       { x: '45%', y: '64%', value: '77', label: 'Dryness', tooltip: 'Epidermal moisture retention level at cell boundaries.' },
@@ -45,8 +45,8 @@ const SLIDES: Slide[] = [
     subtitle: 'High-efficacy active compounds calibrated to rebuild your dermal lipid barrier.',
     buttonText: 'EXPLORE CLINICAL STUDY',
     image: p2,
-    themeColor: '#17335A', // Navy Blue
-    titleColor: 'text-[#17335A]',
+    themeColor: '#184433', // Luxury Forest Green
+    titleColor: 'text-[#184433]',
     hotspots: [
       { x: '45%', y: '35%', value: '5.5', label: 'pH Balance', tooltip: 'Matches natural acidity levels for cell viability.' },
       { x: '60%', y: '65%', value: '98%', label: 'Absorption', tooltip: 'Deep lipid carrier penetration into basal cell layers.' }
@@ -58,8 +58,8 @@ const SLIDES: Slide[] = [
     subtitle: 'Sourcing pristine plants at peak potency to restore biocompatible cellular vitality.',
     buttonText: 'DISCOVER OUR HARVEST',
     image: p4,
-    themeColor: '#17335A', // Forest Green
-    titleColor: 'text-[#195641]',
+    themeColor: '#184433', // Luxury Forest Green
+    titleColor: 'text-[#184433]',
     hotspots: [
       { x: '55%', y: '45%', value: '100%', label: 'Wildcrafted', tooltip: 'Ethically wild-harvested plant lipids.' },
       { x: '50%', y: '80%', value: '99%', label: 'Purity Retention', tooltip: 'Active plant enzymes preserved via cold-pressing.' }
@@ -158,7 +158,7 @@ export default function New() {
           {/* Column 1: Info text panel with individual delay transitions */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
             <h2
-              className={`font-serif text-3xl sm:text-4xl lg:text-4xl font-normal text-[#17335A] leading-tight tracking-wide mb-6 transition-all duration-700 transform ${isTransitioning ? 'opacity-0 ' : 'opacity-100 translate-y-0'
+              className={`font-serif text-3xl sm:text-4xl lg:text-4xl font-normal text-[#184433] leading-tight tracking-wide mb-6 transition-all duration-700 transform ${isTransitioning ? 'opacity-0 ' : 'opacity-100 translate-y-0'
                 }`}
             >
               {t('slide_' + activeSlide.id + '_title')}
@@ -341,7 +341,7 @@ export default function New() {
 
                     {/* Rich Tooltip Detail Popup (Positions at end of callout line with transition delay) */}
                     <div
-                      className={`absolute w-52 mt-10 bg-[#17335A] text-white rounded-lg p-3 shadow-xl border border-brand-dark/5 text-left transition-all duration-500 z-30 ${isHovered
+                      className={`absolute w-52 mt-10 bg-[#184433] text-white rounded-lg p-3 shadow-xl border border-brand-dark/5 text-left transition-all duration-500 z-30 ${isHovered
                           ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
                           : 'opacity-0 translate-y-2 scale-95 pointer-events-none'
                         }`}

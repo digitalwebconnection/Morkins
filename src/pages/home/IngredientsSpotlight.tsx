@@ -93,7 +93,7 @@ export default function IngredientsSpotlight() {
       <div className="max-w-7xl mx-auto px-6 lg:px-4 relative">
         {/* Section Header with Navigation Arrows in One Line */}
         <div className="mb-5 flex items-center justify-between">
-          <h2 className="font-serif text-3xl  font-normal tracking-wider  text-[#17335A] uppercase">
+          <h2 className="font-serif text-3xl  font-normal tracking-wider  text-[#184433] uppercase">
             Skin-Loving Ingredients
           </h2>
 
@@ -101,7 +101,7 @@ export default function IngredientsSpotlight() {
             {/* Left Arrow Button */}
             <button
               onClick={() => scroll('left')}
-              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#5c7886] hover:text-white hover:border-[#5c7886] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#184433] hover:text-white hover:border-[#184433] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
               aria-label="Scroll left"
             >
               <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -112,7 +112,7 @@ export default function IngredientsSpotlight() {
             {/* Right Arrow Button */}
             <button
               onClick={() => scroll('right')}
-              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#5c7886] hover:text-white hover:border-[#5c7886] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#184433] hover:text-white hover:border-[#184433] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
               aria-label="Scroll right"
             >
               <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -136,7 +136,7 @@ export default function IngredientsSpotlight() {
               return (
                 <div
                   key={item.id}
-                  className="min-w-67.5 sm:min-w-75 md:min-w-65 lg:min-w-[calc(25%-18px)] h-85 flex-1 snap-start relative aspect-square rounded-xl overflow-hidden group  hover:shadow-[0_12px_30px_rgba(25,86,65,0.08)] bg-linear-to-br from-brand-cream-dark to-brand-accent/30 transition-all duration-500"
+                  className="min-w-67.5 sm:min-w-75 md:min-w-65 lg:min-w-[calc(25%-18px)] h-85 flex-1 snap-start relative aspect-square rounded-xl overflow-hidden group  hover:shadow-[0_12px_30px_rgba(24,68,51,0.15)] bg-linear-to-br from-brand-cream-dark to-brand-accent/30 transition-all duration-500"
                 >
                   {/* Texture Background Image (fades down on hover to reveal the product/gradient) */}
                   <img

@@ -14,7 +14,7 @@ const BANNERS_DATA = {
       headline: 'Reveal Your Natural Glow',
       sub: 'Experience the ultimate hydration and brightening power. Our dermatologically tested serum penetrates deep into the skin layers for a smoother, younger-looking complexion.',
       cta: 'Shop Serums',
-      accent: '#C1D3DF',
+      accent: '#B8D5C8',
       bg: hero1,
     },
     {
@@ -50,7 +50,7 @@ const BANNERS_DATA = {
       headline: 'Reveal Your Natural Glow',
       sub: 'Experience the ultimate hydration and brightening power. Our dermatologically tested serum penetrates deep into the skin layers for a smoother, younger-looking complexion.',
       cta: 'Shop Serums',
-      accent: '#C1D3DF',
+      accent: '#B8D5C8',
       bg: hero5,
     },
   ],
@@ -61,7 +61,7 @@ const BANNERS_DATA = {
       headline: 'प्राकृतिक चमक प्रकट करें',
       sub: 'परम जलयोजन और चमकती त्वचा का अनुभव करें। हमारा फॉर्मूला त्वचा में गहराई से समाकर एक चिकना और युवा रंग प्रदान करता है।',
       cta: 'सीरम खरीदें',
-      accent: '#C1D3DF',
+      accent: '#B8D5C8',
       bg: hero1,
     },
     {
@@ -97,7 +97,7 @@ const BANNERS_DATA = {
       headline: 'प्राकृतिक चमक प्रकट करें',
       sub: 'परम जलयोजन और चमकती त्वचा का अनुभव करें। हमारा फॉर्मूला त्वचा में गहराई से समाकर एक चिकना और युवा रंग प्रदान करता है।',
       cta: 'सीरम खरीदें',
-      accent: '#C1D3DF',
+      accent: '#B8D5C8',
       bg: hero5,
     },
   ],
@@ -108,7 +108,7 @@ const BANNERS_DATA = {
       headline: 'તમારી કુદરતી ચમક પ્રગટ કરો',
       sub: 'અંતિમ હાઇડ્રેશન અને ચમકતી ત્વચાનો અનુભવ કરો. અમારું સીરમ ત્વચામાં ઊંડે સુધી પ્રવેશીને ત્વચાને મુલાયમ અને યુવાન રાખે છે.',
       cta: 'સીરમ ખરીદો',
-      accent: '#C1D3DF',
+      accent: '#B8D5C8',
       bg: hero1,
     },
     {
@@ -144,7 +144,7 @@ const BANNERS_DATA = {
       headline: 'તમારી કુદરતી ચમક પ્રગટ કરો',
       sub: 'અંતિમ હાઇડ્રેશન અને ચમકતી ત્વચાનો અનુભવ કરો. અમારું સીરમ ત્વચામાં ઊંડે સુધી પ્રવેશીને ત્વચાને મુલાયમ અને યુવાન રાખે છે.',
       cta: 'સીરમ ખરીદો',
-      accent: '#C1D3DF',
+      accent: '#B8D5C8',
       bg: hero5,
     },
   ],
@@ -231,7 +231,7 @@ export default function BannerSlider() {
           >
             <a
               href="#products"
-              className="px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full bg-white text-[#17335A] hover:bg-[#17335A] hover:text-white   shadow-lg transition-all duration-300"
+              className="px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full bg-white text-[#184433] hover:bg-[#184433] hover:text-white shadow-lg transition-all duration-300"
             >
               {b.cta}
             </a>

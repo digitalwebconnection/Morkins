@@ -30,6 +30,16 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     sec_glow_desc: 'Every bottle is packed with biological-grade botanicals that yield active results for your daily skin rejuvenation.',
     btn_add_to_cart: 'Add to Cart',
 
+    // Trust Pillars (Hero Highlights)
+    pillar_1_title: 'Pharma Tested',
+    pillar_1_desc: 'Every formulation is clinically evaluated under pharmaceutical protocols before it reaches your skin.',
+    pillar_2_title: 'Zero Fillers, Ever',
+    pillar_2_desc: 'Single-active, high-concentration serums with nothing diluting the potency.',
+    pillar_3_title: 'Visible Results',
+    pillar_3_desc: 'Clinically meaningful concentrations formulated to show real, measurable change.',
+    pillar_4_title: 'Free Shipping',
+    pillar_4_desc: 'Complimentary delivery across India on every Morkins order.',
+
     // Product Categories
     cat_serums: 'Serums',
     cat_moisturizers: 'Moisturizers',
@@ -371,6 +381,16 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     sec_glow_desc: 'हर बोतल जैविक वानस्पतिक तत्वों से भरपूर है जो आपकी दैनिक त्वचा पुनर्जीवन के लिए सक्रिय परिणाम देती है।',
     btn_add_to_cart: 'कार्ट में डालें',
 
+    // Trust Pillars (Hero Highlights)
+    pillar_1_title: 'फार्मा परीक्षित',
+    pillar_1_desc: 'आपकी त्वचा तक पहुँचने से पहले प्रत्येक फॉर्मूला का फार्मास्युटिकल प्रोटोकॉल के तहत नैदानिक परीक्षण किया जाता है।',
+    pillar_2_title: 'शून्य फिलर्स, हमेशा',
+    pillar_2_desc: 'एकल-सक्रिय, उच्च-सांद्रता वाले सीरम जिनमें प्रभावशीलता को कम करने वाला कुछ भी नहीं है।',
+    pillar_3_title: 'दृश्य परिणाम',
+    pillar_3_desc: 'वास्तविक, मापने योग्य परिवर्तन दिखाने के लिए नैदानिक रूप से सार्थक सांद्रता।',
+    pillar_4_title: 'मुफ्त शिपिंग',
+    pillar_4_desc: 'प्रत्येक मोर्किन्स ऑर्डर पर पूरे भारत में मानार्थ और सुरक्षित डिलीवरी।',
+
     // Product Categories
     cat_serums: 'सीरम',
     cat_moisturizers: 'मॉइस्चराइज़र',
@@ -711,6 +731,16 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     sec_natural_glow: 'કુદરતી રીતે તેજસ્વી',
     sec_glow_desc: 'દરેક બોટલ જૈવિક વનસ્પતિ તત્વોથી ભરપૂર છે જે તમારી દૈનિક ત્વચાના પુનર્જીવન માટે સક્રિય પરિણામો આપે છે.',
     btn_add_to_cart: 'કાર્ટમાં ઉમેરો',
+
+    // Trust Pillars (Hero Highlights)
+    pillar_1_title: 'ફાર્મા ટેસ્ટેડ',
+    pillar_1_desc: 'તમારી ત્વચા સુધી પહોંચતા પહેલાં દરેક ફોર્મ્યુલેશનનું ફાર્માસ્યુટિકલ પ્રોટોકોલ હેઠળ ક્લિનિકલ મૂલ્યાંકન થાય છે.',
+    pillar_2_title: 'ઝીરો ફિલર્સ, કાયમ',
+    pillar_2_desc: 'સિંગલ-એક્ટિવ, હાઇ-કોન્સન્ટ્રેશન સીરમ જેમાં કોઈ ભેળસેળ વગર પૂર્ણ ક્ષમતા હોય છે.',
+    pillar_3_title: 'સ્પષ્ટ પરિણામો',
+    pillar_3_desc: 'વાસ્તવિક અને માપી શકાય તેવા પરિવર્તન દર્શાવવા માટે વિશેષ સાંદ્રતા.',
+    pillar_4_title: 'મફત શિપિંગ',
+    pillar_4_desc: 'દરેક મોર્કિન્સ ઓર્ડર પર સમગ્ર ભારતમાં મફત અને સુરક્ષિત ડિલિવરી.',
 
     // Product Categories
     cat_serums: 'સીરમ',

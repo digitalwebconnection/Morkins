@@ -166,7 +166,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
         
         {/* Section Header */}
         <div className="mb-6 flex flex-col text-left">
-          <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#17335A] uppercase tracking-wider">
+          <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#184433] uppercase tracking-wider">
             TRENDING ON FEED
           </h2>
           <p className="text-brand-dark tracking-wide text-md mt-1">
@@ -234,7 +234,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
 
                 {/* Glassmorphic Play Overlay (Center) */}
                 <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-black/20 opacity-0 group-hover/card:opacity-100 transition-all duration-500 flex items-center justify-center z-10">
-                  <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transform scale-90 group-hover/card:scale-100 hover:bg-white hover:text-[#17335A] transition-all duration-300 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]">
+                  <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white transform scale-90 group-hover/card:scale-100 hover:bg-white hover:text-[#184433] transition-all duration-300 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)]">
                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z" />
                     </svg>
@@ -260,7 +260,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
                   </div>
                   
                   {/* Shopping Bag Icon that turns into solid white button on hover */}
-                  <div className="flex items-center justify-center w-8 h-8 rounded-md bg-white/10 text-white group-hover/card:bg-white group-hover/card:text-[#17335A] transition-all duration-300 shrink-0">
+                  <div className="flex items-center justify-center w-8 h-8 rounded-md bg-white/10 text-white group-hover/card:bg-white group-hover/card:text-[#184433] transition-all duration-300 shrink-0">
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
                       <line x1="3" y1="6" x2="21" y2="6" />
@@ -268,11 +268,9 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
                     </svg>
                   </div>
                 </div>
-
               </div>
             ))}
           </div>
-
         </div>
       </div>
 
@@ -337,7 +335,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
             <div className="w-full md:w-[58%] h-[55%] md:h-full p-6 md:p-8 flex flex-col justify-between overflow-y-auto no-scrollbar bg-white">
               <div className="flex flex-col">
                 <span className="text-[10px] font-bold tracking-widest text-brand-light uppercase">MORKINS BEAUTY</span>
-                <h3 className="font-serif text-[#17335A] text-2xl font-normal mt-1 leading-tight">{selectedPost.productName}</h3>
+                <h3 className="font-serif text-[#184433] text-2xl font-normal mt-1 leading-tight">{selectedPost.productName}</h3>
                 
                 {/* Product Rating */}
                 <div className="flex items-center gap-2 mt-2">
@@ -352,7 +350,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
                 </div>
 
                 {/* Price Display */}
-                <div className="text-xl font-bold text-[#17335A] mt-3 font-mono">
+                <div className="text-xl font-bold text-[#184433] mt-3 font-mono">
                   {selectedPost.price}
                 </div>
 
@@ -366,7 +364,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
 
                 {/* Ingredients Pill */}
                 <div className="mt-5 p-3.5 bg-gray-50 rounded-xl border border-gray-100">
-                  <span className="text-[9px] uppercase font-bold tracking-widest text-[#17335A] block">Key Ingredients</span>
+                  <span className="text-[9px] uppercase font-bold tracking-widest text-[#184433] block">Key Ingredients</span>
                   <span className="text-xs text-[#5c7886] mt-0.5 block italic leading-relaxed">{selectedPost.ingredients}</span>
                 </div>
               </div>
@@ -377,14 +375,14 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
                 <div className="flex items-center justify-between border border-gray-200 rounded-lg h-12 px-3 sm:w-32 shrink-0">
                   <button 
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="text-[#5c7886] hover:text-[#17335A] font-bold text-lg px-2 cursor-pointer select-none"
+                    className="text-[#5c7886] hover:text-[#184433] font-bold text-lg px-2 cursor-pointer select-none"
                   >
                     -
                   </button>
-                  <span className="text-[#17335A] font-bold text-sm font-mono">{quantity}</span>
+                  <span className="text-[#184433] font-bold text-sm font-mono">{quantity}</span>
                   <button 
                     onClick={() => setQuantity(quantity + 1)}
-                    className="text-[#5c7886] hover:text-[#17335A] font-bold text-lg px-2 cursor-pointer select-none"
+                    className="text-[#5c7886] hover:text-[#184433] font-bold text-lg px-2 cursor-pointer select-none"
                   >
                     +
                   </button>
@@ -394,7 +392,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
                 <button 
                   onClick={handleAddToCartClick}
                   className={`flex-1 h-12 text-white font-bold text-xs tracking-widest uppercase rounded-lg shadow-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer active:scale-98 ${
-                    showSuccess ? 'bg-brand-light' : 'bg-[#41677a] hover:bg-[#17335A]'
+                    showSuccess ? 'bg-brand-light' : 'bg-[#184433] hover:bg-[#1F4D3A]'
                   }`}
                 >
                   {showSuccess ? (

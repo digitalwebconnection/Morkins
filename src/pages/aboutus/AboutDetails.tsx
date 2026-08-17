@@ -6,8 +6,8 @@ export default function AboutDetails() {
           
           {/* Left Column: Description Content */}
           <div className="lg:col-span-6 text-left space-y-6 animate-fade-in">
-            <span className="text-xs font-bold tracking-widest text-[#5c7886] uppercase">OUR PHILOSOPHY</span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#17335A] leading-tight">
+            <span className="text-xs font-bold tracking-widest text-[#184433] uppercase">OUR PHILOSOPHY</span>
+            <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] leading-tight">
               Honoring Your Skin’s <br />
               <span className=" font-light text-[#303030]">Natural Intelligence</span>
             </h2>
@@ -16,23 +16,23 @@ export default function AboutDetails() {
             </p>
             <div className="space-y-4 pt-4">
               <div className="flex items-start gap-4">
-                <span className="shrink-0 w-6 h-6 rounded-full bg-[#17335A]/5 flex items-center justify-center text-[#17335A] font-bold text-xs mt-1">✓</span>
+                <span className="shrink-0 w-6 h-6 rounded-full bg-[#184433]/5 flex items-center justify-center text-[#184433] font-bold text-xs mt-1">✓</span>
                 <div>
-                  <h4 className="font-sans text-base font-semibold text-[#17335A]">Cold-Pressed Botanical Lipids</h4>
+                  <h4 className="font-sans text-base font-semibold text-[#184433]">Cold-Pressed Botanical Lipids</h4>
                   <p className="text-neutral-800 text-sm font-light mt-0.5">Sourced under strict organic protocols to retain complete enzyme activity.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="shrink-0 w-6 h-6 rounded-full bg-[#17335A]/5 flex items-center justify-center text-[#17335A] font-bold text-xs mt-1">✓</span>
+                <span className="shrink-0 w-6 h-6 rounded-full bg-[#184433]/5 flex items-center justify-center text-[#184433] font-bold text-xs mt-1">✓</span>
                 <div>
-                  <h4 className="font-sans text-base font-semibold text-[#17335A]">Dermatologist Verified</h4>
+                  <h4 className="font-sans text-base font-semibold text-[#184433]">Dermatologist Verified</h4>
                   <p className="text-neutral-800 text-sm font-light mt-0.5">Every formula passes multi-level clinical safety testing for reactive skin.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="shrink-0 w-6 h-6 rounded-full bg-[#17335A]/5 flex items-center justify-center text-[#17335A] font-bold text-xs mt-1">✓</span>
+                <span className="shrink-0 w-6 h-6 rounded-full bg-[#184433]/5 flex items-center justify-center text-[#184433] font-bold text-xs mt-1">✓</span>
                 <div>
-                  <h4 className="font-sans text-base font-semibold text-[#17335A]">Sustainable Extraction</h4>
+                  <h4 className="font-sans text-base font-semibold text-[#184433]">Sustainable Extraction</h4>
                   <p className="text-neutral-800 text-sm font-light mt-0.5">Zero-waste mechanical processing prioritizing the earth as much as your skin.</p>
                 </div>
               </div>
@@ -43,10 +43,10 @@ export default function AboutDetails() {
           <div className="lg:col-span-6 relative w-full h-[540px] md:h-[600px] lg:h-[560px] mt-12 lg:mt-0 flex items-center justify-center">
             
             {/* Background glowing aura */}
-            <div className="absolute top-12 left-12 w-64 h-64 bg-[#5c7886]/5 blur-3xl pointer-events-none rounded-full" />
+            <div className="absolute top-12 left-12 w-64 h-64 bg-[#184433]/5 blur-3xl pointer-events-none rounded-full" />
             
             {/* Thin Decorative Offset Brass/Gold Frame behind the Arch Image */}
-            <div className="absolute left-[8%] bottom-4 w-[58%] h-[92%] rounded-t-full rounded-b-2xl border border-[#5c7886]/20 -translate-x-4 translate-y-4 pointer-events-none z-0" />
+            <div className="absolute left-[8%] bottom-4 w-[58%] h-[92%] rounded-t-full rounded-b-2xl border border-[#184433]/20 -translate-x-4 translate-y-4 pointer-events-none z-0" />
             
             {/* Image 1: Main Arch Image (Left Align) */}
             <div className="absolute left-[8%] bottom-4 w-[58%] h-[92%] rounded-t-full rounded-b-2xl overflow-hidden shadow-2xl shadow-black border border-brand-dark/5 z-10 group">
@@ -76,9 +76,9 @@ export default function AboutDetails() {
             </div>
 
             {/* Floating Golden Seal Badge */}
-            <div className="absolute top-[32%] right-[32%] w-20 h-20 rounded-full bg-[#17335A] text-white border-2 border-brand-cream flex items-center justify-center shadow-2xl z-30 transition-transform duration-500 hover:rotate-12 hover:scale-110 select-none">
+            <div className="absolute top-[32%] right-[32%] w-20 h-20 rounded-full bg-[#184433] text-white border-2 border-brand-cream flex items-center justify-center shadow-2xl z-30 transition-transform duration-500 hover:rotate-12 hover:scale-110 select-none">
               <div className="text-center">
-                <span className="block font-serif text-[10px] uppercase tracking-widest text-[#a8d5c0]">EST.</span>
+                <span className="block font-serif text-[10px] uppercase tracking-widest text-[#B8D5C8]">EST.</span>
                 <span className="block font-serif text-base font-semibold leading-none">2021</span>
                 <span className="block text-[8px] uppercase tracking-wider mt-1 opacity-85">Lab Pure</span>
               </div>

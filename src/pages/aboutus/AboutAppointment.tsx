@@ -68,8 +68,8 @@ export default function AboutAppointment() {
             backgroundAttachment: 'fixed',
           }}
         >
-          {/* Peach tint overlay */}
-          <div className="absolute inset-0 pointer-events-none" style={{ backgroundColor: '#5c7886', opacity: 0.70 }} />
+          {/* Green tint overlay */}
+          <div className="absolute inset-0 pointer-events-none" style={{ backgroundColor: '#184433', opacity: 0.75 }} />
 
           {/* TOP white arch mask */}
           <div
@@ -96,7 +96,7 @@ export default function AboutAppointment() {
 
             {/* Title */}
             <h2
-              className={`font-serif font-medium leading-tight mb-20 text-3xl sm:text-[2.2rem] md:text-[2.6rem] text-[#17335A]
+              className={`font-serif font-medium leading-tight mb-20 text-3xl sm:text-[2.2rem] md:text-[2.6rem] text-[#184433]
                 ${visible ? 'appt-fade-up appt-d1' : 'opacity-0'}`}
     
             >
