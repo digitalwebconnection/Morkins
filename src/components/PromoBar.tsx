@@ -16,7 +16,7 @@ export default function PromoBar() {
   }, [promos.length]);
 
   return (
-    <div className="w-full bg-brand-dark text-brand-cream py-2 px-4 text-center text-xs tracking-wider font-medium select-none overflow-hidden h-9 flex items-center justify-center transition-all duration-500">
+    <div className="w-full bg-black text-yellow-400 py-2 px-4 text-center text-xs tracking-wider font-medium select-none overflow-hidden h-9 flex items-center justify-center transition-all duration-500">
       <div key={currentPromoIndex} className="animate-fade-in-up">
         {promos[currentPromoIndex]}
       </div>

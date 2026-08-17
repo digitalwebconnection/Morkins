@@ -13,7 +13,7 @@ const ITEMS_PER_PAGE = 8;
 export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
-  
+
   // Filtering State
   const [filters, setFilters] = useState<FilterState>({
     searchQuery: '',
@@ -23,7 +23,7 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
     rating: 0,
     inStockOnly: false
   });
-  
+
   const [sortOption, setSortOption] = useState('featured');
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -58,8 +58,8 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
     // Search
     if (filters.searchQuery) {
       const q = filters.searchQuery.toLowerCase();
-      result = result.filter(p => 
-        p.name.toLowerCase().includes(q) || 
+      result = result.filter(p =>
+        p.name.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q)
       );
     }
@@ -143,13 +143,13 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
   return (
     <div className="min-h-screen bg-brand-cream/20">
       <HeroSection />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row gap-8">
-        
+
         {/* Mobile Filter Toggle */}
         <div className="md:hidden flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-brand-dark/5">
           <span className="font-semibold text-brand-dark">Filters & Sorting</span>
-          <button 
+          <button
             onClick={() => setIsMobileFiltersOpen(true)}
             className="flex items-center gap-2 px-4 py-2 bg-brand-dark text-white rounded-lg text-sm font-medium hover:bg-brand-dark/90 transition-colors"
           >
@@ -163,7 +163,7 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
         {/* Mobile Filter Drawer Overlay */}
         {isMobileFiltersOpen && (
           <div className="fixed inset-0 z-50 flex md:hidden">
-            <div 
+            <div
               className="fixed inset-0 bg-brand-dark/40 backdrop-blur-sm transition-opacity"
               onClick={() => setIsMobileFiltersOpen(false)}
             ></div>
@@ -181,11 +181,11 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
                   </svg>
                 </button>
               </div>
-              
+
               <div className="px-6 pb-6 border-b border-brand-dark/10 mb-6">
-                <FilterSidebar 
-                  filters={filters} 
-                  setFilters={setFilters} 
+                <FilterSidebar
+                  filters={filters}
+                  setFilters={setFilters}
                   categories={categories}
                   brands={brands}
                   maxPrice={maxPrice}
@@ -193,9 +193,9 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
                   className="shadow-none border-none p-0 bg-transparent"
                 />
               </div>
-              
+
               <div className="px-6 mt-auto pt-6">
-                <button 
+                <button
                   onClick={() => setIsMobileFiltersOpen(false)}
                   className="w-full bg-brand-dark text-white py-3 rounded-xl font-semibold tracking-wide hover:bg-brand-dark/90 transition-colors"
                 >
@@ -209,9 +209,9 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
         {/* Desktop Sidebar */}
         <div className="hidden md:block w-72 flex-shrink-0">
           <div className="sticky top-28">
-            <FilterSidebar 
-              filters={filters} 
-              setFilters={setFilters} 
+            <FilterSidebar
+              filters={filters}
+              setFilters={setFilters}
               categories={categories}
               brands={brands}
               maxPrice={maxPrice}
@@ -221,7 +221,7 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
         </div>
 
         {/* Product Grid Area */}
-        <ProductGrid 
+        <ProductGrid
           products={currentProducts}
           isLoading={isLoading}
           onClearFilters={handleClearFilters}

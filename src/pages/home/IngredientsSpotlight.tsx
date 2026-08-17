@@ -136,7 +136,7 @@ export default function IngredientsSpotlight() {
               return (
                 <div
                   key={item.id}
-                  className="min-w-[270px] sm:min-w-[300px] md:min-w-[260px] lg:min-w-[calc(25%-18px)] h-85 flex-1 snap-start relative aspect-square rounded-xl overflow-hidden group  hover:shadow-[0_12px_30px_rgba(25,86,65,0.08)] bg-linear-to-br from-brand-cream-dark to-brand-accent/30 transition-all duration-500"
+                  className="min-w-67.5 sm:min-w-75 md:min-w-65 lg:min-w-[calc(25%-18px)] h-85 flex-1 snap-start relative aspect-square rounded-xl overflow-hidden group  hover:shadow-[0_12px_30px_rgba(25,86,65,0.08)] bg-linear-to-br from-brand-cream-dark to-brand-accent/30 transition-all duration-500"
                 >
                   {/* Texture Background Image (fades down on hover to reveal the product/gradient) */}
                   <img

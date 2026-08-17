@@ -133,7 +133,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     profile_phone_lbl: 'Phone Number',
     profile_vip_title: 'Botanical Circle Club Member',
     profile_vip_desc: 'You are in the premium tier. Enjoy lifetime free greenhouse express shipping, exclusive access to quarterly limited harvests, and double reward points on new skincare collections.',
-    
+
     // Addresses
     addr_label: 'Address Label (e.g. Home Sanctuary)',
     addr_street: 'Street Address',
@@ -142,7 +142,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     addr_save: 'Save Address',
     addr_add: 'Add Address',
     addr_empty: 'No saved addresses found. Register shipping locations to simplify your checkout.',
-    
+
     // Tracking
     track_title: 'Delivery Tracking',
     track_ref: 'Shipment Reference',
@@ -247,23 +247,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     feed_prod_1_name: 'Glow Boosting Serum',
     feed_prod_1_desc: 'A lightweight, fast-absorbing serum packed with 10% Vitamin C and hyaluronic acid to instantly illuminate your skin tone, target dark spots, and provide all-day deep hydration.',
     feed_prod_1_ing: '98% Organic Vitamin C, Pure Hyaluronic Acid, Ferulic Acid, Licorice Root Extract',
-    
+
     feed_prod_2_name: 'Barrier Restore Cream',
     feed_prod_2_desc: "A rich nourishing cream designed to rebuild and protect your skin's moisture barrier. Enriched with ceramides, squalane, and soothing centella asiatica to calm redness.",
     feed_prod_2_ing: 'Ceramides NP/AP/EOP, Sugarcane Squalane, Centella Asiatica (Cica), Organic Shea Butter',
-    
+
     feed_prod_3_name: 'Rosehip Replenishing Oil',
     feed_prod_3_desc: '100% organic cold-pressed rosehip seed oil. Rich in essential fatty acids and antioxidants to promote cellular regeneration, smooth fine lines, and restore natural elasticity.',
     feed_prod_3_ing: 'Cold-pressed Rosa Canina (Rosehip) Seed Oil, Vitamin E (Tocopherol)',
-    
+
     feed_prod_4_name: 'Vitamin C Bright Gel',
     feed_prod_4_desc: 'A cooling gel-moisturizer that revives dull, tired skin. Packed with citrus extracts and kakadu plum to deliver a burst of antioxidants and locks in oil-free moisture.',
     feed_prod_4_ing: 'Kakadu Plum Extract, Aloe Vera Leaf Juice, Green Tea Leaf Extract',
-    
+
     feed_prod_5_name: 'Daily Sun Protect SPF 50',
     feed_prod_5_desc: 'An ultra-sheer, broad-spectrum mineral SPF 50 sunscreen. Leaves a completely transparent, dewy finish with zero white cast, doubling as a hydrating primer.',
     feed_prod_5_ing: 'Non-Nano Zinc Oxide 12%, Green Tea Extract, Sea Buckthorn, Hyaluronic Acid',
-    
+
     feed_prod_6_name: 'Squalane Facial Oil',
     feed_prod_6_desc: "Pure sugarcane-derived squalane oil. Mirrors your skin's natural sebum to seal in moisture, balance oil production, and enhance your skin glow without clogging pores.",
     feed_prod_6_ing: '100% Sugarcane-Derived Squalane',
@@ -474,7 +474,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     profile_phone_lbl: 'फ़ोन नंबर',
     profile_vip_title: 'बोटैनिकल सर्कल क्लब के सदस्य',
     profile_vip_desc: 'आप प्रीमियम श्रेणी में हैं। आजीवन मुफ्त ग्रीनहाउस एक्सप्रेस शिपिंग, त्रैमासिक सीमित फसलों तक विशेष पहुंच और नए स्किनकेयर संग्रह पर दोगुने इनाम अंकों का आनंद लें।',
-    
+
     // Addresses
     addr_label: 'पते का नाम (जैसे घर का पता)',
     addr_street: 'गली का पता',
@@ -483,7 +483,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     addr_save: 'पता सहेजें',
     addr_add: 'पता जोड़ें',
     addr_empty: 'कोई सहेजा गया पता नहीं मिला। चेकआउट को आसान बनाने के लिए शिपिंग पते पंजीकृत करें।',
-    
+
     // Tracking
     track_title: 'ऑर्डर ट्रैकिंग',
     track_ref: 'शिपमेंट संदर्भ',
@@ -588,23 +588,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     feed_prod_1_name: 'ग्लो बूस्टिंग सीरम',
     feed_prod_1_desc: 'एक हल्का, तेजी से अवशोषित होने वाला सीरम जो 10% विटामिन सी और हयालूरोनिक एसिड से भरपूर है। यह त्वचा की रंगत को तुरंत चमकाता है, काले धब्बों को दूर करता है और पूरे दिन गहरी नमी प्रदान करता है।',
     feed_prod_1_ing: '98% ऑर्गेनिक विटामिन सी, शुद्ध हयालूरोनिक एसिड, फेरुलिक एसिड, मुलेठी की जड़ का अर्क',
-    
+
     feed_prod_2_name: 'बैरियर रिस्टोर क्रीम',
     feed_prod_2_desc: 'त्वचा की नमी बनाए रखने वाली सुरक्षात्मक परत की मरम्मत और सुरक्षा के लिए डिज़ाइन की गई एक समृद्ध पोषक क्रीम। लालिमा को शांत करने के लिए सेरामाइड्स, स्क्वालेन और सुखदायक सेंटेला एशियाटिका से समृद्ध।',
     feed_prod_2_ing: 'सेरामाइड्स NP/AP/EOP, गन्ने से प्राप्त स्क्वालेन, सेंटेला एशियाटिका (सिस्का), जैविक शिया बटर',
-    
+
     feed_prod_3_name: 'रोज़हिप रिप्लेनिशिंग ऑयल',
     feed_prod_3_desc: '100% जैविक कोल्ड-प्रेस्ड रोज़हिप बीज का तेल। कोशिकाओं के पुनर्जनन को बढ़ावा देने, महीन रेखाओं को चिकना करने और प्राकृतिक लचीलेपन को बहाल करने के लिए आवश्यक फैटी एसिड और एंटीऑक्सिडेंट से भरपूर।',
     feed_prod_3_ing: 'कोल्ड-प्रेस्ड रोज़ा कैनाइना (रोज़हिप) बीज का तेल, विटामिन ई (टोकोफेरोल)',
-    
+
     feed_prod_4_name: 'विटामिन सी ब्राइट जेल',
     feed_prod_4_desc: 'एक ठंडा जेल-मॉइस्चराइज़र जो बेजान, थकी हुई त्वचा को पुनर्जीवित करता है। एंटीऑक्सिडेंट का पोषण देने और तेल-मुक्त नमी बनाए रखने के लिए खट्टे फलों के अर्क और काकाडू प्लम से भरपूर।',
     feed_prod_4_ing: 'काकाडू प्लम का अर्क, एलोवेरा लीफ जूस, ग्रीन टी लीफ एक्सट्रैक्ट',
-    
+
     feed_prod_5_name: 'डेली सन प्रोटेक्ट एसपीएफ 50',
     feed_prod_5_desc: 'एक अत्यंत पारदर्शी, व्यापक-स्पेक्ट्रम खनिज एसपीएफ 50 सनस्क्रीन। बिना किसी सफेद परत छोड़े त्वचा को पूरी तरह से पारदर्शी और ओसदार चमक प्रदान करता है, साथ ही एक हाइड्रेटिंग प्राइमर के रूप में काम करता है।',
     feed_prod_5_ing: 'नॉन-नैनो जिंक ऑक्साइड 12%, ग्रीन टी एक्सट्रैक्ट, सी बकथॉर्न, हयालूरोनिक एसिड',
-    
+
     feed_prod_6_name: 'स्क्वालेन फेशियल ऑयल',
     feed_prod_6_desc: 'शुद्ध गन्ने से प्राप्त स्क्वालेन तेल। बिना रोमछिद्रों को बंद किए नमी को बनाए रखने, तेल के उत्पादन को संतुलित करने और त्वचा की प्राकृतिक चमक बढ़ाने के लिए आपकी त्वचा के प्राकृतिक सीबम जैसा काम करता है।',
     feed_prod_6_ing: '100% गन्ने से प्राप्त स्क्वालेन',
@@ -815,7 +815,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     profile_phone_lbl: 'ફોન નંબર',
     profile_vip_title: 'બોટનિકલ સર્કલ ક્લબ સભ્યો',
     profile_vip_desc: 'તમે પ્રીમિયમ શ્રેણીમાં છો. આજીવન મફત ગ્રીનહાઉસ એક્સપ્રેસ શિપિંગ, ત્રિમાસિક મર્યાદિત પાક સુધી વિશેષ પ્રવેશ અને નવા સ્કીનકેર કલેક્શન પર ડબલ રિવોર્ડ પોઈન્ટનો આનંદ માણો.',
-    
+
     // Addresses
     addr_label: 'સરનામાંનું નામ (દા.ત. ઘરનું સરનામું)',
     addr_street: 'શેરીનું સરનામું',
@@ -824,7 +824,7 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     addr_save: 'સરનામું સાચવો',
     addr_add: 'સરનામું ઉમેરો',
     addr_empty: 'કોઈ સાચવેલ સરનામું મળ્યું નથી. ચેકઆઉટને સરળ બનાવવા માટે શિપિંગ સરનામાં રજીસ્ટર કરો.',
-    
+
     // Tracking
     track_title: 'ઓર્ડર ટ્રેકિંગ',
     track_ref: 'શિપમેન્ટ સંદર્ભ',
@@ -929,23 +929,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
     feed_prod_1_name: 'ગ્લો બૂસ્ટિંગ સીરમ',
     feed_prod_1_desc: 'એક હળવું, ઝડપથી શોષાઈ જતું સીરમ જે ૧૦% વિટામિન સી અને હાયલ્યુરોનિક એસિડથી ભરપૂર છે. તે ત્વચાના ટોનને તરત જ તેજસ્વી બનાવે છે, ડાર્ક સ્પોટ્સ ઘટાડે છે અને આખો દિવસ ઊંડી હાઇડ્રેશન પ્રદાન કરે છે.',
     feed_prod_1_ing: '૯૮% ઓર્ગેનિક વિટામિન સી, શુદ્ધ હાયલ્યુરોનિક એસિડ, ફેરુલિક એસિડ, લિકોરિસ રુટ અર્ક',
-    
+
     feed_prod_2_name: 'બેરિયર રિસ્ટોર ક્રીમ',
     feed_prod_2_desc: 'ત્વચાની ભેજ જાળવી રાખવાની રક્ષણાત્મક દીવાલને મજબૂત કરવા અને સુરક્ષિત કરવા માટે તૈયાર કરાયેલ ક્રીમ. સેરામાઇડ્સ, સ્ક્વાલેન અને લાલાશ ઘટાડવા માટે સેન્ટેલા એશિયાટિકાથી ભરપૂર.',
     feed_prod_2_ing: 'Secaમાઇડ્સ NP/AP/EOP, શેરડીમાંથી મેળવેલ સ્ક્વાલેન, સેન્ટેલા એશિયાટિકા (સિસ્કા), જૈવિક શિયા બટર',
-    
+
     feed_prod_3_name: 'રોઝહિપ રિપ્લેનિશિંગ ઓઇલ',
     feed_prod_3_desc: '૧૦૦% જૈવિક કોલ્ડ-પ્રેસ્ડ રોઝહિપ સીડ ઓઇલ. કોષોના પુનર્જીવનને પ્રોત્સાહન આપવા, ઝીણી રેખાઓ લીસી કરવા અને કુદરતી લવચીકતા પુનઃસ્થાપિત કરવા માટે ફેટી એસિડ્સ અને એન્ટીઑકિસડન્ટથી ભરપૂર.',
     feed_prod_3_ing: 'કોલ્ડ-પ્રેસ્ડ રોઝહિપ સીડ ઓઇલ, વિટામિન ઇ (ટોકોફેરોલ)',
-    
+
     feed_prod_4_name: 'વિટામિન સી બ્રાઇટ જેલ',
     feed_prod_4_desc: 'એક ઠંડક આપતી જેલ-મોઇશ્ચરાઇઝર જે નિસ્તેજ, થાકેલી ત્વચાને પુનર્જીવિત કરે છે. એન્ટીઑકિસડન્ટ પ્રદાન કરવા અને તેલ-મુક્ત ભેજ જાળવી રાખવા માટે સાઇટ્રસ અર્ક અને કાકાડુ પ્લમથી ભરપૂર.',
     feed_prod_4_ing: 'કાકાડુ પ્લમ અર્ક, એલોવેરા લીફ જ્યુસ, ગ્રીન ટી લીફ અર્ક',
-    
+
     feed_prod_5_name: 'ડિલી સન પ્રોટેક્ટ એસપીએફ ૫૦',
     feed_prod_5_desc: 'એક અતિ પારદર્શક, મિનરલ એસપીએફ ૫૦ સનસ્ક્રીન. કોઈપણ સફેદ ડાઘ છોડ્યા વગર ત્વચાને સંપૂર્ણ પારદર્શક અને તેજસ્વી ચમક આપે છે, તેમજ પ્રાઇમર તરીકે પણ કામ કરે છે.',
     feed_prod_5_ing: 'ઝીંક ઓક્સાઇડ ૧૨%, ગ્રીન ટી અર્ક, સી બકથોર્ન, હાયલ્યુરોનિક એસિડ',
-    
+
     feed_prod_6_name: 'સ્ક્વાલેન ફેશિયલ ઓઇલ',
     feed_prod_6_desc: 'શેરડીમાંથી મેળવેલ શુદ્ધ સ્ક્વાલેન તેલ. રોમછિદ્રોને બંધ કર્યા વગર ભેજ જાળવી રાખવા અને ત્વચાની કુદરતી ચમક વધારવા માટે ત્વચાના કુદરતી સીબમ જેવું જ કામ કરે છે.',
     feed_prod_6_ing: '૧૦૦% શેરડીમાંથી મેળવેલ સ્ક્વાલેન',
@@ -1062,7 +1062,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
 export const LanguageContext = createContext<LanguageContextType>({
   language: 'en',
-  setLanguage: () => {},
+  setLanguage: () => { },
   t: (key) => key,
 });
 

@@ -9,7 +9,7 @@ export default function HeroSection() {
         style={{ backgroundImage: "url('/center_offer_banner.png')" }}
       >
         {/* Soft radial overlay to ensure text readability in the center while keeping sides clear */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/70 via-white/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-white/70 via-white/40 to-transparent"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-3 md:py-6 w-full">

@@ -12,10 +12,10 @@ interface NavbarProps {
   onCloseCartPopover?: () => void;
 }
 
-export default function Navbar({ 
-  onCartClick, 
-  onUserClick, 
-  cartCount, 
+export default function Navbar({
+  onCartClick,
+  onUserClick,
+  cartCount,
   lastAddedItem = null,
   showCartPopover = false,
   onCloseCartPopover
@@ -44,29 +44,39 @@ export default function Navbar({
     <header className="sticky top-0 z-40 bg-brand-cream backdrop-blur-md border-b border-brand-dark/10 transition-shadow duration-300 hover:shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 h-20 flex items-center justify-between relative">
 
-        {/* Mobile Menu Toggle button */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 -ml-2 text-brand-dark hover:opacity-75 focus:outline-none cursor-pointer"
-          aria-label="Toggle menu"
-        >
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            {isMobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+        {/* LEFT SECTION: Logo & Mobile Toggle */}
+        <div className="flex items-center gap-3 z-10">
+          {/* Mobile Menu Toggle button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 -ml-2 text-brand-dark hover:opacity-75 focus:outline-none cursor-pointer"
+            aria-label="Toggle menu"
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
 
-        {/* LEFT SECTION: Nav Links */}
-        <nav className="hidden md:flex space-x-4 items-center font-serif text-xl font-semibold tracking-wide h-full">
+          {/* Brand Logo */}
+          <Link to="/" className="flex items-center group">
+            <img
+              src={navbarLogo}
+              alt="Morkins Logo"
+              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </Link>
+        </div>
+
+        {/* CENTER SECTION: Nav Titles / Links */}
+        <nav className="hidden md:flex space-x-6 lg:space-x-8 items-center font-serif text-lg lg:text-xl font-semibold tracking-wide h-full absolute left-1/2 -translate-x-1/2 z-10">
           <Link
             to="/products"
-            className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${
-              isProductsActive ? 'text-brand-light font-bold' : 'text-black'
-            }`}
-
+            className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${isProductsActive ? 'text-brand-light font-bold' : 'text-black'
+              }`}
           >
             {t('nav_products')}
             <span
@@ -108,17 +118,6 @@ export default function Navbar({
             />
           </Link>
         </nav>
-
-        {/* CENTER SECTION: Logo (absolutely centered) */}
-        <div className="absolute left-1/2 -translate-x-1/2 z-10">
-          <Link to="/" className="flex items-center group">
-            <img
-              src={navbarLogo}
-              alt="Morkins Logo"
-              className="h-10 w-auto object-contain transition-transform duration-300 "
-            />
-          </Link>
-        </div>
 
         {/* RIGHT SECTION: Search, User Icon, Shopping Bag */}
         <div className="flex items-center space-x-6 z-10">
@@ -195,7 +194,7 @@ export default function Navbar({
               <div className="absolute -right-2 top-full mt-3 w-80 max-w-[calc(100vw-32px)] bg-white border border-brand-dark/15 rounded-2xl shadow-2xl z-50 p-4 animate-popover-enter">
                 {/* Arrow pointing up */}
                 <div className="absolute -top-2 right-4 w-3.5 h-3.5 bg-white border-t border-l border-brand-dark/15 rotate-45 z-10"></div>
-                
+
                 {/* Header: Added to Cart Checkmark & Close */}
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-brand-dark/5">
                   <div className="flex items-center gap-2">
@@ -206,7 +205,7 @@ export default function Navbar({
                       Added to Cart
                     </span>
                   </div>
-                  <button 
+                  <button
                     onClick={onCloseCartPopover}
                     className="text-gray-400 hover:text-brand-dark p-1 rounded-full hover:bg-brand-cream-dark/50 transition-colors cursor-pointer"
                   >
@@ -274,9 +273,8 @@ export default function Navbar({
           <nav className="flex flex-col space-y-3 font-semibold text-[15px] text-brand-dark">
             <Link
               to="/products"
-              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${
-                isProductsActive ? 'text-brand-light font-bold' : ''
-              }`}
+              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${isProductsActive ? 'text-brand-light font-bold' : ''
+                }`}
             >
               {t('nav_products')}
             </Link>
