@@ -1,55 +1,7 @@
 import { useState } from 'react'
-import navbar from '../assets/morkins_logo-removebg-preview.png'
+import navbarLogo from '../assets/logo.png'
 import { useLanguage } from '../context/LanguageContext'
 
-const topFeatures = [
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-      </svg>
-    ),
-    titleKey: 'feat_cod_title',
-    descKey: 'feat_cod_desc',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    titleKey: 'feat_deliv_title',
-    descKey: 'feat_deliv_desc',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
-    titleKey: 'feat_auth_title',
-    descKey: 'feat_auth_desc',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M16 15v-1a4 4 0 00-4-4H8m0 0l3 3m-3-3l3-3m9 14V5a2 2 0 00-2-2H6a2 2 0 00-2 2v16l4-2 2 2 2-2 2 2 2-2 4 2z" />
-      </svg>
-    ),
-    titleKey: 'feat_return_title',
-    descKey: 'feat_return_desc',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-      </svg>
-    ),
-    titleKey: 'feat_pay_title',
-    descKey: 'feat_pay_desc',
-  },
-]
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -68,25 +20,6 @@ export default function Footer() {
   return (
     <footer className="bg-[#184433] text-white relative overflow-hidden">
 
-      {/* TOP FEATURES BAR */}
-      <div className="bg-[#112F24] border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-4 py-5">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-            {topFeatures.map((f) => (
-              <div key={f.titleKey} className="flex items-start gap-3 group">
-                <div className="text-[#B8D5C8] shrink-0 mt-0.5 group-hover:text-white transition-colors duration-200">
-                  {f.icon}
-                </div>
-                <div>
-                  <p className="text-[16px] font-semibold text-white leading-tight">{t(f.titleKey)}</p>
-                  <p className="text-[11px] text-white/90 mt-0.5 leading-snug">{t(f.descKey)}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* MAIN FOOTER BODY */}
       <div className="max-w-7xl mx-auto px-6 lg:px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-32">
@@ -94,7 +27,7 @@ export default function Footer() {
           {/* LEFT: Logo + Newsletter + Socials */}
           <div className="flex flex-col gap-6">
             <a href="/">
-              <img src={navbar} alt="Morkins" className="h-9 w-auto object-contain brightness-0 invert" />
+              <img src={navbarLogo} alt="Morkins Logo" className="h-20 w-auto object-contain brightness-0 invert" />
             </a>
             <p className="text-white/90 text-sm leading-relaxed max-w-[240px]">
               {t('foot_mission')}
