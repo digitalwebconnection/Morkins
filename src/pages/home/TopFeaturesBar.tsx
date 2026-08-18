@@ -52,7 +52,7 @@ export default function TopFeaturesBar() {
   const { t } = useLanguage()
 
   return (
-    <section className="bg-[#1F4D3A] border-b border-white/10 text-white py-6 sm:py-5 relative overflow-hidden">
+    <section className="bg-brand-forest border-b border-white/10 text-white py-6 sm:py-5 relative overflow-hidden">
       {/* Background Ambient Glows */}
       <div className="absolute -top-16 left-1/5 w-80 h-40 bg-[#2D6A4F]/40 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-16 right-1/5 w-80 h-40 bg-[#E8D5B5]/12 rounded-full blur-3xl pointer-events-none" />
@@ -86,7 +86,7 @@ export default function TopFeaturesBar() {
 
       {/* Right Botanical Branch Graphic */}
       <svg
-        className="absolute -right-8 -bottom-8 w-44 h-44 text-[#B8D5C8]/70 pointer-events-none rotate-165 select-none"
+        className="absolute -right-8 -bottom-8 w-44 h-44 text-brand-sage/70 pointer-events-none rotate-165 select-none"
         viewBox="0 0 120 120"
         fill="none"
         stroke="currentColor"
@@ -102,8 +102,8 @@ export default function TopFeaturesBar() {
       </svg>
 
       {/* Top & Bottom Subtle Gold Accent Hairlines */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#E8D5B5]/25 to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#E8D5B5]/15 to-transparent pointer-events-none" />
+      <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-[#E8D5B5]/25 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-linear-to-r from-transparent via-[#E8D5B5]/15 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 relative z-10">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8 items-center">

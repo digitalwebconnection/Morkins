@@ -30,7 +30,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
             return (
               <div
                 key={p.id}
-                className="group relative flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(24,68,51,0.12)]  transition-all duration-500 border border-brand-dark/5"
+                className="group relative flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.52)] hover:shadow-[0_20px_40px_rgba(24,68,51,0.72)]  transition-all duration-500 border border-brand-dark/5"
               >
                 {/* Image Wrapper */}
                 <div className={`relative aspect-square w-full overflow-hidden flex items-center justify-center transition-all duration-500 ${isLocal ? 'bg-[#184433]/10 ' : 'bg-brand-cream-dark'
@@ -44,7 +44,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                     src={p.img}
                     alt={translatedName}
                     className={`transition-all duration-700 ease-out transform ${isLocal
-                      ? 'h-full w-auto max-h-full max-w-full object-fill group-hover:scale-90 drop-shadow-[0_10px_20px_rgba(0,0,0,0.05)]'
+                      ? 'h-full w-auto max-h-full max-w-full object-fill  drop-shadow-[0_10px_20px_rgba(0,0,0,0.05)]'
                       : 'h-full w-full object-cover object-center group-hover:scale-95'
                       }`}
                     loading="lazy"

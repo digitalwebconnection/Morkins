@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import navbarLogo from "../assets/logo.png"
+import navbarLogo from "../assets/Morkins Final Logo.png"
 import { useLanguage } from '../context/LanguageContext'
 
 interface NavbarProps {
@@ -42,7 +42,7 @@ export default function Navbar({
 
   return (
     <header className="sticky top-0 z-40 bg-brand-cream backdrop-blur-md border-b border-brand-dark/10 transition-shadow duration-300 hover:shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 h-20 flex items-center justify-between relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 h-18 flex items-center justify-between relative">
 
         {/* LEFT SECTION: Logo & Mobile Toggle */}
         <div className="flex items-center gap-3 z-10">
@@ -66,7 +66,7 @@ export default function Navbar({
             <img
               src={navbarLogo}
               alt="Morkins Logo"
-              className="h-20  w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-25  w-auto object-contain transition-transform duration-300 "
             />
           </Link>
         </div>

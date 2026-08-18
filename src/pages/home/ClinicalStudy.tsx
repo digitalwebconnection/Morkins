@@ -169,7 +169,7 @@ export default function ClinicalStudy() {
 
             <div
               ref={sliderRef}
-              className="relative w-full max-w-[480px] aspect-[4/3] sm:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-black/10 select-none cursor-ew-resize group bg-black/5"
+              className="relative w-full max-w-120 aspect-4/3 sm:aspect-4/3 rounded-3xl overflow-hidden shadow-2xl border border-black/10 select-none cursor-ew-resize group bg-black/5"
               onMouseDown={() => setIsDragging(true)}
               onTouchStart={() => setIsDragging(true)}
               onMouseMove={handleMouseMove}

@@ -29,7 +29,7 @@ export default function Footer() {
             <a href="/">
               <img src={navbarLogo} alt="Morkins Logo" className="h-20 w-auto object-contain brightness-0 invert" />
             </a>
-            <p className="text-white/90 text-sm leading-relaxed max-w-[240px]">
+            <p className="text-white/90 text-sm leading-relaxed max-w-60">
               {t('foot_mission')}
             </p>
 
@@ -46,13 +46,13 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="bg-white text-[#184433] text-[11px] font-bold uppercase tracking-widest px-3 py-2.5 hover:bg-[#B8D5C8] transition-colors duration-200 cursor-pointer shrink-0"
+                  className="bg-white text-[#184433] text-[11px] font-bold uppercase tracking-widest px-3 py-2.5 hover:bg-brand-sage transition-colors duration-200 cursor-pointer shrink-0"
                 >
                   {t('foot_sub_btn')}
                 </button>
               </form>
               {subscribed && (
-                <p className="text-[#B8D5C8] text-xs mt-2">{t('foot_subscribed')}</p>
+                <p className="text-brand-sage text-xs mt-2">{t('foot_subscribed')}</p>
               )}
             </div>
 

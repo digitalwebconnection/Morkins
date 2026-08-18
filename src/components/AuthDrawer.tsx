@@ -764,7 +764,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       </div>
                       <div className="flex justify-between">
                         <span className="text-brand-dark/70 font-light">{t('auth_email_label')}</span>
-                        <span className="font-bold truncate max-w-[180px]">{email}</span>
+                        <span className="font-bold truncate max-w-45">{email}</span>
                       </div>
                       {phone && (
                         <div className="flex justify-between">

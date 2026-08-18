@@ -42,11 +42,8 @@ export default function Home({ onAddToCart }: HomeProps) {
       {/* Interactive Ingredients Spotlight */}
       <IngredientsSpotlight />
 
-      {/* Brand Story and Statistics Section */}
       {/* <OurStory /> */}
       <New />
-
-
 
       {/* Product Section: Displays 4 products (expandable) */}
       <ProductGrid onAddToCart={onAddToCart} />

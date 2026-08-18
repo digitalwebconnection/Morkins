@@ -154,7 +154,7 @@ export default function BannerSlider() {
   const { language } = useLanguage();
   const [current, setCurrent] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const [progress, setProgress] = useState(0)
+  const [, setProgress] = useState(0)
 
   const banners = BANNERS_DATA[language] || BANNERS_DATA['en'];
 
@@ -186,7 +186,7 @@ export default function BannerSlider() {
   const b = banners[current]
 
   return (
-    <section className="relative w-full h-[480px] sm:h-[620px] overflow-hidden">
+    <section className="relative w-full h-120 sm:h-155 overflow-hidden">
 
       {/* Full-bleed Background Image */}
       <img

@@ -153,7 +153,7 @@ export default function New() {
       <div className="max-w-7xl mx-auto px-6 sm:px-4">
 
         {/* Main Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-6 items-center min-h-[500px] relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-6 items-center min-h-125 relative">
 
           {/* Column 1: Info text panel with individual delay transitions */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
