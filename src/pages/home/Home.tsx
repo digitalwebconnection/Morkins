@@ -1,35 +1,39 @@
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import BannerSlider from './BannerSlider'
-import TopFeaturesBar from './TopFeaturesBar'
-import ProductGrid from './ProductGrid'
-import IngredientsSpotlight from './IngredientsSpotlight'
-import FeaturedProductSection from './FeaturedProductSection'
-import BestSellers from './BestSellers'
-import Testimonials from './Testimonials'
-import ImageFeed from './ImageFeed'
-import New from './New'
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import BannerSlider from "./BannerSlider";
+import TopFeaturesBar from "./TopFeaturesBar";
+import ProductGrid from "./ProductGrid";
+import IngredientsSpotlight from "./IngredientsSpotlight";
+import FeaturedProductSection from "./FeaturedProductSection";
+import BestSellers from "./BestSellers";
+import Testimonials from "./Testimonials";
+import ImageFeed from "./ImageFeed";
+import New from "./New";
 // import SourcingTimeline from './SourcingTimeline'
-import SkinQuiz from './SkinQuiz'
-import ClinicalStudy from './ClinicalStudy'
+import SkinQuiz from "./SkinQuiz";
+import ClinicalStudy from "./ClinicalStudy";
+import Newsletter from "./Newsletter";
 
 interface HomeProps {
-  onAddToCart: (product: { id: number; name: string; price: number; img: string }, openCart?: boolean) => void
+  onAddToCart: (
+    product: { id: number; name: string; price: number; img: string },
+    openCart?: boolean,
+  ) => void;
 }
 
 export default function Home({ onAddToCart }: HomeProps) {
-  const location = useLocation()
+  const location = useLocation();
 
   useEffect(() => {
     if (location.hash) {
-      const element = document.querySelector(location.hash)
+      const element = document.querySelector(location.hash);
       if (element) {
         setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }, 100)
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
       }
     }
-  }, [location])
+  }, [location]);
 
   return (
     <main>
@@ -63,8 +67,11 @@ export default function Home({ onAddToCart }: HomeProps) {
       {/* Testimonials 4-card grid layout */}
       <Testimonials onAddToCart={onAddToCart} />
 
+      {/* Newsletter Subscription */}
+      <Newsletter />
+
       {/* Lifestyle image feed carousel */}
       <ImageFeed />
     </main>
-  )
+  );
 }

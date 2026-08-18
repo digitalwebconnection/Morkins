@@ -1,5 +1,5 @@
 import { useState } from "react";
-import navbarLogo from "../assets/logo.png";
+import footerLogo from "../assets/Morkins Final Logo footer.png";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Footer() {
@@ -17,7 +17,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#184433] text-white relative overflow-hidden">
+    <footer className="bg-black text-[#D8D9D7] relative overflow-hidden">
       {/* MAIN FOOTER BODY */}
       <div className="max-w-7xl mx-auto px-6 lg:px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-32">
@@ -25,14 +25,14 @@ export default function Footer() {
           <div className="flex flex-col gap-6">
             <a href="/">
               <img
-                src={navbarLogo}
+                src={footerLogo}
                 alt="Morkins Logo"
-                className="h-20 w-auto object-contain brightness-0 invert"
+                className="h-12 w-auto object-contain"
               />
             </a>
-            <p className="text-white/90 text-sm leading-relaxed max-w-60">
-              {t('foot_mission')}
-
+            <p className="text-[#D8D9D7]/90 text-sm leading-relaxed max-w-60">
+              {t("foot_mission")}
+            </p>
 
             {/* Email Signup */}
             <div>
@@ -48,17 +48,19 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t("foot_placeholder_email")}
-                  className="flex-1 bg-transparent text-white text-sm px-3 py-2.5 placeholder-white/30 focus:outline-none min-w-0"
+                  className="bg-white/10 text-[#D8D9D7] placeholder:text-[#D8D9D7]/70 text-sm px-4 py-3 outline-none focus:bg-white/20 transition-all duration-300 w-full"
                 />
                 <button
                   type="submit"
-                  className="bg-white text-[#184433] text-[11px] font-bold uppercase tracking-widest px-3 py-2.5 hover:bg-brand-sage transition-colors duration-200 cursor-pointer shrink-0"
+                  className="bg-[#D8D9D7] text-[#6F8C51] text-[11px] font-bold uppercase tracking-widest px-3 py-2.5 hover:bg-[#AFD971] hover:text-[#6F8C51] transition-colors duration-200 cursor-pointer shrink-0"
                 >
                   {t("foot_sub_btn")}
                 </button>
               </form>
               {subscribed && (
-                <p className="text-brand-sage text-xs mt-2">{t('foot_subscribed')}</p>
+                <p className="text-[#D8D9D7] text-xs mt-2 font-medium">
+                  {t("foot_subscribed")}
+                </p>
               )}
             </div>
 

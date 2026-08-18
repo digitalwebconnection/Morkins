@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import AboutHero from './AboutHero'
 import AboutDetails from './AboutDetails'
 import AboutMission from './AboutMission'
 import AboutJourney from './AboutJourney'
@@ -14,7 +13,6 @@ export default function AboutUs() {
 
   return (
     <>
-      <AboutHero />
       <AboutDetails />
       <AboutMission />
       <AboutAppointment />

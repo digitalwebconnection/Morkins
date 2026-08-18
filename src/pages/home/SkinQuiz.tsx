@@ -114,16 +114,16 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
   }
 
   return (
-    <section className="py-16  text-brand-dark border-b border-brand-dark/5">
+    <section className="py-16 bg-[#0B1A28] text-white border-b border-[#0B1A28]/30">
       <div className="max-w-7xl mx-auto px-4 relative">
 
         {/* Title Block */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold tracking-widest text-[#184433] uppercase">Interactive Routine Builder</span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#184433] mt-2 leading-tight uppercase">
+          <span className="text-xs font-bold tracking-widest text-[#A68A56] uppercase">Interactive Routine Builder</span>
+          <h2 className="font-serif text-3xl sm:text-4xl font-normal text-white mt-2 leading-tight uppercase">
             Discover Your Daily Regimen
           </h2>
-          <p className="text-gray-600 text-sm mt-3">
+          <p className="text-white/80 text-sm mt-3">
             Answer two quick questions about your skin, and let our formula engine build your optimized 3-step skincare regimen.
           </p>
         </div>
@@ -134,7 +134,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
           {/* Progress Indicator */}
           <div className="absolute top-0 left-0 w-full h-1  ">
             <div
-              className="h-full bg-[#184433] transition-all duration-500"
+              className="h-full bg-[#A68A56] transition-all duration-500"
               style={{ width: `${(step / 3) * 100}%` }}
             />
           </div>
@@ -142,8 +142,8 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
           {/* STEP 1: SKIN TYPE */}
           {step === 1 && (
             <div className="animate-fade-in text-center">
-              <span className="text-[10px] font-bold tracking-widest text-black uppercase">QUESTION 01</span>
-              <h3 className="font-serif text-2xl text-[#184433] mt-2 mb-8 font-semibold">How would you describe your skin?</h3>
+              <span className="text-[10px] font-bold tracking-widest text-[#A68A56] uppercase">QUESTION 01</span>
+              <h3 className="font-serif text-2xl text-white mt-2 mb-8 font-semibold">How would you describe your skin?</h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
                 {[
@@ -155,10 +155,10 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                   <button
                     key={item.id}
                     onClick={() => handleSelectType(item.id)}
-                    className="flex flex-col items-center justify-center p-4 bg-white hover:bg-[#184433] border border-[#184433]/80 hover:border-[#184433] text-black hover:text-white rounded-xl shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer hover:-translate-y-1"
+                    className="flex flex-col items-center justify-center p-4 bg-[#112437] hover:bg-[#1A334C] border border-[#234360] hover:border-[#A68A56] text-white rounded-xl shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer hover:-translate-y-1"
                   >
                     <span className="font-semibold text-lg font-serif  uppercase tracking-wider">{item.label}</span>
-                    <span className="text-[14px] mt-2 opacity-80 group-hover:opacity-100 leading-normal ">{item.desc}</span>
+                    <span className="text-[14px] mt-2 text-white/70 group-hover:text-white/90 leading-normal ">{item.desc}</span>
                   </button>
                 ))}
               </div>
@@ -168,8 +168,8 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
           {/* STEP 2: SKIN GOAL */}
           {step === 2 && (
             <div className="animate-fade-in text-center">
-              <span className="text-[10px] font-bold tracking-widest text-[#184433] uppercase">QUESTION 02</span>
-              <h3 className="font-serif text-2xl text-[#184433] mt-2 mb-8 font-normal">What is your primary skin goal?</h3>
+              <span className="text-[10px] font-bold tracking-widest text-[#A68A56] uppercase">QUESTION 02</span>
+              <h3 className="font-serif text-2xl text-white mt-2 mb-8 font-normal">What is your primary skin goal?</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
                 {[
@@ -180,17 +180,17 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                   <button
                     key={item.id}
                     onClick={() => handleSelectGoal(item.id)}
-                    className="flex flex-col items-center justify-center p-6 bg-white hover:bg-[#184433] border border-brand-light/10 hover:border-[#184433] text-black hover:text-white rounded-xl shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer hover:-translate-y-1"
+                    className="flex flex-col items-center justify-center p-6 bg-[#112437] hover:bg-[#1A334C] border border-[#234360] hover:border-[#A68A56] text-white rounded-xl shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer hover:-translate-y-1"
                   >
                     <span className="font-bold text-lg uppercase tracking-wider">{item.label}</span>
-                    <span className="text-[14px] mt-2 opacity-80 group-hover:opacity-100 leading-normal ">{item.desc}</span>
+                    <span className="text-[14px] mt-2 text-white/70 group-hover:text-white/90 leading-normal ">{item.desc}</span>
                   </button>
                 ))}
               </div>
 
               <button
                 onClick={() => setStep(1)}
-                className="mt-8 text-xs font-bold tracking-widest uppercase text-[#184433] hover:text-[#1F4D3A] transition-colors duration-200 cursor-pointer"
+                className="mt-8 text-xs font-bold tracking-widest uppercase text-[#A68A56] hover:text-white transition-colors duration-200 cursor-pointer"
               >
                 ← Back to step 1
               </button>
@@ -204,24 +204,24 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
 
                 {/* Left Result Details */}
                 <div className="lg:w-[35%] text-left">
-                  <span className="text-[10px] font-extrabold tracking-widest text-black bg-brand-light/10 px-3 py-1 rounded-full uppercase">
+                  <span className="text-[10px] font-extrabold tracking-widest text-[#A68A56] bg-[#A68A56]/10 px-3 py-1 rounded-full uppercase">
                     Your Diagnosis
                   </span>
-                  <h4 className="font-serif text-3xl font-normal text-[#184433] mt-4 mb-3 leading-snug">
+                  <h4 className="font-serif text-3xl font-normal text-white mt-4 mb-3 leading-snug">
                     {recommendation.title}
                   </h4>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-6">
+                  <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-6">
                     {recommendation.description}
                   </p>
 
-                  <div className="border-t border-brand-dark/10 pt-5 mb-6">
+                  <div className="border-t border-white/10 pt-5 mb-6">
                     <div className="flex justify-between items-center mb-1">
-                      <span className="text-xs text-gray-500 uppercase font-semibold">Individual Value</span>
-                      <span className="text-xs text-gray-500 line-through font-mono">${originalTotalPrice.toFixed(2)}</span>
+                      <span className="text-xs text-white/70 uppercase font-semibold">Individual Value</span>
+                      <span className="text-xs text-white/70 line-through font-mono">${originalTotalPrice.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-bold text-[#184433]">Bundle Price (15% Off)</span>
-                      <span className="text-lg font-bold text-brand-dark font-mono">${bundlePrice.toFixed(2)}</span>
+                      <span className="text-sm font-bold text-[#A68A56]">Bundle Price (15% Off)</span>
+                      <span className="text-lg font-bold text-white font-mono">${bundlePrice.toFixed(2)}</span>
                     </div>
                   </div>
 
@@ -230,8 +230,8 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                       onClick={handleAddBundleToCart}
                       disabled={isAddingAll}
                       className={`w-full py-3.5 rounded-full text-white text-xs font-bold tracking-widest uppercase shadow-md transition-all duration-300 cursor-pointer active:scale-98 ${addedAllSuccess
-                          ? 'bg-[#184433] hover:bg-[#184433]/90'
-                          : 'bg-brand-dark hover:bg-[#184433]/90'
+                          ? 'bg-[#A68A56] hover:bg-[#A68A56]/90 text-white'
+                          : 'bg-[#A68A56] hover:bg-[#B58A57] text-white'
                         }`}
                     >
                       {isAddingAll ? (
@@ -254,13 +254,13 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                     return (
                       <div
                         key={p.id}
-                        className="bg-white rounded-xl p-4  border border-brand-dark/5 flex flex-col items-center justify-between text-center relative group"
+                        className="bg-white rounded-xl p-4  border border-white/5 shadow-xl flex flex-col items-center justify-between text-center relative group"
                       >
-                        <span className="text-[8px] font-bold text-gray-900 uppercase tracking-widest mb-2 block">
+                        <span className="text-[8px] font-bold text-[#A68A56] uppercase tracking-widest mb-2 block">
                           {p.stepLabel}
                         </span>
 
-                        <div className={`w-34 h-34 flex items-center justify-center rounded-lg mb-3 ${isLocal ? 'bg-[#184433]/10 p-2' : 'bg-brand-cream-dark'
+                        <div className={`w-34 h-34 flex items-center justify-center rounded-lg mb-3 ${isLocal ? 'bg-[#D8D9D7] p-2' : 'bg-brand-cream-dark'
                           }`}>
                           <img
                             src={p.img}
@@ -272,17 +272,17 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
 
                         <div className="flex-1 flex flex-col justify-between">
                           <div>
-                            <h5 className="font-sans text-xs font-bold text-black leading-tight line-clamp-2">
+                            <h5 className="font-sans text-xs font-bold text-[#0B1A28] leading-tight line-clamp-2">
                               {p.name}
                             </h5>
-                            <span className="text-xs font-bold text-[#184433] font-mono mt-1 block">
+                            <span className="text-xs font-bold text-[#A68A56] font-mono mt-1 block">
                               ${p.price.toFixed(2)}
                             </span>
                           </div>
 
                           <button
                             onClick={() => onAddToCart({ id: p.id, name: p.name, price: p.price, img: p.img })}
-                            className="mt-3 py-1.5 px-3 bg-[#184433] hover:bg-[#1F4D3A] text-white text-[9px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 cursor-pointer active:scale-95 whitespace-nowrap"
+                            className="mt-3 py-1.5 px-3 bg-[#0B1A28] hover:bg-[#A68A56] text-white text-[9px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 cursor-pointer active:scale-95 whitespace-nowrap"
                           >
                             + Quick Add
                           </button>

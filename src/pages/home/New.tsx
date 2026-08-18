@@ -31,8 +31,8 @@ const SLIDES: Slide[] = [
     subtitle: 'Plus a 100% personalized, science-backed skincare regimen',
     buttonText: 'TAKE THE QUIZ',
     image: p1,
-    themeColor: '#184433', // Luxury Forest Green
-    titleColor: 'text-[#184433]',
+    themeColor: '#0B1A28', // Deep Midnight
+    titleColor: 'text-[#0B1A28]',
     hotspots: [
       { x: '58%', y: '26%', value: '90', label: 'Breakouts', tooltip: 'Dermal clarity index indicates minimal active congestion.' },
       { x: '45%', y: '64%', value: '77', label: 'Dryness', tooltip: 'Epidermal moisture retention level at cell boundaries.' },
@@ -45,8 +45,8 @@ const SLIDES: Slide[] = [
     subtitle: 'High-efficacy active compounds calibrated to rebuild your dermal lipid barrier.',
     buttonText: 'EXPLORE CLINICAL STUDY',
     image: p2,
-    themeColor: '#184433', // Luxury Forest Green
-    titleColor: 'text-[#184433]',
+    themeColor: '#1C331B', // Deep Forest Green
+    titleColor: 'text-[#1C331B]',
     hotspots: [
       { x: '45%', y: '35%', value: '5.5', label: 'pH Balance', tooltip: 'Matches natural acidity levels for cell viability.' },
       { x: '60%', y: '65%', value: '98%', label: 'Absorption', tooltip: 'Deep lipid carrier penetration into basal cell layers.' }
@@ -58,8 +58,8 @@ const SLIDES: Slide[] = [
     subtitle: 'Sourcing pristine plants at peak potency to restore biocompatible cellular vitality.',
     buttonText: 'DISCOVER OUR HARVEST',
     image: p4,
-    themeColor: '#184433', // Luxury Forest Green
-    titleColor: 'text-[#184433]',
+    themeColor: '#5C4033', // Dark Bronze
+    titleColor: 'text-[#5C4033]',
     hotspots: [
       { x: '55%', y: '45%', value: '100%', label: 'Wildcrafted', tooltip: 'Ethically wild-harvested plant lipids.' },
       { x: '50%', y: '80%', value: '99%', label: 'Purity Retention', tooltip: 'Active plant enzymes preserved via cold-pressing.' }
@@ -116,15 +116,12 @@ export default function New() {
     }, 400)
   }
 
-
-
-
   return (
     <section
       id="new-arrivals"
       className=" text-brand-dark overflow-hidden border-b border-brand-dark/5 transition-all duration-1000 relative"
       style={{
-        background: `radial-gradient(circle at 80% 20%, ${activeSlide.themeColor}08, #fffef8 75%)`
+        background: `radial-gradient(circle at 80% 20%, ${activeSlide.themeColor}15, #F1EDE9 75%)`
       }}
     >
       {/* CSS custom animations inline block */}
@@ -158,7 +155,8 @@ export default function New() {
           {/* Column 1: Info text panel with individual delay transitions */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
             <h2
-              className={`font-serif text-3xl sm:text-4xl lg:text-4xl font-normal text-[#184433] leading-tight tracking-wide mb-6 transition-all duration-700 transform ${isTransitioning ? 'opacity-0 ' : 'opacity-100 translate-y-0'
+              style={{ color: activeSlide.themeColor }}
+              className={`font-serif text-3xl sm:text-4xl lg:text-4xl font-bold leading-tight tracking-wide mb-6 transition-all duration-700 transform ${isTransitioning ? 'opacity-0 ' : 'opacity-100 translate-y-0'
                 }`}
             >
               {t('slide_' + activeSlide.id + '_title')}
@@ -208,7 +206,7 @@ export default function New() {
               {/* Left Arrow (Prev) */}
               <button
                 onClick={() => selectSlide((selectedSlideIdx - 1 + SLIDES.length) % SLIDES.length)}
-                className="w-12 h-12 rounded-full border border-neutral-400 flex items-center justify-center cursor-pointer transition-all duration-300 bg-white hover:bg-[#5c7886]  hover:text-white shadow-sm hover:shadow-md"
+                className="w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center cursor-pointer transition-all duration-300 bg-white hover:bg-neutral-100 shadow-sm hover:shadow-md"
                 aria-label="Previous slide"
               >
                 <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5">
@@ -219,7 +217,7 @@ export default function New() {
               {/* Right Arrow (Next) */}
               <button
                 onClick={() => selectSlide((selectedSlideIdx + 1) % SLIDES.length)}
-                className="w-12 h-12 rounded-full border border-neutral-400 flex items-center justify-center cursor-pointer transition-all duration-300 bg-white hover:bg-[#5c7886] hover:text-white shadow-sm hover:shadow-md"
+                className="w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center cursor-pointer transition-all duration-300 bg-white hover:bg-neutral-100 shadow-sm hover:shadow-md"
                 aria-label="Next slide"
               >
                 <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5">
@@ -341,11 +339,13 @@ export default function New() {
 
                     {/* Rich Tooltip Detail Popup (Positions at end of callout line with transition delay) */}
                     <div
-                      className={`absolute w-52 mt-10 bg-[#184433] text-white rounded-lg p-3 shadow-xl border border-brand-dark/5 text-left transition-all duration-500 z-30 ${isHovered
+                      className={`absolute w-52 mt-10 text-white rounded-lg p-3 shadow-xl border text-left transition-all duration-500 z-30 ${isHovered
                           ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
                           : 'opacity-0 translate-y-2 scale-95 pointer-events-none'
                         }`}
                       style={{
+                        backgroundColor: activeSlide.themeColor,
+                        borderColor: activeSlide.themeColor,
                         left: '50%',
                         marginLeft: isLeft ? '-160px' : '160px',
                         top: '-100px',

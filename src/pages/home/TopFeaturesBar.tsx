@@ -52,7 +52,7 @@ export default function TopFeaturesBar() {
   const { t } = useLanguage()
 
   return (
-    <section className="bg-brand-forest border-b border-white/10 text-white py-6 sm:py-5 relative overflow-hidden">
+    <section className="relative bg-[#6F8C51] text-white py-1.5 sm:py-2.5 overflow-hidden border-t border-[#8C937D]/20">
       {/* Background Ambient Glows */}
       <div className="absolute -top-16 left-1/5 w-80 h-40 bg-[#2D6A4F]/40 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-16 right-1/5 w-80 h-40 bg-[#E8D5B5]/12 rounded-full blur-3xl pointer-events-none" />

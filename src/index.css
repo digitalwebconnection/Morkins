@@ -3,14 +3,14 @@
 @theme {
   --font-serif: "Cormorant Garamond", serif;
   --font-sans: "Plus Jakarta Sans", sans-serif;
-  --color-brand-dark: #375043;
-  --color-brand-light: #184433;
-  --color-brand-primary: #184433;
-  --color-brand-forest: #1F4D3A;
-  --color-brand-cream: #fffef8;
-  --color-brand-cream-dark: #F3F1E8;
-  --color-brand-accent: #D4CDBC;
-  --color-brand-sage: #B8D5C8;
+  --color-brand-dark: #6F8C51;
+  --color-brand-light: #AFD971;
+  --color-brand-primary: #6F8C51;
+  --color-brand-forest: #8C937D;
+  --color-brand-cream: #D8D9D7;
+  --color-brand-cream-dark: #A5A686;
+  --color-brand-accent: #AFD971;
+  --color-brand-sage: #8C937D;
 
   --animate-modal-backdrop: modal-backdrop 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-modal-content: modal-content 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
@@ -64,7 +64,7 @@
 
 @layer base {
   body {
-    @apply font-sans bg-brand-cream  text-brand-dark antialiased;
+    @apply font-sans bg-[#D8D9D7] text-[#6F8C51] antialiased;
     margin: 0;
   }
 }

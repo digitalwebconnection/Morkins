@@ -73,11 +73,11 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQty, on
                                   </h3>
                                   <p className="ml-4">${(item.price * item.qty).toFixed(2)}</p>
                                 </div>
-                                <p className="mt-1 text-xs text-brand-dark/60 font-light">Individual Item</p>
+                                <p className="mt-1 text-xs text-brand-dark font-light">Individual Item</p>
                               </div>
                               <div className="flex flex-1 items-end justify-between text-xs">
                                 {/* Qty Selector */}
-                                <div className="flex items-center border border-brand-dark/20 rounded-full bg-brand-cream-dark">
+                                <div className="flex items-center border border-brand-dark/20 rounded-full bg-white/60 hover:bg-white/80 transition-colors">
                                   <button
                                     onClick={() => onUpdateQty(item.id, -1)}
                                     className="px-2.5 py-1 text-brand-dark/70 hover:text-brand-dark font-bold cursor-pointer"
@@ -127,26 +127,26 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onUpdateQty, on
 
               {cartItems.length > 0 && (
                 <div className="border-t border-brand-dark/10 py-6 px-6 bg-brand-cream-dark">
-                  <div className="flex justify-between text-base font-bold text-brand-dark">
+                  <div className="flex justify-between text-base font-bold text-[#184433]">
                     <p>Subtotal</p>
                     <p>${cartSubtotal.toFixed(2)}</p>
                   </div>
-                  <p className="mt-1 text-xs text-brand-dark/60 font-light">Shipping and taxes calculated at checkout.</p>
+                  <p className="mt-1 text-xs text-[#184433]/80 font-medium">Shipping and taxes calculated at checkout.</p>
                   <div className="mt-6">
                     <a
                       href="#checkout"
                       onClick={() => alert("Proceeding to checkout simulation!")}
-                      className="flex items-center justify-center rounded-full border border-transparent bg-brand-dark px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-brand-cream shadow-md hover:bg-brand-light transition-all duration-300"
+                      className="flex items-center justify-center rounded-full border border-transparent bg-[#184433] px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-brand-cream shadow-md hover:opacity-90 transition-all duration-300"
                     >
                       Checkout
                     </a>
                   </div>
-                  <div className="mt-4 flex justify-center text-center text-xs font-medium">
+                  <div className="mt-4 flex justify-center text-center text-xs font-medium text-[#184433]">
                     <p>
                       or{' '}
                       <button
                         type="button"
-                        className="font-bold underline   cursor-pointer"
+                        className="font-bold underline cursor-pointer hover:text-[#184433]/80 transition-colors"
                         onClick={onClose}
                       >
                         Continue Shopping

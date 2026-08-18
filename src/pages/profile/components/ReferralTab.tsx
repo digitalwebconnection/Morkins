@@ -17,12 +17,12 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
   return (
     <div className="bg-white/80 rounded-[32px] p-6 md:p-8 border border-brand-dark/10 shadow-sm backdrop-blur-xs space-y-6 animate-modal-content">
       <div>
-        <h3 className="font-serif text-2xl font-bold text-brand-light">{t('profile_tab_referral')}</h3>
-        <p className="text-[10px] text-brand-dark/55 uppercase tracking-widest mt-0.5">Spread organic luxury & earn skin rewards credits</p>
+        <h3 className="font-serif text-2xl font-bold text-[#184433]">{t('profile_tab_referral')}</h3>
+        <p className="text-[10px] text-[#184433]/70 uppercase tracking-widest mt-0.5">Spread organic luxury & earn skin rewards credits</p>
       </div>
 
       {/* VIP Foiled Gift Card Voucher */}
-      <div className="bg-linear-to-tr from-[#184433] to-[#1F4D3A] text-white rounded-[32px] p-6 md:p-8 text-center space-y-6 shadow-md relative overflow-hidden border border-brand-light/20">
+      <div className="bg-linear-to-tr from-[#184433] to-[#1F4D3A] text-white rounded-[32px] p-6 md:p-8 text-center space-y-6 shadow-md relative overflow-hidden border border-gray-900/20">
         <div className="absolute right-0 bottom-0 translate-y-1/4 translate-x-1/4 w-48 h-48 bg-white/5 rounded-full blur-3xl" />
         <div className="absolute left-0 top-0 -translate-y-1/4 -translate-x-1/4 w-36 h-36 bg-brand-accent/20 rounded-full blur-2xl" />
 
@@ -42,7 +42,7 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
           </span>
           <button 
             onClick={handleCopyReferral}
-            className="bg-white text-brand-light hover:bg-brand-cream-dark px-4 py-1.5 rounded-full shrink-0 font-bold uppercase tracking-widest text-[9px] transition-all active:scale-95 cursor-pointer shadow-sm flex items-center space-x-1"
+            className="bg-white text-[#184433] hover:bg-brand-cream-dark px-4 py-1.5 rounded-full shrink-0 font-bold uppercase tracking-widest text-[9px] transition-all active:scale-95 cursor-pointer shadow-sm flex items-center space-x-1"
           >
             {copiedReferral ? (
               <>
@@ -60,19 +60,21 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
       </div>
 
       {/* Rewards Level Status */}
-      <div className="p-5 bg-brand-cream-dark/20 border border-brand-dark/10 rounded-[28px] space-y-4">
-        <h4 className="text-xs uppercase font-extrabold tracking-widest text-brand-light">{t('ref_successful')}</h4>
+      <div className="p-5 bg-[#E8E9E4] border border-brand-dark/10 rounded-[28px] space-y-4">
+        <h4 className="text-xs uppercase font-extrabold tracking-widest text-[#184433]">{t('ref_successful')}</h4>
         <div className="grid grid-cols-2 gap-4 divide-x divide-brand-dark/10">
           <div className="px-2">
-            <span className="text-brand-dark/50 text-[10px] uppercase font-bold tracking-wider block">{t('ref_successful')}</span>
-            <strong className="text-brand-light font-serif text-xl font-bold block mt-1">2 Friends</strong>
+            <span className="text-[#184433]/70 text-[10px] uppercase font-bold tracking-wider block">{t('ref_successful')}</span>
+            <strong className="text-[#184433] font-serif text-xl font-bold block mt-1">2 Friends</strong>
           </div>
           <div className="px-4">
-            <span className="text-brand-dark/50 text-[10px] uppercase font-bold tracking-wider block">{t('ref_balance')}</span>
-            <strong className="text-brand-light font-serif text-xl font-bold block mt-1">$30.00 Credit</strong>
+            <span className="text-[#184433]/70 text-[10px] uppercase font-bold tracking-wider block">{t('ref_balance')}</span>
+            <strong className="text-[#184433] font-serif text-xl font-bold block mt-1">$30.00 Credit</strong>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+

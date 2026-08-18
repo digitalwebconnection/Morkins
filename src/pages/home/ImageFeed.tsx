@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 const IMAGES = [
   "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=400&q=80",
@@ -16,81 +15,14 @@ const IMAGES = [
 ];
 
 export default function ImageFeed() {
-  const [startIndex, setStartIndex] = useState(0);
-
-  const scroll = (direction: "left" | "right") => {
-    if (direction === "left") {
-      setStartIndex(
-        (prev) => (prev - 1 + (IMAGES.length - 3)) % (IMAGES.length - 3),
-      );
-    } else {
-      setStartIndex((prev) => (prev + 1) % (IMAGES.length - 3));
-    }
-  };
-
   return (
-    <section className="bg-brand-cream text-brand-dark overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-4 mb-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6">
-          <div>
-            <h2 className="font-serif text-4xl font-normal mt-2  text-[#184433] leading-tight">
-              Follow Our Journey
-            </h2>
-            <p className="text-brand-dark tracking-wide text-md  mt-2">
-              Tag us @morkinsofficial to share your routine and be featured.
-            </p>
-          </div>
-          <div className="flex items-center gap-6">
-            {/* Left Arrow Button */}
-            <button
-              onClick={() => scroll("left")}
-              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#184433] hover:text-white hover:border-[#184433] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-              aria-label="Scroll left"
-            >
-              <svg
-                className="w-4.5 h-4.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-
-            {/* Right Arrow Button */}
-            <button
-              onClick={() => scroll("right")}
-              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#184433] hover:text-white hover:border-[#184433] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-              aria-label="Scroll right"
-            >
-              <svg
-                className="w-4.5 h-4.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
+    <section className="bg-[#D8D9D7] text-[#6F8C51] overflow-hidden border-b border-[#A5A686]/30">
       <div className="relative animate-fade-in">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-0 transition-transform duration-300">
-          {IMAGES.slice(startIndex, startIndex + 4).map((img, i) => (
+          {IMAGES.slice(0, 4).map((img, i) => (
             <div
               key={i}
-              className="group relative aspect-square overflow-hidden transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-2xl"
+              className="group relative aspect-[5/4] overflow-hidden transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-2xl"
             >
               <img
                 src={img}

@@ -19,7 +19,7 @@ interface CategoryCard {
 const CATEGORIES: CategoryCard[] = [
   {
     id: 1,
-    tag: '01 • SERUMS',
+    tag: 'SERUMS',
     titleLine1: 'Face',
     titleLine2: 'Serums',
     subtext: '6 FORMULATIONS',
@@ -30,7 +30,7 @@ const CATEGORIES: CategoryCard[] = [
   },
   {
     id: 2,
-    tag: '02 • HAIR CARE',
+    tag: 'HAIR CARE',
     titleLine1: 'Hair',
     titleLine2: 'Serums',
     subtext: '7 FORMULATIONS',
@@ -41,7 +41,7 @@ const CATEGORIES: CategoryCard[] = [
   },
   {
     id: 3,
-    tag: '03 • CLEANSER',
+    tag: 'CLEANSER',
     titleLine1: 'Face',
     titleLine2: 'Wash',
     subtext: '1 FORMULATION',
@@ -52,7 +52,7 @@ const CATEGORIES: CategoryCard[] = [
   },
   {
     id: 4,
-    tag: '04 • MANIFESTO',
+    tag: 'MANIFESTO',
     titleLine1: 'Our',
     titleLine2: 'Story',
     subtext: 'FOUNDER & MANIFESTO',
@@ -67,7 +67,7 @@ export default function IngredientsSpotlight() {
   const navigate = useNavigate()
 
   return (
-    <section className="py-8 sm:py-14 bg-[#ffffff] text-brand-dark relative overflow-hidden">
+    <section className="py-12 sm:py-24 bg-[#ffffff] text-brand-dark relative overflow-hidden">
       {/* Background Ambient Luxury Glows */}
       <div className="absolute -top-24 left-1/4 w-125 h-125 bg-[#235E4F]/8 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 right-1/4 w-125 h-125 bg-[#B58A57]/10 rounded-full blur-3xl pointer-events-none" />
@@ -117,7 +117,7 @@ export default function IngredientsSpotlight() {
                   {cat.tag}
                 </span>
 
-                <div className="w-9 h-9 rounded-full bg-black/50 border border-white/25 flex items-center justify-center text-white/90 group-hover:bg-[#E8D5B5] group-hover:text-[#0C1B33] group-hover:border-[#E8D5B5] group-hover:scale-110 transition-all duration-300 shadow-lg backdrop-blur-md">
+                <div className="w-9 h-9 rounded-full bg-black/50 flex items-center justify-center text-white/90 group-hover:bg-white group-hover:text-black group-hover:scale-110 transition-all duration-300 shadow-lg backdrop-blur-md">
                   <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>

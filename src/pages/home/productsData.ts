@@ -23,6 +23,7 @@ export interface Product {
   img: string
   hoverImg: string
   badge?: string
+  description?: string
 }
 
 export const PRODUCTS: Product[] = [

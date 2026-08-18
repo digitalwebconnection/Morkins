@@ -325,18 +325,18 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
               {activeToast && (
                 <div className="absolute top-4 left-4 right-4 z-50 bg-white rounded-xl shadow-lg border border-brand-dark/15 p-3 flex items-start space-x-3 transition-all duration-300">
                   {activeToast.type === 'success' ? (
-                    <CheckCircle2 className="w-5 h-5 text-brand-light shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-[#184433] shrink-0 mt-0.5" />
                   ) : activeToast.type === 'error' ? (
                     <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
                   ) : (
-                    <KeyRound className="w-5 h-5 text-brand-light/80 shrink-0 mt-0.5" />
+                    <KeyRound className="w-5 h-5 text-[#184433]/80 shrink-0 mt-0.5" />
                   )}
                   <div className="flex-1 min-w-0">
                     <p className="text-xs text-neutral-700 font-medium">{activeToast.message}</p>
                     {activeToast.code && (
                       <div className="mt-1.5 bg-brand-cream-dark px-2.5 py-1 rounded-md border border-brand-dark/10 flex justify-between items-center">
-                        <span className="text-[10px] font-mono font-bold tracking-wider text-brand-light">OTP Code: {activeToast.code}</span>
-                        <span className="text-[8px] uppercase tracking-widest text-brand-light/75 font-bold px-1 py-0.5 bg-brand-light/10 rounded">Test Shortcut</span>
+                        <span className="text-[10px] font-mono font-bold tracking-wider text-[#184433]">OTP Code: {activeToast.code}</span>
+                        <span className="text-[8px] uppercase tracking-widest text-[#184433]/75 font-bold px-1 py-0.5 bg-[#184433]/10 rounded">Test Shortcut</span>
                       </div>
                     )}
                   </div>
@@ -349,15 +349,15 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
               {/* Form Loader overlay */}
               {loading && (
                 <div className="absolute inset-0 bg-brand-cream/90 backdrop-blur-xs flex flex-col items-center justify-center z-40">
-                  <RefreshCw className="w-8 h-8 text-brand-light animate-spin" />
-                  <p className="text-[10px] font-bold tracking-widest uppercase text-brand-light mt-4">{t('auth_processing')}</p>
+                  <RefreshCw className="w-8 h-8 text-[#184433] animate-spin" />
+                  <p className="text-[10px] font-bold tracking-widest uppercase text-[#184433] mt-4">{t('auth_processing')}</p>
                 </div>
               )}
 
               {/* Header block */}
               <div className="py-5 px-6 border-b border-brand-dark/10 flex items-center justify-between">
                 <div>
-                  <span className="font-serif text-2xl font-bold tracking-widest text-brand-light">MORKINS</span>
+                  <span className="font-serif text-2xl font-bold tracking-widest text-[#184433]">MORKINS</span>
                   <p className="text-[8px] tracking-widest uppercase font-semibold text-brand-dark/60 mt-0.5">{t('auth_portal')}</p>
                 </div>
                 <div className="flex items-center gap-3">
@@ -366,7 +366,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                     <select
                       value={language}
                       onChange={(e) => setLanguage(e.target.value as any)}
-                      className="bg-transparent text-xs font-semibold uppercase tracking-wider text-brand-light hover:text-brand-light/80 border border-brand-dark/20 rounded-md py-1 px-2 focus:outline-none cursor-pointer"
+                      className="bg-transparent text-xs font-semibold uppercase tracking-wider text-[#184433] hover:text-[#184433]/80 border border-brand-dark/20 rounded-md py-1 px-2 focus:outline-none cursor-pointer"
                     >
                       <option value="en" className="text-black bg-white">EN</option>
                       <option value="hi" className="text-black bg-white">हिन्दी</option>
@@ -392,7 +392,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                         setMode('login');
                       }
                     }}
-                    className="flex items-center text-[10px] font-bold text-brand-light/80 hover:text-brand-light uppercase tracking-widest mb-6 group"
+                    className="flex items-center text-[10px] font-bold text-[#184433]/80 hover:text-[#184433] uppercase tracking-widest mb-6 group"
                   >
                     <ArrowLeft className="w-3.5 h-3.5 mr-1 transition-transform group-hover:-translate-x-0.5" />
                     {t('auth_back')}
@@ -406,7 +406,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       onClick={() => setMode('login')}
                       className={`flex-1 pb-3 text-xs uppercase tracking-wider font-bold text-center border-b-2 transition-all cursor-pointer ${
                         mode === 'login' 
-                          ? 'border-brand-light text-brand-light font-extrabold' 
+                          ? 'border-[#184433] text-[#184433] font-extrabold' 
                           : 'border-transparent text-brand-dark/55 hover:text-brand-dark'
                       }`}
                     >
@@ -416,7 +416,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       onClick={() => setMode('signup')}
                       className={`flex-1 pb-3 text-xs uppercase tracking-wider font-bold text-center border-b-2 transition-all cursor-pointer ${
                         mode === 'signup' 
-                          ? 'border-brand-light text-brand-light font-extrabold' 
+                          ? 'border-[#184433] text-[#184433] font-extrabold' 
                           : 'border-transparent text-brand-dark/55 hover:text-brand-dark'
                       }`}
                     >
@@ -430,7 +430,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                   <div className="space-y-5">
                     <form onSubmit={handleLoginSubmit} className="space-y-4">
                       <div>
-                        <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">{t('auth_drawer_email')}</label>
+                        <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_drawer_email')}</label>
                         <div className="relative">
                           <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
                           <input 
@@ -438,7 +438,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                             required 
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-brand-light focus:outline-none bg-white text-sm text-brand-light placeholder-brand-dark/30 shadow-xs transition-colors"
+                            className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
                             placeholder={t('auth_email_placeholder')}
                           />
                         </div>
@@ -446,11 +446,11 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
 
                       <div>
                         <div className="flex justify-between items-center mb-1">
-                          <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light">{t('auth_drawer_password')}</label>
+                          <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433]">{t('auth_drawer_password')}</label>
                           <button 
                             type="button"
                             onClick={() => setMode('forgot')}
-                            className="text-[9px] font-bold uppercase tracking-wider text-brand-light/75 hover:text-brand-light hover:underline cursor-pointer"
+                            className="text-[9px] font-bold uppercase tracking-wider text-[#184433]/75 hover:text-[#184433] hover:underline cursor-pointer"
                           >
                             {t('auth_drawer_forgot')}
                           </button>
@@ -462,7 +462,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                             required 
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-brand-light focus:outline-none bg-white text-sm text-brand-light placeholder-brand-dark/30 shadow-xs transition-colors"
+                            className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
                             placeholder="••••••••"
                           />
                         </div>
@@ -470,7 +470,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
 
                       <button 
                         type="submit"
-                        className="w-full bg-brand-light hover:bg-brand-light/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
+                        className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
                       >
                         <span>{t('auth_drawer_login')}</span>
                         <ArrowRight className="w-4 h-4" />
@@ -485,7 +485,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
 
                     <button 
                       onClick={handleGoogleLogin}
-                      className="w-full border border-brand-dark/20 hover:border-brand-light hover:bg-brand-cream-dark/50 py-2.5 rounded-full flex items-center justify-center space-x-3 text-xs font-bold uppercase tracking-wider text-brand-light transition-all cursor-pointer shadow-xs"
+                      className="w-full border border-brand-dark/20 hover:border-[#184433] hover:bg-brand-cream-dark/50 py-2.5 rounded-full flex items-center justify-center space-x-3 text-xs font-bold uppercase tracking-wider text-[#184433] transition-all cursor-pointer shadow-xs"
                     >
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -502,7 +502,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                 {mode === 'signup' && (
                   <form onSubmit={handleSignupSubmit} className="space-y-4">
                     <div>
-                      <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">{t('auth_fullname')}</label>
+                      <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_fullname')}</label>
                       <div className="relative">
                         <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
                         <input 
@@ -510,14 +510,14 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                           required 
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
-                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-brand-light focus:outline-none bg-white text-sm text-brand-light placeholder-brand-dark/30 shadow-xs transition-colors"
+                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
                           placeholder={t('auth_fullname_placeholder')}
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">{t('auth_drawer_email')}</label>
+                      <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_drawer_email')}</label>
                       <div className="relative">
                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
                         <input 
@@ -525,7 +525,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                           required 
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-brand-light focus:outline-none bg-white text-sm text-brand-light placeholder-brand-dark/30 shadow-xs transition-colors"
+                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
                           placeholder={t('auth_email_placeholder')}
                         />
                       </div>
@@ -533,11 +533,11 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
 
                     <div className="grid grid-cols-2 gap-3">
                       <div className="relative">
-                        <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">{t('auth_country')}</label>
+                        <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_country')}</label>
                         <button
                           type="button"
                           onClick={() => setCountryDropdownOpen(!countryDropdownOpen)}
-                          className="w-full px-3 py-2.5 rounded-xl border border-brand-dark/20 bg-white text-xs text-brand-light flex justify-between items-center shadow-xs cursor-pointer focus:outline-none"
+                          className="w-full px-3 py-2.5 rounded-xl border border-brand-dark/20 bg-white text-xs text-[#184433] flex justify-between items-center shadow-xs cursor-pointer focus:outline-none"
                         >
                           <span className="flex items-center space-x-1.5 min-w-0">
                             <span>{selectedCountry.flag}</span>
@@ -553,7 +553,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                               value={countrySearch}
                               onChange={(e) => setCountrySearch(e.target.value)}
                               placeholder="Search..."
-                              className="w-full px-2 py-1 mb-1.5 border border-brand-dark/10 rounded-lg text-xs focus:outline-none bg-brand-cream-dark/30 text-brand-light"
+                              className="w-full px-2 py-1 mb-1.5 border border-brand-dark/10 rounded-lg text-xs focus:outline-none bg-brand-cream-dark/30 text-[#184433]"
                             />
                             {filteredCountries.map((c) => (
                               <button
@@ -563,7 +563,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                                   setSelectedCountry(c);
                                   setCountryDropdownOpen(false);
                                 }}
-                                className="w-full text-left px-2 py-1 rounded text-xs hover:bg-brand-cream-dark flex items-center space-x-2 text-brand-light font-medium"
+                                className="w-full text-left px-2 py-1 rounded text-xs hover:bg-brand-cream-dark flex items-center space-x-2 text-[#184433] font-medium"
                               >
                                 <span>{c.flag}</span>
                                 <span className="grow truncate">{c.name}</span>
@@ -574,14 +574,14 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       </div>
 
                       <div>
-                        <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">{t('auth_drawer_phone')}</label>
+                        <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_drawer_phone')}</label>
                         <div className="relative">
                           <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-brand-dark/40" />
                           <input 
                             type="tel" 
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
-                            className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-brand-dark/20 focus:border-brand-light focus:outline-none bg-white text-sm text-brand-light placeholder-brand-dark/30 shadow-xs transition-colors"
+                            className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
                             placeholder={t('auth_phone_placeholder')}
                           />
                         </div>
@@ -589,7 +589,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                     </div>
 
                     <div>
-                      <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">{t('auth_drawer_password')}</label>
+                      <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_drawer_password')}</label>
                       <div className="relative">
                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
                         <input 
@@ -597,14 +597,14 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                           required 
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
-                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-brand-light focus:outline-none bg-white text-sm text-brand-light placeholder-brand-dark/30 shadow-xs transition-colors"
+                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
                           placeholder="••••••••"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">{t('auth_confirm_password')}</label>
+                      <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_confirm_password')}</label>
                       <div className="relative">
                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
                         <input 
@@ -612,7 +612,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                           required 
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
-                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-brand-light focus:outline-none bg-white text-sm text-brand-light placeholder-brand-dark/30 shadow-xs transition-colors"
+                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
                           placeholder="••••••••"
                         />
                       </div>
@@ -620,7 +620,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
 
                     <button 
                       type="submit"
-                      className="w-full bg-brand-light hover:bg-brand-light/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
+                      className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
                     >
                       <span>{t('auth_create_account')}</span>
                       <ArrowRight className="w-4 h-4" />
@@ -635,7 +635,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       {t('auth_forgot_desc')}
                     </p>
                     <div>
-                      <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">{t('auth_drawer_email')}</label>
+                      <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_drawer_email')}</label>
                       <div className="relative">
                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
                         <input 
@@ -643,14 +643,14 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                           required 
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-brand-light focus:outline-none bg-white text-sm text-brand-light placeholder-brand-dark/30 shadow-xs transition-colors"
+                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
                           placeholder={t('auth_email_placeholder')}
                         />
                       </div>
                     </div>
                     <button 
                       type="submit"
-                      className="w-full bg-brand-light hover:bg-brand-light/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer"
+                      className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer"
                     >
                       {t('auth_drawer_send_otp')}
                     </button>
@@ -661,7 +661,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                 {mode === 'otp' && (
                   <form onSubmit={handleOtpVerify} className="space-y-5 pt-2">
                     <p className="text-xs text-brand-dark font-light leading-relaxed mb-4">
-                      {t('auth_otp_desc')} <strong className="text-brand-light">{email}</strong>.
+                      {t('auth_otp_desc')} <strong className="text-[#184433]">{email}</strong>.
                     </p>
                     <div className="flex justify-between gap-1.5 max-w-sm mx-auto">
                       {Array(6).fill(0).map((_, i) => (
@@ -675,7 +675,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                           value={otpVal[i]}
                           onChange={(e) => handleOtpChange(e.target.value, i)}
                           onKeyDown={(e) => handleOtpKeyDown(e, i)}
-                          className="w-10 h-12 border border-brand-dark/20 focus:border-brand-light focus:ring-2 focus:ring-brand-light/10 focus:outline-none rounded-lg text-center font-bold text-base text-brand-light bg-white"
+                          className="w-10 h-12 border border-brand-dark/20 focus:border-[#184433] focus:ring-2 focus:ring-[#184433]/10 focus:outline-none rounded-lg text-center font-bold text-base text-[#184433] bg-white"
                         />
                       ))}
                     </div>
@@ -683,18 +683,18 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                     <div className="flex items-center justify-between gap-4 pt-3">
                       <button 
                         type="submit"
-                        className="bg-brand-light hover:bg-brand-light/90 text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer shadow-md"
+                        className="bg-[#184433] hover:bg-[#184433]/90 text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer shadow-md"
                       >
                         {t('auth_verify')}
                       </button>
                       <div className="text-xs">
                         {timer > 0 ? (
-                          <span className="text-brand-dark/60">{t('auth_resend_in')} <strong className="text-brand-light">{timer}s</strong></span>
+                          <span className="text-brand-dark/60">{t('auth_resend_in')} <strong className="text-[#184433]">{timer}s</strong></span>
                         ) : (
                           <button
                             type="button"
                             onClick={() => sendMockOtp(email, otpPurpose)}
-                            className="text-brand-light font-bold hover:underline cursor-pointer uppercase tracking-wider text-[10px]"
+                            className="text-[#184433] font-bold hover:underline cursor-pointer uppercase tracking-wider text-[10px]"
                           >
                             {t('auth_resend_code')}
                           </button>
@@ -708,7 +708,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                 {mode === 'reset-password' && (
                   <form onSubmit={handleResetPasswordSubmit} className="space-y-4 pt-2">
                     <div>
-                      <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">{t('auth_new_password')}</label>
+                      <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_new_password')}</label>
                       <div className="relative">
                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
                         <input 
@@ -716,14 +716,14 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                           required 
                           value={newPassword}
                           onChange={(e) => setNewPassword(e.target.value)}
-                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-brand-light focus:outline-none bg-white text-sm text-brand-light placeholder-brand-dark/30 shadow-xs transition-colors"
+                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
                           placeholder="Min 6 characters"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">{t('auth_confirm_new_password')}</label>
+                      <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_confirm_new_password')}</label>
                       <div className="relative">
                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
                         <input 
@@ -731,7 +731,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                           required 
                           value={confirmNewPassword}
                           onChange={(e) => setConfirmNewPassword(e.target.value)}
-                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-brand-light focus:outline-none bg-white text-sm text-brand-light placeholder-brand-dark/30 shadow-xs transition-colors"
+                          className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
                           placeholder="Confirm password"
                         />
                       </div>
@@ -739,7 +739,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
 
                     <button 
                       type="submit"
-                      className="w-full bg-brand-light hover:bg-brand-light/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4"
+                      className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4"
                     >
                       {t('auth_update_password')}
                     </button>
@@ -749,15 +749,15 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                 {/* MODE: SUCCESS */}
                 {mode === 'success' && (
                   <div className="text-center space-y-6 py-6">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-light/10 text-brand-light mb-1">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#184433]/10 text-[#184433] mb-1">
                       <ShieldCheck className="w-8 h-8" />
                     </div>
                     <div>
-                      <h3 className="font-serif text-2xl font-medium text-brand-light">{t('auth_welcome')}</h3>
+                      <h3 className="font-serif text-2xl font-medium text-[#184433]">{t('auth_welcome')}</h3>
                       <p className="text-xs text-brand-dark/70 font-light mt-1">{t('auth_logged_in')}</p>
                     </div>
 
-                    <div className="p-4 bg-brand-cream-dark/50 border border-brand-dark/10 rounded-2xl text-left space-y-2 text-xs text-brand-light">
+                    <div className="p-4 bg-brand-cream-dark/50 border border-brand-dark/10 rounded-2xl text-left space-y-2 text-xs text-[#184433]">
                       <div className="flex justify-between">
                         <span className="text-brand-dark/70 font-light">{t('auth_name_label')}</span>
                         <span className="font-bold">{fullName || 'Google User'}</span>
@@ -781,7 +781,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                     <div className="space-y-3 pt-4">
                       <button
                         onClick={onClose}
-                        className="w-full bg-brand-light hover:bg-brand-light/95 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer shadow-md"
+                        className="w-full bg-[#184433] hover:bg-[#184433]/95 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer shadow-md"
                       >
                         {t('auth_continue_shop')}
                       </button>
@@ -798,7 +798,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                           setOtpVal(Array(6).fill(''));
                           setMode('login');
                         }}
-                        className="w-full text-xs font-bold uppercase tracking-wider text-brand-dark/70 hover:text-brand-light hover:underline cursor-pointer py-2"
+                        className="w-full text-xs font-bold uppercase tracking-wider text-brand-dark/70 hover:text-[#184433] hover:underline cursor-pointer py-2"
                       >
                         {t('auth_logout')}
                       </button>

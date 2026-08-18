@@ -320,18 +320,18 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         {activeToast && (
           <div className="absolute top-4 left-4 right-4 z-50 bg-white rounded-2xl shadow-lg border border-brand-dark/10 p-3 flex items-start space-x-3 transition-all duration-300">
             {activeToast.type === 'success' ? (
-              <CheckCircle2 className="w-4.5 h-4.5 text-brand-light shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4.5 h-4.5 text-[#184433] shrink-0 mt-0.5" />
             ) : activeToast.type === 'error' ? (
               <AlertCircle className="w-4.5 h-4.5 text-red-600 shrink-0 mt-0.5" />
             ) : (
-              <KeyRound className="w-4.5 h-4.5 text-brand-light/80 shrink-0 mt-0.5" />
+              <KeyRound className="w-4.5 h-4.5 text-[#184433]/80 shrink-0 mt-0.5" />
             )}
             <div className="flex-1 min-w-0">
               <p className="text-[11px] text-neutral-700 font-medium">{activeToast.message}</p>
               {activeToast.code && (
                 <div className="mt-1.5 bg-brand-cream-dark px-2 py-0.5 rounded-lg border border-brand-dark/5 flex justify-between items-center">
-                  <span className="text-[10px] font-mono font-bold tracking-wider text-brand-light">Code: {activeToast.code}</span>
-                  <span className="text-[8px] uppercase tracking-widest text-brand-light/75 font-semibold">Demo Bypass</span>
+                  <span className="text-[10px] font-mono font-bold tracking-wider text-[#184433]">Code: {activeToast.code}</span>
+                  <span className="text-[8px] uppercase tracking-widest text-[#184433]/75 font-semibold">Demo Bypass</span>
                 </div>
               )}
             </div>
@@ -344,15 +344,15 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         {/* Form Loader overlay */}
         {loading && (
           <div className="absolute inset-0 bg-brand-cream/90 backdrop-blur-xs flex flex-col items-center justify-center z-40">
-            <RefreshCw className="w-7 h-7 text-brand-light animate-spin" />
-            <p className="text-[9px] font-bold tracking-widest uppercase text-brand-light mt-3">Processing...</p>
+            <RefreshCw className="w-7 h-7 text-[#184433] animate-spin" />
+            <p className="text-[9px] font-bold tracking-widest uppercase text-[#184433] mt-3">Processing...</p>
           </div>
         )}
 
         {/* Header Block */}
         <div className="pt-6 pb-4 px-6 flex items-center justify-between">
           <div>
-            <span className="font-serif text-xl font-bold tracking-widest text-brand-light">MORKINS</span>
+            <span className="font-serif text-xl font-bold tracking-widest text-[#184433]">MORKINS</span>
             <p className="text-[8px] tracking-widest uppercase font-semibold text-brand-dark/50 mt-0.5">Account Portal</p>
           </div>
           <button type="button" className="p-1.5 text-brand-dark/50 hover:text-brand-dark cursor-pointer rounded-full hover:bg-brand-cream-dark/50 transition-colors" onClick={onClose}>
@@ -373,7 +373,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   setMode('login');
                 }
               }}
-              className="flex items-center text-[9px] font-bold text-brand-light/70 hover:text-brand-light uppercase tracking-widest mb-4 group cursor-pointer"
+              className="flex items-center text-[9px] font-bold text-[#184433]/70 hover:text-[#184433] uppercase tracking-widest mb-4 group cursor-pointer"
             >
               <ArrowLeft className="w-3 h-3 mr-1 transition-transform group-hover:-translate-x-0.5" />
               Back
@@ -388,8 +388,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 onClick={() => setMode('login')}
                 className={`flex-1 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   mode === 'login' 
-                    ? 'bg-brand-light text-white shadow-xs' 
-                    : 'text-brand-light/70 hover:text-brand-light'
+                    ? 'bg-[#184433] text-white shadow-xs' 
+                    : 'text-[#184433]/70 hover:text-[#184433]'
                 }`}
               >
                 Login
@@ -399,8 +399,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 onClick={() => setMode('signup')}
                 className={`flex-1 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   mode === 'signup' 
-                    ? 'bg-brand-light text-white shadow-xs' 
-                    : 'text-brand-light/70 hover:text-brand-light'
+                    ? 'bg-[#184433] text-white shadow-xs' 
+                    : 'text-[#184433]/70 hover:text-[#184433]'
                 }`}
               >
                 Sign Up
@@ -413,24 +413,24 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <div className="space-y-4">
               <form onSubmit={handleLoginSubmit} className="space-y-3.5">
                 <div>
-                  <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">Email Address</label>
+                  <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Email Address</label>
                   <input 
                     type="email" 
                     required 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-brand-light focus:ring-1 focus:ring-brand-light/20 focus:scale-[1.005] outline-none bg-white text-xs text-brand-light transition-all placeholder:text-brand-dark/25 shadow-2xs"
+                    className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                     placeholder="skin@morkins.com"
                   />
                 </div>
 
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light">Password</label>
+                    <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433]">Password</label>
                     <button 
                       type="button"
                       onClick={() => setMode('forgot')}
-                      className="text-[9px] font-bold uppercase tracking-wider text-brand-light/70 hover:text-brand-light hover:underline cursor-pointer"
+                      className="text-[9px] font-bold uppercase tracking-wider text-[#184433]/70 hover:text-[#184433] hover:underline cursor-pointer"
                     >
                       Forgot?
                     </button>
@@ -440,14 +440,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     required 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-brand-light focus:ring-1 focus:ring-brand-light/20 focus:scale-[1.005] outline-none bg-white text-xs text-brand-light transition-all placeholder:text-brand-dark/25 shadow-2xs"
+                    className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                     placeholder="••••••••"
                   />
                 </div>
 
                 <button 
                   type="submit"
-                  className="w-full bg-brand-light hover:bg-brand-light/95 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-200 active:scale-[0.98] mt-4 cursor-pointer flex items-center justify-center space-x-1.5 shadow-sm hover:shadow-md"
+                  className="w-full bg-[#184433] hover:bg-[#184433]/95 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-200 active:scale-[0.98] mt-4 cursor-pointer flex items-center justify-center space-x-1.5 shadow-sm hover:shadow-md"
                 >
                   <span>Login</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -462,7 +462,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               <button 
                 onClick={handleGoogleLogin}
-                className="w-full border border-brand-dark/15 hover:border-brand-light/40 hover:bg-brand-cream-dark/50 py-2 rounded-full flex items-center justify-center space-x-2 text-[10px] font-bold uppercase tracking-wider text-brand-light transition-all cursor-pointer shadow-2xs"
+                className="w-full border border-brand-dark/15 hover:border-[#184433]/40 hover:bg-brand-cream-dark/50 py-2 rounded-full flex items-center justify-center space-x-2 text-[10px] font-bold uppercase tracking-wider text-[#184433] transition-all cursor-pointer shadow-2xs"
               >
                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -479,36 +479,36 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           {mode === 'signup' && (
             <form onSubmit={handleSignupSubmit} className="space-y-3.5">
               <div>
-                <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">Full Name</label>
+                <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Full Name</label>
                 <input 
                   type="text" 
                   required 
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-brand-light focus:ring-1 focus:ring-brand-light/20 focus:scale-[1.005] outline-none bg-white text-xs text-brand-light transition-all placeholder:text-brand-dark/25 shadow-2xs"
+                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                   placeholder="Jane Doe"
                 />
               </div>
 
               <div>
-                <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">Email Address</label>
+                <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Email Address</label>
                 <input 
                   type="email" 
                   required 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-brand-light focus:ring-1 focus:ring-brand-light/20 focus:scale-[1.005] outline-none bg-white text-xs text-brand-light transition-all placeholder:text-brand-dark/25 shadow-2xs"
+                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                   placeholder="jane@example.com"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="relative">
-                  <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">Country</label>
+                  <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Country</label>
                   <button
                     type="button"
                     onClick={() => setCountryDropdownOpen(!countryDropdownOpen)}
-                    className="w-full px-3 py-2.5 rounded-xl border border-brand-dark/15 bg-white text-xs text-brand-light flex justify-between items-center shadow-2xs cursor-pointer focus:outline-none"
+                    className="w-full px-3 py-2.5 rounded-xl border border-brand-dark/15 bg-white text-xs text-[#184433] flex justify-between items-center shadow-2xs cursor-pointer focus:outline-none"
                   >
                     <span className="flex items-center space-x-1.5 min-w-0">
                       <span>{selectedCountry.flag}</span>
@@ -524,7 +524,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         value={countrySearch}
                         onChange={(e) => setCountrySearch(e.target.value)}
                         placeholder="Search..."
-                        className="w-full px-2 py-1 mb-1 border border-brand-dark/10 rounded-lg text-[10px] focus:outline-none bg-brand-cream-dark/30 text-brand-light"
+                        className="w-full px-2 py-1 mb-1 border border-brand-dark/10 rounded-lg text-[10px] focus:outline-none bg-brand-cream-dark/30 text-[#184433]"
                       />
                       {filteredCountries.map((c) => (
                         <button
@@ -534,7 +534,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                             setSelectedCountry(c);
                             setCountryDropdownOpen(false);
                           }}
-                          className="w-full text-left px-2 py-1 rounded text-[11px] hover:bg-brand-cream-dark flex items-center space-x-2 text-brand-light font-medium"
+                          className="w-full text-left px-2 py-1 rounded text-[11px] hover:bg-brand-cream-dark flex items-center space-x-2 text-[#184433] font-medium"
                         >
                           <span>{c.flag}</span>
                           <span className="grow truncate">{c.name}</span>
@@ -545,44 +545,44 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 </div>
 
                 <div>
-                  <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">Phone (Opt)</label>
+                  <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Phone (Opt)</label>
                   <input 
                     type="tel" 
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-brand-light focus:ring-1 focus:ring-brand-light/20 focus:scale-[1.005] outline-none bg-white text-xs text-brand-light transition-all placeholder:text-brand-dark/25 shadow-2xs"
+                    className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                     placeholder="555-0199"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">Password</label>
+                <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Password</label>
                 <input 
                   type="password" 
                   required 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-brand-light focus:ring-1 focus:ring-brand-light/20 focus:scale-[1.005] outline-none bg-white text-xs text-brand-light transition-all placeholder:text-brand-dark/25 shadow-2xs"
+                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                   placeholder="••••••••"
                 />
               </div>
 
               <div>
-                <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">Confirm Password</label>
+                <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Confirm Password</label>
                 <input 
                   type="password" 
                   required 
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-brand-light focus:ring-1 focus:ring-brand-light/20 focus:scale-[1.005] outline-none bg-white text-xs text-brand-light transition-all placeholder:text-brand-dark/25 shadow-2xs"
+                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                   placeholder="••••••••"
                 />
               </div>
 
               <button 
                 type="submit"
-                className="w-full bg-brand-light hover:bg-brand-light/90 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-200 active:scale-[0.98] mt-4 cursor-pointer flex items-center justify-center space-x-1.5 shadow-sm"
+                className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-200 active:scale-[0.98] mt-4 cursor-pointer flex items-center justify-center space-x-1.5 shadow-sm"
               >
                 <span>Create Account</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -597,19 +597,19 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 Enter your email address and we'll dispatch a secure OTP code to reset your password.
               </p>
               <div>
-                <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">Email Address</label>
+                <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Email Address</label>
                 <input 
                   type="email" 
                   required 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-brand-light focus:ring-1 focus:ring-brand-light/20 focus:scale-[1.005] outline-none bg-white text-xs text-brand-light transition-all placeholder:text-brand-dark/25 shadow-2xs"
+                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                   placeholder="skin@morkins.com"
                 />
               </div>
               <button 
                 type="submit"
-                className="w-full bg-brand-light hover:bg-brand-light/90 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer shadow-sm active:scale-[0.98]"
+                className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer shadow-sm active:scale-[0.98]"
               >
                 Send Reset OTP
               </button>
@@ -620,7 +620,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           {mode === 'otp' && (
             <form onSubmit={handleOtpVerify} className="space-y-5 pt-1">
               <p className="text-[11px] text-brand-dark/80 font-light leading-relaxed mb-4">
-                Please enter the 6-digit OTP code sent to <strong className="text-brand-light">{email}</strong>.
+                Please enter the 6-digit OTP code sent to <strong className="text-[#184433]">{email}</strong>.
               </p>
               <div className="flex justify-between gap-1.5 max-w-xs mx-auto">
                 {Array(6).fill(0).map((_, i) => (
@@ -634,7 +634,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     value={otpVal[i]}
                     onChange={(e) => handleOtpChange(e.target.value, i)}
                     onKeyDown={(e) => handleOtpKeyDown(e, i)}
-                    className="w-9 h-11 border border-brand-dark/15 focus:border-brand-light focus:ring-2 focus:ring-brand-light/10 focus:scale-105 transition-all outline-none rounded-xl text-center font-serif text-base font-bold text-brand-light bg-white shadow-3xs"
+                    className="w-9 h-11 border border-brand-dark/15 focus:border-[#184433] focus:ring-2 focus:ring-[#184433]/10 focus:scale-105 transition-all outline-none rounded-xl text-center font-serif text-base font-bold text-[#184433] bg-white shadow-3xs"
                   />
                 ))}
               </div>
@@ -642,18 +642,18 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <div className="flex items-center justify-between gap-4 pt-2">
                 <button 
                   type="submit"
-                  className="bg-brand-light hover:bg-brand-light/95 text-white px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer shadow-sm active:scale-[0.98]"
+                  className="bg-[#184433] hover:bg-[#184433]/95 text-white px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer shadow-sm active:scale-[0.98]"
                 >
                   Verify
                 </button>
                 <div className="text-xs">
                   {timer > 0 ? (
-                    <span className="text-[11px] text-brand-dark/50">Resend in <strong className="text-brand-light font-bold">{timer}s</strong></span>
+                    <span className="text-[11px] text-brand-dark/50">Resend in <strong className="text-[#184433] font-bold">{timer}s</strong></span>
                   ) : (
                     <button
                       type="button"
                       onClick={() => sendMockOtp(email, otpPurpose)}
-                      className="text-brand-light font-bold hover:underline cursor-pointer uppercase tracking-wider text-[9px]"
+                      className="text-[#184433] font-bold hover:underline cursor-pointer uppercase tracking-wider text-[9px]"
                     >
                       Resend Code
                     </button>
@@ -667,32 +667,32 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           {mode === 'reset-password' && (
             <form onSubmit={handleResetPasswordSubmit} className="space-y-3.5 pt-1">
               <div>
-                <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">New Password</label>
+                <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">New Password</label>
                 <input 
                   type="password" 
                   required 
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-brand-light focus:ring-1 focus:ring-brand-light/20 focus:scale-[1.005] outline-none bg-white text-xs text-brand-light transition-all placeholder:text-brand-dark/25 shadow-2xs"
+                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                   placeholder="Min 6 characters"
                 />
               </div>
 
               <div>
-                <label className="block text-[9px] uppercase font-bold tracking-wider text-brand-light mb-1">Confirm New Password</label>
+                <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Confirm New Password</label>
                 <input 
                   type="password" 
                   required 
                   value={confirmNewPassword}
                   onChange={(e) => setConfirmNewPassword(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-brand-light focus:ring-1 focus:ring-brand-light/20 focus:scale-[1.005] outline-none bg-white text-xs text-brand-light transition-all placeholder:text-brand-dark/25 shadow-2xs"
+                  className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                   placeholder="Confirm password"
                 />
               </div>
 
               <button 
                 type="submit"
-                className="w-full bg-brand-light hover:bg-brand-light/90 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 active:scale-[0.98] shadow-sm cursor-pointer"
+                className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 active:scale-[0.98] shadow-sm cursor-pointer"
               >
                 Update Password
               </button>
@@ -702,15 +702,15 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           {/* MODE: SUCCESS */}
           {mode === 'success' && (
             <div className="text-center space-y-5 py-4 animate-fade-in">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-light/10 text-brand-light mb-1">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#184433]/10 text-[#184433] mb-1">
                 <ShieldCheck className="w-7 h-7" />
               </div>
               <div>
-                <h3 className="font-serif text-xl font-medium text-brand-light">Welcome back</h3>
+                <h3 className="font-serif text-xl font-medium text-[#184433]">Welcome back</h3>
                 <p className="text-[11px] text-brand-dark/70 font-light mt-0.5">Logged in to your premium profile</p>
               </div>
 
-              <div className="p-4 bg-brand-cream-dark/50 border border-brand-dark/10 rounded-2xl text-left space-y-1.5 text-[11px] text-brand-light">
+              <div className="p-4 bg-brand-cream-dark/50 border border-brand-dark/10 rounded-2xl text-left space-y-1.5 text-[11px] text-[#184433]">
                 <div className="flex justify-between">
                   <span className="text-brand-dark/70 font-light">Name:</span>
                   <span className="font-bold">{fullName || 'Google User'}</span>
@@ -734,7 +734,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <div className="space-y-2.5 pt-3">
                 <button
                   onClick={onClose}
-                  className="w-full bg-brand-light hover:bg-brand-light/95 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer shadow-sm active:scale-[0.98]"
+                  className="w-full bg-[#184433] hover:bg-[#184433]/95 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer shadow-sm active:scale-[0.98]"
                 >
                   Continue Shopping
                 </button>
@@ -743,7 +743,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     onClose();
                     navigate('/profile');
                   }}
-                  className="w-full border border-brand-dark/15 hover:border-brand-light text-brand-light py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer shadow-sm active:scale-[0.98] bg-white flex items-center justify-center space-x-1.5"
+                  className="w-full border border-brand-dark/15 hover:border-[#184433] text-[#184433] py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer shadow-sm active:scale-[0.98] bg-white flex items-center justify-center space-x-1.5"
                 >
                   <span>View Profile Dashboard</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -761,7 +761,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     setOtpVal(Array(6).fill(''));
                     setMode('login');
                   }}
-                  className="w-full text-[10px] font-bold uppercase tracking-wider text-brand-dark/60 hover:text-brand-light hover:underline cursor-pointer py-1.5"
+                  className="w-full text-[10px] font-bold uppercase tracking-wider text-brand-dark/60 hover:text-[#184433] hover:underline cursor-pointer py-1.5"
                 >
                   Log Out
                 </button>

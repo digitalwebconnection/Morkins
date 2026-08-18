@@ -23,7 +23,16 @@ export default function Navbar({
   const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Auto-close popover after 4 seconds
   useEffect(() => {
@@ -41,7 +50,13 @@ export default function Navbar({
   const isNewArrivalsActive = location.pathname === '/' && location.hash === '#new-arrivals';
 
   return (
-    <header className="sticky top-0 z-40 bg-brand-cream backdrop-blur-md border-b border-brand-dark/10 transition-shadow duration-300 hover:shadow-sm">
+    <header 
+      className={`sticky top-0 w-full z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-[#FCFBF8] shadow-md' 
+          : 'bg-[#FCFBF8] border-b border-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 h-18 flex items-center justify-between relative">
 
         {/* LEFT SECTION: Logo & Mobile Toggle */}
@@ -62,7 +77,11 @@ export default function Navbar({
           </button>
 
           {/* Brand Logo */}
-          <Link to="/" className="flex items-center group">
+          <Link 
+            to="/" 
+            className="flex items-center group"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
             <img
               src={navbarLogo}
               alt="Morkins Logo"
@@ -75,45 +94,45 @@ export default function Navbar({
         <nav className="hidden md:flex space-x-6 lg:space-x-8 items-center font-serif text-lg lg:text-xl font-semibold tracking-wide h-full absolute left-1/2 -translate-x-1/2 z-10">
           <Link
             to="/products"
-            className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${isProductsActive ? 'text-brand-light font-bold' : 'text-black'
+            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${isProductsActive ? 'text-[#6F8C51] font-bold' : 'text-black'
               }`}
           >
             {t('nav_products')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-0.5 bg-brand-light transition-transform duration-300 origin-left ${isProductsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${isProductsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
             />
           </Link>
           <Link
             to="/#bestsellers"
-            className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${isBestsellersActive ? 'text-brand-light font-bold' : 'text-black'
+            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${isBestsellersActive ? 'text-[#6F8C51] font-bold' : 'text-black'
               }`}
           >
             {t('nav_bestsellers')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-0.5 bg-brand-light transition-transform duration-300 origin-left ${isBestsellersActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${isBestsellersActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
             />
           </Link>
           <Link
             to="/#new-arrivals"
-            className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${isNewArrivalsActive ? 'text-brand-light font-bold' : 'text-black'
+            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${isNewArrivalsActive ? 'text-[#6F8C51] font-bold' : 'text-black'
               }`}
           >
             {t('nav_newarrivals')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-0.5 bg-brand-light transition-transform duration-300 origin-left ${isNewArrivalsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${isNewArrivalsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
             />
           </Link>
           <Link
             to="/about"
-            className={`hover:text-brand-light transition-colors py-4 flex items-center cursor-pointer relative group ${isAboutActive ? 'text-brand-light font-bold' : 'text-black'
+            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${isAboutActive ? 'text-[#6F8C51] font-bold' : 'text-black'
               }`}
           >
             {t('nav_about')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-0.5 bg-brand-light transition-transform duration-300 origin-left ${isAboutActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${isAboutActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
             />
           </Link>
@@ -143,7 +162,7 @@ export default function Navbar({
           </div>
 
           {/* User Profile Icon */}
-          <button onClick={onUserClick} className="relative flex items-center text-black hover:text-brand-light transition-colors duration-300 cursor-pointer group" aria-label="User Account">
+          <button onClick={onUserClick} className="relative flex items-center text-black hover:text-[#6F8C51] transition-colors duration-300 cursor-pointer group" aria-label="User Account">
             <div className="relative flex items-center justify-center transition-transform duration-300  ">
               <svg
                 className="w-6 h-6"
@@ -164,7 +183,7 @@ export default function Navbar({
           <div className="relative">
             <button
               onClick={onCartClick}
-              className="relative flex items-center text-black hover:text-brand-light transition-colors duration-300 cursor-pointer group border-none bg-transparent p-0 outline-none"
+              className="relative flex items-center text-black hover:text-[#6F8C51] transition-colors duration-300 cursor-pointer group border-none bg-transparent p-0 outline-none"
               aria-label="Shopping Bag"
             >
               <div className="relative flex items-center justify-center transition-transform duration-300 ">
@@ -182,7 +201,7 @@ export default function Navbar({
                   <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                 </svg>
                 {cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 bg-[#184433] text-white text-[9px] font-sans font-extrabold w-4 h-4 rounded-full flex items-center justify-center shadow-sm animate-scale-up">
+                  <span className="absolute -top-1.5 -right-1.5 bg-[#A68A56] text-white text-[9px] font-sans font-extrabold w-4 h-4 rounded-full flex items-center justify-center shadow-sm animate-scale-up">
                     {cartCount}
                   </span>
                 )}
@@ -241,7 +260,7 @@ export default function Navbar({
                     if (onCloseCartPopover) onCloseCartPopover();
                     onCartClick();
                   }}
-                  className="w-full mt-4 bg-brand-cream hover:bg-brand-cream-dark border border-[#184433] text-[#184433] text-[10px] font-bold uppercase tracking-widest py-2.5 rounded-xl transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md text-center active:scale-98 flex items-center justify-center gap-1.5"
+                  className="w-full mt-4 bg-[#D8D9D7] hover:bg-[#AFD971] border border-[#6F8C51] text-[#6F8C51] hover:text-[#6F8C51] text-[10px] font-bold uppercase tracking-widest py-2.5 rounded-xl transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md text-center active:scale-98 flex items-center justify-center gap-1.5"
                 >
                   <span>Go to Cart</span>
                   <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

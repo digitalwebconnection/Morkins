@@ -329,7 +329,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
           {/* Avatar Container with Upload Feature */}
           <div 
             onClick={triggerImageUpload}
-            className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-brand-cream text-brand-light font-serif flex items-center justify-center text-2xl md:text-4xl font-bold border-4 border-white/95 shadow-lg select-none relative overflow-hidden group cursor-pointer active:scale-95 transition-all"
+            className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-brand-cream text-gray-900 font-serif flex items-center justify-center text-2xl md:text-4xl font-bold border-4 border-white/95 shadow-lg select-none relative overflow-hidden group cursor-pointer active:scale-95 transition-all"
           >
             {user.profileImage ? (
               <img 
@@ -370,13 +370,13 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
           { label: t('profile_carbon'), value: '4.8 kg CO₂', desc: t('profile_carbon_desc'), icon: Activity }
         ].map((stat, i) => (
           <div key={i} className="bg-white/60 border border-brand-dark/10 p-5 rounded-3xl flex items-center space-x-4 shadow-3xs backdrop-blur-xs">
-            <div className="p-3 bg-brand-cream rounded-2xl border border-brand-dark/5 text-brand-light">
+            <div className="p-3 bg-brand-cream rounded-2xl border border-brand-dark/5 text-[#184433]">
               <stat.icon className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-[9px] uppercase tracking-wider text-brand-dark/50 font-bold">{stat.label}</p>
-              <h4 className="font-serif text-lg font-bold text-brand-light">{stat.value}</h4>
-              <p className="text-[9px] text-brand-dark/60 font-light mt-0.5">{stat.desc}</p>
+              <p className="text-[9px] uppercase tracking-wider text-[#184433]/70 font-bold">{stat.label}</p>
+              <h4 className="font-serif text-lg font-bold text-[#184433]">{stat.value}</h4>
+              <p className="text-[9px] text-[#184433]/70 font-light mt-0.5">{stat.desc}</p>
             </div>
           </div>
         ))}
@@ -386,7 +386,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
         
         {/* Left Interactive Sidebar Menu matching the requested layout */}
         <div className="lg:col-span-1 bg-white border border-brand-dark/10 rounded-[32px] p-5 shadow-sm space-y-5">
-          <p className="text-[10px] uppercase tracking-widest font-extrabold text-brand-dark/35 px-4">YOUR SANCTUARY</p>
+          <p className="text-[10px] uppercase tracking-widest font-extrabold text-[#184433]/50 px-4">YOUR SANCTUARY</p>
           <nav className="flex flex-col space-y-2">
             {[
               { id: 'details', label: 'PERSONAL INFORMATION', icon: User },
@@ -406,14 +406,14 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
                 className={`w-full flex items-center justify-between px-5 py-3.5 rounded-2xl text-left text-xs font-extrabold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   activeTab === tab.id 
                     ? 'bg-[#184433] text-white shadow-md scale-[1.01]' 
-                    : 'text-brand-light/75 hover:text-[#184433] hover:bg-brand-cream-dark/30'
+                    : 'text-[#184433]/75 hover:text-[#184433] hover:bg-[#F1F3F0]'
                 }`}
               >
                 <div className="flex items-center space-x-3.5">
                   <tab.icon className="w-4 h-4 shrink-0" />
                   <span>{tab.label}</span>
                 </div>
-                <ChevronRight className={`w-3.5 h-3.5 transition-transform ${activeTab === tab.id ? 'translate-x-0.5 text-white' : 'text-brand-light/50'}`} />
+                <ChevronRight className={`w-3.5 h-3.5 transition-transform ${activeTab === tab.id ? 'translate-x-0.5 text-white' : 'text-[#184433]/50'}`} />
               </button>
             ))}
           </nav>
@@ -515,3 +515,5 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
     </div>
   );
 }
+
+

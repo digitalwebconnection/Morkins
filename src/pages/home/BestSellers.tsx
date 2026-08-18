@@ -22,7 +22,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
   }
 
   return (
-    <section id="bestsellers" className="py-14 bg-brand-cream text-brand-dark overflow-hidden border-b border-brand-dark/5">
+    <section id="bestsellers" className="py-14 bg-[#D8D9D7] text-[#6F8C51] overflow-hidden border-b border-[#A5A686]/30">
       <div className="max-w-7xl mx-auto px-6 lg:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
@@ -30,14 +30,14 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
           <div className="lg:col-span-6 flex flex-col">
             <div className="flex items-end justify-between mb-10">
               <div>
-                <span className="text-xs font-bold tracking-widest text-[#184433] uppercase">{t('sec_cust_favs')}</span>
-                <h2 className="font-serif text-4xl sm:text-5xl font-normal mt-2 leading-tight text-[#184433]">{t('sec_bestsellers')}</h2>
+                <span className="text-xs font-bold tracking-widest text-[#6F8C51] uppercase">{t('sec_cust_favs')}</span>
+                <h2 className="font-serif text-4xl sm:text-5xl font-normal mt-2 leading-tight text-[#6F8C51]">{t('sec_bestsellers')}</h2>
               </div>
               <div className="flex items-center gap-6">
                 {/* Left Arrow Button */}
                 <button
                   onClick={handlePrev}
-                  className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#184433] hover:text-white hover:border-[#184433] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                  className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#AFD971] hover:text-[#6F8C51] hover:border-[#AFD971] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
                   aria-label="Scroll left"
                 >
                   <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -48,7 +48,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                 {/* Right Arrow Button */}
                 <button
                   onClick={handleNext}
-                  className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#184433] hover:text-white hover:border-[#184433] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                  className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#AFD971] hover:text-[#6F8C51] hover:border-[#AFD971] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
                   aria-label="Scroll right"
                 >
                   <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -75,7 +75,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                           className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
-                        <span className="absolute top-3 left-3 bg-[#184433] text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-xs">
+                        <span className="absolute top-3 left-3 bg-[#6F8C51] text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-xs">
                           {p.rating}★ Rating
                         </span>
                       </div>
@@ -86,11 +86,11 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                           {translatedName}
                         </h3>
 
-                        <div className="flex items-center justify-between  mt-3 pt-3 border-t border-[#184433]/25">
-                          <span className="text-base font-bold text-[#184433]">${p.price.toFixed(2)}</span>
+                        <div className="flex items-center justify-between  mt-3 pt-3 border-t border-[#A5A686]">
+                          <span className="text-base font-bold text-[#A67C52]">${p.price.toFixed(2)}</span>
                           <button
                             onClick={() => onAddToCart({ id: p.id, name: translatedName, price: p.price, img: p.img })}
-                            className="group/btn flex items-center justify-center gap-0 hover:gap-1.5 px-3.5 py-2.5 bg-[#184433] hover:bg-[#1F4D3A] text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer active:scale-95"
+                            className="group/btn flex items-center justify-center gap-0 hover:gap-1.5 px-3.5 py-2.5 bg-[#6F8C51] hover:bg-[#AFD971] hover:text-[#6F8C51] text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer active:scale-95"
                           >
                             <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                               <circle cx="9" cy="21" r="1" />
