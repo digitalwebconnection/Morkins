@@ -121,7 +121,8 @@ export default function New() {
       id="new-arrivals"
       className=" text-brand-dark overflow-hidden border-b border-brand-dark/5 transition-all duration-1000 relative"
       style={{
-        background: `radial-gradient(circle at 80% 20%, ${activeSlide.themeColor}15, #F1EDE9 75%)`
+        background: `white
+        `
       }}
     >
       {/* CSS custom animations inline block */}

@@ -166,8 +166,8 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
         
         {/* Section Header */}
         <div className="mb-8 flex flex-col text-left">
-          <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#1C331B] uppercase tracking-[0.25em]">
-            TRENDING ON FEED
+          <h2 className="font-serif text-4xl sm:text-5xl font-medium text-[#0B1A28] leading-tight">
+            Trending On Feed
           </h2>
           <p className="text-[#2D452B] tracking-wide text-sm sm:text-base mt-2 font-medium">
             Real skin, unfiltered results. Tap any creator's video to instantly shop their daily Morkins routine.

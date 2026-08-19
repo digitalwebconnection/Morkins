@@ -27,10 +27,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         />
         
         {/* Top Badges */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-start transition-opacity duration-500 group-hover:opacity-0">
-          <span className="bg-[#0B1A28] text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
-            {product.category}
-          </span>
+        <div className="absolute top-4 left-4 right-4 flex justify-end items-start transition-opacity duration-500 group-hover:opacity-0">
           {product.badge && (
             <span className="bg-white text-[#0B1A28] text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
               {product.badge}

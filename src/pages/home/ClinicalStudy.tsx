@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import p1 from "../../assets/product/p1.jpg";
-import p2 from "../../assets/product/p2.jpg";
-import p4 from "../../assets/product/p4.jpg";
-import p6 from "../../assets/product/p6.jpg";
+import badSkinGirl from "../../assets/mild_bad_skin_girl_1787124110969.png";
+import clearSkinGirl from "../../assets/clear_skin_girl_1787123224835.png";
 
 interface Stat {
   id: number;
@@ -28,8 +26,8 @@ const STUDY_TABS: StudyTab[] = [
     title: "4-WEEK CLINICAL TRIAL",
     description:
       "Independent clinical evaluation of 35 female participants aged 25-55, using the Morkins Botanical Radiance & Barrier protocol twice daily.",
-    beforeImg: p1,
-    afterImg: p4,
+    beforeImg: badSkinGirl,
+    afterImg: clearSkinGirl,
     beforeLabel: "Day 0 • Initial Skin State",
     afterLabel: "Day 28 • After Protocol",
     stats: [
@@ -61,8 +59,8 @@ const STUDY_TABS: StudyTab[] = [
     title: "CONSUMER PERCEPTION",
     description:
       "Self-assessment study of 120 users reporting their personal results after 14 days of consistent application of Morkins Bio-Active Cream.",
-    beforeImg: p2,
-    afterImg: p6,
+    beforeImg: badSkinGirl,
+    afterImg: clearSkinGirl,
     beforeLabel: "Day 1 • Baseline",
     afterLabel: "Day 14 • Consumer Results",
     stats: [
@@ -94,8 +92,8 @@ const STUDY_TABS: StudyTab[] = [
     title: "LABORATORY TESTING",
     description:
       "In-vitro and lab testing measuring Transepidermal Water Loss (TEWL) and cellular longevity under environmental stressors.",
-    beforeImg: p4,
-    afterImg: p1,
+    beforeImg: badSkinGirl,
+    afterImg: clearSkinGirl,
     beforeLabel: "Untreated Cell Culture",
     afterLabel: "Morkins Active Infused",
     stats: [
@@ -178,11 +176,11 @@ export default function ClinicalStudy() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#0B1A28] leading-tight">
+        <div className="text-center max-w-7xl mx-auto mb-14">
+          <h2 className="font-serif text-4xl sm:text-5xl font-medium text-[#0B1A28] leading-tight">
             Clinical Efficacy & Results
           </h2>
-          <p className="text-gray-700 tracking-wide text-sm mt-3 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-gray-700 tracking-wide text-sm mt-3 leading-relaxed max-w-4xl mx-auto">
             Morkins is committed to absolute transparency. Our formulas undergo
             rigorous testing under pharmaceutical standards to ensure high
             performance without compromising skin barrier health.
@@ -216,20 +214,15 @@ export default function ClinicalStudy() {
                 {currentTab.beforeLabel}
               </div>
 
-              {/* "After" Image (Overlay Layer, Clipped - with original product photo background) */}
+              {/* "After" Image (Overlay Layer, Clipped) */}
               <div
-                className="absolute inset-0 h-full overflow-hidden pointer-events-none"
-                style={{ width: `${sliderPosition}%` }}
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
               >
                 <img
                   src={currentTab.afterImg}
                   alt="Product After"
-                  className="absolute inset-0 w-full h-full object-cover max-w-none pointer-events-none"
-                  style={{
-                    width:
-                      sliderRef.current?.getBoundingClientRect().width ||
-                      "100%",
-                  }}
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                 />
                 <div className="absolute top-4 left-4 z-10 bg-[#0B1A28]/90 backdrop-blur-xs text-[#F1EDE9] text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full border border-white/20 shadow-md whitespace-nowrap">
                   {currentTab.afterLabel}

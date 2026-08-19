@@ -75,7 +75,7 @@ export default function IngredientsSpotlight() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-5 sm:mb-8">
+        <div className="text-center mb-5 sm:mb-18">
           <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">
             SHOP BY CATEGORY
           </p>
@@ -111,12 +111,8 @@ export default function IngredientsSpotlight() {
               {/* 4. Subtle Radial Shadow Vignette for extra depth */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
 
-              {/* Card Top: Tag + Hover Arrow Button */}
-              <div className="relative z-10 flex items-center justify-between">
-                <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/50 text-white/90 border border-white/20 backdrop-blur-md shadow-md">
-                  {cat.tag}
-                </span>
-
+              {/* Card Top: Hover Arrow Button */}
+              <div className="relative z-10 flex items-center justify-end">
                 <div className="w-9 h-9 rounded-full bg-black/50 flex items-center justify-center text-white/90 group-hover:bg-white group-hover:text-black group-hover:scale-110 transition-all duration-300 shadow-lg backdrop-blur-md">
                   <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />

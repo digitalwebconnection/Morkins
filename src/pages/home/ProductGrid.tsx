@@ -50,12 +50,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                     loading="lazy"
                   />
 
-                  {/* Top Badges */}
-                  <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 transition-opacity duration-500 group-hover:opacity-0">
-                    <span className="bg-[#8c937d] text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
-                      {t('cat_' + p.category.toLowerCase())}
-                    </span>
-                  </div>
+                  {/* Top Badges (Removed) */}
                 </div>
 
                 {/* Content */}
