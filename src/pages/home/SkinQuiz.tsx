@@ -114,16 +114,16 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
   }
 
   return (
-    <section className="py-16 bg-[#0B1A28] text-white border-b border-[#0B1A28]/30">
+    <section className="py-16 bg-white text-[#0B1A28] border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 relative">
 
         {/* Title Block */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold tracking-widest text-[#A68A56] uppercase">Interactive Routine Builder</span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-normal text-white mt-2 leading-tight uppercase">
+          <span className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">Interactive Routine Builder</span>
+          <h2 className="font-serif text-4xl sm:text-5xl font-medium text-[#0B1A28] leading-tight">
             Discover Your Daily Regimen
           </h2>
-          <p className="text-white/80 text-sm mt-3">
+          <p className="text-[#0B1A28]/80 text-sm mt-3">
             Answer two quick questions about your skin, and let our formula engine build your optimized 3-step skincare regimen.
           </p>
         </div>
@@ -143,7 +143,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
           {step === 1 && (
             <div className="animate-fade-in text-center">
               <span className="text-[10px] font-bold tracking-widest text-[#A68A56] uppercase">QUESTION 01</span>
-              <h3 className="font-serif text-2xl text-white mt-2 mb-8 font-semibold">How would you describe your skin?</h3>
+              <h3 className="font-serif text-2xl text-[#0B1A28] mt-2 mb-8 font-semibold">How would you describe your skin?</h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
                 {[
@@ -155,7 +155,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                   <button
                     key={item.id}
                     onClick={() => handleSelectType(item.id)}
-                    className="flex flex-col items-center justify-center p-4 bg-[#112437] hover:bg-[#1A334C] border border-[#234360] hover:border-[#A68A56] text-white rounded-xl shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer hover:-translate-y-1"
+                    className="flex flex-col items-center justify-center p-4 bg-[#112437] hover:bg-[#1A334C] border border-[#234360] hover:border-[#A68A56] text-white rounded-sm shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer hover:-translate-y-1"
                   >
                     <span className="font-semibold text-lg font-serif  uppercase tracking-wider">{item.label}</span>
                     <span className="text-[14px] mt-2 text-white/70 group-hover:text-white/90 leading-normal ">{item.desc}</span>
@@ -169,7 +169,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
           {step === 2 && (
             <div className="animate-fade-in text-center">
               <span className="text-[10px] font-bold tracking-widest text-[#A68A56] uppercase">QUESTION 02</span>
-              <h3 className="font-serif text-2xl text-white mt-2 mb-8 font-normal">What is your primary skin goal?</h3>
+              <h3 className="font-serif text-2xl text-[#0B1A28] mt-2 mb-8 font-normal">What is your primary skin goal?</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
                 {[
@@ -180,7 +180,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                   <button
                     key={item.id}
                     onClick={() => handleSelectGoal(item.id)}
-                    className="flex flex-col items-center justify-center p-6 bg-[#112437] hover:bg-[#1A334C] border border-[#234360] hover:border-[#A68A56] text-white rounded-xl shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer hover:-translate-y-1"
+                    className="flex flex-col items-center justify-center p-6 bg-[#112437] hover:bg-[#1A334C] border border-[#234360] hover:border-[#A68A56] text-white rounded-sm shadow-xs hover:shadow-md transition-all duration-300 group cursor-pointer hover:-translate-y-1"
                   >
                     <span className="font-bold text-lg uppercase tracking-wider">{item.label}</span>
                     <span className="text-[14px] mt-2 text-white/70 group-hover:text-white/90 leading-normal ">{item.desc}</span>
@@ -207,21 +207,21 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                   <span className="text-[10px] font-extrabold tracking-widest text-[#A68A56] bg-[#A68A56]/10 px-3 py-1 rounded-full uppercase">
                     Your Diagnosis
                   </span>
-                  <h4 className="font-serif text-3xl font-normal text-white mt-4 mb-3 leading-snug">
+                  <h4 className="font-serif text-3xl font-normal text-[#0B1A28] mt-4 mb-3 leading-snug">
                     {recommendation.title}
                   </h4>
-                  <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-6">
+                  <p className="text-[#0B1A28]/80 text-xs sm:text-sm leading-relaxed mb-6">
                     {recommendation.description}
                   </p>
 
-                  <div className="border-t border-white/10 pt-5 mb-6">
+                  <div className="border-t border-[#0B1A28]/10 pt-5 mb-6">
                     <div className="flex justify-between items-center mb-1">
-                      <span className="text-xs text-white/70 uppercase font-semibold">Individual Value</span>
-                      <span className="text-xs text-white/70 line-through font-mono">${originalTotalPrice.toFixed(2)}</span>
+                      <span className="text-xs text-[#0B1A28]/70 uppercase font-semibold">Individual Value</span>
+                      <span className="text-xs text-[#0B1A28]/70 line-through font-mono">${originalTotalPrice.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-bold text-[#A68A56]">Bundle Price (15% Off)</span>
-                      <span className="text-lg font-bold text-white font-mono">${bundlePrice.toFixed(2)}</span>
+                      <span className="text-lg font-bold text-[#0B1A28] font-mono">${bundlePrice.toFixed(2)}</span>
                     </div>
                   </div>
 
@@ -254,13 +254,13 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                     return (
                       <div
                         key={p.id}
-                        className="bg-white rounded-xl p-4  border border-white/5 shadow-xl flex flex-col items-center justify-between text-center relative group"
+                        className="bg-white rounded-sm p-4 border border-gray-200 shadow-lg flex flex-col items-center justify-between text-center relative group"
                       >
                         <span className="text-[8px] font-bold text-[#A68A56] uppercase tracking-widest mb-2 block">
                           {p.stepLabel}
                         </span>
 
-                        <div className={`w-34 h-34 flex items-center justify-center rounded-lg mb-3 ${isLocal ? 'bg-[#D8D9D7] p-2' : 'bg-brand-cream-dark'
+                        <div className={`w-34 h-34 flex items-center justify-center rounded-sm mb-3 ${isLocal ? 'bg-[#D8D9D7] p-2' : 'bg-brand-cream-dark'
                           }`}>
                           <img
                             src={p.img}

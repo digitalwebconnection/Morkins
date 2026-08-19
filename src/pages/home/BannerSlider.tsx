@@ -186,14 +186,14 @@ export default function BannerSlider() {
   const b = banners[current]
 
   return (
-    <section className="relative w-full h-120 sm:h-155 overflow-hidden">
+    <section className="relative w-full h-[60vh] sm:h-[70vh] md:h-[550px] overflow-hidden bg-[#0B1A28]">
 
-      {/* Full-bleed Background Image */}
+      {/* Background Image (Covering full width, naturally crops top/bottom to fit) */}
       <img
         key={b.id}
         src={b.bg}
         alt={b.headline}
-        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out ${
+        className={`w-full h-full object-cover object-center transition-all duration-700 ease-in-out ${
           isTransitioning ? 'opacity-0 ' : 'opacity-100 scale-100'
         }`}
       />

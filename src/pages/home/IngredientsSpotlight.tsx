@@ -67,7 +67,7 @@ export default function IngredientsSpotlight() {
   const navigate = useNavigate()
 
   return (
-    <section className="py-12 sm:py-24 bg-[#ffffff] text-brand-dark relative overflow-hidden">
+    <section className="py-8 sm:py-16 bg-[#ffffff] text-brand-dark relative overflow-hidden">
       {/* Background Ambient Luxury Glows */}
       <div className="absolute -top-24 left-1/4 w-125 h-125 bg-[#235E4F]/8 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 right-1/4 w-125 h-125 bg-[#B58A57]/10 rounded-full blur-3xl pointer-events-none" />
@@ -76,7 +76,7 @@ export default function IngredientsSpotlight() {
       <div className="max-w-7xl mx-auto px-6 lg:px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-5 sm:mb-8">
-          <p className="text-[11px] sm:text-xs font-bold tracking-[0.28em] text-[#B58A57] uppercase">
+          <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">
             SHOP BY CATEGORY
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] font-normal tracking-tight mt-2.5">

@@ -155,8 +155,7 @@ export default function New() {
           {/* Column 1: Info text panel with individual delay transitions */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
             <h2
-              style={{ color: activeSlide.themeColor }}
-              className={`font-serif text-3xl sm:text-4xl lg:text-4xl font-bold leading-tight tracking-wide mb-6 transition-all duration-700 transform ${isTransitioning ? 'opacity-0 ' : 'opacity-100 translate-y-0'
+              className={`font-serif text-black text-3xl sm:text-4xl lg:text-4xl font-bold leading-tight tracking-wide mb-6 transition-all duration-700 transform ${isTransitioning ? 'opacity-0 ' : 'opacity-100 translate-y-0'
                 }`}
             >
               {t('slide_' + activeSlide.id + '_title')}
@@ -176,15 +175,15 @@ export default function New() {
               <button
                 className="inline-flex border font-semibold tracking-widest text-xs uppercase px-8 py-3.5 rounded-full cursor-pointer text-white shadow-sm hover:shadow-md transition-all duration-300"
                 style={{
-                  backgroundColor: activeSlide.themeColor,
-                  borderColor: activeSlide.themeColor
+                  backgroundColor: '#8c937d',
+                  borderColor: '#8c937d'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = activeSlide.themeColor;
+                  e.currentTarget.style.color = '#8c937d';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = activeSlide.themeColor;
+                  e.currentTarget.style.backgroundColor = '#8c937d';
                   e.currentTarget.style.color = '#ffffff';
                 }}
               >
@@ -206,7 +205,7 @@ export default function New() {
               {/* Left Arrow (Prev) */}
               <button
                 onClick={() => selectSlide((selectedSlideIdx - 1 + SLIDES.length) % SLIDES.length)}
-                className="w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center cursor-pointer transition-all duration-300 bg-white hover:bg-neutral-100 shadow-sm hover:shadow-md"
+                className="w-12 h-12 rounded-full border border-[#8c937d] flex items-center justify-center cursor-pointer transition-all duration-300 bg-white hover:bg-[#8c937d] text-[#8c937d] hover:text-white shadow-sm hover:shadow-md"
                 aria-label="Previous slide"
               >
                 <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5">
@@ -217,7 +216,7 @@ export default function New() {
               {/* Right Arrow (Next) */}
               <button
                 onClick={() => selectSlide((selectedSlideIdx + 1) % SLIDES.length)}
-                className="w-12 h-12 rounded-full border border-neutral-300 flex items-center justify-center cursor-pointer transition-all duration-300 bg-white hover:bg-neutral-100 shadow-sm hover:shadow-md"
+                className="w-12 h-12 rounded-full border border-[#8c937d] flex items-center justify-center cursor-pointer transition-all duration-300 bg-white hover:bg-[#8c937d] text-[#8c937d] hover:text-white shadow-sm hover:shadow-md"
                 aria-label="Next slide"
               >
                 <svg className="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth="2.5">
@@ -331,7 +330,7 @@ export default function New() {
 
                     {/* Hotspot Label (Beside the point) */}
                     <div
-                      className={`absolute top-1/2 -translate-y-1/2 ml-12 left-0 whitespace-nowrap bg-black backdrop-blur-xs text-white text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded shadow-sm transition-all duration-300 pointer-events-none ${isHovered ? 'opacity-100 scale-105' : 'opacity-90'
+                      className={`absolute top-1/2 -translate-y-1/2 ml-12 left-0 whitespace-nowrap bg-[#8c937d] backdrop-blur-xs text-white text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded shadow-sm transition-all duration-300 pointer-events-none ${isHovered ? 'opacity-100 scale-105' : 'opacity-90'
                         }`}
                     >
                       {labelText}
@@ -344,8 +343,8 @@ export default function New() {
                           : 'opacity-0 translate-y-2 scale-95 pointer-events-none'
                         }`}
                       style={{
-                        backgroundColor: activeSlide.themeColor,
-                        borderColor: activeSlide.themeColor,
+                        backgroundColor: '#8c937d',
+                        borderColor: '#8c937d',
                         left: '50%',
                         marginLeft: isLeft ? '-160px' : '160px',
                         top: '-100px',
