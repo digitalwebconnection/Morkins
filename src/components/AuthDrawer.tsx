@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  User, Mail, Phone, Lock, ShieldCheck, 
-  ArrowRight, KeyRound, CheckCircle2, 
+import {
+  User, Mail, Phone, Lock, ShieldCheck,
+  ArrowRight, KeyRound, CheckCircle2,
   AlertCircle, X, ChevronDown, ArrowLeft, RefreshCw
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -197,7 +197,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
   const handleOtpVerify = (e: React.FormEvent) => {
     e.preventDefault();
     const enteredOtp = otpVal.join('');
-    
+
     if (enteredOtp.length < 6) {
       triggerToast('Please enter the full 6-digit code.', 'error');
       return;
@@ -259,7 +259,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
       setLoading(false);
       const localUsers = JSON.parse(localStorage.getItem('morkins_simulated_users') || '[]');
       const userIndex = localUsers.findIndex((u: any) => u.email.toLowerCase() === email.toLowerCase());
-      
+
       if (userIndex !== -1) {
         localUsers[userIndex].password = newPassword;
         localStorage.setItem('morkins_simulated_users', JSON.stringify(localUsers));
@@ -303,7 +303,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
     }
   };
 
-  const filteredCountries = COUNTRIES.filter(c => 
+  const filteredCountries = COUNTRIES.filter(c =>
     c.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
     c.code.toLowerCase().includes(countrySearch.toLowerCase())
   );
@@ -320,7 +320,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
         <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
           <div className="pointer-events-auto w-screen max-w-md transform transition-transform duration-500 animate-slide-in-right">
             <div className="flex h-full flex-col bg-brand-cream shadow-2xl border-l border-brand-dark/10 text-brand-dark relative">
-              
+
               {/* Toast Notification Container */}
               {activeToast && (
                 <div className="absolute top-4 left-4 right-4 z-50 bg-white rounded-xl shadow-lg border border-brand-dark/15 p-3 flex items-start space-x-3 transition-all duration-300">
@@ -381,7 +381,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
 
               {/* Main Content Area */}
               <div className="flex-1 overflow-y-auto py-6 px-6">
-                
+
                 {/* Mode toggle back buttons */}
                 {['forgot', 'otp', 'reset-password'].includes(mode) && (
                   <button
@@ -404,21 +404,19 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                   <div className="flex border-b border-brand-dark/15 mb-6">
                     <button
                       onClick={() => setMode('login')}
-                      className={`flex-1 pb-3 text-xs uppercase tracking-wider font-bold text-center border-b-2 transition-all cursor-pointer ${
-                        mode === 'login' 
-                          ? 'border-[#184433] text-[#184433] font-extrabold' 
+                      className={`flex-1 pb-3 text-xs uppercase tracking-wider font-bold text-center border-b-2 transition-all cursor-pointer ${mode === 'login'
+                          ? 'border-[#184433] text-[#184433] font-extrabold'
                           : 'border-transparent text-brand-dark/55 hover:text-brand-dark'
-                      }`}
+                        }`}
                     >
                       {t('auth_drawer_login')}
                     </button>
                     <button
                       onClick={() => setMode('signup')}
-                      className={`flex-1 pb-3 text-xs uppercase tracking-wider font-bold text-center border-b-2 transition-all cursor-pointer ${
-                        mode === 'signup' 
-                          ? 'border-[#184433] text-[#184433] font-extrabold' 
+                      className={`flex-1 pb-3 text-xs uppercase tracking-wider font-bold text-center border-b-2 transition-all cursor-pointer ${mode === 'signup'
+                          ? 'border-[#184433] text-[#184433] font-extrabold'
                           : 'border-transparent text-brand-dark/55 hover:text-brand-dark'
-                      }`}
+                        }`}
                     >
                       {t('auth_drawer_signup')}
                     </button>
@@ -433,9 +431,9 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                         <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_drawer_email')}</label>
                         <div className="relative">
                           <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
-                          <input 
-                            type="email" 
-                            required 
+                          <input
+                            type="email"
+                            required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
@@ -447,7 +445,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       <div>
                         <div className="flex justify-between items-center mb-1">
                           <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433]">{t('auth_drawer_password')}</label>
-                          <button 
+                          <button
                             type="button"
                             onClick={() => setMode('forgot')}
                             className="text-[9px] font-bold uppercase tracking-wider text-[#184433]/75 hover:text-[#184433] hover:underline cursor-pointer"
@@ -457,9 +455,9 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                         </div>
                         <div className="relative">
                           <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
-                          <input 
-                            type="password" 
-                            required 
+                          <input
+                            type="password"
+                            required
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
@@ -468,7 +466,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                         </div>
                       </div>
 
-                      <button 
+                      <button
                         type="submit"
                         className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
                       >
@@ -483,7 +481,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       <div className="grow border-t border-brand-dark/10"></div>
                     </div>
 
-                    <button 
+                    <button
                       onClick={handleGoogleLogin}
                       className="w-full border border-brand-dark/20 hover:border-[#184433] hover:bg-brand-cream-dark/50 py-2.5 rounded-full flex items-center justify-center space-x-3 text-xs font-bold uppercase tracking-wider text-[#184433] transition-all cursor-pointer shadow-xs"
                     >
@@ -505,9 +503,9 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_fullname')}</label>
                       <div className="relative">
                         <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
-                        <input 
-                          type="text" 
-                          required 
+                        <input
+                          type="text"
+                          required
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
                           className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
@@ -520,9 +518,9 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_drawer_email')}</label>
                       <div className="relative">
                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
-                        <input 
-                          type="email" 
-                          required 
+                        <input
+                          type="email"
+                          required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
@@ -577,8 +575,8 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                         <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_drawer_phone')}</label>
                         <div className="relative">
                           <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-brand-dark/40" />
-                          <input 
-                            type="tel" 
+                          <input
+                            type="tel"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
@@ -592,9 +590,9 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_drawer_password')}</label>
                       <div className="relative">
                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
-                        <input 
-                          type="password" 
-                          required 
+                        <input
+                          type="password"
+                          required
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
@@ -607,9 +605,9 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_confirm_password')}</label>
                       <div className="relative">
                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
-                        <input 
-                          type="password" 
-                          required 
+                        <input
+                          type="password"
+                          required
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
                           className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
@@ -618,7 +616,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       </div>
                     </div>
 
-                    <button 
+                    <button
                       type="submit"
                       className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
                     >
@@ -638,9 +636,9 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_drawer_email')}</label>
                       <div className="relative">
                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
-                        <input 
-                          type="email" 
-                          required 
+                        <input
+                          type="email"
+                          required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
@@ -648,7 +646,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                         />
                       </div>
                     </div>
-                    <button 
+                    <button
                       type="submit"
                       className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer"
                     >
@@ -681,7 +679,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                     </div>
 
                     <div className="flex items-center justify-between gap-4 pt-3">
-                      <button 
+                      <button
                         type="submit"
                         className="bg-[#184433] hover:bg-[#184433]/90 text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer shadow-md"
                       >
@@ -711,9 +709,9 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_new_password')}</label>
                       <div className="relative">
                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
-                        <input 
-                          type="password" 
-                          required 
+                        <input
+                          type="password"
+                          required
                           value={newPassword}
                           onChange={(e) => setNewPassword(e.target.value)}
                           className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
@@ -726,9 +724,9 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">{t('auth_confirm_new_password')}</label>
                       <div className="relative">
                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-dark/40" />
-                        <input 
-                          type="password" 
-                          required 
+                        <input
+                          type="password"
+                          required
                           value={confirmNewPassword}
                           onChange={(e) => setConfirmNewPassword(e.target.value)}
                           className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#184433] focus:outline-none bg-white text-sm text-[#184433] placeholder-brand-dark/30 shadow-xs transition-colors"
@@ -737,7 +735,7 @@ export default function AuthDrawer({ isOpen, onClose }: AuthDrawerProps) {
                       </div>
                     </div>
 
-                    <button 
+                    <button
                       type="submit"
                       className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4"
                     >

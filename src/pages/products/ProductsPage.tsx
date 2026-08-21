@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import HeroSection from './components/HeroSection';
 import FilterSidebar, { type FilterState } from './components/FilterSidebar';
 import ProductGrid from './components/ProductGrid';
@@ -11,12 +12,15 @@ interface ProductsPageProps {
 const ITEMS_PER_PAGE = 8;
 
 export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const urlSearch = searchParams.get('search') || searchParams.get('q') || '';
+
   const [isLoading, setIsLoading] = useState(true);
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
   // Filtering State
   const [filters, setFilters] = useState<FilterState>({
-    searchQuery: '',
+    searchQuery: urlSearch,
     category: '',
     brand: '',
     priceRange: [0, 100], // Will be updated dynamically
@@ -26,6 +30,11 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
 
   const [sortOption, setSortOption] = useState('featured');
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Sync state if URL search query changes
+  useEffect(() => {
+    setFilters(prev => ({ ...prev, searchQuery: urlSearch }));
+  }, [urlSearch]);
 
   // Extract unique categories and brands, and max price for filter setup
   const categories = useMemo(() => Array.from(new Set(PRODUCTS_EXTENDED.map(p => p.category))), []);
@@ -42,7 +51,7 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
     setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 600); // Artificial delay for smooth skeleton loading demo
+    }, 400);
     return () => clearTimeout(timer);
   }, [filters, sortOption, currentPage]);
 
@@ -57,10 +66,12 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
 
     // Search
     if (filters.searchQuery) {
-      const q = filters.searchQuery.toLowerCase();
+      const q = filters.searchQuery.toLowerCase().trim();
       result = result.filter(p =>
         p.name.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q)
+        p.description.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        p.brand.toLowerCase().includes(q)
       );
     }
 
@@ -128,6 +139,20 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
     });
     setSortOption('featured');
     setCurrentPage(1);
+    if (searchParams.has('search') || searchParams.has('q')) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete('search');
+      newParams.delete('q');
+      setSearchParams(newParams);
+    }
+  };
+
+  const handleRemoveSearch = () => {
+    setFilters(prev => ({ ...prev, searchQuery: '' }));
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete('search');
+    newParams.delete('q');
+    setSearchParams(newParams);
   };
 
   // Ensure body scroll is blocked when mobile filter drawer is open
@@ -207,7 +232,7 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
         )}
 
         {/* Desktop Sidebar */}
-        <div className="hidden md:block w-72 flex-shrink-0">
+        <div className="hidden md:block w-72 shrink-0">
           <div className="sticky top-28">
             <FilterSidebar
               filters={filters}
@@ -221,17 +246,38 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
         </div>
 
         {/* Product Grid Area */}
-        <ProductGrid
-          products={currentProducts}
-          isLoading={isLoading}
-          onClearFilters={handleClearFilters}
-          onAddToCart={onAddToCart}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-          sortOption={sortOption}
-          onSortChange={setSortOption}
-        />
+        <div className="flex-1 min-w-0">
+          {/* Active Search Tag */}
+          {filters.searchQuery && (
+            <div className="mb-6 flex items-center gap-2.5 p-3 bg-white border border-brand-dark/10 rounded-xl shadow-2xs">
+              <span className="text-xs font-medium text-brand-dark/70">Showing results for:</span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#6F8C51]/10 border border-[#6F8C51]/30 text-[#6F8C51] rounded-full text-xs font-bold font-sans">
+                "{filters.searchQuery}"
+                <button
+                  onClick={handleRemoveSearch}
+                  className="hover:text-black transition-colors p-0.5 rounded-full cursor-pointer ml-1"
+                  title="Clear search filter"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </span>
+            </div>
+          )}
+
+          <ProductGrid
+            products={currentProducts}
+            isLoading={isLoading}
+            onClearFilters={handleClearFilters}
+            onAddToCart={onAddToCart}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+            sortOption={sortOption}
+            onSortChange={setSortOption}
+          />
+        </div>
 
       </div>
     </div>

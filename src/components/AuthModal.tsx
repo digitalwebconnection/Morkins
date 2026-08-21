@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  ShieldCheck, ArrowRight, KeyRound, CheckCircle2, 
+import {
+  ShieldCheck, ArrowRight, KeyRound, CheckCircle2,
   AlertCircle, X, ChevronDown, ArrowLeft, RefreshCw
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -195,7 +195,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const handleOtpVerify = (e: React.FormEvent) => {
     e.preventDefault();
     const enteredOtp = otpVal.join('');
-    
+
     if (enteredOtp.length < 6) {
       triggerToast('Please enter the full 6-digit code.', 'error');
       return;
@@ -257,7 +257,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       setLoading(false);
       const localUsers = JSON.parse(localStorage.getItem('morkins_simulated_users') || '[]');
       const userIndex = localUsers.findIndex((u: any) => u.email.toLowerCase() === email.toLowerCase());
-      
+
       if (userIndex !== -1) {
         localUsers[userIndex].password = newPassword;
         localStorage.setItem('morkins_simulated_users', JSON.stringify(localUsers));
@@ -301,7 +301,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   };
 
-  const filteredCountries = COUNTRIES.filter(c => 
+  const filteredCountries = COUNTRIES.filter(c =>
     c.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
     c.code.toLowerCase().includes(countrySearch.toLowerCase())
   );
@@ -315,7 +315,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
       {/* Modal popup box */}
       <div className="relative w-full max-w-sm bg-brand-cream rounded-[28px] shadow-2xl border border-brand-dark/10 text-brand-dark overflow-hidden transform transition-all duration-300 animate-modal-content">
-        
+
         {/* Toast Notification Container */}
         {activeToast && (
           <div className="absolute top-4 left-4 right-4 z-50 bg-white rounded-2xl shadow-lg border border-brand-dark/10 p-3 flex items-start space-x-3 transition-all duration-300">
@@ -362,7 +362,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
         {/* Content Body */}
         <div className="max-h-[75vh] overflow-y-auto pb-6 px-6">
-          
+
           {/* Back button */}
           {['forgot', 'otp', 'reset-password'].includes(mode) && (
             <button
@@ -386,22 +386,20 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <button
                 type="button"
                 onClick={() => setMode('login')}
-                className={`flex-1 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                  mode === 'login' 
-                    ? 'bg-[#184433] text-white shadow-xs' 
+                className={`flex-1 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${mode === 'login'
+                    ? 'bg-[#184433] text-white shadow-xs'
                     : 'text-[#184433]/70 hover:text-[#184433]'
-                }`}
+                  }`}
               >
                 Login
               </button>
               <button
                 type="button"
                 onClick={() => setMode('signup')}
-                className={`flex-1 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                  mode === 'signup' 
-                    ? 'bg-[#184433] text-white shadow-xs' 
+                className={`flex-1 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${mode === 'signup'
+                    ? 'bg-[#184433] text-white shadow-xs'
                     : 'text-[#184433]/70 hover:text-[#184433]'
-                }`}
+                  }`}
               >
                 Sign Up
               </button>
@@ -414,9 +412,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <form onSubmit={handleLoginSubmit} className="space-y-3.5">
                 <div>
                   <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Email Address</label>
-                  <input 
-                    type="email" 
-                    required 
+                  <input
+                    type="email"
+                    required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
@@ -427,7 +425,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433]">Password</label>
-                    <button 
+                    <button
                       type="button"
                       onClick={() => setMode('forgot')}
                       className="text-[9px] font-bold uppercase tracking-wider text-[#184433]/70 hover:text-[#184433] hover:underline cursor-pointer"
@@ -435,9 +433,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                       Forgot?
                     </button>
                   </div>
-                  <input 
-                    type="password" 
-                    required 
+                  <input
+                    type="password"
+                    required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
@@ -445,7 +443,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   />
                 </div>
 
-                <button 
+                <button
                   type="submit"
                   className="w-full bg-[#184433] hover:bg-[#184433]/95 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-200 active:scale-[0.98] mt-4 cursor-pointer flex items-center justify-center space-x-1.5 shadow-sm hover:shadow-md"
                 >
@@ -460,7 +458,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 <div className="grow border-t border-brand-dark/10"></div>
               </div>
 
-              <button 
+              <button
                 onClick={handleGoogleLogin}
                 className="w-full border border-brand-dark/15 hover:border-[#184433]/40 hover:bg-brand-cream-dark/50 py-2 rounded-full flex items-center justify-center space-x-2 text-[10px] font-bold uppercase tracking-wider text-[#184433] transition-all cursor-pointer shadow-2xs"
               >
@@ -480,9 +478,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <form onSubmit={handleSignupSubmit} className="space-y-3.5">
               <div>
                 <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Full Name</label>
-                <input 
-                  type="text" 
-                  required 
+                <input
+                  type="text"
+                  required
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
@@ -492,9 +490,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               <div>
                 <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Email Address</label>
-                <input 
-                  type="email" 
-                  required 
+                <input
+                  type="email"
+                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
@@ -546,8 +544,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
                 <div>
                   <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Phone (Opt)</label>
-                  <input 
-                    type="tel" 
+                  <input
+                    type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
@@ -558,9 +556,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               <div>
                 <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Password</label>
-                <input 
-                  type="password" 
-                  required 
+                <input
+                  type="password"
+                  required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
@@ -570,9 +568,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               <div>
                 <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Confirm Password</label>
-                <input 
-                  type="password" 
-                  required 
+                <input
+                  type="password"
+                  required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
@@ -580,7 +578,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 />
               </div>
 
-              <button 
+              <button
                 type="submit"
                 className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-200 active:scale-[0.98] mt-4 cursor-pointer flex items-center justify-center space-x-1.5 shadow-sm"
               >
@@ -598,16 +596,16 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </p>
               <div>
                 <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Email Address</label>
-                <input 
-                  type="email" 
-                  required 
+                <input
+                  type="email"
+                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
                   placeholder="skin@morkins.com"
                 />
               </div>
-              <button 
+              <button
                 type="submit"
                 className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 cursor-pointer shadow-sm active:scale-[0.98]"
               >
@@ -640,7 +638,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </div>
 
               <div className="flex items-center justify-between gap-4 pt-2">
-                <button 
+                <button
                   type="submit"
                   className="bg-[#184433] hover:bg-[#184433]/95 text-white px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer shadow-sm active:scale-[0.98]"
                 >
@@ -668,9 +666,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <form onSubmit={handleResetPasswordSubmit} className="space-y-3.5 pt-1">
               <div>
                 <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">New Password</label>
-                <input 
-                  type="password" 
-                  required 
+                <input
+                  type="password"
+                  required
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
@@ -680,9 +678,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
               <div>
                 <label className="block text-[9px] uppercase font-bold tracking-wider text-[#184433] mb-1">Confirm New Password</label>
-                <input 
-                  type="password" 
-                  required 
+                <input
+                  type="password"
+                  required
                   value={confirmNewPassword}
                   onChange={(e) => setConfirmNewPassword(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-brand-dark/15 focus:border-[#184433] focus:ring-1 focus:ring-[#184433]/20 focus:scale-[1.005] outline-none bg-white text-xs text-[#184433] transition-all placeholder:text-brand-dark/25 shadow-2xs"
@@ -690,7 +688,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 />
               </div>
 
-              <button 
+              <button
                 type="submit"
                 className="w-full bg-[#184433] hover:bg-[#184433]/90 text-white py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all mt-4 active:scale-[0.98] shadow-sm cursor-pointer"
               >

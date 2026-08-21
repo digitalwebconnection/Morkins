@@ -8,9 +8,12 @@ import AboutUs from '../pages/aboutus/AboutUs'
 import UserProfile from '../pages/profile/UserProfile'
 import ProductsPage from '../pages/products/ProductsPage'
 import ProductDetailsPage from '../pages/products/ProductDetailsPage'
+import BestSellersPage from '../pages/bestsellers/BestSellersPage'
+import NewArrivalsPage from '../pages/newarrivals/NewArrivalsPage'
 
 import CartDrawer from './CartDrawer'
 import type { CartItem } from './CartDrawer'
+import CartToast from './CartToast'
 import AuthModal from './AuthModal'
 
 export default function MainSection() {
@@ -20,6 +23,7 @@ export default function MainSection() {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [lastAddedItem, setLastAddedItem] = useState<CartItem | null>(null);
   const [showCartPopover, setShowCartPopover] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const handleUserClick = () => {
     const user = localStorage.getItem('morkins_logged_in_user');
@@ -49,10 +53,8 @@ export default function MainSection() {
       return [...prevItems, { ...product, qty: 1 }];
     });
     setLastAddedItem({ ...product, qty: finalQty });
-    setShowCartPopover(true);
-    if (openCart) {
-      setIsCartOpen(true);
-    }
+    setShowToast(false);
+    setTimeout(() => setShowToast(true), 50);
   };
 
   const handleUpdateQty = (id: number, delta: number) => {
@@ -80,10 +82,10 @@ export default function MainSection() {
       {/* Announcements Promo Slider */}
       <PromoBar />
 
-      <Navbar 
-        onCartClick={() => setIsCartOpen(true)} 
-        onUserClick={handleUserClick} 
-        cartCount={cartCount} 
+      <Navbar
+        onCartClick={() => setIsCartOpen(true)}
+        onUserClick={handleUserClick}
+        cartCount={cartCount}
         lastAddedItem={lastAddedItem}
         showCartPopover={showCartPopover}
         onCloseCartPopover={() => setShowCartPopover(false)}
@@ -94,6 +96,8 @@ export default function MainSection() {
         <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
         <Route path="/products" element={<ProductsPage onAddToCart={handleAddToCart} />} />
         <Route path="/products/:id" element={<ProductDetailsPage onAddToCart={handleAddToCart} />} />
+        <Route path="/bestsellers" element={<BestSellersPage onAddToCart={handleAddToCart} />} />
+        <Route path="/new-arrivals" element={<NewArrivalsPage onAddToCart={handleAddToCart} />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/profile" element={<UserProfile onAddToCart={handleAddToCart} onLogout={handleLogout} />} />
       </Routes>
@@ -108,6 +112,13 @@ export default function MainSection() {
         cartItems={cartItems}
         onUpdateQty={handleUpdateQty}
         onRemove={handleRemoveItem}
+      />
+
+      {/* Add to Cart Toast Notification */}
+      <CartToast
+        item={lastAddedItem}
+        show={showToast}
+        onClose={() => setShowToast(false)}
       />
 
       {/* User Authentication Modal Popup */}

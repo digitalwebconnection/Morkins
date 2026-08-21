@@ -18,7 +18,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           <h3 className="font-serif text-2.5xl font-bold">
             {loginMode === 'signin' ? 'Sign In' : 'Create Account'}
           </h3>
-          <button 
+          <button
             onClick={onClose}
             className="text-brand-dark/60 hover:text-brand-dark cursor-pointer"
           >
@@ -32,9 +32,9 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           {loginMode === 'signup' && (
             <div>
               <label className="block text-xs uppercase font-bold tracking-wider text-brand-dark/60 mb-1.5">Full Name</label>
-              <input 
-                type="text" 
-                required 
+              <input
+                type="text"
+                required
                 className="w-full px-4 py-2.5 rounded-lg border border-brand-dark/25 focus:border-brand-dark focus:outline-none bg-transparent text-sm text-brand-dark"
                 placeholder="Enter your name"
               />
@@ -42,24 +42,24 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           )}
           <div>
             <label className="block text-xs uppercase font-bold tracking-wider text-brand-dark/60 mb-1.5">Email Address</label>
-            <input 
-              type="email" 
-              required 
+            <input
+              type="email"
+              required
               className="w-full px-4 py-2.5 rounded-lg border border-brand-dark/25 focus:border-brand-dark focus:outline-none bg-transparent text-sm text-brand-dark"
               placeholder="name@example.com"
             />
           </div>
           <div>
             <label className="block text-xs uppercase font-bold tracking-wider text-brand-dark/60 mb-1.5">Password</label>
-            <input 
-              type="password" 
-              required 
+            <input
+              type="password"
+              required
               className="w-full px-4 py-2.5 rounded-lg border border-brand-dark/25 focus:border-brand-dark focus:outline-none bg-transparent text-sm text-brand-dark"
               placeholder="••••••••"
             />
           </div>
 
-          <button 
+          <button
             type="submit"
             className="w-full bg-brand-dark text-brand-cream hover:bg-brand-light py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-colors mt-6 cursor-pointer"
           >
@@ -71,7 +71,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           {loginMode === 'signin' ? (
             <p className="text-xs text-brand-dark/70">
               Don't have an account?{' '}
-              <button 
+              <button
                 onClick={() => setLoginMode('signup')}
                 className="font-bold underline hover:text-brand-dark text-brand-dark cursor-pointer"
               >
@@ -81,7 +81,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           ) : (
             <p className="text-xs text-brand-dark/70">
               Already have an account?{' '}
-              <button 
+              <button
                 onClick={() => setLoginMode('signin')}
                 className="font-bold underline hover:text-brand-dark text-brand-dark cursor-pointer"
               >

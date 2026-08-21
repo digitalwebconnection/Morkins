@@ -32,7 +32,7 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
   t,
 }) => {
   return (
-    <div className="bg-white/80 rounded-[32px] p-6 md:p-8 border border-brand-dark/10 shadow-sm backdrop-blur-xs space-y-6 animate-modal-content">
+    <div className="bg-white/80 rounded-4xl p-6 md:p-8 border border-brand-dark/10 shadow-sm backdrop-blur-xs space-y-6 animate-modal-content">
       <div>
         <h3 className="font-serif text-2xl font-bold text-[#184433]">{t('profile_tab_orders')}</h3>
         <p className="text-[10px] text-[#184433]/70 uppercase tracking-widest mt-0.5">Trace and review your luxury skincare shipments</p>
