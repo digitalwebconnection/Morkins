@@ -39,7 +39,7 @@ export default function MainSection() {
     navigate('/');
   };
 
-  const handleAddToCart = (product: { id: number; name: string; price: number; img: string }, openCart = false) => {
+  const handleAddToCart = (product: { id: number; name: string; price: number; img: string }, _openCart = false) => {
     let finalQty = 1;
     setCartItems(prevItems => {
       const existing = prevItems.find(item => item.id === product.id);
