@@ -1,186 +1,956 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect, useMemo, useId } from 'react';
+import p1 from '../../assets/product/p1.jpg';
+import p2 from '../../assets/product/p2.jpg';
+import p3 from '../../assets/product/p3.jpg';
+import p4 from '../../assets/product/p4.jpg';
+import p5 from '../../assets/product/p5.jpg';
+import p6 from '../../assets/product/p6.jpg';
+import hero1 from '../../assets/hero/1.jpg';
+import hero2 from '../../assets/hero/2.jpg';
+import hero3 from '../../assets/hero/3.jpg';
+import hero4 from '../../assets/hero/4.jpg';
+import hero5 from '../../assets/hero/5.jpg';
+import hero6 from '../../assets/hero/6.jpg';
 
-interface Review {
+
+export interface ReviewItem {
   id: number;
   author: string;
+  avatar: string;
   location: string;
+  ageGroup: string;
   rating: number;
+  productId: number;
   productBought: string;
+  productCategory: string;
+  productImg: string;
   skinType: string;
+  skinConcern: string;
   timeframe: string;
   headline: string;
   comment: string;
   verified: boolean;
+  keyResult: string;
+  reviewPhoto: string;
+  helpfulCount: number;
+  date: string;
+  tag: 'Glow' | 'Barrier' | 'Hydration' | 'Sensitive' | 'Anti-Aging' | 'Clearing';
 }
 
-const REVIEWS: Review[] = [
+const INITIAL_REVIEWS: ReviewItem[] = [
   {
     id: 1,
     author: 'Genevieve L.',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80',
     location: 'Geneva, Switzerland',
+    ageGroup: '30-35',
     rating: 5,
+    productId: 1,
     productBought: 'Botanical Radiance Glow Serum',
+    productCategory: 'Active Glow Serum',
+    productImg: p1,
     skinType: 'Sensitive & Dull Skin',
+    skinConcern: 'Post-Acne Marks & Dullness',
     timeframe: 'Used for 3 weeks',
     headline: 'Truly transformed my skin texture within 14 days!',
-    comment: 'I was skeptical because my skin reacts to almost every serum on the market. Morkins Botanical Radiance serum absorbed like a drink of water without a single trace of redness. My post-acne dark marks have visibly diminished and my skin has that lit-from-within glass glow.',
-    verified: true
+    comment:
+      'I was skeptical because my sensitive skin reacts to almost every serum. Morkins Botanical Radiance absorbed like water with zero stinging. My post-acne dark marks have visibly faded and my skin has that lit-from-within glass glow.',
+    verified: true,
+    keyResult: 'Dark marks faded & 24h glass radiance',
+    reviewPhoto: hero1,
+    helpfulCount: 42,
+    date: 'August 14, 2026',
+    tag: 'Glow'
   },
   {
     id: 2,
     author: 'Clara M.',
+    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&h=200&q=80',
     location: 'New York, USA',
+    ageGroup: '28-34',
     rating: 5,
+    productId: 2,
     productBought: 'Bio-Active Barrier Repair Cream',
-    skinType: 'Compromised Skin Barrier / Rosacea',
+    productCategory: 'Ceramide Lipid Cream',
+    productImg: p2,
+    skinType: 'Compromised Barrier / Rosacea',
+    skinConcern: 'Tightness & Extreme Redness',
     timeframe: 'Used for 1 month',
-    headline: 'Saved my peeling, winter-wrecked skin barrier.',
-    comment: 'After over-exfoliating with harsh chemical peels, my barrier was in agony. This cream healed the stinging and tightness literally overnight. It is rich yet completely non-comedogenic. This is officially my holy grail staple product.',
-    verified: true
+    headline: 'Saved my peeling, winter-wrecked skin barrier in 48 hours.',
+    comment:
+      'After over-exfoliating with harsh peels, my barrier was in agony. This cream healed the stinging and tightness literally overnight. It melts into a velvety cloud without clogging pores. Officially my holy-grail staple.',
+    verified: true,
+    keyResult: 'Barrier healed overnight & redness stopped',
+    reviewPhoto: hero2,
+    helpfulCount: 38,
+    date: 'August 08, 2026',
+    tag: 'Barrier'
   },
   {
     id: 3,
     author: 'Sophia R.',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&h=200&q=80',
     location: 'London, UK',
+    ageGroup: '35-40',
     rating: 5,
+    productId: 4,
     productBought: 'Hyaluronic Dew Plumping Elixir',
-    skinType: 'Dry & Dehydrated Skin',
+    productCategory: 'Multi-Depth Hydration',
+    productImg: p4,
+    skinType: 'Dehydrated Dry Skin',
+    skinConcern: 'Fine Lines & Dull Moisture Drop',
     timeframe: 'Used for 2 weeks',
     headline: 'Fine lines around my eyes and forehead simply smoothed out.',
-    comment: 'The 4D multi-molecular hyaluronic acid makes an undeniable difference compared to standard drugstore formulas. It keeps my face plumped and bouncy for a full 12-hour workday. Makeup goes on seamlessly without flaking.',
-    verified: true
+    comment:
+      'The 4D hyaluronic acid makes an undeniable difference compared to standard drugstore formulas. It keeps my face plumped and bouncy through long workdays. Makeup glides on flawlessly without flaking.',
+    verified: true,
+    keyResult: 'Bouncy hydration & fine lines diminished',
+    reviewPhoto: hero3,
+    helpfulCount: 29,
+    date: 'July 29, 2026',
+    tag: 'Hydration'
   },
   {
     id: 4,
     author: 'Evelyn K.',
+    avatar: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&h=200&q=80',
     location: 'Stockholm, Sweden',
+    ageGroup: '26-30',
     rating: 5,
-    productBought: '3-Step Holy Grail Ritual',
-    skinType: 'Normal to Dry',
-    timeframe: 'Used for 2 months',
-    headline: 'The 3-step bundle is the best skincare investment I have ever made.',
-    comment: 'Buying the full 3-step ritual saved me 20% and completely streamlined my morning routine. The wash is velvety, the serum gives high wattage radiance, and the barrier cream seals it all in. Constant compliments from coworkers!',
-    verified: true
+    productId: 5,
+    productBought: 'Niacinamide Pore Tightening Serum',
+    productCategory: 'Blemish & Pore Refining',
+    productImg: p5,
+    skinType: 'Combination / Oily T-Zone',
+    skinConcern: 'Enlarged Pores & Excess Sebum',
+    timeframe: 'Used for 3 weeks',
+    headline: 'Pores on my nose and cheeks look virtually airbrushed.',
+    comment:
+      'I have struggled with congested pores and midday grease for years. Combining 10% pure Niacinamide with Zinc PCA created magic. My T-zone stays naturally satin-matte while maintaining a hydrated luminosity all day.',
+    verified: true,
+    keyResult: 'Balanced sebum & refined pore structure',
+    reviewPhoto: hero4,
+    helpfulCount: 31,
+    date: 'July 22, 2026',
+    tag: 'Clearing'
+  },
+  {
+    id: 5,
+    author: 'Elena D.',
+    avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&h=200&q=80',
+    location: 'Milan, Italy',
+    ageGroup: '40-48',
+    rating: 5,
+    productId: 6,
+    productBought: 'Bakuchiol Youth Restoring Oil',
+    productCategory: 'Natural Retinol Alternative',
+    productImg: p6,
+    skinType: 'Sensitive Aging Skin',
+    skinConcern: 'Loss of Firmness & Irritation',
+    timeframe: 'Used for 5 weeks',
+    headline: 'All the firming power of retinol with zero irritation.',
+    comment:
+      'I can never tolerate conventional retinol without burning redness and peeling. Bakuchiol from Morkins is in a league of its own. My jawline and neck feel noticeably firmer, skin tone is luminous, and wild botanicals soothe deeply.',
+    verified: true,
+    keyResult: 'Enhanced elasticity without retinol purge',
+    reviewPhoto: hero5,
+    helpfulCount: 26,
+    date: 'July 15, 2026',
+    tag: 'Anti-Aging'
+  },
+  {
+    id: 6,
+    author: 'Isabelle V.',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&h=200&q=80',
+    location: 'Paris, France',
+    ageGroup: '30-36',
+    rating: 5,
+    productId: 3,
+    productBought: 'Gentle Clarifying Foaming Wash',
+    productCategory: 'pH-Balanced Cleanser',
+    productImg: p3,
+    skinType: 'Dry & Reactive Skin',
+    skinConcern: 'Stiffness After Face Washing',
+    timeframe: 'Used for 4 weeks',
+    headline: 'Luxurious velvety cleanse that never leaves skin stripped.',
+    comment:
+      'Finding a cleanser that effortlessly breaks down sunscreen and makeup without stripping lipid moisture is rare. This botanical foam leaves skin supple and calm. I only wish the bottle was twice as big!',
+    verified: true,
+    keyResult: 'Zero tightness & velvety clean feel',
+    reviewPhoto: hero6,
+    helpfulCount: 19,
+    date: 'June 30, 2026',
+    tag: 'Sensitive'
   }
 ];
 
-export default function BestSellersReviews() {
-  const [filterRating] = useState<number | 'all'>('all');
+interface BestSellersReviewsProps {
+  onAddToCart?: (product: { id: number; name: string; price: number; img: string }, openCart?: boolean) => void;
+}
 
-  const filteredReviews = filterRating === 'all'
-    ? REVIEWS
-    : REVIEWS.filter(r => r.rating === filterRating);
+export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsProps) {
+  const [reviews, setReviews] = useState<ReviewItem[]>(INITIAL_REVIEWS);
+  const [ratingFilter, setRatingFilter] = useState<number | 'all'>('all');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlay] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [upvotedIds, setUpvotedIds] = useState<Record<number, boolean>>({});
+  const [lightboxPhoto, setLightboxPhoto] = useState<{ photo: string; author: string; product: string; quote: string; productImg: string } | null>(null);
+  const [isWriteModalOpen, setIsWriteModalOpen] = useState(false);
+  const [writeSubmitted, setWriteSubmitted] = useState(false);
+
+  // Form State for Write Review Modal
+  const [newAuthor, setNewAuthor] = useState('');
+  const [newLocation, setNewLocation] = useState('');
+  const [newRating, setNewRating] = useState(5);
+  const [newProductId, setNewProductId] = useState(1);
+  const [newSkinType, setNewSkinType] = useState('Combination Skin');
+  const [newTimeframe, setNewTimeframe] = useState('Used for 2 weeks');
+  const [newHeadline, setNewHeadline] = useState('');
+  const [newComment, setNewComment] = useState('');
+  const [newKeyResult, setNewKeyResult] = useState('');
+  const [newTag, setNewTag] = useState<'Glow' | 'Barrier' | 'Hydration' | 'Sensitive' | 'Anti-Aging' | 'Clearing'>('Glow');
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
+  const touchDeltaX = useRef<number>(0);
+  const writeModalTitleId = useId();
+
+  // Responsive cards count calculation
+  const [cardsPerView, setCardsPerView] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setCardsPerView(1);
+      } else if (window.innerWidth < 1024) {
+        setCardsPerView(2);
+      } else {
+        setCardsPerView(3);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Filter logic based on clicked rating
+  const filteredReviews = useMemo(() => {
+    return reviews.filter((r) => {
+      if (ratingFilter !== 'all' && r.rating !== ratingFilter) return false;
+      return true;
+    });
+  }, [reviews, ratingFilter]);
+
+  const maxIndex = Math.max(0, filteredReviews.length - cardsPerView);
+
+  // Reset index if out of bounds
+  useEffect(() => {
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(Math.max(0, maxIndex));
+    }
+  }, [filteredReviews.length, maxIndex, currentIndex]);
+
+  // Auto-play timer
+  useEffect(() => {
+    if (!isAutoPlay || isHovered || filteredReviews.length <= cardsPerView) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isAutoPlay, isHovered, filteredReviews.length, cardsPerView, maxIndex]);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') handlePrev();
+    if (e.key === 'ArrowRight') handleNext();
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchDeltaX.current = 0;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null) return;
+    if (touchDeltaX.current < -50) {
+      handleNext();
+    } else if (touchDeltaX.current > 50) {
+      handlePrev();
+    }
+    touchStartX.current = null;
+    touchDeltaX.current = 0;
+  };
+
+  const handleToggleHelpful = (id: number) => {
+    const isUpvoted = upvotedIds[id];
+    setUpvotedIds((prev) => ({ ...prev, [id]: !isUpvoted }));
+    setReviews((prev) =>
+      prev.map((r) => {
+        if (r.id === id) {
+          return {
+            ...r,
+            helpfulCount: isUpvoted ? r.helpfulCount - 1 : r.helpfulCount + 1
+          };
+        }
+        return r;
+      })
+    );
+  };
+
+  const handleAddReview = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newAuthor || !newHeadline || !newComment) return;
+
+    const productMap: Record<number, { name: string; category: string; img: string }> = {
+      1: { name: 'Botanical Radiance Glow Serum', category: 'Active Glow Serum', img: p1 },
+      2: { name: 'Bio-Active Barrier Repair Cream', category: 'Ceramide Lipid Cream', img: p2 },
+      3: { name: 'Gentle Clarifying Foaming Wash', category: 'pH-Balanced Cleanser', img: p3 },
+      4: { name: 'Hyaluronic Dew Plumping Elixir', category: 'Multi-Depth Hydration', img: p4 },
+      5: { name: 'Niacinamide Pore Tightening Serum', category: 'Blemish & Pore Refining', img: p5 },
+      6: { name: 'Bakuchiol Youth Restoring Oil', category: 'Natural Retinol Alternative', img: p6 }
+    };
+
+    const selProd = productMap[newProductId] || productMap[1];
+
+    const newReview: ReviewItem = {
+      id: Date.now(),
+      author: newAuthor,
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80',
+      location: newLocation || 'Verified Patron',
+      ageGroup: '25-34',
+      rating: newRating,
+      productId: newProductId,
+      productBought: selProd.name,
+      productCategory: selProd.category,
+      productImg: selProd.img,
+      skinType: newSkinType,
+      skinConcern: 'Radiance & Moisture Barrier',
+      timeframe: newTimeframe,
+      headline: newHeadline,
+      comment: newComment,
+      verified: true,
+      keyResult: newKeyResult || 'Noticeable improvement in skin comfort & radiance',
+      reviewPhoto: selProd.img,
+      helpfulCount: 1,
+      date: 'Just now',
+      tag: newTag
+    };
+
+    setReviews([newReview, ...reviews]);
+    setWriteSubmitted(true);
+
+    setTimeout(() => {
+      setWriteSubmitted(false);
+      setIsWriteModalOpen(false);
+      setNewAuthor('');
+      setNewLocation('');
+      setNewHeadline('');
+      setNewComment('');
+      setNewKeyResult('');
+      setRatingFilter('all');
+      setCurrentIndex(0);
+    }, 1800);
+  };
 
   return (
-    <section className="py-16 sm:py-22 bg-[#FCFBF8] border-b border-[#A68A56]/15">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#A68A56]/15 border border-[#A68A56]/30 text-[#8B7443] text-[11px] font-bold tracking-[0.2em] uppercase mb-3">
-            <span>💬 Real Verified Stories</span>
+    <section
+      id="best-sellers-reviews"
+      aria-label="Customer Reviews & Ratings"
+      className="relative py-12 sm:py-16 lg:py-20 bg-linear-to-b from-[#FCFBF8] via-[#FAF8F2] to-[#F7F4EB] border-b border-[#D8CCB5]/40 overflow-hidden select-none"
+    >
+      {/* Background Lighting Elements */}
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-180 h-90 bg-linear-to-b from-[#4E7A52]/10 via-[#C49746]/8 to-transparent rounded-full blur-[110px] pointer-events-none" />
+      <div className="absolute -bottom-20 right-10 w-96 h-96 bg-[#4E7A52]/10 rounded-full blur-[90px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* ── Section Header ── */}
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-linear-to-r from-[#F4EFE6] via-[#EFE8D8] to-[#F4EFE6] border border-[#C9B387]/50 text-[#8C6D34] text-[11px] font-bold tracking-[0.22em] uppercase mb-3.5 backdrop-blur-xs shadow-2xs">
+            <span className="text-[#4E7A52]">✦</span>
+            <span>Verified Patron Chronicles</span>
+            <span className="text-[#C49746]">✦</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-brand-dark tracking-tight">
-            Loved By Over <span className="italic font-light text-[#6F8C51]">50,000+ Patrons</span>
+
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1C2E1A] tracking-tight leading-[1.18]">
+            Loved By Over{' '}
+            <span className="bg-linear-to-r from-[#2D5A32] via-[#5B853F] to-[#2D5A32] bg-clip-text text-transparent">
+              50,000+ Patrons
+            </span>
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-brand-dark/70 font-light leading-relaxed">
-            Read unfiltered accounts from our verified community who made Morkins best sellers an indispensable part of their daily life.
+
+          <p className="mt-3 text-sm sm:text-base text-[#464D3F] font-normal leading-relaxed">
+            Real chronicles from patrons who made Morkins clinical botanicals their essential ritual for radiant skin.
           </p>
         </div>
 
-        {/* Rating Scorecard Overview */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#A68A56]/20 shadow-sm mb-12 max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            {/* Left Score */}
-            <div className="md:col-span-5 text-center md:text-left md:border-r border-gray-100 md:pr-6">
-              <div className="flex items-center justify-center md:justify-start gap-2">
-                <span className="font-serif text-5xl sm:text-6xl font-bold text-brand-dark">4.9</span>
-                <div>
-                  <div className="flex text-amber-500 text-lg">★★★★★</div>
-                  <span className="text-xs text-brand-dark/60 font-semibold">14,800+ Verified Ratings</span>
-                </div>
-              </div>
-              <p className="text-xs text-brand-dark/70 font-light mt-3">
-                98.4% of customers recommend these formulations to friends and family.
-              </p>
-            </div>
+        {/* ── Carousel Slider Navigation Controls ── */}
+        <div className="flex items-center justify-between mb-4 px-1">
+          <div className="text-xs text-[#1C2E1A] font-bold flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+            <span>Community Stories ({filteredReviews.length})</span>
+          </div>
 
-            {/* Right Breakdown Bars */}
-            <div className="md:col-span-7 space-y-2">
-              <div className="flex items-center gap-3 text-xs font-semibold text-brand-dark/70">
-                <span className="w-12">5 Stars</span>
-                <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-[#6F8C51] rounded-full w-[94%]" />
-                </div>
-                <span className="w-10 text-right font-mono font-bold text-brand-dark">94%</span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsWriteModalOpen(true)}
+              className="mr-2 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-[#1C331B] text-[#2D5A32] hover:text-[#AFD971] border border-emerald-200/80 text-xs font-bold transition-all cursor-pointer shadow-2xs hover:shadow-xs"
+            >
+              <span>✍️</span>
+              <span>Write a Review</span>
+            </button>
+
+            <button
+              onClick={handlePrev}
+              disabled={filteredReviews.length <= cardsPerView}
+              className="w-8.5 h-8.5 rounded-full bg-white hover:bg-[#F4F1E8] border border-[#DDD3C1] disabled:opacity-30 disabled:cursor-not-allowed shadow-2xs flex items-center justify-center text-[#1C2E1A] hover:text-[#2D5A32] transition-all cursor-pointer"
+              aria-label="Previous Review"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={filteredReviews.length <= cardsPerView}
+              className="w-8.5 h-8.5 rounded-full bg-white hover:bg-[#F4F1E8] border border-[#DDD3C1] disabled:opacity-30 disabled:cursor-not-allowed shadow-2xs flex items-center justify-center text-[#1C2E1A] hover:text-[#2D5A32] transition-all cursor-pointer"
+              aria-label="Next Review"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* ── Carousel Track Container ── */}
+        <div
+          ref={containerRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+          className="relative overflow-hidden outline-none py-2"
+        >
+          {filteredReviews.length === 0 ? (
+            <div className="bg-white rounded-xl p-12 text-center border border-dashed border-gray-300 my-4">
+              <div className="text-4xl mb-3">🔍</div>
+              <h3 className="font-serif text-xl font-medium text-[#1C2E1A]">No reviews found</h3>
+              <button
+                onClick={() => setRatingFilter('all')}
+                className="mt-4 px-4 py-2 rounded-full bg-[#1C331B] text-[#AFD971] text-xs font-bold cursor-pointer"
+              >
+                Show All Reviews
+              </button>
+            </div>
+          ) : (
+            <div
+              className="flex transition-transform duration-500 ease-out"
+              style={{
+                transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`
+              }}
+            >
+              {filteredReviews.map((review) => {
+                const isUpvoted = upvotedIds[review.id];
+                return (
+                  <div
+                    key={review.id}
+                    className="shrink-0 px-2.5 sm:px-3"
+                    style={{ width: `${100 / cardsPerView}%` }}
+                  >
+                    <div className="h-full bg-white rounded-xl border border-[#DDD3C1]/80 hover:border-[#547E3D] shadow-[0_4px_22px_-4px_rgba(30,40,25,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(78,122,82,0.18)] transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+
+                      {/* 1. Customer Uploaded Product Photo Banner */}
+                      <div
+                        onClick={() =>
+                          setLightboxPhoto({
+                            photo: review.reviewPhoto,
+                            author: review.author,
+                            product: review.productBought,
+                            quote: review.headline,
+                            productImg: review.productImg
+                          })
+                        }
+                        className="relative w-full h-48 sm:h-52 bg-[#F4F1E8] overflow-hidden cursor-pointer shrink-0 group/img"
+                      >
+                        <img
+                          src={review.reviewPhoto}
+                          alt={`${review.author} - ${review.productBought}`}
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            if (target.src !== review.productImg) {
+                              target.src = review.productImg;
+                            }
+                          }}
+                          className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
+
+                        {/* Top Left: Customer Upload Badge */}
+                        <div className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#2D5A32] text-[10px] font-bold shadow-xs">
+                          <span>📸</span>
+                          <span>Customer Photo</span>
+                        </div>
+
+                        {/* Top Right: Usage Timeframe */}
+                        <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-medium tracking-wide">
+                          ✓ {review.timeframe}
+                        </div>
+
+                        {/* Center Hover Overlay */}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold gap-1.5">
+                          <span>🔍</span>
+                          <span>Click to Enlarge</span>
+                        </div>
+
+                        {/* Bottom Banner Result Highlight */}
+                        <div className="absolute bottom-3 left-3 right-3 text-white pointer-events-none">
+                          <span className="text-[11px] font-medium tracking-wide drop-shadow-sm flex items-center gap-1.5 line-clamp-1">
+                            <span className="text-amber-300 shrink-0">✦</span>
+                            <span>{review.keyResult}</span>
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* 2. Structured Card Content Body */}
+                      <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
+                        <div>
+                          {/* Mini Product Bar */}
+                          <div className="bg-[#FAF8F2] rounded-xl p-2 mb-4 border border-[#E5DEC9] flex items-center justify-between gap-2.5">
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <img
+                                src={review.productImg}
+                                alt={review.productBought}
+                                className="w-9 h-9 rounded-lg object-cover bg-white border border-[#DDD3C1] shrink-0"
+                              />
+                              <div className="min-w-0">
+                                <span className="text-[9px] font-bold tracking-wider text-[#8C6221] uppercase block truncate">
+                                  {review.productCategory}
+                                </span>
+                                <span className="text-xs font-semibold text-[#1C2E1A] truncate block leading-tight">
+                                  {review.productBought}
+                                </span>
+                              </div>
+                            </div>
+
+                            {onAddToCart && (
+                              <button
+                                onClick={() => {
+                                  onAddToCart({
+                                    id: review.productId,
+                                    name: review.productBought,
+                                    price: 34.0,
+                                    img: review.productImg
+                                  }, true);
+                                }}
+                                className="shrink-0 px-2.5 py-1 rounded-md bg-emerald-100/80 hover:bg-[#1C331B] text-[#2D5A32] hover:text-[#AFD971] border border-emerald-200/60 text-[10px] font-bold tracking-wide transition-colors cursor-pointer"
+                              >
+                                Shop
+                              </button>
+                            )}
+                          </div>
+
+                          {/* Star Rating & Date */}
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex text-amber-400 text-sm tracking-tight drop-shadow-xs">
+                              {Array.from({ length: 5 }).map((_, i) => (
+                                <span key={i} className={i < review.rating ? 'text-amber-400' : 'text-gray-200'}>
+                                  ★
+                                </span>
+                              ))}
+                            </div>
+                            <span className="text-[10px] text-gray-400 font-mono">
+                              {review.date}
+                            </span>
+                          </div>
+
+                          {/* Headline */}
+                          <h3 className="font-serif text-base sm:text-lg font-bold text-[#182617] mb-2 leading-snug line-clamp-2 min-h-12">
+                            "{review.headline}"
+                          </h3>
+
+                          {/* Review Comment */}
+                          <p className="text-xs text-[#464D3F] font-normal leading-relaxed mb-4 line-clamp-3 min-h-13.5">
+                            {review.comment}
+                          </p>
+                        </div>
+
+                        {/* 3. Footer: Customer Profile & Helpful Button */}
+                        <div className="mt-auto pt-4 border-t border-[#E5DEC9] flex items-center justify-between gap-2 text-xs">
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <img
+                              src={review.avatar}
+                              alt={review.author}
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                              }}
+                              className="w-8 h-8 rounded-full object-cover border border-[#DDD3C1] shrink-0"
+                            />
+                            <div className="min-w-0">
+                              <span className="font-semibold text-[#1C2E1A] text-xs block truncate leading-tight">
+                                {review.author}
+                              </span>
+                              <span className="text-[10px] text-gray-500 block truncate">
+                                {review.location} • {review.skinType}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Helpful Counter Button */}
+                          <button
+                            onClick={() => handleToggleHelpful(review.id)}
+                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all duration-200 cursor-pointer shrink-0 ${
+                              isUpvoted
+                                ? 'bg-linear-to-r from-[#1C331B] to-[#2B4B27] text-[#AFD971] shadow-xs'
+                                : 'bg-[#FAF8F2] hover:bg-[#F4F1E8] text-[#4A5543] border border-[#DDD3C1]'
+                            }`}
+                          >
+                            <span>👍</span>
+                            <span>{review.helpfulCount}</span>
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* ── Slide Progress Bar / Pagination Dots ── */}
+        {filteredReviews.length > cardsPerView && (
+          <div className="mt-8 flex items-center justify-center gap-2">
+            {Array.from({ length: maxIndex + 1 }).map((_, idx) => {
+              const isActive = idx === currentIndex;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    isActive ? 'w-8 bg-[#1C331B]' : 'w-2 bg-[#C49746]/40 hover:bg-[#C49746]'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* ── Photo Lightbox Modal ── */}
+      {lightboxPhoto && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fade-in"
+          onClick={() => setLightboxPhoto(null)}
+        >
+          <div
+            className="relative bg-white rounded-xl overflow-hidden max-w-2xl w-full shadow-2xl border border-white/20"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setLightboxPhoto(null)}
+              className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/50 hover:bg-black text-white flex items-center justify-center text-sm cursor-pointer transition-colors"
+            >
+              ✕
+            </button>
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+              <div className="relative h-72 sm:h-auto bg-[#F4F3EE] flex items-center justify-center overflow-hidden">
+                <img
+                  src={lightboxPhoto.photo}
+                  alt={`${lightboxPhoto.author} - ${lightboxPhoto.product}`}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (lightboxPhoto.productImg && target.src !== lightboxPhoto.productImg) {
+                      target.src = lightboxPhoto.productImg;
+                    }
+                  }}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div className="flex items-center gap-3 text-xs font-semibold text-brand-dark/70">
-                <span className="w-12">4 Stars</span>
-                <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-[#A68A56] rounded-full w-[5%]" />
+              <div className="p-6 flex flex-col justify-between bg-white">
+                <div>
+                  <div className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#6F8C51] bg-[#6F8C51]/10 px-2.5 py-1 rounded-full mb-3">
+                    📸 Verified Customer Upload
+                  </div>
+                  <h4 className="font-serif text-lg font-bold text-brand-dark mb-2">
+                    "{lightboxPhoto.quote}"
+                  </h4>
+                  <p className="text-xs text-gray-500 mb-4">
+                    Product photo uploaded by {lightboxPhoto.author} alongside their verified formulation review.
+                  </p>
+                  <div className="p-3 bg-[#FAF9F5] rounded-xl border border-[#A68A56]/20">
+                    <span className="text-[10px] uppercase font-bold text-[#A68A56] block">
+                      Product Formulation
+                    </span>
+                    <span className="text-xs font-semibold text-brand-dark block mt-0.5">
+                      {lightboxPhoto.product}
+                    </span>
+                  </div>
                 </div>
-                <span className="w-10 text-right font-mono font-bold text-brand-dark">5%</span>
-              </div>
-              <div className="flex items-center gap-3 text-xs font-semibold text-brand-dark/70">
-                <span className="w-12">3 Stars</span>
-                <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-gray-300 rounded-full w-[1%]" />
+
+                <div className="mt-6 pt-4 border-t border-gray-100">
+                  <button
+                    onClick={() => setLightboxPhoto(null)}
+                    className="w-full py-2.5 rounded-xl bg-brand-dark text-white text-xs font-bold uppercase tracking-wider hover:bg-black transition-colors cursor-pointer"
+                  >
+                    Close Preview
+                  </button>
                 </div>
-                <span className="w-10 text-right font-mono font-bold text-brand-dark">1%</span>
               </div>
             </div>
           </div>
         </div>
+      )}
 
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredReviews.map((review) => (
-            <div
-              key={review.id}
-              className="bg-white rounded-3xl p-6 sm:p-7 border border-[#A68A56]/15 hover:border-[#6F8C51]/40 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+      {/* ── "Write a Review" Interactive Submission Modal ── */}
+      {isWriteModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={writeModalTitleId}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto animate-fade-in"
+          onClick={() => setIsWriteModalOpen(false)}
+        >
+          <div
+            className="relative bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-[#A68A56]/20 my-8 max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsWriteModalOpen(false)}
+              className="absolute top-5 right-5 text-gray-400 hover:text-black w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm cursor-pointer transition-colors"
             >
-              <div>
-                {/* Header with stars & verified badge */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex text-amber-500 text-sm">
-                    {Array.from({ length: review.rating }).map((_, i) => (
-                      <span key={i}>★</span>
-                    ))}
-                  </div>
-                  {review.verified && (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#6F8C51] bg-[#6F8C51]/10 px-2.5 py-0.5 rounded-full">
-                      ✓ Verified VIP Buyer
-                    </span>
-                  )}
+              ✕
+            </button>
+
+            {writeSubmitted ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 rounded-full bg-[#6F8C51]/15 text-[#6F8C51] flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
+                  ✨
                 </div>
-
-                {/* Headline */}
-                <h3 className="font-serif text-lg font-medium text-brand-dark mb-2 leading-snug">
-                  "{review.headline}"
+                <h3 className="font-serif text-2xl font-bold text-brand-dark mb-2">
+                  Thank You For Your Voice
                 </h3>
-
-                {/* Comment */}
-                <p className="text-xs sm:text-sm text-brand-dark/75 font-light leading-relaxed mb-6">
-                  {review.comment}
+                <p className="text-xs sm:text-sm text-gray-600 max-w-sm mx-auto">
+                  Your verified patron review and photo have been added to our community chronicle.
                 </p>
               </div>
+            ) : (
+              <div>
+                <div className="text-center mb-6">
+                  <span className="text-[10px] font-bold tracking-widest text-[#A68A56] uppercase">
+                    Morkins Community Voice
+                  </span>
+                  <h3 id={writeModalTitleId} className="font-serif text-2xl font-bold text-brand-dark mt-1">
+                    Share Your Ritual & Experience
+                  </h3>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Help fellow patrons discover what works best for their skin biology.
+                  </p>
+                </div>
 
-              {/* Footer Meta */}
-              <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-                <div>
-                  <strong className="text-brand-dark block">{review.author}</strong>
-                  <span className="text-[11px] text-gray-400">{review.location}</span>
-                </div>
-                <div className="sm:text-right">
-                  <span className="text-[11px] font-semibold text-[#A68A56] block">{review.productBought}</span>
-                  <span className="text-[10px] text-gray-400">{review.skinType} • {review.timeframe}</span>
-                </div>
+                <form onSubmit={handleAddReview} className="space-y-4">
+                  {/* Star Rating Picker */}
+                  <div>
+                    <label className="text-xs font-semibold text-brand-dark block mb-1.5">
+                      Your Overall Rating
+                    </label>
+                    <div className="flex items-center gap-1.5 text-2xl text-amber-400 cursor-pointer">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          type="button"
+                          key={star}
+                          onClick={() => setNewRating(star)}
+                          className="hover:scale-125 transition-transform cursor-pointer"
+                        >
+                          {star <= newRating ? '★' : '☆'}
+                        </button>
+                      ))}
+                      <span className="text-xs font-mono text-gray-400 ml-2">({newRating} of 5 Stars)</span>
+                    </div>
+                  </div>
+
+                  {/* Product Selection */}
+                  <div>
+                    <label htmlFor="product-select" className="text-xs font-semibold text-brand-dark block mb-1.5">
+                      Product Formulation Reviewed
+                    </label>
+                    <select
+                      id="product-select"
+                      value={newProductId}
+                      onChange={(e) => setNewProductId(Number(e.target.value))}
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] focus:ring-1 focus:ring-[#6F8C51] outline-none"
+                    >
+                      <option value={1}>Botanical Radiance Glow Serum</option>
+                      <option value={2}>Bio-Active Barrier Repair Cream</option>
+                      <option value={3}>Gentle Clarifying Foaming Wash</option>
+                      <option value={4}>Hyaluronic Dew Plumping Elixir</option>
+                      <option value={5}>Niacinamide Pore Tightening Serum</option>
+                      <option value={6}>Bakuchiol Youth Restoring Oil</option>
+                    </select>
+                  </div>
+
+                  {/* Author Name & Location */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label htmlFor="author-name-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                        Your Name / Pseudonym
+                      </label>
+                      <input
+                        id="author-name-input"
+                        type="text"
+                        required
+                        placeholder="e.g. Genevieve L."
+                        value={newAuthor}
+                        onChange={(e) => setNewAuthor(e.target.value)}
+                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="location-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                        Location
+                      </label>
+                      <input
+                        id="location-input"
+                        type="text"
+                        placeholder="e.g. Zurich, Switzerland"
+                        value={newLocation}
+                        onChange={(e) => setNewLocation(e.target.value)}
+                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Skin Type & Timeframe */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label htmlFor="skin-type-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                        Skin Type / Primary Concern
+                      </label>
+                      <input
+                        id="skin-type-input"
+                        type="text"
+                        placeholder="e.g. Sensitive & Dehydrated"
+                        value={newSkinType}
+                        onChange={(e) => setNewSkinType(e.target.value)}
+                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="timeframe-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                        Usage Duration
+                      </label>
+                      <input
+                        id="timeframe-input"
+                        type="text"
+                        placeholder="e.g. Used for 3 weeks"
+                        value={newTimeframe}
+                        onChange={(e) => setNewTimeframe(e.target.value)}
+                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Category Pill Tag */}
+                  <div>
+                    <label htmlFor="category-tag-select" className="text-xs font-semibold text-brand-dark block mb-1">
+                      Primary Benefit
+                    </label>
+                    <select
+                      id="category-tag-select"
+                      value={newTag}
+                      onChange={(e) => setNewTag(e.target.value as any)}
+                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                    >
+                      <option value="Glow">Glow & Radiance</option>
+                      <option value="Barrier">Barrier Repair</option>
+                      <option value="Hydration">Deep Hydration</option>
+                      <option value="Sensitive">Sensitive & Calming</option>
+                      <option value="Anti-Aging">Youth & Firmness</option>
+                    </select>
+                  </div>
+
+                  {/* Review Headline */}
+                  <div>
+                    <label htmlFor="headline-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                      Headline / One-Line Summary
+                    </label>
+                    <input
+                      id="headline-input"
+                      type="text"
+                      required
+                      placeholder="e.g. My redness completely calmed in 5 days!"
+                      value={newHeadline}
+                      onChange={(e) => setNewHeadline(e.target.value)}
+                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                    />
+                  </div>
+
+                  {/* Detailed Review Comment */}
+                  <div>
+                    <label htmlFor="review-body-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                      Detailed Review
+                    </label>
+                    <textarea
+                      id="review-body-input"
+                      required
+                      rows={4}
+                      placeholder="Describe the texture, scent, skin feel, and visible changes you noticed..."
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none resize-none"
+                    />
+                  </div>
+
+                  {/* Key Result Highlight */}
+                  <div>
+                    <label htmlFor="key-result-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                      Key Result Tag (Optional)
+                    </label>
+                    <input
+                      id="key-result-input"
+                      type="text"
+                      placeholder="e.g. Soothed inflammation & zero flaking"
+                      value={newKeyResult}
+                      onChange={(e) => setNewKeyResult(e.target.value)}
+                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 rounded-xl bg-[#6F8C51] hover:bg-[#5C7741] text-white text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md cursor-pointer active:scale-98"
+                    >
+                      Publish Verified Patron Review
+                    </button>
+                  </div>
+                </form>
               </div>
-            </div>
-          ))}
+            )}
+          </div>
         </div>
-
-      </div>
+      )}
     </section>
   );
 }

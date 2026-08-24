@@ -1,5 +1,5 @@
 import { useState } from "react";
-import footerLogo from "../assets/Morkins Final Logo footer.png";
+import footerLogo from "../assets/Morkins Logo.....PNG.png";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Footer() {
@@ -27,10 +27,10 @@ export default function Footer() {
               <img
                 src={footerLogo}
                 alt="Morkins Logo"
-                className="h-12 w-auto object-contain"
+                className="h-10 w-auto object-contain"
               />
             </a>
-            <p className="text-[#D8D9D7]/90 text-sm leading-relaxed max-w-60">
+            <p className="text-brand-cream/90 text-sm leading-relaxed max-w-60">
               {t("foot_mission")}
             </p>
 

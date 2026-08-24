@@ -186,16 +186,15 @@ export default function BannerSlider() {
   const b = banners[current]
 
   return (
-    <section className="relative w-full h-[60vh] sm:h-[70vh] md:h-[550px] overflow-hidden bg-[#0B1A28]">
+    <section className="relative w-full h-[60vh] sm:h-[70vh] md:h-130 overflow-hidden bg-[#0B1A28]">
 
       {/* Background Image (Covering full width, naturally crops top/bottom to fit) */}
       <img
         key={b.id}
         src={b.bg}
         alt={b.headline}
-        className={`w-full h-full object-cover object-center transition-all duration-700 ease-in-out ${
-          isTransitioning ? 'opacity-0 ' : 'opacity-100 scale-100'
-        }`}
+        className={`w-full h-full object-cover object-center transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 ' : 'opacity-100 scale-100'
+          }`}
       />
 
       {/* Dark Gradient Overlay for text readability */}
@@ -207,27 +206,24 @@ export default function BannerSlider() {
 
           {/* Headline */}
           <h2
-            className={`font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight tracking-wide transition-all duration-700 ease-out ${
-              isTransitioning ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0 delay-200'
-            }`}
+            className={`font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight tracking-wide transition-all duration-700 ease-out ${isTransitioning ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0 delay-200'
+              }`}
           >
             {b.headline}
           </h2>
 
           {/* Subtext */}
           <p
-            className={`text-white/75 text-sm sm:text-base leading-relaxed max-w-xl mt-10 transition-all duration-700 ease-out ${
-              isTransitioning ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0 delay-300'
-            }`}
+            className={`text-white/75 text-sm sm:text-base leading-relaxed max-w-xl mt-10 transition-all duration-700 ease-out ${isTransitioning ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0 delay-300'
+              }`}
           >
             {b.sub}
           </p>
 
           {/* CTA */}
           <div
-            className={`flex items-center gap-4 mt-12 transition-all duration-700 ease-out ${
-              isTransitioning ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0 delay-500'
-            }`}
+            className={`flex items-center gap-4 mt-12 transition-all duration-700 ease-out ${isTransitioning ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0 delay-500'
+              }`}
           >
             <a
               href="#products"
@@ -235,12 +231,12 @@ export default function BannerSlider() {
             >
               {b.cta}
             </a>
-           
+
           </div>
         </div>
       </div>
 
-     
+
 
       {/* Dots */}
       <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">

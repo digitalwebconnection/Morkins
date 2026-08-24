@@ -3,13 +3,14 @@
 @theme {
   --font-serif: "Cormorant Garamond", serif;
   --font-sans: "Plus Jakarta Sans", sans-serif;
-  --color-brand-dark: #6F8C51;
+  --color-brand-main: #12602F;
+  --color-brand-primary: #12602F;
+  --color-brand-dark: #12602F;
+  --color-brand-forest: #0B3D1E;
   --color-brand-light: #AFD971;
-  --color-brand-primary: #6F8C51;
-  --color-brand-forest: #8C937D;
+  --color-brand-accent: #AFD971;
   --color-brand-cream: #D8D9D7;
   --color-brand-cream-dark: #A5A686;
-  --color-brand-accent: #AFD971;
   --color-brand-sage: #8C937D;
 
   --animate-modal-backdrop: modal-backdrop 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import navbarLogo from "../assets/Morkins Final Logo.png"
+import navbarLogo from "../assets/Morkins Logo.....PNG.png"
 import { useLanguage } from '../context/LanguageContext'
 import { PRODUCTS_EXTENDED, type ProductExtended } from '../pages/products/data/products'
 
@@ -144,7 +144,7 @@ export default function Navbar({
             <img
               src={navbarLogo}
               alt="Morkins Logo"
-              className="h-25 w-auto object-contain transition-transform duration-300"
+              className="h-10 w-auto object-contain transition-transform duration-300"
             />
           </Link>
         </div>

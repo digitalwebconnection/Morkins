@@ -80,40 +80,44 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
   }, [selectedCategory, sortBy]);
 
   return (
-    <section id="master-grid" className="py-14 sm:py-20 bg-[#FCFBF8] border-b border-[#A68A56]/15 relative">
-      {/* Ambient background glow */}
-      <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-[#6F8C51]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#A68A56]/5 rounded-full blur-3xl pointer-events-none" />
+    <section id="master-grid" className="py-12 sm:py-16 bg-linear-to-b from-[#FCFBF8] via-[#FAF8F2] to-[#F7F4EB] border-b border-[#D8CCB5]/40 relative">
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#4E7A52]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#C49746]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#A68A56]/10 border border-[#A68A56]/25 text-[11px] font-bold text-[#8B7443] uppercase tracking-[0.2em] mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#A68A56]" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-linear-to-r from-[#F4EFE6] via-[#EFE8D8] to-[#F4EFE6] border border-[#C9B387]/50 text-[11px] font-bold text-[#8C6D34] uppercase tracking-[0.2em] mb-3 shadow-[0_2px_8px_rgba(196,151,70,0.1)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C49746] animate-pulse" />
               The Official Leaderboard
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-brand-dark tracking-tight">
-              Our Best-Selling Formulas
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1C2E1A] tracking-tight">
+              Our Best-Selling{' '}
+              <span className="bg-linear-to-r from-[#2D5A32] via-[#5B853F] to-[#B58535] bg-clip-text text-transparent">
+                Formulas
+              </span>
             </h2>
-            <p className="text-xs sm:text-sm text-brand-dark/70 font-light mt-1.5 max-w-2xl">
+            <p className="text-xs sm:text-sm text-[#464D3F] font-normal mt-1.5 max-w-2xl leading-relaxed">
               Ranked by over 50,000+ verified customer purchases, recurring routine subscriptions, and clinical dermatology trials.
             </p>
           </div>
 
           {/* View Mode Switcher */}
           <div className="flex items-center gap-3 shrink-0">
-            <span className="text-xs text-brand-dark/60 font-medium hidden sm:inline">
-              Showing <strong className="text-brand-dark font-bold">{bestSellersList.length}</strong> icons
+            <span className="text-xs text-[#464D3F] font-medium hidden sm:inline">
+              Showing <strong className="text-[#1C2E1A] font-bold">{bestSellersList.length}</strong> icons
             </span>
 
             {/* Grid vs Editorial View Toggle */}
-            <div className="flex items-center bg-[#F4F3EE] p-1 rounded-xl border border-[#A68A56]/20">
+            <div className="flex items-center bg-[#F1ECE1] p-1 rounded-xl border border-[#D8CCB5]/80 shadow-2xs">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${viewMode === 'grid' ? 'bg-white text-brand-dark shadow-xs' : 'text-gray-400 hover:text-brand-dark'
-                  }`}
+                className={`p-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  viewMode === 'grid' ? 'bg-[#1C331B] text-[#AFD971] shadow-xs' : 'text-[#5C6556] hover:text-[#1C331B]'
+                }`}
                 title="Grid View (4-Col)"
                 aria-label="Grid View"
               >
@@ -123,8 +127,9 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
               </button>
               <button
                 onClick={() => setViewMode('editorial')}
-                className={`p-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${viewMode === 'editorial' ? 'bg-white text-brand-dark shadow-xs' : 'text-gray-400 hover:text-brand-dark'
-                  }`}
+                className={`p-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  viewMode === 'editorial' ? 'bg-[#1C331B] text-[#AFD971] shadow-xs' : 'text-[#5C6556] hover:text-[#1C331B]'
+                }`}
                 title="Editorial View (2-Col)"
                 aria-label="Editorial View"
               >
@@ -137,20 +142,21 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
         </div>
 
         {/* ── Filter Bar Ribbon ── */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-3 sm:p-4 border border-[#A68A56]/20 shadow-xs mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-[#DDD3C1] shadow-[0_4px_20px_rgba(0,0,0,0.03)] mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-brand-dark/50 mr-1 hidden sm:inline">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#5A6353] mr-1 hidden sm:inline">
               Category:
             </span>
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${selectedCategory === cat
-                    ? 'bg-[#1C331B] text-[#AFD971] shadow-xs scale-100'
-                    : 'bg-[#FCFBF8] text-brand-dark/70 hover:text-brand-dark hover:bg-gray-100 border border-gray-200/80'
-                  }`}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                  selectedCategory === cat
+                    ? 'bg-linear-to-r from-[#1C331B] to-[#2B4B27] text-[#AFD971] border border-[#AFD971]/35 shadow-xs scale-100 font-bold'
+                    : 'bg-[#FCFBF8] text-[#464D3F] hover:text-[#1C331B] hover:bg-[#F4F1E8] border border-[#DDD3C1]'
+                }`}
               >
                 {cat}
               </button>
@@ -159,11 +165,11 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
 
           {/* Sort Dropdown */}
           <div className="flex items-center gap-2 shrink-0">
-            <span className="text-xs font-medium text-brand-dark/60">Sort:</span>
+            <span className="text-xs font-medium text-[#464D3F]">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-[#FCFBF8] border border-gray-200 text-brand-dark text-xs font-semibold px-3 py-1.5 rounded-xl outline-none cursor-pointer focus:border-[#6F8C51] shadow-2xs"
+              className="bg-[#FCFBF8] border border-[#DDD3C1] text-[#1C2E1A] text-xs font-semibold px-3 py-1.5 rounded-xl outline-none cursor-pointer focus:border-[#4E7A52] shadow-2xs"
             >
               <option value="rank">👑 Best Seller Rank</option>
               <option value="rating">★ Highest Customer Rating</option>
@@ -178,8 +184,8 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
         {bestSellersList.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-3xl border border-gray-200 p-8">
             <span className="text-3xl mb-3 block">🌿</span>
-            <h3 className="font-serif text-xl text-brand-dark font-medium mb-1">No best sellers in this category</h3>
-            <p className="text-xs text-brand-dark/60 mb-5">Try selecting "All" to view our complete award-winning lineup.</p>
+            <h3 className="font-serif text-xl text-[#1C2E1A] font-medium mb-1">No best sellers in this category</h3>
+            <p className="text-xs text-[#464D3F] mb-5">Try selecting "All" to view our complete award-winning lineup.</p>
             <button
               onClick={() => setSelectedCategory('All')}
               className="px-5 py-2 rounded-full bg-[#1C331B] text-[#AFD971] text-xs font-bold uppercase tracking-wider cursor-pointer"
@@ -201,13 +207,21 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
               const isJustAdded = recentlyAddedId === product.id;
               const benefitNote = BEST_SELLER_BENEFITS[product.id] || product.category;
 
+              // Distinct multi-color rank themes for each best seller
+              const rankBadgeClasses = [
+                'bg-linear-to-r from-[#8C6221] via-[#B88738] to-[#8C6221] text-white border-amber-200/50', // #1 Gold
+                'bg-linear-to-r from-[#1C331B] via-[#2E542A] to-[#1C331B] text-[#AFD971] border-[#AFD971]/35', // #2 Emerald
+                'bg-linear-to-r from-[#944825] via-[#BA5E32] to-[#944825] text-white border-orange-200/40', // #3 Bronze/Terracotta
+                'bg-linear-to-r from-[#244C6B] via-[#3B6B91] to-[#244C6B] text-white border-sky-200/40', // #4 Sapphire Indigo
+              ][(rankIndex - 1) % 4];
+
               return (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col bg-white rounded-xl overflow-hidden border border-[#A68A56]/20 hover:border-[#6F8C51]/50 shadow-[0_4px_20px_rgba(0,0,0,0.28)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-all duration-500 hover:-translate-y-1"
+                  className="group relative flex flex-col bg-white rounded-xl overflow-hidden border border-[#DDD3C1]/80 hover:border-[#547E3D] shadow-[0_4px_22px_-4px_rgba(30,40,25,0.08)] hover:shadow-[0_16px_40px_-6px_rgba(78,122,82,0.2)] transition-all duration-500 hover:-translate-y-1.5"
                 >
                   {/* Card Image Stage */}
-                  <div className="relative aspect-square w-full overflow-hidden">
+                  <div className="relative aspect-square w-full overflow-hidden bg-[#FAF8F2]">
                     <Link to={`/products/${product.id}`} className="absolute inset-0">
                       <img
                         src={product.img}
@@ -223,20 +237,15 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                       )}
                     </Link>
 
-                    {/* Rank Pill & Badges (Top-Left) */}
-                    <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
-                      {rankIndex <= 3 ? (
-                        <span className="bg-linear-to-r from-[#1C331B] to-[#2E4A28] text-[#AFD971] text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs border border-[#AFD971]/30 flex items-center gap-1">
-                          <span>🏆</span> #{rankIndex} Best Seller
-                        </span>
-                      ) : (
-                        <span className="bg-white/90 backdrop-blur-xs text-[#8B7443] border border-[#A68A56]/30 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-2xs">
-                          #{rankIndex} Best Seller
-                        </span>
-                      )}
+                    {/* Multi-Color Rank Pill & Discount Badges (Top-Left) */}
+                    <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
+                      <span className={`text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md border flex items-center gap-1 ${rankBadgeClasses}`}>
+                        <span>🏆</span> #{rankIndex} Best Seller
+                      </span>
+
                       {hasDiscount && (
-                        <span className="bg-[#A68A56] text-white text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full shadow-2xs self-start">
-                          -{discountPercent}%
+                        <span className="bg-linear-to-r from-[#B93826] to-[#D94F3D] text-white text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full shadow-xs self-start border border-red-200/40">
+                          -{discountPercent}% OFF
                         </span>
                       )}
                     </div>
@@ -244,10 +253,11 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                     {/* Wishlist Button (Top-Right) */}
                     <button
                       onClick={(e) => toggleWishlist(product.id, e)}
-                      className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer ${isWishlisted
-                          ? 'bg-rose-50 text-rose-600 shadow-md scale-110'
-                          : 'bg-white/85 backdrop-blur-xs text-gray-400 hover:text-rose-500 hover:bg-white shadow-2xs'
-                        }`}
+                      className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer ${
+                        isWishlisted
+                          ? 'bg-rose-50 text-rose-600 shadow-md scale-110 border border-rose-200'
+                          : 'bg-white/90 backdrop-blur-xs text-gray-400 hover:text-rose-500 hover:bg-white shadow-2xs border border-gray-200/80'
+                      }`}
                       aria-label="Wishlist"
                     >
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={isWishlisted ? '0' : '2'}>
@@ -259,9 +269,9 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                     <div className="absolute bottom-2.5 inset-x-2.5 z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                       <button
                         onClick={() => onOpenQuickView(product)}
-                        className="w-full py-2 bg-white/95 backdrop-blur-md hover:bg-white text-brand-dark text-[10px] font-bold uppercase tracking-wider rounded-xl shadow-md border border-[#A68A56]/20 transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                        className="w-full py-2 bg-white/95 backdrop-blur-md hover:bg-[#1C331B] text-[#1C2E1A] hover:text-[#AFD971] text-[10px] font-bold uppercase tracking-wider rounded-xl shadow-md border border-[#DDD3C1] transition-all cursor-pointer flex items-center justify-center gap-1.5"
                       >
-                        <svg className="w-3.5 h-3.5 text-[#6F8C51]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <svg className="w-3.5 h-3.5 text-[#4E7A52] group-hover:text-[#AFD971]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
@@ -274,39 +284,39 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                   <div className="flex flex-col flex-1 p-4 sm:p-5">
                     {/* Category & Rating */}
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-bold text-[#6F8C51] uppercase tracking-widest">
+                      <span className="text-[10px] font-bold text-[#2D5A32] uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
                         {product.category}
                       </span>
-                      <div className="flex items-center gap-1 text-[11px] font-bold text-brand-dark">
+                      <div className="flex items-center gap-1 text-[11px] font-bold text-[#8C6221] bg-amber-50/80 px-2 py-0.5 rounded-md border border-amber-200/60 shadow-2xs">
                         <span className="text-amber-500">★</span>
                         <span>{product.rating}</span>
-                        <span className="text-gray-400 font-normal text-[10px]">({product.reviewsCount})</span>
+                        <span className="text-[#8C6221]/70 font-normal text-[10px]">({product.reviewsCount})</span>
                       </div>
                     </div>
 
                     {/* Product Name */}
-                    <Link to={`/products/${product.id}`} className="block">
-                      <h3 className="font-serif text-base font-semibold text-brand-dark group-hover:text-[#6F8C51] transition-colors line-clamp-1 leading-snug">
+                    <Link to={`/products/${product.id}`} className="block mt-1">
+                      <h3 className="font-serif text-base font-semibold text-[#182617] group-hover:text-[#3B622E] transition-colors line-clamp-1 leading-snug">
                         {product.name}
                       </h3>
                     </Link>
 
                     {/* Botanical Benefit Highlight Note */}
-                    <div className="mt-1.5 mb-2 text-[11px] font-medium text-[#8B7443] flex items-center gap-1.5 line-clamp-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#8B7443]/60 shrink-0" />
+                    <div className="mt-1.5 mb-2 text-[11px] font-semibold text-[#8C6221] bg-amber-50/60 border border-amber-200/50 px-2 py-0.5 rounded-md flex items-center gap-1.5 line-clamp-1">
+                      <span className="text-[#C49746] shrink-0">✦</span>
                       <span className="truncate">{benefitNote}</span>
                     </div>
 
                     {/* Description */}
-                    <p className="text-xs text-brand-dark/65 font-light line-clamp-2 leading-relaxed flex-1">
+                    <p className="text-xs text-[#464D3F] font-light line-clamp-2 leading-relaxed flex-1">
                       {product.description}
                     </p>
 
                     {/* Bottom: Price & Add to Bag */}
-                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
+                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#E5DEC9]">
                       <div>
                         <div className="flex items-baseline gap-1.5">
-                          <span className="text-base font-bold font-mono text-brand-dark">
+                          <span className="text-lg font-bold font-serif text-[#1C331B]">
                             ${activePrice.toFixed(2)}
                           </span>
                           {hasDiscount && (
@@ -320,10 +330,11 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                       <button
                         onClick={(e) => handleQuickAdd(product, e)}
                         disabled={isJustAdded}
-                        className={`px-3.5 py-2 text-[10px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-2xs cursor-pointer flex items-center gap-1.5 ${isJustAdded
+                        className={`px-3.5 py-2 text-[10px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-xs cursor-pointer flex items-center gap-1.5 ${
+                          isJustAdded
                             ? 'bg-emerald-600 text-white'
-                            : 'bg-[#1C331B] hover:bg-[#6F8C51] text-white hover:shadow-md active:scale-95'
-                          }`}
+                            : 'bg-linear-to-r from-[#1C331B] to-[#2B4B27] hover:from-[#244222] hover:to-[#355C31] text-[#AFD971] hover:shadow-md active:scale-95'
+                        }`}
                         title="Add to Shopping Bag"
                       >
                         {isJustAdded ? (
@@ -335,7 +346,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                           </>
                         ) : (
                           <>
-                            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <svg className="w-3.5 h-3.5 text-[#AFD971]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                               <circle cx="9" cy="21" r="1" />
                               <circle cx="20" cy="21" r="1" />
                               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
@@ -360,13 +371,20 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
               const isJustAdded = recentlyAddedId === product.id;
               const benefitNote = BEST_SELLER_BENEFITS[product.id] || product.category;
 
+              const rankBadgeClasses = [
+                'bg-linear-to-r from-[#8C6221] to-[#B88738] text-white',
+                'bg-linear-to-r from-[#1C331B] to-[#2E542A] text-[#AFD971]',
+                'bg-linear-to-r from-[#944825] to-[#BA5E32] text-white',
+                'bg-linear-to-r from-[#244C6B] to-[#3B6B91] text-white',
+              ][(rankIndex - 1) % 4];
+
               return (
                 <div
                   key={product.id}
-                  className="bg-white rounded-3xl overflow-hidden border border-[#A68A56]/20 shadow-xs hover:shadow-xl transition-all duration-500 flex flex-col sm:flex-row"
+                  className="bg-white rounded-2xl overflow-hidden border border-[#DDD3C1] shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-xl transition-all duration-500 flex flex-col sm:flex-row"
                 >
                   {/* Left: Image */}
-                  <div className="sm:w-5/12 bg-linear-to-b from-[#F4F3EE]/80 to-[#FCFBF8] p-6 flex items-center justify-center relative aspect-square sm:aspect-auto">
+                  <div className="sm:w-5/12 bg-linear-to-b from-[#FAF8F2] to-[#FCFBF8] p-6 flex items-center justify-center relative aspect-square sm:aspect-auto">
                     <Link to={`/products/${product.id}`} className="w-full h-full flex items-center justify-center">
                       <img
                         src={product.img}
@@ -374,7 +392,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                         className="max-h-52 max-w-full object-contain transition-transform duration-500 hover:scale-105"
                       />
                     </Link>
-                    <span className="absolute top-3 left-3 bg-[#1C331B] text-[#AFD971] text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
+                    <span className={`absolute top-3 left-3 text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs ${rankBadgeClasses}`}>
                       #{rankIndex} Best Seller
                     </span>
                   </div>
@@ -383,35 +401,35 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                   <div className="sm:w-7/12 p-6 flex flex-col justify-between">
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[10px] font-bold text-[#6F8C51] uppercase tracking-widest">
+                        <span className="text-[10px] font-bold text-[#2D5A32] bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60 uppercase tracking-widest">
                           {product.category}
                         </span>
-                        <div className="flex items-center gap-1 text-xs font-bold text-brand-dark">
+                        <div className="flex items-center gap-1 text-xs font-bold text-[#8C6221] bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/60">
                           <span className="text-amber-500">★</span>
                           <span>{product.rating}</span>
-                          <span className="text-gray-400 font-normal">({product.reviewsCount})</span>
+                          <span className="text-[#8C6221]/70 font-normal">({product.reviewsCount})</span>
                         </div>
                       </div>
 
                       <Link to={`/products/${product.id}`}>
-                        <h3 className="font-serif text-xl sm:text-2xl font-semibold text-brand-dark hover:text-[#6F8C51] transition-colors leading-tight mb-2">
+                        <h3 className="font-serif text-xl sm:text-2xl font-semibold text-[#182617] hover:text-[#3B622E] transition-colors leading-tight mb-2">
                           {product.name}
                         </h3>
                       </Link>
 
-                      <div className="mb-3 text-xs font-semibold text-[#8B7443] flex items-center gap-1.5">
+                      <div className="mb-3 text-xs font-semibold text-[#8C6221] bg-amber-50/70 border border-amber-200/60 px-2.5 py-1 rounded-lg flex items-center gap-1.5">
                         <span>✨</span>
                         <span>{benefitNote}</span>
                       </div>
 
-                      <p className="text-xs text-brand-dark/70 font-light leading-relaxed mb-4">
+                      <p className="text-xs text-[#464D3F] font-light leading-relaxed mb-4">
                         {product.description}
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="flex items-center justify-between pt-4 border-t border-[#E5DEC9]">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-xl font-bold font-mono text-brand-dark">
+                        <span className="text-2xl font-serif font-bold text-[#1C331B]">
                           ${activePrice.toFixed(2)}
                         </span>
                         {hasDiscount && (
@@ -424,17 +442,18 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => onOpenQuickView(product)}
-                          className="px-3.5 py-2 border border-gray-200 hover:border-brand-dark text-brand-dark text-[11px] font-bold uppercase tracking-wider rounded-xl transition-colors cursor-pointer"
+                          className="px-3.5 py-2 border border-[#DDD3C1] hover:border-[#1C331B] text-[#1C2E1A] text-[11px] font-bold uppercase tracking-wider rounded-xl transition-colors cursor-pointer bg-white"
                         >
                           Quick View
                         </button>
                         <button
                           onClick={(e) => handleQuickAdd(product, e)}
                           disabled={isJustAdded}
-                          className={`px-4 py-2 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${isJustAdded
+                          className={`px-4 py-2 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
+                            isJustAdded
                               ? 'bg-emerald-600 text-white'
-                              : 'bg-[#1C331B] hover:bg-[#6F8C51] text-white shadow-xs hover:shadow-md'
-                            }`}
+                              : 'bg-linear-to-r from-[#1C331B] to-[#2B4B27] hover:from-[#244222] hover:to-[#355C31] text-[#AFD971] shadow-xs hover:shadow-md'
+                          }`}
                         >
                           {isJustAdded ? 'Added' : 'Add to Bag'}
                         </button>

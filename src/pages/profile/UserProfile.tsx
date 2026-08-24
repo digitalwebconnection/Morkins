@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   User, ShoppingBag, Heart, Compass, MapPin, Gift, Globe, 
-  LogOut, Award, Camera, ChevronRight, Activity 
-} from 'lucide-react';
+  LogOut, Award, Camera, ChevronRight, Activity, 
+  ArrowRight, Check, Truck} from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
-// Import subcomponents
+// Import recreated subcomponents
 import { DetailsTab } from './components/DetailsTab';
 import { OrdersTab } from './components/OrdersTab';
 import { TrackingTab } from './components/TrackingTab';
@@ -14,6 +14,7 @@ import { AddressesTab } from './components/AddressesTab';
 import { WishlistTab } from './components/WishlistTab';
 import { ReferralTab } from './components/ReferralTab';
 import { SettingsTab } from './components/SettingsTab';
+import { VaultScratchCard } from './components/VaultScratchCard';
 
 interface Address {
   id: string;
@@ -22,6 +23,7 @@ interface Address {
   city: string;
   zip: string;
   phone: string;
+  isDefault?: boolean;
 }
 
 interface OrderItem {
@@ -43,7 +45,7 @@ interface Order {
 }
 
 interface UserProfileProps {
-  onAddToCart: (product: { id: number; name: string; price: number; img: string }) => void;
+  onAddToCart: (product: { id: number; name: string; price: number; img: string }, openCart?: boolean) => void;
   onLogout: () => void;
 }
 
@@ -54,7 +56,8 @@ const DEFAULT_ADDRESSES: Address[] = [
     street: '742 Evergreen Terrace',
     city: 'Springfield, IL',
     zip: '62704',
-    phone: '+1 (555) 0199'
+    phone: '+1 (555) 0199',
+    isDefault: true
   },
   {
     id: 'addr-2',
@@ -62,7 +65,8 @@ const DEFAULT_ADDRESSES: Address[] = [
     street: '500 Forest Avenue, Suite 12',
     city: 'Portland, ME',
     zip: '04101',
-    phone: '+1 (555) 9821'
+    phone: '+1 (555) 9821',
+    isDefault: false
   }
 ];
 
@@ -98,14 +102,16 @@ const DEFAULT_WISHLIST = [
     name: 'Squalane Radiance Glow Serum',
     price: 54.00,
     img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=400&auto=format&fit=crop',
-    description: 'Ultra-lightweight skin oil that deeply locks in essential moisture.'
+    description: 'Ultra-lightweight skin oil that deeply locks in essential moisture.',
+    category: 'Face Serum'
   },
   {
     id: 102,
     name: 'Lavender Calming Hand Cream',
     price: 26.00,
     img: 'https://images.unsplash.com/photo-1601049676099-e7ed07d825b0?q=80&w=400&auto=format&fit=crop',
-    description: 'Soothes rough, dry hands with nourishing organic lavender essence.'
+    description: 'Soothes rough, dry hands with nourishing organic lavender essence.',
+    category: 'Hand & Body'
   }
 ];
 
@@ -179,9 +185,9 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
     setUser(updated);
     localStorage.setItem('morkins_logged_in_user', JSON.stringify(updated));
 
-    // Also update in simulated accounts list
+    // Update in simulated accounts list
     const accounts = JSON.parse(localStorage.getItem('morkins_simulated_users') || '[]');
-    const index = accounts.findIndex((a: any) => a.email.toLowerCase() === user.email.toLowerCase());
+    const index = accounts.findIndex((a: any) => a.email?.toLowerCase() === user.email?.toLowerCase());
     if (index !== -1) {
       accounts[index].fullName = editName;
       accounts[index].phone = editPhone;
@@ -208,7 +214,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
 
         // Update in simulated accounts list
         const accounts = JSON.parse(localStorage.getItem('morkins_simulated_users') || '[]');
-        const index = accounts.findIndex((a: any) => a.email.toLowerCase() === user.email.toLowerCase());
+        const index = accounts.findIndex((a: any) => a.email?.toLowerCase() === user.email?.toLowerCase());
         if (index !== -1) {
           accounts[index].profileImage = base64String;
           localStorage.setItem('morkins_simulated_users', JSON.stringify(accounts));
@@ -227,7 +233,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
     if (editingAddressId) {
       updatedAddrs = updatedAddrs.map(addr =>
         addr.id === editingAddressId
-          ? { id: addr.id, label: addrLabel, street: addrStreet, city: addrCity, zip: addrZip, phone: addrPhone }
+          ? { id: addr.id, label: addrLabel, street: addrStreet, city: addrCity, zip: addrZip, phone: addrPhone, isDefault: addr.isDefault }
           : addr
       );
     } else {
@@ -237,7 +243,8 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
         street: addrStreet,
         city: addrCity,
         zip: addrZip,
-        phone: addrPhone
+        phone: addrPhone,
+        isDefault: addresses.length === 0
       };
       updatedAddrs.push(newAddr);
     }
@@ -280,7 +287,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
   };
 
   const handleCopyReferral = () => {
-    const referralLink = `${window.location.origin}/?ref=${user.fullName?.toLowerCase().replace(/\s+/g, '-') || 'member'}`;
+    const referralLink = `${window.location.origin}/?ref=${user.fullName?.toLowerCase().replace(/\s+/g, '-') || 'patron'}`;
     navigator.clipboard.writeText(referralLink);
     setCopiedReferral(true);
     setTimeout(() => setCopiedReferral(false), 2000);
@@ -294,8 +301,18 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
     { label: t('track_delivered'), desc: t('track_delivered_desc'), time: 'July 16, Expected', completed: selectedTrackingOrder.status === 'delivered' }
   ];
 
+  const navigationTabs = [
+    { id: 'details', label: 'Personal Information', icon: User },
+    { id: 'orders', label: 'Order History', icon: ShoppingBag, count: DEFAULT_ORDERS.length },
+    { id: 'tracking', label: 'Order Tracking', icon: Compass, alert: true },
+    { id: 'addresses', label: 'Saved Addresses', icon: MapPin, count: addresses.length },
+    { id: 'wishlist', label: 'My Wishlist', icon: Heart, count: wishlist.length },
+    { id: 'referral', label: 'VIP Rewards & Referrals', icon: Gift, highlight: true },
+    { id: 'settings', label: 'Preferences & Settings', icon: Globe }
+  ];
+
   return (
-    <div className="py-12 px-4 md:px-6 max-w-7xl mx-auto font-sans text-brand-dark animate-fade-in">
+    <div className="min-h-screen bg-linear-to-b from-[#FCFBF8] via-[#FAF8F2] to-[#F7F4EB] py-8 sm:py-12 px-4 sm:px-6 lg:px-8 text-[#1C2E1A] selection:bg-[#AFD971] selection:text-[#1C331B]">
       
       {/* Hidden File Input for Avatar Upload */}
       <input 
@@ -306,214 +323,361 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
         accept="image/*" 
       />
 
-      {/* Luxury Cover Header Banner */}
-      <div className="relative h-48 md:h-84 rounded-lg overflow-hidden mb-12 shadow-md border border-brand-dark/10">
-        <img
-          src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80"
-          alt="Botanical Background"
-          className="w-full h-full object-cover brightness-[0.8] scale-105"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-
-        {/* Sign Out on Cover Header */}
-        <button
-          onClick={onLogout}
-          className="absolute bottom-2 right-2 flex items-center space-x-1.5 px-4 py-2 bg-red-600 hover:bg-red-700 border border-black/20 rounded-full text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-md cursor-pointer transition-all active:scale-95"
-        >
-          <LogOut className="w-3.5 h-3.5" />
-          <span>{t('nav_signout')}</span>
-        </button>
-
-        {/* Floating User Cover Badge */}
-        <div className="absolute bottom-6 left-6 md:left-10 flex items-center space-x-4 md:space-x-6">
-          {/* Avatar Container with Upload Feature */}
-          <div 
-            onClick={triggerImageUpload}
-            className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-brand-cream text-gray-900 font-serif flex items-center justify-center text-2xl md:text-4xl font-bold border-4 border-white/95 shadow-lg select-none relative overflow-hidden group cursor-pointer active:scale-95 transition-all"
-          >
-            {user.profileImage ? (
-              <img 
-                src={user.profileImage} 
-                alt="Profile Avatar" 
-                className="w-full h-full object-cover rounded-full" 
-              />
-            ) : (
-              <span>{user.fullName ? user.fullName[0].toUpperCase() : 'U'}</span>
-            )}
-            
-            {/* Upload Overlay on Hover */}
-            <div className="absolute inset-0 bg-brand-dark/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <Camera className="w-4 h-4 md:w-6 md:h-6 text-white" />
-              <span className="text-[7px] md:text-[9px] uppercase font-bold text-white tracking-widest mt-1">Upload</span>
-            </div>
-          </div>
-
-          <div className="text-white">
-            <div className="flex items-center space-x-2">
-              <h2 className="font-serif text-xl md:text-3xl font-extrabold tracking-wide">{user.fullName || 'Valued Member'}</h2>
-              <span className="bg-brand-accent/25 border border-brand-accent/30 text-brand-accent text-[9px] uppercase font-extrabold tracking-widest px-2.5 py-0.5 rounded-full backdrop-blur-sm flex items-center space-x-1">
-                <Award className="w-3 h-3 text-brand-accent" />
-                <span>{t('profile_vip')}</span>
-              </span>
-            </div>
-            <p className="text-[10px] md:text-xs text-white/70 font-mono tracking-widest uppercase mt-0.5">{user.email}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Gamified Skincare Loyalty Stats Widget */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-        {[
-          { label: t('profile_loyalty_pts'), value: '380 pts', desc: t('profile_pts_desc'), icon: Award },
-          { label: t('profile_orders_placed'), value: '02 Orders', desc: t('profile_orders_desc'), icon: ShoppingBag },
-          { label: t('profile_wishlist_rout'), value: `${wishlist.length} Items`, desc: t('profile_wishlist_desc'), icon: Heart },
-          { label: t('profile_carbon'), value: '4.8 kg CO₂', desc: t('profile_carbon_desc'), icon: Activity }
-        ].map((stat, i) => (
-          <div key={i} className="bg-white/60 border border-brand-dark/10 p-5 rounded-3xl flex items-center space-x-4 shadow-3xs backdrop-blur-xs">
-            <div className="p-3 bg-brand-cream rounded-2xl border border-brand-dark/5 text-[#184433]">
-              <stat.icon className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-[9px] uppercase tracking-wider text-[#184433]/70 font-bold">{stat.label}</p>
-              <h4 className="font-serif text-lg font-bold text-[#184433]">{stat.value}</h4>
-              <p className="text-[9px] text-[#184433]/70 font-light mt-0.5">{stat.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+      <div className="max-w-7xl mx-auto">
         
-        {/* Left Interactive Sidebar Menu matching the requested layout */}
-        <div className="lg:col-span-1 bg-white border border-brand-dark/10 rounded-[32px] p-5 shadow-sm space-y-5">
-          <p className="text-[10px] uppercase tracking-widest font-extrabold text-[#184433]/50 px-4">YOUR SANCTUARY</p>
-          <nav className="flex flex-col space-y-2">
-            {[
-              { id: 'details', label: 'PERSONAL INFORMATION', icon: User },
-              { id: 'orders', label: 'ORDER HISTORY', icon: ShoppingBag },
-              { id: 'tracking', label: 'ORDER TRACKING', icon: Compass },
-              { id: 'addresses', label: 'SAVED ADDRESSES', icon: MapPin },
-              { id: 'wishlist', label: 'MY WISHLIST', icon: Heart },
-              { id: 'referral', label: 'REFER A FRIEND', icon: Gift },
-              { id: 'settings', label: 'PREFERENCES', icon: Globe }
-            ].map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => {
-                  setActiveTab(tab.id as any);
-                  setShowAddressForm(false);
-                }}
-                className={`w-full flex items-center justify-between px-5 py-3.5 rounded-2xl text-left text-xs font-extrabold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                  activeTab === tab.id 
-                    ? 'bg-[#184433] text-white shadow-md scale-[1.01]' 
-                    : 'text-[#184433]/75 hover:text-[#184433] hover:bg-[#F1F3F0]'
-                }`}
-              >
-                <div className="flex items-center space-x-3.5">
-                  <tab.icon className="w-4 h-4 shrink-0" />
-                  <span>{tab.label}</span>
-                </div>
-                <ChevronRight className={`w-3.5 h-3.5 transition-transform ${activeTab === tab.id ? 'translate-x-0.5 text-white' : 'text-[#184433]/50'}`} />
-              </button>
-            ))}
-          </nav>
-        </div>
-
-        {/* Right Active Details Panel */}
-        <div className="lg:col-span-3 min-h-[400px]">
+        {/* ── 1. Unified Executive Patron Sanctuary Dashboard Container ── */}
+        <div className="bg-white/95 rounded-xl border border-[#DDD3C1] shadow-[0_8px_32px_rgba(18,96,47,0.06)] mb-8 relative overflow-hidden backdrop-blur-md">
+          {/* Top Gold & Emerald Gradient Shimmer Line */}
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-[#12602F] via-[#C49746] to-[#AFD971]" />
           
-          {/* TAB: DETAILS */}
-          {activeTab === 'details' && (
-            <DetailsTab 
-              user={user}
-              isEditingUser={isEditingUser}
-              setIsEditingUser={setIsEditingUser}
-              editName={editName}
-              setEditName={setEditName}
-              editPhone={editPhone}
-              setEditPhone={setEditPhone}
-              handleUpdateProfile={handleUpdateProfile}
-              t={t}
-            />
-          )}
+          {/* Subtle Ambient Glows */}
+          <div className="absolute -top-16 -right-16 w-60 h-60 bg-[#AFD971]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-16 -left-16 w-60 h-60 bg-[#12602F]/5 rounded-full blur-3xl pointer-events-none" />
 
-          {/* TAB: ORDERS */}
-          {activeTab === 'orders' && (
-            <OrdersTab 
-              orders={DEFAULT_ORDERS}
-              setSelectedTrackingOrder={setSelectedTrackingOrder}
-              setActiveTab={setActiveTab}
-              t={t}
-            />
-          )}
+          {/* ── TOP SECTION: 3 Columns (Profile, Shipment Radar, Vault) ── */}
+          <div className="p-6 sm:p-7 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+              
+              {/* Col 1 (5 cols): Patron Profile & Identity */}
+              <div className="lg:col-span-5 flex items-center gap-4 sm:gap-5">
+                {/* Double-Ring Luxury Avatar Stage */}
+                <div className="relative shrink-0">
+                  <div className="p-1 rounded-full bg-linear-to-br from-[#EFE8D8] via-[#FAF8F2] to-[#DDD3C1] shadow-md">
+                    <div 
+                      onClick={triggerImageUpload}
+                      className="w-18 h-18 sm:w-22 sm:h-22 rounded-full bg-[#FAF8F2] text-[#12602F] font-serif flex items-center justify-center text-3xl font-bold ring-2 ring-[#C49746]/40 shadow-inner relative overflow-hidden group cursor-pointer active:scale-95 transition-all"
+                      title="Click to update photo"
+                    >
+                      {user.profileImage ? (
+                        <img src={user.profileImage} alt="Avatar" className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="font-bold text-[#12602F]">{user.fullName ? user.fullName[0].toUpperCase() : 'P'}</span>
+                      )}
+                      <div className="absolute inset-0 bg-black/60 backdrop-blur-2xs flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        <Camera className="w-4.5 h-4.5 text-[#AFD971]" />
+                        <span className="text-[8px] font-bold text-white uppercase mt-0.5 tracking-wider">Edit</span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Verified Dot */}
+                  <div className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-[#12602F] border-2 border-white flex items-center justify-center text-[#AFD971] shadow-md" title="Verified Patron">
+                    <Check className="w-3.5 h-3.5 stroke-3" />
+                  </div>
+                </div>
 
-          {/* TAB: TRACKING */}
-          {activeTab === 'tracking' && (
-            <TrackingTab 
-              selectedTrackingOrder={selectedTrackingOrder}
-              trackingSteps={trackingSteps}
-              t={t}
-            />
-          )}
+                {/* Identity Info */}
+                <div className="min-w-0 flex-1 space-y-1">
+                
 
-          {/* TAB: ADDRESSES */}
-          {activeTab === 'addresses' && (
-            <AddressesTab 
-              addresses={addresses}
-              showAddressForm={showAddressForm}
-              setShowAddressForm={setShowAddressForm}
-              editingAddressId={editingAddressId}
-              addrLabel={addrLabel}
-              setAddrLabel={setAddrLabel}
-              addrStreet={addrStreet}
-              setAddrStreet={setAddrStreet}
-              addrCity={addrCity}
-              setAddrCity={setAddrCity}
-              addrZip={addrZip}
-              setAddrZip={setAddrZip}
-              addrPhone={addrPhone}
-              setAddrPhone={setAddrPhone}
-              handleSaveAddress={handleSaveAddress}
-              handleEditAddress={handleEditAddress}
-              handleDeleteAddress={handleDeleteAddress}
-              resetAddressForm={resetAddressForm}
-              t={t}
-            />
-          )}
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1C2E1A] truncate tracking-tight">
+                    {user.fullName || 'Valued Patron'}
+                  </h2>
 
-          {/* TAB: WISHLIST */}
-          {activeTab === 'wishlist' && (
-            <WishlistTab 
-              wishlist={wishlist}
-              handleRemoveWishlist={handleRemoveWishlist}
-              onAddToCart={onAddToCart}
-              t={t}
-            />
-          )}
+                  <p className="text-xs text-[#464D3F] font-mono truncate">
+                    {user.email}
+                  </p>
 
-          {/* TAB: REFERRAL */}
-          {activeTab === 'referral' && (
-            <ReferralTab 
-              user={user}
-              copiedReferral={copiedReferral}
-              handleCopyReferral={handleCopyReferral}
-              t={t}
-            />
-          )}
+                  {/* Refined Action Pill Buttons */}
+                  <div className="flex items-center gap-2 pt-1.5">
+                    <button
+                      onClick={() => {
+                        setActiveTab('details');
+                        setIsEditingUser(true);
+                      }}
+                      className="px-3 py-1 bg-[#FAF8F2] hover:bg-[#12602F] text-[#12602F] hover:text-[#AFD971] border border-[#DDD3C1] hover:border-[#12602F] rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all duration-200 shadow-2xs active:scale-95 flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <User className="w-3 h-3" />
+                      <span>Edit Profile</span>
+                    </button>
 
-          {/* TAB: SETTINGS & PREFERENCES */}
-          {activeTab === 'settings' && (
-            <SettingsTab 
-              language={language}
-              setLanguage={setLanguage}
-              t={t}
-            />
-          )}
+                    <button
+                      onClick={onLogout}
+                      className="px-3 py-1 bg-[#FAF8F2] hover:bg-rose-50 text-[#464D3F] hover:text-rose-700 border border-[#DDD3C1] hover:border-rose-200 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all duration-200 shadow-2xs active:scale-95 flex items-center gap-1.5 cursor-pointer"
+                    >
+                      <LogOut className="w-3 h-3" />
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Col 2 (4 cols): Active Order Radar (Luminous Card) */}
+              <div className="lg:col-span-4 bg-linear-to-br from-[#FAF8F2] via-white to-[#F7F4EB] p-4 sm:p-5 rounded-xl border border-[#DDD3C1] shadow-2xs hover:border-[#12602F]/40 transition-all space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#12602F] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#12602F]"></span>
+                    </span>
+                    <span className="text-[10px] uppercase font-extrabold tracking-wider text-[#8C6221]">
+                      Active Shipment Radar
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-mono font-bold text-[#1C2E1A] bg-white px-2 py-0.5 rounded-md border border-[#DDD3C1] shadow-2xs">
+                    {selectedTrackingOrder.id}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-[#E5DEC9]">
+                  <div className="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-[#12602F] shadow-2xs shrink-0">
+                    <Truck className="w-4.5 h-4.5 text-[#12602F]" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold text-[#1C2E1A] truncate">
+                      {selectedTrackingOrder.status.replace(/_/g, ' ').toUpperCase()} • Arriving {selectedTrackingOrder.estimatedDelivery}
+                    </p>
+                    <p className="text-[11px] text-[#464D3F] truncate mt-0.5">
+                      {selectedTrackingOrder.items[0]?.name || 'Botanical Formulation'}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setActiveTab('tracking')}
+                  className="w-full py-2 bg-[#12602F] hover:bg-[#0E4F26] text-[#AFD971] text-[11px] font-bold uppercase tracking-wider rounded-xl transition-all duration-200 shadow-xs active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer group"
+                >
+                  <span>Track Live Delivery</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+
+              {/* Col 3 (3 cols): 180° 3D Flippable Patron Vault & Scratch Coupon Card */}
+              <VaultScratchCard 
+                creditBalance="$30.00" 
+                points={380} 
+                tier="Gold" 
+                nextTierPoints={120} 
+              />
+
+            </div>
+          </div>
+
+          {/* ── BOTTOM SECTION: 4 KPI Metrics Integrated Row ── */}
+          <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-2 border-t border-[#E5DEC9]/80 bg-linear-to-b from-[#FCFBF8] to-[#FAF8F2] relative z-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 pt-4">
+              {[
+                {
+                  id: 'referral',
+                  label: 'Patron Loyalty Points',
+                  value: '380 Pts',
+                  desc: '$38.00 Reward Value',
+                  icon: Award,
+                  tag: 'Redeem',
+                  accent: 'text-[#C49746] bg-amber-50 border-amber-200/80 hover:border-[#C49746]'
+                },
+                {
+                  id: 'orders',
+                  label: 'Total Orders Placed',
+                  value: `${DEFAULT_ORDERS.length} Orders`,
+                  desc: '1 Active In-Transit Shipment',
+                  icon: ShoppingBag,
+                  tag: 'Track',
+                  accent: 'text-[#12602F] bg-emerald-50 border-emerald-200/80 hover:border-[#12602F]'
+                },
+                {
+                  id: 'wishlist',
+                  label: 'Saved Harvest Wishlist',
+                  value: `${wishlist.length} Formulas`,
+                  desc: 'Ready for Quick Bag Add',
+                  icon: Heart,
+                  tag: 'View',
+                  accent: 'text-rose-600 bg-rose-50 border-rose-200/80 hover:border-rose-400'
+                },
+                {
+                  id: 'tracking',
+                  label: 'Sustainability Index',
+                  value: '4.8 kg CO₂',
+                  desc: '100% Eco-Neutral Delivery',
+                  icon: Activity,
+                  tag: 'Eco-Cert',
+                  accent: 'text-sky-700 bg-sky-50 border-sky-200/80 hover:border-sky-400'
+                }
+              ].map((stat, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setActiveTab(stat.id as any);
+                    setShowAddressForm(false);
+                  }}
+                  className="bg-white rounded-2xl p-3.5 sm:p-4 border border-[#DDD3C1] shadow-2xs hover:shadow-md hover:border-[#12602F] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3 text-left cursor-pointer group"
+                >
+                  <div className={`p-2.5 rounded-xl border ${stat.accent} shrink-0 shadow-2xs group-hover:scale-105 transition-transform`}>
+                    <stat.icon className="w-4.5 h-4.5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="text-[9px] uppercase tracking-wider text-[#8C6221] font-bold truncate">
+                        {stat.label}
+                      </span>
+                      <span className="text-[9px] font-mono font-bold text-gray-400 group-hover:text-[#12602F] transition-colors shrink-0">
+                        {stat.tag} →
+                      </span>
+                    </div>
+                    <h4 className="font-serif text-base sm:text-lg font-bold text-[#1C2E1A] mt-0.5">
+                      {stat.value}
+                    </h4>
+                    <p className="text-[10px] text-[#464D3F] font-light truncate mt-0.5">
+                      {stat.desc}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
 
         </div>
+
+        {/* ── 3. Main Body: Sticky Sidebar Navigation & Tab Content ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+          
+          {/* Left: Navigation Sidebar */}
+          <div className="lg:col-span-1 bg-white border border-[#DDD3C1] rounded-2xl p-4 sm:p-5 shadow-2xs sticky top-24 space-y-3">
+            <div className="px-3 pb-2 border-b border-[#E5DEC9] flex items-center justify-between">
+              <span className="text-[10px] uppercase tracking-widest font-extrabold text-[#8C6221]">
+                SANCTUARY VAULT
+              </span>
+              <span className="w-2 h-2 rounded-full bg-[#12602F] animate-pulse" />
+            </div>
+
+            <nav className="flex flex-col gap-1.5">
+              {navigationTabs.map(tab => {
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => {
+                      setActiveTab(tab.id as any);
+                      setShowAddressForm(false);
+                    }}
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                      isActive 
+                        ? 'bg-linear-to-r from-[#12602F] to-[#1F7A3E] text-[#AFD971] shadow-xs scale-100 border border-[#AFD971]/30' 
+                        : 'text-[#464D3F] hover:text-[#12602F] hover:bg-[#FAF8F2]'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <tab.icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#AFD971]' : 'text-[#8C6221]'}`} />
+                      <span className="truncate">{tab.label}</span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {tab.count !== undefined && (
+                        <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
+                          isActive ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-700'
+                        }`}>
+                          {tab.count}
+                        </span>
+                      )}
+                      {tab.highlight && !isActive && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                      )}
+                      <ChevronRight className={`w-3.5 h-3.5 transition-transform ${
+                        isActive ? 'translate-x-0.5 text-[#AFD971]' : 'text-gray-400'
+                      }`} />
+                    </div>
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
+
+          {/* Right: Active Tab Details Panel */}
+          <div className="lg:col-span-3 min-h-[500px]">
+            
+            {/* TAB: PERSONAL DETAILS */}
+            {activeTab === 'details' && (
+              <DetailsTab 
+                user={user}
+                isEditingUser={isEditingUser}
+                setIsEditingUser={setIsEditingUser}
+                editName={editName}
+                setEditName={setEditName}
+                editPhone={editPhone}
+                setEditPhone={setEditPhone}
+                handleUpdateProfile={handleUpdateProfile}
+                t={t}
+              />
+            )}
+
+            {/* TAB: ORDER HISTORY */}
+            {activeTab === 'orders' && (
+              <OrdersTab 
+                orders={DEFAULT_ORDERS}
+                setSelectedTrackingOrder={setSelectedTrackingOrder}
+                setActiveTab={setActiveTab}
+                onAddToCart={onAddToCart}
+                t={t}
+              />
+            )}
+
+            {/* TAB: ORDER TRACKING */}
+            {activeTab === 'tracking' && (
+              <TrackingTab 
+                selectedTrackingOrder={selectedTrackingOrder}
+                trackingSteps={trackingSteps}
+                setActiveTab={setActiveTab}
+                t={t}
+              />
+            )}
+
+            {/* TAB: SAVED ADDRESSES */}
+            {activeTab === 'addresses' && (
+              <AddressesTab 
+                addresses={addresses}
+                showAddressForm={showAddressForm}
+                setShowAddressForm={setShowAddressForm}
+                editingAddressId={editingAddressId}
+                addrLabel={addrLabel}
+                setAddrLabel={setAddrLabel}
+                addrStreet={addrStreet}
+                setAddrStreet={setAddrStreet}
+                addrCity={addrCity}
+                setAddrCity={setAddrCity}
+                addrZip={addrZip}
+                setAddrZip={setAddrZip}
+                addrPhone={addrPhone}
+                setAddrPhone={setAddrPhone}
+                handleSaveAddress={handleSaveAddress}
+                handleEditAddress={handleEditAddress}
+                handleDeleteAddress={handleDeleteAddress}
+                resetAddressForm={resetAddressForm}
+                t={t}
+              />
+            )}
+
+            {/* TAB: WISHLIST */}
+            {activeTab === 'wishlist' && (
+              <WishlistTab 
+                wishlist={wishlist}
+                handleRemoveWishlist={handleRemoveWishlist}
+                onAddToCart={onAddToCart}
+                t={t}
+              />
+            )}
+
+            {/* TAB: REFERRALS & REWARDS */}
+            {activeTab === 'referral' && (
+              <ReferralTab 
+                user={user}
+                copiedReferral={copiedReferral}
+                handleCopyReferral={handleCopyReferral}
+                t={t}
+              />
+            )}
+
+            {/* TAB: PREFERENCES & SETTINGS */}
+            {activeTab === 'settings' && (
+              <SettingsTab 
+                language={language}
+                setLanguage={setLanguage}
+                t={t}
+              />
+            )}
+
+          </div>
+        </div>
+
       </div>
     </div>
   );
 }
-
-

@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import BestSellersHero from './BestSellersHero';
 import BestSellersGrid from './BestSellersGrid';
-import BestSellersClinicalComparison from './BestSellersClinicalComparison';
 import BestSellersReviews from './BestSellersReviews';
 import BestSellersHighlights from './BestSellersHighlights';
 import BestSellersFAQ from './BestSellersFAQ';
 import BestSellersQuickView from './BestSellersQuickView';
-import BestSellersLiveTicker from './BestSellersLiveTicker';
 import type { ProductExtended } from '../products/data/products';
 
 interface BestSellersPageProps {
@@ -32,7 +30,7 @@ export default function BestSellersPage({ onAddToCart }: BestSellersPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FCFBF8] text-brand-dark selection:bg-[#AFD971] selection:text-[#1C331B]">
+    <div className="min-h-screen bg-[#FCFBF8] text-[#1C2E1A] selection:bg-[#AFD971] selection:text-[#1C331B]">
       {/* 1. Editorial Hero Section */}
       <BestSellersHero />      
 
@@ -42,11 +40,9 @@ export default function BestSellersPage({ onAddToCart }: BestSellersPageProps) {
         onOpenQuickView={handleOpenQuickView}
       />
 
-      {/* 5. Clinical Trial Before & After Comparison Slider */}
-      <BestSellersClinicalComparison />
 
       {/* 6. VIP Verified Reviews & Rating Breakdown */}
-      <BestSellersReviews />
+      <BestSellersReviews onAddToCart={onAddToCart} />
 
       {/* 7. The Morkins Botanical Standard & Craftsmanship */}
       <BestSellersHighlights />
@@ -62,8 +58,7 @@ export default function BestSellersPage({ onAddToCart }: BestSellersPageProps) {
         onAddToCart={onAddToCart}
       />
 
-      {/* 10. Live Social Proof Purchase Ticker */}
-      <BestSellersLiveTicker />
+  
     </div>
   );
 }
