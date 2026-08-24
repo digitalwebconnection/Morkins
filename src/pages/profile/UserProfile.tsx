@@ -443,7 +443,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
 
               {/* Col 3 (3 cols): 180° 3D Flippable Patron Vault & Scratch Coupon Card */}
               <VaultScratchCard 
-                creditBalance="$30.00" 
+                userEmail={user?.email || 'patron@morkins.com'} 
                 points={380} 
                 tier="Gold" 
                 nextTierPoints={120} 
