@@ -17,7 +17,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-black text-[#D8D9D7] relative overflow-hidden">
+    <footer className="bg-black text-brand-cream relative overflow-hidden">
       {/* MAIN FOOTER BODY */}
       <div className="max-w-7xl mx-auto px-6 lg:px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-32">
@@ -48,17 +48,17 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t("foot_placeholder_email")}
-                  className="bg-white/10 text-[#D8D9D7] placeholder:text-[#D8D9D7]/70 text-sm px-4 py-3 outline-none focus:bg-white/20 transition-all duration-300 w-full"
+                  className="bg-white/10 text-brand-cream placeholder:text-brand-cream/70 text-sm px-4 py-3 outline-none focus:bg-white/20 transition-all duration-300 w-full"
                 />
                 <button
                   type="submit"
-                  className="bg-[#D8D9D7] text-[#6F8C51] text-[11px] font-bold uppercase tracking-widest px-3 py-2.5 hover:bg-[#AFD971] hover:text-[#6F8C51] transition-colors duration-200 cursor-pointer shrink-0"
+                  className="bg-brand-cream text-[#6F8C51] text-[11px] font-bold uppercase tracking-widest px-3 py-2.5 hover:bg-[#AFD971] hover:text-[#6F8C51] transition-colors duration-200 cursor-pointer shrink-0"
                 >
                   {t("foot_sub_btn")}
                 </button>
               </form>
               {subscribed && (
-                <p className="text-[#D8D9D7] text-xs mt-2 font-medium">
+                <p className="text-brand-cream text-xs mt-2 font-medium">
                   {t("foot_subscribed")}
                 </p>
               )}

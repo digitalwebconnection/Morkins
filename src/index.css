@@ -65,7 +65,11 @@
 
 @layer base {
   body {
-    @apply font-sans bg-[#D8D9D7] text-[#6F8C51] antialiased;
+    font-family: var(--font-sans);
+    background-color: var(--color-brand-cream);
+    color: #6F8C51;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     margin: 0;
   }
 }

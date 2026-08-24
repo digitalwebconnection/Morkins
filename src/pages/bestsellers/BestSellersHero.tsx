@@ -72,7 +72,7 @@ export default function BestSellersHero() {
           <span className="font-bold bg-linear-to-r from-[#8C6221] via-[#D4B06A] to-[#8C6221] bg-clip-text text-transparent drop-shadow-[0_2px_18px_rgba(196,151,70,0.32)] relative inline-block">
             Botanical Masterpieces
             {/* Subtle glow underline effect */}
-            <span className="absolute -bottom-1 left-0 right-0 h-[2px] hero-shimmer rounded-full" />
+            <span className="absolute -bottom-1 left-0 right-0 h-0.5 hero-shimmer rounded-full" />
           </span>
         </h1>
 

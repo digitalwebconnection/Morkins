@@ -582,7 +582,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
           </div>
 
           {/* Right: Active Tab Details Panel */}
-          <div className="lg:col-span-3 min-h-[500px]">
+          <div className="lg:col-span-3 min-h-125">
             
             {/* TAB: PERSONAL DETAILS */}
             {activeTab === 'details' && (

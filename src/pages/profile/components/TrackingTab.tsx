@@ -124,11 +124,11 @@ export const TrackingTab: React.FC<TrackingTabProps> = ({
         <div className="mt-8 pt-6 border-t border-[#E5DEC9]">
           <div className="relative pl-6 sm:pl-8 space-y-8 sm:space-y-10">
             {/* Vertical Connecting Line */}
-            <div className="absolute left-[19px] top-4 bottom-4 w-1 bg-[#E5DEC9] rounded-full" />
+            <div className="absolute left-4.75 top-4 bottom-4 w-1 bg-[#E5DEC9] rounded-full" />
             
             {/* Active Progress Fill */}
             <div
-              className="absolute left-[19px] top-4 w-1 bg-linear-to-b from-[#12602F] to-[#2B7D46] rounded-full transition-all duration-700"
+              className="absolute left-4.75 top-4 w-1 bg-linear-to-b from-[#12602F] to-[#2B7D46] rounded-full transition-all duration-700"
               style={{
                 height: isDelivered
                   ? '100%'

@@ -748,7 +748,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-[#8C6221] font-bold">Account Vault:</span>
-                  <span className="font-bold truncate max-w-[190px]">{email}</span>
+                  <span className="font-bold truncate max-w-47.5">{email}</span>
                 </div>
                 {phone && (
                   <div className="flex justify-between">

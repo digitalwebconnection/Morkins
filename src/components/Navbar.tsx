@@ -451,7 +451,7 @@ export default function Navbar({
                     if (onCloseCartPopover) onCloseCartPopover();
                     onCartClick();
                   }}
-                  className="w-full mt-4 bg-[#D8D9D7] hover:bg-[#AFD971] border border-[#6F8C51] text-[#6F8C51] hover:text-[#6F8C51] text-[10px] font-bold uppercase tracking-widest py-2.5 rounded-xl transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md text-center active:scale-98 flex items-center justify-center gap-1.5"
+                  className="w-full mt-4 bg-brand-cream hover:bg-[#AFD971] border border-[#6F8C51] text-[#6F8C51] hover:text-[#6F8C51] text-[10px] font-bold uppercase tracking-widest py-2.5 rounded-xl transition-all duration-300 cursor-pointer shadow-xs hover:shadow-md text-center active:scale-98 flex items-center justify-center gap-1.5"
                 >
                   <span>Go to Cart</span>
                   <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
