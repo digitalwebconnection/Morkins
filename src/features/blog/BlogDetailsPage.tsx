@@ -22,7 +22,6 @@ import {
 } from 'lucide-react';
 import { getBlogPostBySlug, getRelatedBlogPosts, BLOG_POSTS } from './data/blogData';
 import { BlogCard } from './components/BlogCard';
-import { BlogNewsletter } from './components/BlogNewsletter';
 
 export default function BlogDetailsPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -171,7 +170,7 @@ export default function BlogDetailsPage() {
       {/* Top Reading Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1.5 bg-neutral-200/60 z-50">
         <div
-          className="h-full bg-gradient-to-r from-[#184433] via-[#6F8C51] to-[#AFD971] transition-all duration-150"
+          className="h-full bg-linear-to-r from-[#184433] via-[#6F8C51] to-[#AFD971] transition-all duration-150"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
@@ -288,11 +287,11 @@ export default function BlogDetailsPage() {
         )}
 
         {/* Upper Featured Blog Image Banner */}
-        <div className="rounded-3xl overflow-hidden shadow-lg border border-neutral-200 bg-neutral-100">
+        <div className=" overflow-hidden ">
           <img
             src={post.image}
             alt={post.title}
-            className="w-full h-72 sm:h-96 md:h-[460px] object-cover"
+            className="w-full h-72 sm:h-96 md:h-115 object-cover"
           />
           {post.imageCaption && (
             <div className="bg-[#FAF9F5] px-6 py-3 border-t border-neutral-200/80 text-xs text-neutral-500 font-light italic">
@@ -401,7 +400,7 @@ export default function BlogDetailsPage() {
           <article className="lg:col-span-8 space-y-10 order-1 lg:order-2">
 
             {/* Opening Lead Paragraph / Quote */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border-l-4 border-[#184433] border border-[#184433]/10 shadow-sm">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border-l-4 border-[#184433] border shadow-sm">
               <p className="text-base sm:text-lg text-neutral-800 font-serif italic leading-relaxed">
                 "{post.content.introduction}"
               </p>
@@ -450,7 +449,7 @@ export default function BlogDetailsPage() {
             </div>
 
             {/* Clinical Verdict & Summary Card */}
-            <section id="verdict" className="bg-gradient-to-br from-[#0c261b] to-[#184433] text-white p-7 sm:p-10 rounded-3xl shadow-xl space-y-3 relative overflow-hidden">
+            <section id="verdict" className="bg-linear-to-br from-[#0c261b] to-[#184433] text-white p-7 sm:p-10 rounded-3xl shadow-xl space-y-3 relative overflow-hidden">
               <div className="absolute right-0 bottom-0 w-64 h-64 bg-[#AFD971]/10 rounded-full blur-2xl pointer-events-none" />
               <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#AFD971] bg-white/10 px-3.5 py-1 rounded-full border border-white/15">
                 Clinical Verdict & Summary
@@ -678,7 +677,7 @@ export default function BlogDetailsPage() {
         </div>
 
         {/* Previous & Next Article Navigation Footer */}
-        <div className="max-w-6xl mx-auto pt-10 border-t border-neutral-200/80">
+        <div className="max-w-7xl mx-auto pt-10 border-t border-neutral-200/80">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {prevPost ? (
               <Link
@@ -722,7 +721,7 @@ export default function BlogDetailsPage() {
 
         {/* Related Scientific Publications */}
         {relatedPosts.length > 0 && (
-          <section className="max-w-6xl mx-auto space-y-6 pt-6">
+          <section className="max-w-7xl mx-auto space-y-6 pt-6">
             <div className="flex items-center justify-between border-b border-neutral-200/80 pb-4">
               <div>
                 <h3 className="font-serif text-2xl sm:text-3xl text-[#184433]">
@@ -749,10 +748,7 @@ export default function BlogDetailsPage() {
           </section>
         )}
 
-        {/* Newsletter Subscription */}
-        <div className="max-w-6xl mx-auto pt-6">
-          <BlogNewsletter />
-        </div>
+     
 
       </main>
     </div>

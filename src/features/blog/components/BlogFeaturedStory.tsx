@@ -15,7 +15,7 @@ export function BlogFeaturedStory({ post, isSaved = false, onToggleSave }: BlogF
         to={`/blog/${post.slug}`}
         className="block bg-white rounded-3xl overflow-hidden border border-neutral-200 shadow-xs hover:shadow-xl transition-all duration-400 hover:border-[#184433]/30"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[300px] lg:min-h-[320px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-75 lg:min-h-80">
           
           {/* Cover Media Column */}
           <div className="lg:col-span-5 relative h-56 sm:h-64 lg:h-full overflow-hidden bg-neutral-100">
