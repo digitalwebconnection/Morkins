@@ -1,17 +1,25 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import MainSection from './components/MainSection'
-import { LanguageProvider } from './context/LanguageContext'
+import { BrowserRouter } from 'react-router-dom';
+import { LanguageProvider } from './context/LanguageContext';
+import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
+import MainLayout from './components/layout/MainLayout';
+import AppRoutes from './routes/AppRoutes';
+import './App.css';
 
 function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/*" element={<MainSection />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
+          <BrowserRouter>
+            <MainLayout>
+              <AppRoutes />
+            </MainLayout>
+          </BrowserRouter>
+        </CartProvider>
+      </AuthProvider>
     </LanguageProvider>
-  )
+  );
 }
 
-export default App
+export default App;

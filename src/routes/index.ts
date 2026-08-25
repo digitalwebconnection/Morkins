@@ -1,0 +1,10 @@
+export { default as AppRoutes } from './AppRoutes';
+export { default as HomeRoute } from './HomeRoute';
+export { default as ProductsRoute } from './ProductsRoute';
+export { default as ProductDetailsRoute } from './ProductDetailsRoute';
+export { default as BestSellersRoute } from './BestSellersRoute';
+export { default as NewArrivalsRoute } from './NewArrivalsRoute';
+export { default as AboutRoute } from './AboutRoute';
+export { default as ProfileRoute } from './ProfileRoute';
+export { default as BlogRoute } from './BlogRoute';
+export { default as BlogDetailsRoute } from './BlogDetailsRoute';
