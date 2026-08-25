@@ -24,7 +24,7 @@ export default function AboutTeam() {
   ];
 
   return (
-    <section className="py-14  relative overflow-hidden">
+    <section id="dermatologist" className="py-14 relative overflow-hidden scroll-mt-24">
       {/* Background glow decorators */}
       <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#184433]/5 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-[#375043]/5 blur-3xl pointer-events-none" />

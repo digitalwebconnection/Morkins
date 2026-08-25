@@ -499,7 +499,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
                     setActiveTab(stat.id as any);
                     setShowAddressForm(false);
                   }}
-                  className="bg-white rounded-2xl p-3.5 sm:p-4 border border-[#DDD3C1] shadow-2xs hover:shadow-md hover:border-[#12602F] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3 text-left cursor-pointer group"
+                  className="bg-white rounded-xl p-2 sm:p-3 border border-[#DDD3C1] shadow-lg hover:shadow-md hover:border-[#12602F] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3 text-left cursor-pointer group"
                 >
                   <div className={`p-2.5 rounded-xl border ${stat.accent} shrink-0 shadow-2xs group-hover:scale-105 transition-transform`}>
                     <stat.icon className="w-4.5 h-4.5" />

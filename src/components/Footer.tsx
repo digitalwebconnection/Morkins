@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import footerLogo from "../assets/Morkins Logo.....PNG.png";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -23,13 +24,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-32">
           {/* LEFT: Logo + Newsletter + Socials */}
           <div className="flex flex-col gap-6">
-            <a href="/">
+            <Link to="/">
               <img
                 src={footerLogo}
                 alt="Morkins Logo"
                 className="h-10 w-auto object-contain"
               />
-            </a>
+            </Link>
             <p className="text-brand-cream/90 text-sm leading-relaxed max-w-60">
               {t("foot_mission")}
             </p>
@@ -116,22 +117,22 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {[
-                  { key: "foot_prod_1" },
-                  { key: "foot_prod_2" },
-                  { key: "foot_prod_3" },
-                  { key: "foot_prod_4" },
-                  { key: "foot_prod_5" },
-                  { key: "foot_prod_6" },
-                  { key: "foot_prod_7" },
-                  { key: "foot_prod_8" },
+                  { key: "foot_prod_1", path: "/products" },
+                  { key: "foot_prod_2", path: "/products" },
+                  { key: "foot_prod_3", path: "/products" },
+                  { key: "foot_prod_4", path: "/products" },
+                  { key: "foot_prod_5", path: "/products" },
+                  { key: "foot_prod_6", path: "/products" },
+                  { key: "foot_prod_7", path: "/products" },
+                  { key: "foot_prod_8", path: "/products" },
                 ].map((item) => (
                   <li key={item.key}>
-                    <a
-                      href="#"
-                      className="text-sm text-white/65 hover:text-white transition-colors duration-200 leading-snug block"
+                    <Link
+                      to={item.path}
+                      className="text-sm text-white/95 hover:text-white transition-colors duration-200 leading-snug block"
                     >
                       {t(item.key)}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -144,22 +145,22 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {[
-                  { key: "foot_supp_1" },
-                  { key: "foot_supp_2" },
-                  { key: "foot_supp_3" },
-                  { key: "foot_supp_4" },
-                  { key: "foot_supp_5" },
-                  { key: "foot_supp_6" },
-                  { key: "foot_supp_7" },
-                  { key: "foot_supp_8" },
+                  { key: "foot_supp_1", path: "/faqs" },
+                  { key: "foot_supp_2", path: "/return-refund-policy" },
+                  { key: "foot_supp_3", path: "/privacy-policy" },
+                  { key: "foot_supp_4", path: "/terms-conditions" },
+                  { key: "foot_supp_5", path: "/shipping-policy" },
+                  { key: "foot_supp_6", path: "/track-order" },
+                  { key: "foot_supp_7", path: "/contact" },
+                  { key: "foot_supp_8", path: "/whatsapp-support" },
                 ].map((item) => (
                   <li key={item.key}>
-                    <a
-                      href="#"
-                      className="text-sm text-white/65 hover:text-white transition-colors duration-200 leading-snug block"
+                    <Link
+                      to={item.path}
+                      className="text-sm text-white/95 hover:text-[#AFD971] transition-colors duration-200 leading-snug block"
                     >
                       {t(item.key)}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -172,22 +173,19 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {[
-                  { key: "foot_comp_1" },
-                  { key: "foot_comp_2" },
-                  { key: "foot_comp_3" },
-                  { key: "foot_comp_4" },
-                  { key: "foot_comp_5" },
-                  { key: "foot_comp_6" },
-                  { key: "foot_comp_7" },
-                  { key: "foot_comp_8" },
+                  { key: "foot_comp_1", path: "/about" },
+                  { key: "foot_comp_2", path: "/about#story" },
+                  { key: "foot_comp_5", path: "/about#dermatologist" },
+                  { key: "foot_comp_6", path: "/about#sustainability" },
+                  { key: "foot_comp_8", path: "/blog" },
                 ].map((item) => (
                   <li key={item.key}>
-                    <a
-                      href="#"
-                      className="text-sm text-white/65 hover:text-white transition-colors duration-200 leading-snug block"
+                    <Link
+                      to={item.path}
+                      className="text-sm text-white/95 hover:text-white transition-colors duration-200 leading-snug block"
                     >
                       {t(item.key)}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -203,21 +201,22 @@ export default function Footer() {
             © {new Date().getFullYear()} Morkins. All Rights Reserved.
           </p>
           <div className="flex items-center gap-5">
-            <a
-              href="#"
+            <Link
+              to="/terms-conditions"
               className="text-white/90 hover:text-white/60 text-xs transition-colors"
             >
               {t("foot_supp_4")}
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/privacy-policy"
               className="text-white/90 hover:text-white/60 text-xs transition-colors"
             >
               {t("foot_supp_3")}
-            </a>
+            </Link>
           </div>
         </div>
       </div>
     </footer>
   );
 }
+

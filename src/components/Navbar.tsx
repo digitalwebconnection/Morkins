@@ -543,7 +543,7 @@ export default function Navbar({
           <nav className="flex flex-col space-y-3 font-semibold text-[15px] text-brand-dark pt-1">
             <Link
               to="/products"
-              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${isProductsActive ? 'text-brand-light font-bold' : ''
+              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${isProductsActive ? 'text-[#6F8C51] font-bold' : ''
                 }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -551,7 +551,7 @@ export default function Navbar({
             </Link>
             <Link
               to="/bestsellers"
-              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${isBestsellersActive ? 'text-brand-light font-bold' : ''
+              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${isBestsellersActive ? 'text-[#6F8C51] font-bold' : ''
                 }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -559,7 +559,7 @@ export default function Navbar({
             </Link>
             <Link
               to="/new-arrivals"
-              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${isNewArrivalsActive ? 'text-brand-light font-bold' : ''
+              className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${isNewArrivalsActive ? 'text-[#6F8C51] font-bold' : ''
                 }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -567,7 +567,7 @@ export default function Navbar({
             </Link>
             <Link
               to="/about"
-              className={`py-1 hover:text-brand-light transition-colors ${isAboutActive ? 'text-brand-light font-bold' : ''
+              className={`py-1 hover:text-brand-light transition-colors ${isAboutActive ? 'text-[#6F8C51] font-bold' : ''
                 }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >

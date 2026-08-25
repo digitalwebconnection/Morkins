@@ -12,12 +12,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
   en: {
     // Navbar & Navigation
     nav_products: 'Products',
+    nav_women: 'Women (Skincare)',
+    nav_women_short: 'Women',
+    nav_men: 'Men (Hair Care)',
+    nav_men_short: 'Men',
+    nav_all: 'All Products',
     nav_bestsellers: 'Best Sellers',
     nav_newarrivals: 'New Arrivals',
     nav_about: 'About',
-    nav_search_placeholder: 'Search Skincare...',
+    nav_search_placeholder: 'Search Skincare & Haircare...',
     nav_signout: 'Sign Out',
     nav_signin: 'Sign In',
+
+    // Section Titles
+    sec_women_skincare_title: "Women's Skincare Collection",
+    sec_women_skincare_sub: "Nutrient-rich, bioactive botanical formulations designed to restore, protect, and illuminate your skin.",
+    sec_men_haircare_title: "Men's Hair-Care Collection",
+    sec_men_haircare_sub: "Clinical scalp vitality, follicle energizing formulas, and high-performance grooming essentials.",
 
     // Product Header/Footer Translation
     sec_favorites: 'Shop Our Favorites',
@@ -366,12 +377,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
   hi: {
     // Navbar & Navigation
     nav_products: 'उत्पाद',
+    nav_women: 'महिलाएं (स्किनकेयर)',
+    nav_women_short: 'महिलाएं',
+    nav_men: 'पुरुष (हेयर केयर)',
+    nav_men_short: 'पुरुष',
+    nav_all: 'सभी उत्पाद',
     nav_bestsellers: 'सबसे लोकप्रिय',
     nav_newarrivals: 'नए आगमन',
     nav_about: 'हमारे बारे में',
     nav_search_placeholder: 'खोजें...',
     nav_signout: 'लॉग आउट',
     nav_signin: 'लॉग इन',
+
+    // Section Titles
+    sec_women_skincare_title: "महिला स्किनकेयर संग्रह",
+    sec_women_skincare_sub: "आपकी त्वचा को पुनर्जीवित, सुरक्षित और चमकदार बनाने के लिए बायो-एक्टिव वनस्पति फॉर्मूलेशन।",
+    sec_men_haircare_title: "पुरुष हेयर-केयर संग्रह",
+    sec_men_haircare_sub: "स्कैल्प को स्वस्थ और बालों को मजबूत बनाने वाले उच्च प्रदर्शन वाले उत्पाद।",
 
     // Product Header/Footer Translation
     sec_favorites: 'हमारे पसंदीदा उत्पाद खरीदें',
@@ -720,12 +742,23 @@ const TRANSLATIONS: Record<LanguageCode, Record<string, string>> = {
   gu: {
     // Navbar & Navigation
     nav_products: 'ઉત્પાદો',
+    nav_women: 'મહિલાઓ (સ્કીનકેર)',
+    nav_women_short: 'મહિલાઓ',
+    nav_men: 'પુરુષો (હેર કેર)',
+    nav_men_short: 'પુરુષો',
+    nav_all: 'બધા ઉત્પાદનો',
     nav_bestsellers: 'સૌથી લોકપ્રિય',
     nav_newarrivals: 'નવા આગમન',
     nav_about: 'અમારા વિશે',
     nav_search_placeholder: 'શોધો...',
     nav_signout: 'લૉગ આઉટ',
     nav_signin: 'લૉગ ઇન',
+
+    // Section Titles
+    sec_women_skincare_title: "મહિલા સ્કીનકેર સંગ્રહ",
+    sec_women_skincare_sub: "તમારી ત્વચાને તેજસ્વી, સ્વસ્થ અને સુરક્ષિત રાખવા માટે આયુર્વેદિક અને વિજ્ઞાન-સમર્થિત ઉત્પાદનો.",
+    sec_men_haircare_title: "પુરુષ હેર-કેર સંગ્રહ",
+    sec_men_haircare_sub: "વાળને મજબૂત બનાવવા અને વાળના વિકાસ માટે ખાસ બનાવેલ ફોર્મ્યુલેશન.",
 
     // Product Header/Footer Translation
     sec_favorites: 'અમારા મનપસંદ ઉત્પાદનો ખરીદો',

@@ -82,7 +82,7 @@ export default function CartDrawer({
       <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-6 sm:pl-10">
         <div
           ref={drawerRef}
-          className="pointer-events-auto w-screen max-w-[420px]"
+          className="pointer-events-auto w-screen max-w-105"
           style={{
             transform: isVisible ? 'translateX(0)' : 'translateX(100%)',
             transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)',

@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
-import mainLogo from '../../assets/Morkins Logo.....PNG.png'
 import hero1 from '../../assets/hero/1.jpg'
 import hero2 from '../../assets/hero/2.jpg'
 import hero3 from '../../assets/hero/3.jpg'
@@ -244,9 +243,9 @@ export default function BannerSlider() {
           {/* Dark Gradient Overlay */}
           <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-black/10 z-1" />
 
-          {/* ── Giant Main Morkins Logo (EADEM-style) ── */}
+          {/* ── Giant Main Morkins Title (EADEM-style) ── */}
           <div
-            className="absolute inset-0 z-5 flex items-center justify-center pointer-events-none px-6 "
+            className="absolute inset-0 z-5 flex items-center justify-center pointer-events-none px-6"
             style={{
               opacity: titleOpacity,
               transform: `scale(${titleScale})`,
@@ -254,11 +253,9 @@ export default function BannerSlider() {
               transition: 'opacity 0.05s linear',
             }}
           >
-            <img
-              src={mainLogo}
-              alt="Morkins Main Logo"
-              className="select-none opacity-60  object-contain w-auto max-w-[88%] sm:max-w-[75%] md:max-w-[60%] lg:max-w-[90%] h-22.5 sm:h-32.5 md:h-42.5 lg:h-52.5 drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] brightness-110"
-            />
+            <h1 className="select-none text-white/90 font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[12rem] tracking-[0.2em] sm:tracking-[0.25em] uppercase font-light drop-shadow-[0_10px_40px_rgba(0,0,0,0.7)] text-center pl-[0.2em] sm:pl-[0.25em]">
+              Morkins
+            </h1>
           </div>
 
           {/* Slide Content (headline, subtext, CTA) */}

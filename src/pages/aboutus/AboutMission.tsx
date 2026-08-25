@@ -36,7 +36,7 @@ export default function AboutMission() {
   ]
 
   return (
-    <section className="py-14  relative overflow-hidden">
+    <section id="mission" className="py-14 relative overflow-hidden scroll-mt-24">
       {/* Abstract background circles */}
       <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-[#184433]/5 blur-3xl pointer-events-none -translate-x-1/2" />
 

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import PromoBar from './PromoBar'
 import Navbar from './Navbar'
 import Footer from './Footer'
@@ -11,6 +11,17 @@ import ProductDetailsPage from '../pages/products/ProductDetailsPage'
 import BestSellersPage from '../pages/bestsellers/BestSellersPage'
 import NewArrivalsPage from '../pages/newarrivals/NewArrivalsPage'
 
+// Customer Support Pages
+import FAQsPage from '../pages/support/FAQsPage'
+import ReturnPolicyPage from '../pages/support/ReturnPolicyPage'
+import PrivacyPolicyPage from '../pages/support/PrivacyPolicyPage'
+import TermsPage from '../pages/support/TermsPage'
+import ShippingPolicyPage from '../pages/support/ShippingPolicyPage'
+import TrackOrderPage from '../pages/support/TrackOrderPage'
+import ContactPage from '../pages/support/ContactPage'
+import WhatsAppSupportPage from '../pages/support/WhatsAppSupportPage'
+import BlogPage from '../pages/blog/BlogPage'
+
 import CartDrawer from './CartDrawer'
 import type { CartItem } from './CartDrawer'
 import CartToast from './CartToast'
@@ -18,12 +29,20 @@ import AuthModal from './AuthModal'
 
 export default function MainSection() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [lastAddedItem, setLastAddedItem] = useState<CartItem | null>(null);
   const [showCartPopover, setShowCartPopover] = useState(false);
   const [showToast, setShowToast] = useState(false);
+
+  // Auto scroll to top on route navigation unless hash anchor is present
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+  }, [location.pathname]);
 
   const handleUserClick = () => {
     const user = localStorage.getItem('morkins_logged_in_user');
@@ -100,6 +119,25 @@ export default function MainSection() {
         <Route path="/new-arrivals" element={<NewArrivalsPage onAddToCart={handleAddToCart} />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/profile" element={<UserProfile onAddToCart={handleAddToCart} onLogout={handleLogout} />} />
+
+        {/* Customer Support Routes */}
+        <Route path="/faqs" element={<FAQsPage />} />
+        <Route path="/faq" element={<FAQsPage />} />
+        <Route path="/return-refund-policy" element={<ReturnPolicyPage />} />
+        <Route path="/returns" element={<ReturnPolicyPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-conditions" element={<TermsPage />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/shipping-policy" element={<ShippingPolicyPage />} />
+        <Route path="/track-order" element={<TrackOrderPage />} />
+        <Route path="/tracking" element={<TrackOrderPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/contact-us" element={<ContactPage />} />
+        <Route path="/whatsapp-support" element={<WhatsAppSupportPage />} />
+
+        {/* Editorial Journal / Blog Routes */}
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blogs" element={<BlogPage />} />
       </Routes>
 
       {/* Page Footer */}
