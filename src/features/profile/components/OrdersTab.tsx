@@ -1,31 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
-Package, Truck, CheckCircle2, RotateCcw, 
+  Package, Truck, CheckCircle2, RotateCcw, 
   FileText, ArrowRight, Copy, Check
 } from 'lucide-react';
-
-interface OrderItem {
-  id: number;
-  name: string;
-  qty: number;
-  price: number;
-  img: string;
-}
-
-interface Order {
-  id: string;
-  date: string;
-  status: 'processing' | 'shipped' | 'out_for_delivery' | 'delivered';
-  total: number;
-  items: OrderItem[];
-  trackingNumber: string;
-  estimatedDelivery: string;
-}
+import ReturnRequestModal from '../../../components/shared/ReturnRequestModal';
+import type { Order } from '../../../types';
 
 interface OrdersTabProps {
   orders: Order[];
   setSelectedTrackingOrder: (order: Order) => void;
   setActiveTab: (tab: any) => void;
+  onSelectOrderDetail?: (order: Order) => void;
   onAddToCart?: (product: { id: number; name: string; price: number; img: string }) => void;
   t: (key: string) => string;
 }
@@ -34,13 +20,14 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
   orders,
   setSelectedTrackingOrder,
   setActiveTab,
+  onSelectOrderDetail,
   onAddToCart,
   t,
 }) => {
   const [filterStatus, setFilterStatus] = useState<'all' | 'in_transit' | 'delivered'>('all');
   const [copiedOrderId, setCopiedOrderId] = useState<string | null>(null);
   const [reorderedId, setReorderedId] = useState<string | null>(null);
-  const [downloadedInvoiceId, setDownloadedInvoiceId] = useState<string | null>(null);
+  const [selectedReturnOrder, setSelectedReturnOrder] = useState<Order | null>(null);
 
   const filteredOrders = orders.filter((order) => {
     if (filterStatus === 'all') return true;
@@ -70,16 +57,11 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
     setTimeout(() => setReorderedId(null), 3000);
   };
 
-  const handleDownloadInvoice = (orderId: string) => {
-    setDownloadedInvoiceId(orderId);
-    setTimeout(() => setDownloadedInvoiceId(null), 2500);
-  };
-
   return (
     <div className="space-y-6 animate-fade-in">
       
       {/* ── Section Header ── */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
+      <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#12602F] via-[#1F8242] to-[#C49746]" />
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5DEC9]">
@@ -95,7 +77,7 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
           </div>
 
           {/* Filter Pills */}
-          <div className="flex items-center gap-1.5 bg-[#FAF8F2] p-1.5 rounded-xl border border-[#DDD3C1]">
+          <div className="flex items-center gap-1.5 bg-[#FAF8F2] p-1.5 rounded-lg border border-[#DDD3C1]">
             <button
               onClick={() => setFilterStatus('all')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
@@ -131,7 +113,7 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
 
         {/* Reorder Notification Banner */}
         {reorderedId && (
-          <div className="mt-4 p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-900 text-xs font-semibold flex items-center justify-between animate-fade-in">
+          <div className="mt-4 p-3.5 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-900 text-xs font-semibold flex items-center justify-between animate-fade-in">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>All items from order #{reorderedId} added to your shopping bag!</span>
@@ -140,24 +122,16 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
           </div>
         )}
 
-        {/* Invoice Download Simulation Banner */}
-        {downloadedInvoiceId && (
-          <div className="mt-4 p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 text-xs font-semibold flex items-center gap-2 animate-fade-in">
-            <FileText className="w-4 h-4 text-amber-600 shrink-0" />
-            <span>Official Tax Invoice for #{downloadedInvoiceId} generated and downloaded.</span>
-          </div>
-        )}
-
         {/* ── Order Cards Output ── */}
         <div className="mt-6 space-y-6">
           {filteredOrders.length === 0 ? (
-            <div className="text-center py-16 bg-[#FAF8F2] rounded-2xl border border-[#DDD3C1]/80 p-8">
+            <div className="text-center py-16 bg-[#FAF8F2] rounded-lg border border-[#DDD3C1]/80 p-8">
               <Package className="w-10 h-10 mx-auto mb-2 text-gray-400" />
               <h4 className="font-serif text-lg font-bold text-[#1C2E1A]">No orders found in this status</h4>
               <p className="text-xs text-[#464D3F] mt-1">Select "All" to review your complete transaction history.</p>
               <button
                 onClick={() => setFilterStatus('all')}
-                className="mt-4 px-5 py-2 bg-[#12602F] text-[#AFD971] text-xs font-bold uppercase tracking-wider rounded-xl cursor-pointer"
+                className="mt-4 px-5 py-2 bg-[#12602F] text-[#AFD971] text-xs font-bold uppercase tracking-wider rounded-lg cursor-pointer"
               >
                 Show All Orders
               </button>
@@ -170,12 +144,12 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
               return (
                 <div
                   key={order.id}
-                  className="rounded-2xl border border-[#DDD3C1] overflow-hidden bg-white shadow-2xs hover:shadow-md hover:border-[#12602F]"
+                  className="rounded-lg border border-[#DDD3C1] overflow-hidden bg-white shadow-2xs hover:shadow-md hover:border-[#12602F]"
                 >
                   {/* Order Card Header */}
                   <div className="bg-linear-to-r from-[#FAF8F2] via-[#F7F4EB] to-[#FAF8F2] p-4 sm:p-5 border-b border-[#E5DEC9] flex flex-wrap items-center justify-between gap-4 text-xs">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-white border border-[#DDD3C1] flex items-center justify-center text-[#12602F] shadow-2xs shrink-0">
+                      <div className="w-10 h-10 rounded-lg bg-white border border-[#DDD3C1] flex items-center justify-center text-[#12602F] shadow-2xs shrink-0">
                         {isDelivered ? (
                           <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                         ) : isInTransit ? (
@@ -245,7 +219,7 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
                             <img
                               src={item.img}
                               alt={translatedName}
-                              className="w-14 h-14 object-cover rounded-xl border border-[#DDD3C1] shadow-2xs bg-[#FAF8F2] shrink-0"
+                              className="w-14 h-14 object-cover rounded-lg border border-[#DDD3C1] shadow-2xs bg-[#FAF8F2] shrink-0"
                             />
                             <div className="min-w-0">
                               <h4 className="text-xs sm:text-sm font-bold text-[#1C2E1A] truncate">
@@ -274,19 +248,42 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
                     </div>
 
                     <div className="flex items-center gap-2">
-                      {/* Download Invoice Button */}
-                      <button
-                        onClick={() => handleDownloadInvoice(order.id)}
-                        className="px-3.5 py-1.5 rounded-xl border border-[#DDD3C1] hover:border-[#12602F] text-[#1C2E1A] text-[11px] font-bold uppercase tracking-wider bg-white transition-all cursor-pointer shadow-2xs flex items-center gap-1.5"
-                      >
-                        <FileText className="w-3.5 h-3.5 text-[#8C6221]" />
-                        <span>Invoice</span>
-                      </button>
+                      {/* View Details & Invoice Button */}
+                      {onSelectOrderDetail ? (
+                        <button
+                          type="button"
+                          onClick={() => onSelectOrderDetail(order)}
+                          className="px-3.5 py-1.5 rounded-lg border border-[#DDD3C1] hover:border-[#12602F] text-[#1C2E1A] text-[11px] font-bold uppercase tracking-wider bg-white transition-all cursor-pointer shadow-2xs flex items-center gap-1.5"
+                        >
+                          <FileText className="w-3.5 h-3.5 text-[#8C6221]" />
+                          <span>Details & Invoice</span>
+                        </button>
+                      ) : (
+                        <Link
+                          to={`/orders/${order.id}`}
+                          className="px-3.5 py-1.5 rounded-lg border border-[#DDD3C1] hover:border-[#12602F] text-[#1C2E1A] text-[11px] font-bold uppercase tracking-wider bg-white transition-all cursor-pointer shadow-2xs flex items-center gap-1.5"
+                        >
+                          <FileText className="w-3.5 h-3.5 text-[#8C6221]" />
+                          <span>Details & Invoice</span>
+                        </Link>
+                      )}
+
+                      {/* Request Return (for delivered items) */}
+                      {isDelivered && (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedReturnOrder(order)}
+                          className="px-3.5 py-1.5 rounded-lg border border-[#DDD3C1] hover:border-[#12602F] text-[#1C2E1A] text-[11px] font-bold uppercase tracking-wider bg-white transition-all cursor-pointer shadow-2xs flex items-center gap-1.5"
+                        >
+                          <RotateCcw className="w-3.5 h-3.5 text-[#13442C]" />
+                          <span>Return / Refund</span>
+                        </button>
+                      )}
 
                       {/* Buy Again Button */}
                       <button
                         onClick={() => handleReorder(order)}
-                        className="px-3.5 py-1.5 rounded-xl border border-[#DDD3C1] hover:border-[#12602F] text-[#1C2E1A] text-[11px] font-bold uppercase tracking-wider bg-white transition-all cursor-pointer shadow-2xs flex items-center gap-1.5"
+                        className="px-3.5 py-1.5 rounded-lg border border-[#DDD3C1] hover:border-[#12602F] text-[#1C2E1A] text-[11px] font-bold uppercase tracking-wider bg-white transition-all cursor-pointer shadow-2xs flex items-center gap-1.5"
                       >
                         <RotateCcw className="w-3.5 h-3.5 text-emerald-700" />
                         <span>Buy Again</span>
@@ -298,7 +295,7 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
                           setSelectedTrackingOrder(order);
                           setActiveTab('tracking');
                         }}
-                        className="px-4 py-1.5 bg-linear-to-r from-[#12602F] to-[#1F7A3E] hover:from-[#0E4F26] hover:to-[#176B37] text-[#AFD971] text-[11px] font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer shadow-xs active:scale-95 flex items-center gap-1.5"
+                        className="px-4 py-1.5 bg-linear-to-r from-[#12602F] to-[#1F7A3E] hover:from-[#0E4F26] hover:to-[#176B37] text-[#AFD971] text-[11px] font-bold uppercase tracking-wider rounded-lg transition-all cursor-pointer shadow-xs active:scale-95 flex items-center gap-1.5"
                       >
                         <span>Track Package</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -312,6 +309,24 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
         </div>
       </div>
 
+      {/* Return Request Modal */}
+      {selectedReturnOrder && (
+        <ReturnRequestModal
+          order={{
+            ...selectedReturnOrder,
+            paymentMethod: selectedReturnOrder.paymentMethod || 'UPI / Card',
+            shippingAddress: selectedReturnOrder.shippingAddress || 'Default Address',
+          }}
+          isOpen={Boolean(selectedReturnOrder)}
+          onClose={() => setSelectedReturnOrder(null)}
+          onSuccess={() => {
+            setSelectedReturnOrder(null);
+            if (setActiveTab) setActiveTab('returns');
+          }}
+        />
+      )}
+
     </div>
   );
 };
+

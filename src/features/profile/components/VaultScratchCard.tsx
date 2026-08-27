@@ -287,7 +287,7 @@ export const VaultScratchCard: React.FC<VaultScratchCardProps> = ({
   };
 
   return (
-    <div className="lg:col-span-3 w-full h-45 sm:h-45 perspective-[1000px] select-none">
+    <div className="w-full h-full min-h-43.75 perspective-[1000px] select-none">
       <div 
         className={`relative w-full h-full duration-700 transform-3d transition-transform ${
           isFlipped ? 'transform-[rotateY(180deg)]' : ''
@@ -295,7 +295,7 @@ export const VaultScratchCard: React.FC<VaultScratchCardProps> = ({
       >
         {/* ──────── FRONT FACE: PATRON VAULT TEASER (NO AMOUNT) ──────── */}
         <div 
-          className="absolute inset-0 w-full h-full backface-hidden bg-linear-to-br from-[#0D4B24] via-[#12602F] to-[#0A381B] text-white p-4 sm:p-5 rounded-xl shadow-md border border-[#AFD971]/30 flex flex-col justify-between overflow-hidden cursor-pointer group"
+          className="absolute inset-0 w-full h-full backface-hidden bg-linear-to-br from-[#0D4B24] via-[#12602F] to-[#0A381B] text-white p-5 sm:p-6 rounded-xl shadow-md border border-[#AFD971]/30 flex flex-col justify-between overflow-hidden cursor-pointer group"
           onClick={() => setIsFlipped(true)}
         >
           {/* Header */}
@@ -352,7 +352,7 @@ export const VaultScratchCard: React.FC<VaultScratchCardProps> = ({
 
         {/* ──────── BACK FACE: 180° INTERACTIVE SCRATCH COUPON CARD ──────── */}
         <div 
-          className="absolute inset-0 w-full h-full backface-hidden transform-[rotateY(180deg)] bg-linear-to-br from-[#1C170E] via-[#2A2114] to-[#141009] text-white p-3.5 sm:p-4 rounded-xl shadow-md border border-[#C49746]/40 flex flex-col justify-between overflow-hidden"
+          className="absolute inset-0 w-full h-full backface-hidden transform-[rotateY(180deg)] bg-linear-to-br from-[#1C170E] via-[#2A2114] to-[#141009] text-white p-4 sm:p-5 rounded-3xl shadow-md border border-[#C49746]/40 flex flex-col justify-between overflow-hidden"
         >
           {/* Header */}
           <div className="flex items-center justify-between text-xs">

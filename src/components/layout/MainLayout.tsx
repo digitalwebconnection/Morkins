@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PromoBar from './PromoBar';
 import Navbar from './Navbar';
@@ -6,7 +6,7 @@ import Footer from './Footer';
 import CartDrawer from '../shared/CartDrawer';
 import CartToast from '../shared/CartToast';
 import AuthModal from '../shared/AuthModal';
-import { useCart, useAuth } from '../../hooks';
+import { useCart, useAuth, useLenis } from '../../hooks';
 
 interface MainLayoutProps {
   children?: React.ReactNode;
@@ -14,6 +14,7 @@ interface MainLayoutProps {
 
 export default function MainLayout({ children }: MainLayoutProps) {
   const navigate = useNavigate();
+  const { stop, start } = useLenis();
   const {
     cartItems,
     isCartOpen,
@@ -34,8 +35,19 @@ export default function MainLayout({ children }: MainLayoutProps) {
     closeAuthModal,
   } = useAuth();
 
+  // Pause smooth scroll when side panels or modals are active
+  useEffect(() => {
+    if (isCartOpen || isAuthOpen) {
+      stop();
+    } else {
+      start();
+    }
+  }, [isCartOpen, isAuthOpen, stop, start]);
+
   const handleUserClick = () => {
-    if (isAuthenticated) {
+    const loggedInUser = localStorage.getItem('morkins_logged_in_user');
+    if (isAuthenticated || loggedInUser) {
+      closeAuthModal();
       navigate('/profile');
     } else {
       openAuthModal();
@@ -44,10 +56,12 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-cream text-brand-dark">
-      {/* Top Banner Announcements */}
+      {/* ── PART 1: TOP PROMOTIONAL BANNER STRIP (PromoBar) ── */}
+      {/* Displays announcements, free shipping countdowns, and quick coupon alerts */}
       <PromoBar />
 
-      {/* Main Header Navigation */}
+      {/* ── PART 2: PRIMARY SITE HEADER & NAVIGATION (Navbar) ── */}
+      {/* Brand logo, mega-menus (Women, Men, Skincare, Routine), search bar, language switch & cart trigger */}
       <Navbar
         onCartClick={openCart}
         onUserClick={handleUserClick}
@@ -55,15 +69,18 @@ export default function MainLayout({ children }: MainLayoutProps) {
         lastAddedItem={lastAddedItem}
       />
 
-      {/* Main Dynamic Page Content */}
+      {/* ── PART 3: MAIN DYNAMIC VIEWPORT ── */}
+      {/* Renders the active route's page component */}
       <main className="flex-1">
         {children}
       </main>
 
-      {/* Global Footer */}
+      {/* ── PART 4: SITE FOOTER (Footer) ── */}
+      {/* Brand mission, quick navigation links, legal/support policies, certifications & newsletter */}
       <Footer />
 
-      {/* Shopping Bag Slide-over Panel */}
+      {/* ── PART 5: GLOBAL SLIDE-OVER SHOPPING BAG (CartDrawer) ── */}
+      {/* Slide-out cart with line items, quantity controls, tier free-shipping progress, and checkout button */}
       <CartDrawer
         isOpen={isCartOpen}
         onClose={closeCart}
@@ -72,14 +89,16 @@ export default function MainLayout({ children }: MainLayoutProps) {
         onRemove={removeItem}
       />
 
-      {/* Global Add-to-Cart Toast */}
+      {/* ── PART 6: INSTANT ADD-TO-BAG POPUP TOAST (CartToast) ── */}
+      {/* Floating notification showing recently added product with 1-click cart open */}
       <CartToast
         item={lastAddedItem}
         show={showToast}
         onClose={closeToast}
       />
 
-      {/* User Authentication Modal */}
+      {/* ── PART 7: GLOBAL AUTHENTICATION & LOGIN MODAL (AuthModal) ── */}
+      {/* Luxury modal for passwordless OTP verification, email/password login, registration, and password recovery */}
       <AuthModal
         isOpen={isAuthOpen}
         onClose={closeAuthModal}

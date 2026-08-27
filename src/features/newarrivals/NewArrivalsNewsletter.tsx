@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, type FormEvent } from 'react';
 
 export default function NewArrivalsNewsletter() {
   const [email, setEmail] = useState('');
@@ -6,7 +6,7 @@ export default function NewArrivalsNewsletter() {
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (email.trim()) {
       setSubscribed(true);

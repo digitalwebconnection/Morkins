@@ -10,6 +10,8 @@ export interface Product {
   hoverImg: string;
   badge?: string;
   description?: string;
+  skinType?: string;
+  keyIngredients?: string[];
 }
 
 export interface ProductExtended extends Product {

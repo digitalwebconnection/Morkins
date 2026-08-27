@@ -220,20 +220,19 @@ export default function BannerSlider() {
       {/* Sticky wrapper — keeps the banner pinned while scrolling through it */}
       <section
         className="relative w-full overflow-hidden h-140  bg-[#0B1A28]"
-        
+
       >
         <div
           className="sticky top-0 w-full h-full  overflow-hidden"
-          
+
         >
           {/* Background Image with parallax offset */}
           <img
             key={b.id}
             src={b.bg}
             alt={b.headline}
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ease-in-out ${
-              isTransitioning ? 'opacity-0' : 'opacity-100'
-            }`}
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'
+              }`}
             style={{
               transform: `translateY(${imageTranslateY}px) scale(${1 + scrollY * 0.15})`,
               willChange: 'transform',
@@ -288,10 +287,9 @@ export default function BannerSlider() {
               </p> */}
 
               {/* CTA */}
-              <div
-                className={`flex items-center gap-4 mt-8 transition-all duration-700 ease-out ${
-                  isTransitioning ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0 delay-500'
-                }`}
+              {/* <div
+                className={`flex items-center gap-4 mt-8 transition-all duration-700 ease-out ${isTransitioning ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0 delay-500'
+                  }`}
               >
                 <a
                   href="#products"
@@ -299,7 +297,7 @@ export default function BannerSlider() {
                 >
                   {b.cta}
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -312,34 +310,15 @@ export default function BannerSlider() {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`rounded-full transition-all duration-300 cursor-pointer ${
-                  i === current ? 'w-6 h-2' : 'w-2 h-2 bg-white/30 hover:bg-white/50'
-                }`}
+                className={`rounded-full transition-all duration-300 cursor-pointer ${i === current ? 'w-6 h-2' : 'w-2 h-2 bg-white/30 hover:bg-white/50'
+                  }`}
                 style={i === current ? { background: b.accent } : {}}
                 aria-label={`Slide ${i + 1}`}
               />
             ))}
           </div>
 
-          {/* Scroll down hint arrow — only visible at top */}
-          <div
-            className="absolute bottom-8 right-8 z-20 flex flex-col items-center gap-1 text-white/50"
-            style={{
-              opacity: Math.max(0, 1 - scrollY * 8),
-              transition: 'opacity 0.2s',
-            }}
-          >
-            <span className="text-[9px] font-bold uppercase tracking-[0.2em]">Scroll</span>
-            <svg
-              className="w-4 h-4 animate-bounce"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
+
         </div>
       </section>
     </div>

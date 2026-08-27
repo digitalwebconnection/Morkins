@@ -159,7 +159,7 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
                         name: product.name,
                         price: activePrice,
                         img: product.img
-                      }, true)}
+                      })}
                       className="w-full py-2.5 bg-[#1A1A1A] hover:bg-[#2B2B2B] text-white text-[10px] font-bold uppercase tracking-[0.15em] rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 shadow-xl"
                     >
                       <svg className="w-3.5 h-3.5 text-[#C4AC80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

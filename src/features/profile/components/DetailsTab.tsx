@@ -68,7 +68,7 @@ export const DetailsTab: React.FC<DetailsTabProps> = ({
     <div className="space-y-6 animate-fade-in">
       
       {/* ── 1. Personal Credentials Card ── */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
+      <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
         {/* Subtle top shimmer */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#12602F] via-[#1F8242] to-[#C49746]" />
 
@@ -219,7 +219,7 @@ export const DetailsTab: React.FC<DetailsTabProps> = ({
       </div>
 
       {/* ── 2. Personalized Skin Consultation Diagnostic Profile ── */}
-      <div className="bg-linear-to-b from-[#FAF8F2] via-white to-[#FAF8F2] rounded-2xl p-6 sm:p-8 border border-[#DDD3C1] shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative">
+      <div className="bg-linear-to-b from-[#FAF8F2] via-white to-[#FAF8F2] rounded-lg p-6 sm:p-8 border border-[#DDD3C1] shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative">
         <div className="flex flex-wrap justify-between items-center gap-4 pb-5 border-b border-[#E5DEC9]">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-[#12602F] shadow-2xs shrink-0">
@@ -359,7 +359,7 @@ export const DetailsTab: React.FC<DetailsTabProps> = ({
       </div>
 
       {/* ── 3. VIP Security & Data Assurance ── */}
-      <div className="bg-linear-to-r from-[#1C331B] to-[#2B4B27] text-white rounded-2xl p-6 sm:p-7 shadow-md relative overflow-hidden border border-[#AFD971]/20">
+      <div className="bg-linear-to-r from-[#1C331B] to-[#2B4B27] text-white rounded-lg p-6 sm:p-7 shadow-md relative overflow-hidden border border-[#AFD971]/20">
         <div className="absolute right-0 bottom-0 translate-y-1/3 translate-x-1/3 w-64 h-64 bg-[#AFD971]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">

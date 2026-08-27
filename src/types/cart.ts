@@ -15,7 +15,7 @@ export interface CartContextType {
   totalAmount: number;
   openCart: () => void;
   closeCart: () => void;
-  addToCart: (product: { id: number; name: string; price: number; img: string }, openCartAfter?: boolean) => void;
+  addToCart: (product: { id: number; name: string; price: number; discountPrice?: number; img: string }, openCartAfter?: boolean) => void;
   updateQty: (id: number, delta: number) => void;
   removeItem: (id: number) => void;
   clearCart: () => void;

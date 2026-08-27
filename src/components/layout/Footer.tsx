@@ -19,25 +19,25 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-brand-cream relative overflow-hidden">
-      {/* MAIN FOOTER BODY */}
+      {/* ── PART 1: MAIN FOOTER BODY (BRAND, NEWSLETTER, QUICK LINKS) ── */}
       <div className="max-w-7xl mx-auto px-6 lg:px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-32">
-          {/* LEFT: Logo + Newsletter + Socials */}
-          <div className="flex flex-col gap-6">
+          {/* ── PART 1A: BRAND IDENTITY, NEWSLETTER & SOCIAL NETWORKS ── */}
+          <div className="flex flex-col gap-2">
             <Link to="/">
               <img
                 src={footerLogo}
                 alt="Morkins Logo"
-                className="h-10 w-auto object-contain"
+                className="h-15 w-auto object-contain"
               />
             </Link>
-            <p className="text-brand-cream/90 text-sm leading-relaxed max-w-60">
+            <p className="text-white text-sm leading-relaxed max-w-90">
               {t("foot_mission")}
             </p>
 
             {/* Email Signup */}
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/35 mb-2">
+              <p className="text-xs font-bold uppercase tracking-widest text-white/65 mb-2">
                 {t("foot_routine")}
               </p>
               <form
@@ -108,11 +108,11 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* RIGHT: Three Link Columns */}
+          {/* ── PART 1B: NAVIGATION DIRECTORIES (PRODUCTS, SUPPORT, COMPANY) ── */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {/* Our Products */}
+            {/* Column 1: Our Products */}
             <div>
-              <h4 className="text-[15px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">
+              <h4 className="text-[15px] font-bold  uppercase tracking-[0.15em] text-white/90 mb-4">
                 {t("foot_col_products")}
               </h4>
               <ul className="space-y-2.5">
@@ -138,7 +138,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Customer Support */}
+            {/* Column 2: Customer Support & Policies */}
             <div>
               <h4 className="text-[15px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">
                 {t("foot_col_support")}
@@ -166,7 +166,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Our Company */}
+            {/* Column 3: Our Company & Editorial */}
             <div>
               <h4 className="text-[15px] font-bold uppercase tracking-[0.15em] text-white/90 mb-4">
                 {t("foot_col_company")}
@@ -194,22 +194,36 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* BOTTOM BAR */}
+      {/* ── PART 2: BOTTOM COPYRIGHT & LEGAL BAR ── */}
+      {/* Copyright assertion, digital agency credits, and direct legal policy links */}
       <div className="border-t border-white/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-white/90 text-xs">
+        <div className="max-w-7xl mx-auto px-6 lg:px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <p className="text-white/90 text-sm">
             © {new Date().getFullYear()} Morkins. All Rights Reserved.
           </p>
+
+          <p className="text-white/90 text-sm flex items-center justify-center gap-1.5">
+            <span>Digital Partner:</span>
+            <a
+              href="https://digitalwebconnection.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#d8db05] hover:text-[#93c5fd] font-medium transition-colors hover:underline"
+            >
+              Digital Web Connection
+            </a>
+          </p>
+
           <div className="flex items-center gap-5">
             <Link
               to="/terms-conditions"
-              className="text-white/90 hover:text-white/60 text-xs transition-colors"
+              className="text-white/90 hover:text-white/60 text-sm transition-colors"
             >
               {t("foot_supp_4")}
             </Link>
             <Link
               to="/privacy-policy"
-              className="text-white/90 hover:text-white/60 text-xs transition-colors"
+              className="text-white/90 hover:text-white/60 text-sm transition-colors"
             >
               {t("foot_supp_3")}
             </Link>

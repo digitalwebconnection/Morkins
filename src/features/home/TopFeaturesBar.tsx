@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 
 interface FeatureItem {
-  icon: React.ReactNode
+  icon: ReactNode
   titleKey: string
 }
 
@@ -52,7 +53,7 @@ export default function TopFeaturesBar() {
   const { t } = useLanguage()
 
   return (
-    <section className="relative bg-[#0D5B33] text-white py-1.5 sm:py-2.5 overflow-hidden border-t border-[#8C937D]/20">
+    <section className="relative bg-[#0D5B33] text-white py-1.5 sm:py-2.5 overflow-hidden border-t border-brand-sage/20">
       {/* Background Ambient Glows */}
       <div className="absolute -top-16 left-1/5 w-80 h-40 bg-[#2D6A4F]/40 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-16 right-1/5 w-80 h-40 bg-[#E8D5B5]/12 rounded-full blur-3xl pointer-events-none" />

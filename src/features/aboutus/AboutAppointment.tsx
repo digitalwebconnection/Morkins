@@ -98,7 +98,7 @@ export default function AboutAppointment() {
             <h2
               className={`font-serif font-medium leading-tight mb-20 text-3xl sm:text-[2.2rem] md:text-[2.6rem] text-[#184433]
                 ${visible ? 'appt-fade-up appt-d1' : 'opacity-0'}`}
-    
+
             >
               How To Make An Appointment
             </h2>
@@ -131,7 +131,7 @@ export default function AboutAppointment() {
                       </p>
                     </div>
                   </div>
- 
+
                   {/* Connector arrow */}
                   {idx < 2 && (
                     <div className={`hidden md:flex items-center shrink-0 px-4 ${visible ? 'appt-fade-in appt-d5' : 'opacity-0'}`}>

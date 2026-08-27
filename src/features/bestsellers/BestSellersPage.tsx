@@ -31,34 +31,37 @@ export default function BestSellersPage({ onAddToCart }: BestSellersPageProps) {
 
   return (
     <div className="min-h-screen bg-[#FCFBF8] text-[#1C2E1A] selection:bg-[#AFD971] selection:text-[#1C331B]">
-      {/* 1. Editorial Hero Section */}
+      {/* ── PART 1: EDITORIAL BEST SELLERS HERO (BestSellersHero) ── */}
+      {/* Visual luxury header with award accolades and signature curation intro */}
       <BestSellersHero />      
 
-      {/* 4. Complete Filterable Master Best Sellers Collection */}
+      {/* ── PART 2: FILTERABLE BEST SELLERS GRID & QUICK VIEW (BestSellersGrid) ── */}
+      {/* Dynamic catalog grid with category filters, badge overlays, and 1-click Add to Cart */}
       <BestSellersGrid
         onAddToCart={onAddToCart}
         onOpenQuickView={handleOpenQuickView}
       />
 
-
-      {/* 6. VIP Verified Reviews & Rating Breakdown */}
+      {/* ── PART 3: VIP VERIFIED CUSTOMER REVIEWS (BestSellersReviews) ── */}
+      {/* 5-star ratings breakdown, patron photos, and verified efficacy feedback */}
       <BestSellersReviews onAddToCart={onAddToCart} />
 
-      {/* 7. The Morkins Botanical Standard & Craftsmanship */}
+      {/* ── PART 4: BOTANICAL STANDARD & CRAFTSMANSHIP (BestSellersHighlights) ── */}
+      {/* Cold-pressed extraction methods, clean formulation certifications, and lab testing standards */}
       <BestSellersHighlights />
 
-      {/* 8. Frequently Asked Questions & Concierge */}
+      {/* ── PART 5: FREQUENTLY ASKED QUESTIONS & CONCIERGE (BestSellersFAQ) ── */}
+      {/* Accordion FAQ answering common questions about usage routines, shelf life, and skin suitability */}
       <BestSellersFAQ />
 
-      {/* 9. Interactive Quick View Modal */}
+      {/* ── PART 6: MODAL QUICK-VIEW POPUP (BestSellersQuickView) ── */}
+      {/* Interactive modal for rapid product inspection, size selection, and instant bag addition */}
       <BestSellersQuickView
         product={quickViewProduct}
         isOpen={isQuickViewOpen}
         onClose={handleCloseQuickView}
         onAddToCart={onAddToCart}
       />
-
-  
     </div>
   );
 }

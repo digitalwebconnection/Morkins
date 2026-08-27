@@ -8,3 +8,6 @@ export { default as AboutRoute } from './AboutRoute';
 export { default as ProfileRoute } from './ProfileRoute';
 export { default as BlogRoute } from './BlogRoute';
 export { default as BlogDetailsRoute } from './BlogDetailsRoute';
+export { default as SearchRoute } from './SearchRoute';
+export { default as ResetPasswordRoute } from './ResetPasswordRoute';
+export { default as OrderDetailsRoute } from './OrderDetailsRoute';

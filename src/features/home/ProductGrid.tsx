@@ -3,7 +3,10 @@ import { PRODUCTS } from './productsData'
 import { useLanguage } from '../../context/LanguageContext'
 
 interface ProductGridProps {
-  onAddToCart: (product: { id: number; name: string; price: number; img: string }) => void
+  onAddToCart: (
+    product: { id: number; name: string; price: number; discountPrice?: number; img: string },
+    openCart?: boolean
+  ) => void
 }
 
 export default function ProductGrid({ onAddToCart }: ProductGridProps) {
@@ -43,10 +46,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                   <img
                     src={p.img}
                     alt={translatedName}
-                    className={`transition-all duration-700 ease-out transform group-hover:scale-110 ${isLocal
-                      ? 'h-full w-auto max-h-full max-w-full object-fill drop-shadow-[0_10px_20px_rgba(0,0,0,0.05)]'
-                      : 'h-full w-full object-cover object-center'
-                      }`}
+                    className="h-full w-full object-cover object-center transition-all duration-700 ease-out transform group-hover:scale-110"
                     loading="lazy"
                   />
 
@@ -61,7 +61,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                   <h3 className="text-lg md:text-xl font-serif font-medium text-[#0B1A28] mb-1.5 line-clamp-1">
                     {translatedName}
                   </h3>
-                  
+
                   <p className="text-[11px] text-gray-500 mb-6 line-clamp-1 font-light tracking-wide">
                     {p.description || t('prod_' + p.id + '_desc')}
                   </p>
@@ -71,7 +71,7 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                       ${p.price.toFixed(2)}
                     </span>
                     <button
-                      onClick={() => onAddToCart({ id: p.id, name: translatedName, price: p.price, img: p.img })}
+                      onClick={() => onAddToCart({ id: p.id, name: translatedName, price: p.discountPrice || p.price, discountPrice: p.discountPrice, img: p.img })}
                       className="shrink-0 w-16 h-8 flex items-center justify-center text-[9px] font-bold uppercase tracking-widest rounded-none transition-colors bg-[#0B1A28] text-white hover:bg-black cursor-pointer"
                     >
                       ADD

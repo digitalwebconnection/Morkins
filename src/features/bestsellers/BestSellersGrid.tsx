@@ -44,7 +44,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
       name: product.name,
       price: activePrice,
       img: product.img
-    }, true);
+    });
 
     setRecentlyAddedId(product.id);
     setTimeout(() => setRecentlyAddedId(null), 1200);
@@ -383,13 +383,13 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                   key={product.id}
                   className="bg-white rounded-2xl overflow-hidden border border-[#DDD3C1] shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-xl transition-all duration-500 flex flex-col sm:flex-row"
                 >
-                  {/* Left: Image */}
-                  <div className="sm:w-5/12 bg-linear-to-b from-[#FAF8F2] to-[#FCFBF8] p-6 flex items-center justify-center relative aspect-square sm:aspect-auto">
+                  {/* Left: Image (Fill in Box) */}
+                  <div className="sm:w-5/12 bg-[#FAF8F2] relative aspect-square sm:aspect-auto overflow-hidden">
                     <Link to={`/products/${product.id}`} className="w-full h-full flex items-center justify-center">
                       <img
                         src={product.img}
                         alt={product.name}
-                        className="max-h-52 max-w-full object-contain transition-transform duration-500 hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                       />
                     </Link>
                     <span className={`absolute top-3 left-3 text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs ${rankBadgeClasses}`}>

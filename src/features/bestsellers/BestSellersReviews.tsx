@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo, useId } from 'react';
+import { useState, useRef, useEffect, useMemo, useId, type KeyboardEvent, type TouchEvent, type FormEvent } from 'react';
 import p1 from '../../assets/images/product/p1.jpg';
 import p2 from '../../assets/images/product/p2.jpg';
 import p3 from '../../assets/images/product/p3.jpg';
@@ -268,17 +268,17 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'ArrowLeft') handlePrev();
     if (e.key === 'ArrowRight') handleNext();
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const handleTouchStart = (e: TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
     touchDeltaX.current = 0;
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleTouchMove = (e: TouchEvent) => {
     if (touchStartX.current === null) return;
     touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
   };
@@ -310,7 +310,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
     );
   };
 
-  const handleAddReview = (e: React.FormEvent) => {
+  const handleAddReview = (e: FormEvent) => {
     e.preventDefault();
     if (!newAuthor || !newHeadline || !newComment) return;
 

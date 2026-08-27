@@ -9,14 +9,13 @@ import BestSellers from "./BestSellers";
 import Testimonials from "./Testimonials";
 import ImageFeed from "./ImageFeed";
 import New from "./New";
-// import SourcingTimeline from './SourcingTimeline'
 import SkinQuiz from "./SkinQuiz";
 import ClinicalStudy from "./ClinicalStudy";
 import Newsletter from "./Newsletter";
 
 interface HomeProps {
   onAddToCart: (
-    product: { id: number; name: string; price: number; img: string },
+    product: { id: number; name: string; price: number; discountPrice?: number; img: string },
     openCart?: boolean,
   ) => void;
 }
@@ -37,40 +36,52 @@ export default function Home({ onAddToCart }: HomeProps) {
 
   return (
     <main>
-      {/* Auto-advancing promotional banner carousel (Hero Section) */}
+      {/* ── PART 1: HERO PROMOTIONAL BANNER SLIDER ── */}
+      {/* Auto-advancing luxury carousel showcasing seasonal releases & top collections */}
       <BannerSlider />
 
-      {/* Top Features Strip (Cash on Delivery, Free Delivery, 100% Authentic, 7 Days Replacement, 100% Safe Payments) */}
+      {/* ── PART 2: TOP TRUST & VALUE PILLARS ── */}
+      {/* Badges strip: Cash on Delivery, Free Delivery, 100% Authentic, 7 Days Replacement, 100% Safe Payments */}
       <TopFeaturesBar />
 
-      {/* Interactive Ingredients Spotlight */}
+      {/* ── PART 3: BIOACTIVE INGREDIENTS SPOTLIGHT ── */}
+      {/* Interactive scientific cards highlighting key botanical actives (Niacinamide, Retinol, Hyaluronic Acid, etc.) */}
       <IngredientsSpotlight />
 
-      {/* <OurStory /> */}
+      {/* ── PART 4: FRESH BATCH RELEASE & BRAND PHILOSOPHY ── */}
+      {/* Curated showcase with batch numbers, limited botanical extractions, and core values */}
       <New />
 
-      {/* Product Section: Displays 4 products (expandable) */}
+      {/* ── PART 5: CORE PRODUCT CATALOG GRID ── */}
+      {/* Multi-category quick-filter grid with direct Add-to-Cart integration */}
       <ProductGrid onAddToCart={onAddToCart} />
 
-      {/* Interactive Skin Quiz / Routine Builder */}
+      {/* ── PART 6: INTERACTIVE SKIN DIAGNOSTIC QUIZ ── */}
+      {/* 3-step personalized routine recommendation builder */}
       <SkinQuiz onAddToCart={onAddToCart} />
 
-      {/* Best Seller Section: Split layout carousel and image */}
+      {/* ── PART 7: SIGNATURE BEST SELLERS SPLIT SECTION ── */}
+      {/* Split layout showcase featuring highest rated serums and moisturizers */}
       <BestSellers onAddToCart={onAddToCart} />
 
-      {/* Clinical Study Results & Efficacy */}
+      {/* ── PART 8: CLINICAL EFFICACY & BEFORE/AFTER STUDIES ── */}
+      {/* Real clinical dermatologist metrics, percentages, and comparative slider results */}
       <ClinicalStudy />
 
-      {/* Parallax Featured Products Section */}
+      {/* ── PART 9: PARALLAX FEATURED PRODUCT HERO ── */}
+      {/* Visual focal showcase for high-impact hero products with ingredient breakdown */}
       <FeaturedProductSection />
 
-      {/* Testimonials 4-card grid layout */}
+      {/* ── PART 10: PATRON REVIEWS & TESTIMONIALS ── */}
+      {/* Verified customer feedback with direct 1-click cart triggers */}
       <Testimonials onAddToCart={onAddToCart} />
 
-      {/* Newsletter Subscription */}
+      {/* ── PART 11: SANCTUARY NEWSLETTER SUBSCRIPTION ── */}
+      {/* VIP early-access signup with instant discount incentives */}
       <Newsletter />
 
-      {/* Lifestyle image feed carousel */}
+      {/* ── PART 12: COMMUNITY LIFESTYLE IMAGE FEED ── */}
+      {/* Modern social gallery showing real patrons and aesthetics */}
       <ImageFeed />
     </main>
   );

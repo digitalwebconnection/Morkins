@@ -110,24 +110,23 @@ export default function Navbar({
   const isNewArrivalsActive = location.pathname === '/new-arrivals';
 
   return (
-    <header 
-      className={`sticky top-0 w-full z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-[#FCFBF8] shadow-md' 
+    <header
+      className={`sticky top-0 w-full z-50 transition-all duration-500 ${isScrolled
+          ? 'bg-[#FCFBF8] shadow-md'
           : 'bg-[#FCFBF8] border-b border-transparent'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 h-18 flex items-center justify-between relative">
 
-        {/* LEFT SECTION: Logo & Mobile Toggle */}
-        <div className="flex items-center gap-3 z-10">
-          {/* Mobile Menu Toggle button */}
+        {/* ── PART 1: LEFT BRAND EMBLEM & MOBILE HAMBURGER ── */}
+        <div className="flex items-center space-x-3 sm:space-x-4 z-10">
+          {/* Mobile hamburger menu toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 -ml-2 text-brand-dark hover:opacity-75 focus:outline-none cursor-pointer"
-            aria-label="Toggle menu"
+            className="md:hidden p-2 text-brand-dark hover:text-[#6F8C51] transition-colors focus:outline-none cursor-pointer"
+            aria-label="Toggle mobile navigation menu"
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               {isMobileMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -137,8 +136,8 @@ export default function Navbar({
           </button>
 
           {/* Brand Logo */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center group"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
@@ -150,7 +149,8 @@ export default function Navbar({
           </Link>
         </div>
 
-        {/* CENTER SECTION: Nav Titles / Links */}
+        {/* ── PART 2: CENTER PRIMARY NAVIGATION ROUTE LINKS ── */}
+        {/* Products, Best Sellers, New Arrivals, About Us */}
         <nav className="hidden md:flex space-x-6 lg:space-x-8 items-center font-serif text-lg lg:text-xl font-semibold tracking-wide h-full absolute left-1/2 -translate-x-1/2 z-10">
           <Link
             to="/products"
@@ -198,7 +198,7 @@ export default function Navbar({
           </Link>
         </nav>
 
-        {/* RIGHT SECTION: Search, User Icon, Shopping Bag */}
+        {/* ── PART 3: RIGHT UTILITIES (SEARCH, LANGUAGE, USER PROFILE, SHOPPING BAG) ── */}
         <div className="flex items-center space-x-5 lg:space-x-6 z-10">
 
           {/* Desktop & Tablet Search Box with Instant Live Results Dropdown */}
@@ -275,11 +275,11 @@ export default function Navbar({
                           onClick={() => handleProductSelect(product.id)}
                           className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#F7F6F2] transition-colors cursor-pointer group"
                         >
-                          <div className="w-12 h-12 shrink-0 bg-[#F4F3EE] rounded-lg border border-brand-dark/10 overflow-hidden flex items-center justify-center p-1 group-hover:border-[#6F8C51]/40 transition-colors">
+                          <div className="w-12 h-12 shrink-0 bg-[#F4F3EE] rounded-lg border border-brand-dark/10 overflow-hidden flex items-center justify-center p-0 group-hover:border-[#6F8C51]/40 transition-colors">
                             <img
                               src={product.img}
                               alt={product.name}
-                              className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                           </div>
                           <div className="flex-1 min-w-0 text-left">
@@ -428,8 +428,8 @@ export default function Navbar({
 
                 {/* Body: Thumbnail, Name, Qty, Price badge */}
                 <div className="flex gap-3">
-                  <div className="w-16 h-16 shrink-0 bg-brand-cream-dark/45 border border-brand-dark/10 rounded-xl overflow-hidden flex items-center justify-center p-1.5">
-                    <img src={lastAddedItem.img} alt={lastAddedItem.name} className="max-h-full max-w-full object-contain" />
+                  <div className="w-16 h-16 shrink-0 bg-brand-cream-dark/45 border border-brand-dark/10 rounded-xl overflow-hidden flex items-center justify-center p-0">
+                    <img src={lastAddedItem.img} alt={lastAddedItem.name} className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0 text-left flex flex-col justify-center">
                     <p className="text-[12px] font-semibold text-brand-dark leading-tight line-clamp-2">
@@ -515,7 +515,7 @@ export default function Navbar({
                         onClick={() => handleProductSelect(product.id)}
                         className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-gray-50 active:bg-gray-100 cursor-pointer"
                       >
-                        <img src={product.img} alt={product.name} className="w-9 h-9 object-contain bg-[#F4F3EE] rounded p-0.5 border border-brand-dark/10 shrink-0" />
+                        <img src={product.img} alt={product.name} className="w-9 h-9 object-cover bg-[#F4F3EE] rounded border border-brand-dark/10 shrink-0" />
                         <div className="flex-1 min-w-0 text-left">
                           <p className="text-xs font-semibold text-brand-dark truncate">{product.name}</p>
                           <p className="text-[11px] font-mono text-[#6F8C51] font-bold">${(product.discountPrice || product.price).toFixed(2)}</p>

@@ -50,7 +50,7 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
     <div className="space-y-6 animate-fade-in">
       
       {/* ── Section Header ── */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
+      <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#12602F] via-[#1F8242] to-[#C49746]" />
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5DEC9]">
@@ -67,7 +67,7 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
         </div>
 
         {/* ── Luxury Gold/Emerald Foiled Gift Voucher Card ── */}
-        <div className="mt-6 bg-linear-to-br from-[#12602F] via-[#1A6F37] to-[#0E4A24] text-white rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden border border-[#AFD971]/30 shadow-xl">
+        <div className="mt-6 bg-linear-to-br from-[#12602F] via-[#1A6F37] to-[#0E4A24] text-white rounded-lg p-6 sm:p-10 text-center relative overflow-hidden border border-[#AFD971]/30 shadow-xl">
           {/* Ambient Glows */}
           <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-[#C49746]/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -left-12 -top-12 w-64 h-64 bg-[#AFD971]/15 rounded-full blur-3xl pointer-events-none" />
@@ -89,7 +89,7 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
           </p>
 
           {/* Code Bar Container */}
-          <div className="mt-8 bg-black/40 border border-white/25 rounded-2xl p-2.5 sm:p-3 max-w-md mx-auto flex items-center justify-between gap-3 backdrop-blur-md shadow-2xl">
+          <div className="mt-8 bg-black/40 border border-white/25 rounded-lg p-2.5 sm:p-3 max-w-md mx-auto flex items-center justify-between gap-3 backdrop-blur-md shadow-2xl">
             <span className="font-mono text-xs sm:text-sm font-extrabold tracking-widest text-[#AFD971] pl-3 select-all">
               {referralCode}
             </span>
@@ -97,7 +97,7 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
             <div className="flex items-center gap-1.5 shrink-0">
               <button
                 onClick={handleCopyCode}
-                className="bg-white/15 hover:bg-white text-white hover:text-[#12602F] px-3.5 py-1.5 rounded-xl font-bold uppercase tracking-wider text-[10px] transition-all cursor-pointer shadow-xs active:scale-95 flex items-center gap-1"
+                className="bg-white/15 hover:bg-white text-white hover:text-[#12602F] px-3.5 py-1.5 rounded-lg font-bold uppercase tracking-wider text-[10px] transition-all cursor-pointer shadow-xs active:scale-95 flex items-center gap-1"
               >
                 {copiedCodeOnly ? (
                   <>
@@ -118,7 +118,7 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <button
               onClick={handleCopyReferral}
-              className="px-4 py-2 bg-white text-[#1C331B] hover:bg-[#FAF8F2] font-bold uppercase tracking-wider text-xs rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2 active:scale-95"
+              className="px-4 py-2 bg-white text-[#1C331B] hover:bg-[#FAF8F2] font-bold uppercase tracking-wider text-xs rounded-lg shadow-md transition-all cursor-pointer flex items-center gap-2 active:scale-95"
             >
               {copiedReferral ? (
                 <>
@@ -135,7 +135,7 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
 
             <button
               onClick={handleShareWhatsApp}
-              className="px-4 py-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold uppercase tracking-wider text-xs rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2 active:scale-95"
+              className="px-4 py-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold uppercase tracking-wider text-xs rounded-lg shadow-md transition-all cursor-pointer flex items-center gap-2 active:scale-95"
             >
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp</span>
@@ -143,7 +143,7 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
 
             <button
               onClick={handleShareEmail}
-              className="px-4 py-2 bg-white/15 hover:bg-white text-white hover:text-[#1C331B] border border-white/30 font-bold uppercase tracking-wider text-xs rounded-xl transition-all cursor-pointer flex items-center gap-2 active:scale-95"
+              className="px-4 py-2 bg-white/15 hover:bg-white text-white hover:text-[#1C331B] border border-white/30 font-bold uppercase tracking-wider text-xs rounded-lg transition-all cursor-pointer flex items-center gap-2 active:scale-95"
             >
               <Mail className="w-4 h-4" />
               <span>Email Invite</span>
@@ -154,9 +154,9 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
         {/* ── Referral Metrics & Rewards Balance ── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-6">
           {/* Successful Referrals */}
-          <div className="p-5 rounded-2xl bg-[#FAF8F2] border border-[#DDD3C1] shadow-2xs">
+          <div className="p-5 rounded-lg bg-[#FAF8F2] border border-[#DDD3C1] shadow-2xs">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-white border border-[#DDD3C1] flex items-center justify-center text-[#2D5A32] shadow-2xs">
+              <div className="w-10 h-10 rounded-lg bg-white border border-[#DDD3C1] flex items-center justify-center text-[#2D5A32] shadow-2xs">
                 <Users className="w-5 h-5" />
               </div>
               <div>
@@ -172,9 +172,9 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
           </div>
 
           {/* Credits Balance */}
-          <div className="p-5 rounded-2xl bg-[#FAF8F2] border border-[#DDD3C1] shadow-2xs">
+          <div className="p-5 rounded-lg bg-[#FAF8F2] border border-[#DDD3C1] shadow-2xs">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-white border border-[#DDD3C1] flex items-center justify-center text-[#8C6221] shadow-2xs">
+              <div className="w-10 h-10 rounded-lg bg-white border border-[#DDD3C1] flex items-center justify-center text-[#8C6221] shadow-2xs">
                 <DollarSign className="w-5 h-5" />
               </div>
               <div>
@@ -190,9 +190,9 @@ export const ReferralTab: React.FC<ReferralTabProps> = ({
           </div>
 
           {/* Next Milestone */}
-          <div className="p-5 rounded-2xl bg-[#FAF8F2] border border-[#DDD3C1] shadow-2xs">
+          <div className="p-5 rounded-lg bg-[#FAF8F2] border border-[#DDD3C1] shadow-2xs">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-white border border-[#DDD3C1] flex items-center justify-center text-[#C49746] shadow-2xs">
+              <div className="w-10 h-10 rounded-lg bg-white border border-[#DDD3C1] flex items-center justify-center text-[#C49746] shadow-2xs">
                 <Award className="w-5 h-5" />
               </div>
               <div>

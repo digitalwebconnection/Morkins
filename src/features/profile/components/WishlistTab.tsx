@@ -64,7 +64,7 @@ export const WishlistTab: React.FC<WishlistTabProps> = ({
     <div className="space-y-6 animate-fade-in">
       
       {/* ── Section Header ── */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
+      <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#12602F] via-[#1F8242] to-[#C49746]" />
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5DEC9]">
@@ -82,7 +82,7 @@ export const WishlistTab: React.FC<WishlistTabProps> = ({
           {wishlist.length > 0 && (
             <button
               onClick={handleAddAll}
-              className="flex items-center gap-2 px-4 py-2 bg-linear-to-r from-[#12602F] to-[#1F7A3E] hover:from-[#0E4F26] hover:to-[#176B37] text-[#AFD971] rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-xs active:scale-95 shrink-0"
+              className="flex items-center gap-2 px-4 py-2 bg-linear-to-r from-[#12602F] to-[#1F7A3E] hover:from-[#0E4F26] hover:to-[#176B37] text-[#AFD971] rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-xs active:scale-95 shrink-0"
             >
               <ShoppingBag className="w-3.5 h-3.5" />
               <span>Move All to Bag ({wishlist.length})</span>
@@ -92,7 +92,7 @@ export const WishlistTab: React.FC<WishlistTabProps> = ({
 
         {/* Move All Notification */}
         {addAllFeedback && (
-          <div className="mt-4 p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-900 text-xs font-semibold flex items-center gap-2 animate-fade-in">
+          <div className="mt-4 p-3.5 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-900 text-xs font-semibold flex items-center gap-2 animate-fade-in">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
             <span>All {wishlist.length} saved wishlist formulations have been added to your shopping bag!</span>
           </div>
@@ -100,7 +100,7 @@ export const WishlistTab: React.FC<WishlistTabProps> = ({
 
         {/* ── Wishlist Product Cards Grid ── */}
         {wishlist.length === 0 ? (
-          <div className="text-center py-16 bg-[#FAF8F2] rounded-2xl border border-[#DDD3C1]/80 p-8 mt-6">
+          <div className="text-center py-16 bg-[#FAF8F2] rounded-lg border border-[#DDD3C1]/80 p-8 mt-6">
             <div className="w-14 h-14 rounded-full bg-white border border-[#DDD3C1] flex items-center justify-center mx-auto mb-3 shadow-2xs">
               <Heart className="w-6 h-6 text-gray-400" />
             </div>
@@ -110,7 +110,7 @@ export const WishlistTab: React.FC<WishlistTabProps> = ({
             </p>
             <Link
               to="/bestsellers"
-              className="inline-flex items-center gap-2 mt-5 px-6 py-2.5 bg-[#12602F] hover:bg-[#0E4F26] text-[#AFD971] text-xs font-bold uppercase tracking-wider rounded-xl shadow-xs transition-all"
+              className="inline-flex items-center gap-2 mt-5 px-6 py-2.5 bg-[#12602F] hover:bg-[#0E4F26] text-[#AFD971] text-xs font-bold uppercase tracking-wider rounded-lg shadow-xs transition-all"
             >
               <span>Explore Best Sellers</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -126,7 +126,7 @@ export const WishlistTab: React.FC<WishlistTabProps> = ({
               return (
                 <div
                   key={item.id}
-                  className="rounded-2xl border border-[#DDD3C1] overflow-hidden bg-white shadow-2xs hover:shadow-md hover:border-[#12602F] transition-all duration-300 flex flex-col sm:flex-row group"
+                  className="rounded-lg border border-[#DDD3C1] overflow-hidden bg-white shadow-2xs hover:shadow-md hover:border-[#12602F] transition-all duration-300 flex flex-col sm:flex-row group"
                 >
                   {/* Left: Product Thumbnail */}
                   <div className="sm:w-36 h-36 sm:h-auto overflow-hidden bg-[#FAF8F2] relative shrink-0 border-b sm:border-b-0 sm:border-r border-[#E5DEC9]">
@@ -175,7 +175,7 @@ export const WishlistTab: React.FC<WishlistTabProps> = ({
                       <button
                         onClick={() => handleAddSingle(item)}
                         disabled={isAdded}
-                        className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-2xs flex items-center gap-1.5 ${
+                        className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-2xs flex items-center gap-1.5 ${
                           isAdded
                             ? 'bg-[#12602F] text-[#AFD971]'
                             : 'bg-[#FAF8F2] hover:bg-[#12602F] text-[#1C2E1A] hover:text-[#AFD971] border border-[#DDD3C1] hover:border-[#12602F]'

@@ -101,7 +101,8 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-white text-neutral-900 pb-20">
-      {/* Editorial Hero Header (Clean White Luxury) */}
+      {/* ── PART 1: EDITORIAL JOURNAL HERO & SEARCH (BlogHero) ── */}
+      {/* Visual title, live article search, popular botanical tag chips, and total publication counter */}
       <BlogHero
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -109,11 +110,9 @@ export default function BlogPage() {
         onTagClick={handleTagClick}
       />
 
-      {/* Main Journal Container */}
+      {/* ── PART 2: PUBLICATIONS GRID & ARTICLE CARDS CONTAINER ── */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 sm:space-y-10">
-      
-
-        {/* Regular Articles Grid or Empty State */}
+        {/* ── PART 2A: ARTICLE CARDS GRID (BlogGrid & BlogCard) ── */}
         {filteredAndSortedPosts.length > 0 ? (
           <section aria-label="Journal Publications">
             <BlogGrid
@@ -130,14 +129,12 @@ export default function BlogPage() {
             />
           </section>
         ) : (
+          /* ── PART 2B: EMPTY SEARCH / FILTER STATE (BlogEmptyState) ── */
           <BlogEmptyState
             onReset={handleResetFilters}
             searchQuery={searchQuery}
           />
         )}
-
-
-
       </main>
     </div>
   );

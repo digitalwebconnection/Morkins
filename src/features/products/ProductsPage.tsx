@@ -134,7 +134,7 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
       const q = filters.searchQuery.toLowerCase().trim();
       result = result.filter(p =>
         p.name.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q) ||
+        (p.description && p.description.toLowerCase().includes(q)) ||
         p.category.toLowerCase().includes(q) ||
         p.brand.toLowerCase().includes(q)
       );
@@ -227,7 +227,8 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
 
   return (
     <div className="min-h-screen bg-[#FCFBF8]">
-      {/* Unified Luxury Hero Section with Dual Collection Cards & Category Quick Pills */}
+      {/* ── PART 1: CATALOG EDITORIAL HERO HEADER (HeroSection) ── */}
+      {/* Dynamic banner with Women/Men department toggles, total count, and category quick-filter pills */}
       <HeroSection
         department={filters.department}
         activeCategory={filters.category}
@@ -239,11 +240,11 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
         onSelectCategory={handleCategoryQuickFilter}
       />
 
-      {/* Main Catalog Section */}
+      {/* ── PART 2: MAIN CATALOG BODY & RESPONSIVE LAYOUT ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <div className="flex flex-col md:flex-row gap-8">
 
-          {/* Mobile Filter Toggle */}
+          {/* ── PART 3: MOBILE FILTER BAR & SLIDE-OUT DRAWER ── */}
           <div className="md:hidden flex justify-between items-center bg-white p-4 rounded-2xl shadow-xs border border-brand-dark/10">
             <div className="flex items-center gap-2">
               <span className="font-semibold text-brand-dark text-sm">Filters & Sorting</span>
@@ -312,7 +313,8 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
             </div>
           )}
 
-          {/* Desktop Sidebar */}
+          {/* ── PART 4: DESKTOP STICKY FILTER SIDEBAR (FilterSidebar) ── */}
+          {/* Multi-faceted filtering by Category, Brand, Price Range Slider, and Minimum Rating */}
           <div className="hidden md:block w-72 shrink-0">
             <div className="sticky top-28">
               <FilterSidebar
@@ -328,7 +330,7 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
             </div>
           </div>
 
-          {/* Product Grid Area */}
+          {/* ── PART 5: MAIN PRODUCT RESULTS & ACTIVE FILTER CHIPS ── */}
           <div className="flex-1 min-w-0">
             {/* Active Filter Chips Bar */}
             {(filters.searchQuery || filters.department || filters.category) && (
@@ -357,8 +359,8 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
 
                 {/* Category Chip */}
                 {filters.category && (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-stone-100 border border-stone-300 text-brand-dark rounded-full text-xs font-semibold font-sans">
-                    Category: {filters.category}
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-cream/80 border border-brand-dark/15 text-xs font-bold font-sans text-brand-dark">
+                    <span>🏷️ {filters.category}</span>
                     <button
                       onClick={() => handleCategoryQuickFilter(filters.category)}
                       className="hover:text-red-500 transition-colors p-0.5 rounded-full cursor-pointer ml-1"
@@ -373,8 +375,8 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
 
                 {/* Search Query Chip */}
                 {filters.searchQuery && (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#6F8C51]/10 border border-[#6F8C51]/30 text-[#6F8C51] rounded-full text-xs font-bold font-sans">
-                    "{filters.searchQuery}"
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-cream/80 border border-brand-dark/15 text-xs font-bold font-sans text-brand-dark">
+                    <span>🔍 "{filters.searchQuery}"</span>
                     <button
                       onClick={handleRemoveSearch}
                       className="hover:text-black transition-colors p-0.5 rounded-full cursor-pointer ml-1"
@@ -396,6 +398,8 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
               </div>
             )}
 
+            {/* ── PART 6: PRODUCT CARD GRID WITH SORT & PAGINATION (ProductGrid) ── */}
+            {/* Renders ProductCards, sort options (Featured, Price Low-High, High-Low, Rating), and pagination */}
             <ProductGrid
               products={currentProducts}
               isLoading={isLoading}

@@ -12,23 +12,8 @@ import p11 from '../../../assets/images/product/p11.avif'
 import p12 from '../../../assets/images/product/p12.avif'
 import p13 from '../../../assets/images/product/p13.avif'
 
-export interface ProductExtended {
-  id: number;
-  name: string;
-  price: number;
-  discountPrice?: number;
-  rating: number;
-  reviewsCount: number;
-  category: string;
-  department: 'women' | 'men';
-  productType: 'skincare' | 'haircare';
-  brand: string;
-  img: string;
-  hoverImg: string;
-  badge?: string;
-  description: string;
-  inStock: boolean;
-}
+import type { ProductExtended } from '../../../types';
+export type { ProductExtended };
 
 export const PRODUCTS_EXTENDED: ProductExtended[] = [
   // ==========================================

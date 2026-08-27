@@ -82,6 +82,7 @@ export default function CartDrawer({
       <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-6 sm:pl-10">
         <div
           ref={drawerRef}
+          data-lenis-prevent
           className="pointer-events-auto w-screen max-w-105"
           style={{
             transform: isVisible ? 'translateX(0)' : 'translateX(100%)',
@@ -373,7 +374,7 @@ export default function CartDrawer({
                       }}
                     >
                       <div style={{ display: 'flex', gap: '14px' }}>
-                        {/* Product Thumbnail */}
+                        {/* Product Thumbnail (Fill in Box) */}
                         <div
                           style={{
                             width: '80px',
@@ -382,11 +383,12 @@ export default function CartDrawer({
                             overflow: 'hidden',
                             flexShrink: 0,
                             background: '#F5F3EF',
-                            border: '1px solid rgba(28, 25, 23, 0.05)',
+                            border: '1px solid rgba(28, 25, 23, 0.08)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            padding: '6px',
+                            padding: '0',
+                            position: 'relative',
                           }}
                         >
                           <img
@@ -395,7 +397,8 @@ export default function CartDrawer({
                             style={{
                               width: '100%',
                               height: '100%',
-                              objectFit: 'contain',
+                              objectFit: 'cover',
+                              objectPosition: 'center',
                               transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
                             }}
                             onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
@@ -512,6 +515,7 @@ export default function CartDrawer({
                               <button
                                 type="button"
                                 onClick={() => onUpdateQty(item.id, 1)}
+                                disabled={item.qty >= 5}
                                 aria-label="Increase quantity"
                                 style={{
                                   width: '28px',
@@ -521,18 +525,38 @@ export default function CartDrawer({
                                   justifyContent: 'center',
                                   background: 'transparent',
                                   border: 'none',
-                                  color: '#44403C',
-                                  cursor: 'pointer',
+                                  color: item.qty >= 5 ? '#D6D3D1' : '#44403C',
+                                  cursor: item.qty >= 5 ? 'not-allowed' : 'pointer',
+                                  opacity: item.qty >= 5 ? 0.4 : 1,
                                   fontSize: '14px',
                                   fontWeight: 700,
                                   transition: 'background 0.15s',
                                 }}
-                                onMouseEnter={(e) => (e.currentTarget.style.background = '#E7E5E4')}
+                                onMouseEnter={(e) => {
+                                  if (item.qty < 5) e.currentTarget.style.background = '#E7E5E4';
+                                }}
                                 onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
                               >
                                 +
                               </button>
                             </div>
+
+                            {item.qty >= 5 && (
+                              <span
+                                style={{
+                                  fontSize: '10px',
+                                  fontWeight: 700,
+                                  color: '#13442C',
+                                  background: '#D8EFE3',
+                                  padding: '2px 6px',
+                                  borderRadius: '6px',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.5px',
+                                }}
+                              >
+                                Max 5 Limit
+                              </span>
+                            )}
 
                             {/* Trash Delete Button */}
                             <button

@@ -15,16 +15,20 @@ export default function NewArrivalsPage({ onAddToCart }: NewArrivalsPageProps) {
 
   return (
     <div className="min-h-screen bg-white text-brand-dark">
-      {/* 1. Clean Editorial Hero Section */}
+      {/* ── PART 1: EDITORIAL RELEASE HERO (NewArrivalsHero) ── */}
+      {/* Modern minimalist header introducing the newest clinical formulation drop */}
       <NewArrivalsHero />
       
-      {/* 2. Interactive Compound & Formula Explorer */}
+      {/* ── PART 2: ACTIVE COMPOUND & FORMULA EXPLORER (NewArrivalsInteractive) ── */}
+      {/* Interactive molecular map and ingredient breakdown with hotspot tooltips and direct add-to-cart */}
       <NewArrivalsInteractive onAddToCart={onAddToCart} />
 
-      {/* 3. New Arrivals Batch Release Grid */}
+      {/* ── PART 3: BATCH RELEASE CATALOG GRID (NewArrivalsGrid) ── */}
+      {/* Cards displaying limited fresh releases, batch identifiers, availability, and cart triggers */}
       <NewArrivalsGrid onAddToCart={onAddToCart} />
 
-      {/* 4. VIP Private Release Reservation */}
+      {/* ── PART 4: VIP PRIVATE BATCH RESERVATION (NewArrivalsNewsletter) ── */}
+      {/* Early-access invitation box for upcoming limited botanical batches */}
       <NewArrivalsNewsletter />
     </div>
   );

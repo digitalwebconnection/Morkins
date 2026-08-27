@@ -5,6 +5,7 @@ interface ProductRecommendation {
   id: number
   name: string
   price: number
+  discountPrice?: number
   img: string
   stepLabel: string
 }
@@ -16,7 +17,10 @@ interface RoutineRecommendation {
 }
 
 interface SkinQuizProps {
-  onAddToCart: (product: { id: number; name: string; price: number; img: string }) => void
+  onAddToCart: (
+    product: { id: number; name: string; price: number; discountPrice?: number; img: string },
+    openCartAfter?: boolean
+  ) => void
 }
 
 export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
@@ -43,6 +47,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
       id: product.id,
       name: product.name,
       price: product.price,
+      discountPrice: product.discountPrice,
       img: product.img,
       stepLabel
     }
@@ -102,9 +107,13 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
   const handleAddBundleToCart = () => {
     setIsAddingAll(true)
     recommendation.products.forEach((p, idx) => {
-      // Small timeout to stagger additions in case state updates require sequence
+      // Calculate item price after 15% bundle discount
+      const discountedPrice = parseFloat((p.price * (1 - bundleDiscount)).toFixed(2))
       setTimeout(() => {
-        onAddToCart({ id: p.id, name: p.name, price: p.price, img: p.img })
+        onAddToCart(
+          { id: p.id, name: p.name, price: discountedPrice, img: p.img },
+          idx === recommendation.products.length - 1
+        )
         if (idx === recommendation.products.length - 1) {
           setIsAddingAll(false)
           setAddedAllSuccess(true)
@@ -129,7 +138,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
         </div>
 
         {/* Quiz Container with Glassmorphism */}
-        <div className=" relative min-h-[280px] flex flex-col py-10 overflow-hidden">
+        <div className=" relative min-h-70 flex flex-col py-10 overflow-hidden">
 
           {/* Progress Indicator */}
           <div className="absolute top-0 left-0 w-full h-1  ">
@@ -230,8 +239,8 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                       onClick={handleAddBundleToCart}
                       disabled={isAddingAll}
                       className={`w-full py-3.5 rounded-full text-white text-xs font-bold tracking-widest uppercase shadow-md transition-all duration-300 cursor-pointer active:scale-98 ${addedAllSuccess
-                          ? 'bg-[#A68A56] hover:bg-[#A68A56]/90 text-white'
-                          : 'bg-[#A68A56] hover:bg-[#B58A57] text-white'
+                        ? 'bg-[#A68A56] hover:bg-[#A68A56]/90 text-white'
+                        : 'bg-[#A68A56] hover:bg-[#B58A57] text-white'
                         }`}
                     >
                       {isAddingAll ? (
@@ -250,7 +259,6 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                 {/* Right Recommended Product Cards */}
                 <div className="lg:w-[65%] w-full grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {recommendation.products.map((p) => {
-                    const isLocal = !p.img.startsWith('http')
                     return (
                       <div
                         key={p.id}
@@ -260,13 +268,11 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                           {p.stepLabel}
                         </span>
 
-                        <div className={`w-34 h-34 flex items-center justify-center rounded-sm mb-3 ${isLocal ? 'bg-[#D8D9D7] p-2' : 'bg-brand-cream-dark'
-                          }`}>
+                        <div className="w-full h-36 rounded-lg overflow-hidden mb-3 bg-[#F5F3EF] border border-neutral-200/70 flex items-center justify-center">
                           <img
                             src={p.img}
                             alt={p.name}
-                            className={`object-contain transition-transform duration-500 group-hover:scale-105 ${isLocal ? 'max-h-full w-auto' : 'w-full h-full object-fill'
-                              }`}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
 
@@ -281,7 +287,7 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
                           </div>
 
                           <button
-                            onClick={() => onAddToCart({ id: p.id, name: p.name, price: p.price, img: p.img })}
+                            onClick={() => onAddToCart({ id: p.id, name: p.name, price: p.discountPrice || p.price, img: p.img })}
                             className="mt-3 py-1.5 px-3 bg-[#0B1A28] hover:bg-[#A68A56] text-white text-[9px] font-bold uppercase tracking-wider rounded-full transition-all duration-300 cursor-pointer active:scale-95 whitespace-nowrap"
                           >
                             + Quick Add

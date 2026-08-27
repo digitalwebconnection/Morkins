@@ -12,19 +12,8 @@ import p11 from '../../assets/images/product/p11.avif'
 import p12 from '../../assets/images/product/p12.avif'
 import p13 from '../../assets/images/product/p13.avif'
 
-export interface Product {
-  id: number
-  name: string
-  price: number
-  discountPrice?: number
-  rating: number
-  reviewsCount: number
-  category: string
-  img: string
-  hoverImg: string
-  badge?: string
-  description?: string
-}
+import type { Product } from '../../types';
+export type { Product };
 
 export const PRODUCTS: Product[] = [
   {

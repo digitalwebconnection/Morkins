@@ -1,9 +1,9 @@
-import React, { useLayoutEffect, useRef, useCallback } from 'react';
+import { useLayoutEffect, useRef, useCallback, type ReactNode } from 'react';
 import Lenis from 'lenis';
 import './ScrollStack.css';
 
 interface ScrollStackItemProps {
-  children: React.ReactNode;
+  children: ReactNode;
   itemClassName?: string;
 }
 
@@ -14,7 +14,7 @@ export const ScrollStackItem = ({ children, itemClassName = '' }: ScrollStackIte
 );
 
 interface ScrollStackProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   itemDistance?: number;
   itemScale?: number;
@@ -219,6 +219,12 @@ const ScrollStack = ({
 
   const setupLenis = useCallback(() => {
     if (useWindowScroll) {
+      const globalLenis = (window as any).lenis;
+      if (globalLenis) {
+        globalLenis.on('scroll', handleScroll);
+        return globalLenis;
+      }
+
       const lenis = new Lenis({
         duration: 1.2,
         easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -313,8 +319,12 @@ const ScrollStack = ({
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      if ((window as any).lenis) {
+        (window as any).lenis.off('scroll', handleScroll);
+      }
       if (lenisRef.current) {
         lenisRef.current.destroy();
+        lenisRef.current = null;
       }
       stackCompletedRef.current = false;
       wrappersRef.current = [];

@@ -3,6 +3,8 @@ import type { CartItem, CartContextType } from '../types';
 
 const CART_STORAGE_KEY = 'morkins_cart_items';
 
+export const MAX_QTY_PER_PRODUCT = 5;
+
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -26,26 +28,48 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [cartItems]);
 
-  const addToCart = (product: { id: number; name: string; price: number; img: string }, openCartAfter = false) => {
-    let updatedItem: CartItem;
+  const addToCart = (
+    product: { id: number; name: string; price: number; discountPrice?: number; img: string },
+    openCartAfter = false
+  ) => {
+    const finalPrice =
+      typeof product.discountPrice === 'number' && product.discountPrice > 0
+        ? product.discountPrice
+        : product.price;
+
+    const normalizedProduct: CartItem = {
+      id: product.id,
+      name: product.name,
+      price: finalPrice,
+      img: product.img,
+      qty: 1,
+    };
+
+    let itemForToast: CartItem = { ...normalizedProduct, qty: 1 };
     setCartItems(prev => {
-      const existing = prev.find(item => item.id === product.id);
+      const existing = prev.find(item => item.id === normalizedProduct.id);
       if (existing) {
-        updatedItem = { ...existing, qty: existing.qty + 1 };
-        return prev.map(item => (item.id === product.id ? updatedItem : item));
+        if (existing.qty >= MAX_QTY_PER_PRODUCT) {
+          itemForToast = { ...existing, qty: MAX_QTY_PER_PRODUCT };
+          return prev;
+        }
+        const nextQty = Math.min(MAX_QTY_PER_PRODUCT, existing.qty + 1);
+        const updatedItem = { ...existing, price: finalPrice, qty: nextQty };
+        itemForToast = updatedItem;
+        return prev.map(item => (item.id === normalizedProduct.id ? updatedItem : item));
       }
-      updatedItem = { ...product, qty: 1 };
-      return [...prev, updatedItem];
+      itemForToast = { ...normalizedProduct, qty: 1 };
+      return [...prev, itemForToast];
     });
 
-    setLastAddedItem(product ? { ...product, qty: 1 } : null);
+    setLastAddedItem(itemForToast);
     
     if (openCartAfter) {
       setIsCartOpen(true);
-    } else {
-      setShowToast(false);
-      setTimeout(() => setShowToast(true), 50);
     }
+
+    setShowToast(false);
+    setTimeout(() => setShowToast(true), 50);
   };
 
   const updateQty = (id: number, delta: number) => {
@@ -53,7 +77,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       prev
         .map(item => {
           if (item.id === id) {
-            const nextQty = item.qty + delta;
+            const nextQty = Math.min(MAX_QTY_PER_PRODUCT, Math.max(0, item.qty + delta));
             return { ...item, qty: nextQty };
           }
           return item;

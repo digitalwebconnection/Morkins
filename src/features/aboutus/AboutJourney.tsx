@@ -46,7 +46,7 @@ export default function AboutJourney() {
 
       <div className="max-w-7xl mx-auto px-6 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-0">
-       
+
           <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] mt-2">Evolution of Morkins</h2>
           <p className="text-neutral-500 mt-4 text-sm sm:text-base font-light leading-relaxed">
             Scroll down to see the path we paved to redefine transdermal science.
@@ -71,7 +71,7 @@ export default function AboutJourney() {
                 itemClassName={`p-8 md:p-6 shadow-2xl shadow-black/40 rounded-3xl ${stone.bgClass} flex flex-col md:grid md:grid-cols-12 gap-8 items-stretch overflow-hidden border border-brand-dark/50`}
               >
                 {/* Image Column */}
-                <div className={`md:col-span-5 relative h-52 md:h-76 min-h-[220px] rounded-3xl overflow-hidden group/img ${isImageRight ? 'md:order-last' : ''}`}>
+                <div className={`md:col-span-5 relative h-52 md:h-76 min-h-55 rounded-3xl overflow-hidden group/img ${isImageRight ? 'md:order-last' : ''}`}>
                   <img
                     src={stone.img}
                     alt={stone.title}
@@ -96,7 +96,7 @@ export default function AboutJourney() {
                       {stone.desc}
                     </p>
                   </div>
-                  
+
                   {/* Card footer details */}
                   <div className="pt-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider opacity-60">
                     <span>Milestone Achieved</span>

@@ -1,20 +1,25 @@
 export interface Address {
   id: string;
-  type: 'Home' | 'Work' | 'Other';
-  name: string;
-  phone: string;
+  label?: string;
+  type?: 'Home' | 'Work' | 'Other';
+  name?: string;
+  phone?: string;
   street: string;
   city: string;
-  state: string;
-  pincode: string;
-  isDefault: boolean;
+  state?: string;
+  pincode?: string;
+  zip?: string;
+  isDefault?: boolean;
 }
 
 export interface User {
   id?: string;
-  name: string;
+  name?: string;
+  fullName?: string;
   email: string;
-  phone: string;
+  phone?: string;
+  country?: string;
+  profileImage?: string;
   gender?: string;
   dob?: string;
   skinType?: string;

@@ -43,15 +43,15 @@ export default function FilterSidebar({
   return (
     <div className={`bg-white rounded-2xl shadow-sm border border-brand-dark/5 p-6 ${className}`}>
       <div className="flex items-center justify-between mb-6 pb-3 border-b border-brand-dark/5">
-        <h2 className="text-xl font-serif font-semibold text-brand-dark flex items-center gap-2">
+        <h2 className="text-xl font-serif font-semibold text-[#13442C] flex items-center gap-2">
           <span>Filters</span>
           {(filters.department || filters.category || filters.searchQuery || filters.rating > 0 || filters.inStockOnly) && (
-            <span className="w-2 h-2 rounded-full bg-[#6F8C51]"></span>
+            <span className="w-2 h-2 rounded-full bg-[#13442C]"></span>
           )}
         </h2>
         <button
           onClick={onClear}
-          className="text-xs font-semibold uppercase tracking-wider text-brand-dark/60 hover:text-brand-dark underline transition-colors cursor-pointer"
+          className="text-xs font-semibold uppercase tracking-wider text-stone-500 hover:text-[#13442C] underline transition-colors cursor-pointer"
         >
           Clear All
         </button>
@@ -60,7 +60,7 @@ export default function FilterSidebar({
  
       {/* Search */}
       <div className="mb-8">
-        <label className="block text-xs font-bold uppercase tracking-wider text-brand-dark/70 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">
           Search
         </label>
         <div className="relative">
@@ -75,9 +75,9 @@ export default function FilterSidebar({
             }
             value={filters.searchQuery}
             onChange={(e) => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
-            className="w-full pl-3.5 pr-9 py-2.5 rounded-xl border border-brand-dark/20 focus:border-[#6F8C51] focus:ring-2 focus:ring-[#6F8C51]/20 outline-none transition-all text-sm bg-stone-50/50"
+            className="w-full pl-3.5 pr-9 py-2.5 rounded-xl border border-stone-200 focus:border-[#13442C] focus:ring-2 focus:ring-[#13442C]/15 outline-none transition-all text-sm bg-stone-50/50"
           />
-          <svg className="absolute right-3 top-3 h-4 w-4 text-brand-dark/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="absolute right-3 top-3 h-4 w-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
@@ -86,7 +86,7 @@ export default function FilterSidebar({
       {/* Categories */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-3">
-          <label className="block text-xs font-bold uppercase tracking-wider text-brand-dark/70">
+          <label className="block text-xs font-bold uppercase tracking-wider text-stone-700">
             {filters.department === 'women'
               ? 'Skincare Categories'
               : filters.department === 'men'
@@ -96,7 +96,7 @@ export default function FilterSidebar({
           {filters.category && (
             <button
               onClick={() => setFilters(prev => ({ ...prev, category: '' }))}
-              className="text-[11px] text-[#6F8C51] hover:underline cursor-pointer"
+              className="text-[11px] text-[#13442C] hover:underline cursor-pointer font-medium"
             >
               Reset
             </button>
@@ -110,10 +110,10 @@ export default function FilterSidebar({
                   type="checkbox"
                   checked={filters.category === cat}
                   onChange={() => handleCategoryChange(cat)}
-                  className="w-4 h-4 rounded border-brand-dark/30 text-[#6F8C51] focus:ring-[#6F8C51] focus:ring-offset-0 cursor-pointer"
+                  className="w-4 h-4 rounded border-stone-300 text-[#13442C] focus:ring-[#13442C] focus:ring-offset-0 cursor-pointer"
                 />
                 <span className={`ml-3 text-sm transition-colors ${
-                  filters.category === cat ? 'font-semibold text-brand-dark' : 'text-brand-dark/80 group-hover:text-brand-dark'
+                  filters.category === cat ? 'font-semibold text-[#13442C]' : 'text-stone-700 group-hover:text-[#13442C]'
                 }`}>
                   {cat}
                 </span>
@@ -125,7 +125,7 @@ export default function FilterSidebar({
 
       {/* Rating */}
       <div className="mb-8">
-        <label className="block text-xs font-bold uppercase tracking-wider text-brand-dark/70 mb-3">Rating</label>
+        <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-3">Rating</label>
         <div className="space-y-2">
           {[5, 4, 3, 2, 1].map((rating) => (
             <label key={rating} className="flex items-center group cursor-pointer p-1 rounded-lg hover:bg-stone-50 transition-colors">
@@ -134,7 +134,7 @@ export default function FilterSidebar({
                 name="rating"
                 checked={filters.rating === rating}
                 onChange={() => handleRatingChange(rating)}
-                className="w-4 h-4 border-brand-dark/30 text-[#6F8C51] focus:ring-[#6F8C51] cursor-pointer"
+                className="w-4 h-4 border-stone-300 text-[#13442C] focus:ring-[#13442C] cursor-pointer"
               />
               <span className="ml-3 flex items-center">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -142,7 +142,7 @@ export default function FilterSidebar({
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
-                <span className="ml-2 text-xs text-brand-dark/70">& Up</span>
+                <span className="ml-2 text-xs text-stone-600">& Up</span>
               </span>
             </label>
           ))}
@@ -156,7 +156,7 @@ export default function FilterSidebar({
             type="checkbox"
             checked={filters.inStockOnly}
             onChange={(e) => setFilters(prev => ({ ...prev, inStockOnly: e.target.checked }))}
-            className="w-4 h-4 rounded border-brand-dark/30 text-[#6F8C51] focus:ring-[#6F8C51] focus:ring-offset-0 cursor-pointer"
+            className="w-4 h-4 rounded border-stone-300 text-[#13442C] focus:ring-[#13442C] focus:ring-offset-0 cursor-pointer"
           />
           <span className="ml-3 text-sm font-medium text-brand-dark group-hover:text-brand-dark/80 transition-colors">In Stock Only</span>
         </label>

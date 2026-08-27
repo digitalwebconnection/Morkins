@@ -262,11 +262,10 @@ export default function ClinicalStudy() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`py-3 px-4 text-xs font-bold uppercase tracking-wider border-b-2 transition-all duration-300 whitespace-nowrap cursor-pointer ${
-                    activeTab === tab.id
+                  className={`py-3 px-4 text-xs font-bold uppercase tracking-wider border-b-2 transition-all duration-300 whitespace-nowrap cursor-pointer ${activeTab === tab.id
                       ? "border-[#A68A56] text-[#A68A56]"
                       : "border-transparent text-gray-400 hover:text-[#0B1A28]"
-                  }`}
+                    }`}
                 >
                   {tab.title}
                 </button>

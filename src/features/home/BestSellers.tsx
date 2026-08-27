@@ -4,7 +4,10 @@ import type { Product } from './productsData'
 import { useLanguage } from '../../context/LanguageContext'
 
 interface BestSellersProps {
-  onAddToCart: (product: { id: number; name: string; price: number; img: string }) => void
+  onAddToCart: (
+    product: { id: number; name: string; price: number; discountPrice?: number; img: string },
+    openCart?: boolean
+  ) => void
 }
 
 const BEST_SELLERS: Product[] = PRODUCTS.filter(p => [1, 9, 10].includes(p.id))
@@ -22,7 +25,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
   }
 
   return (
-    <section id="bestsellers" className="py-14 bg-[#D8D9D7] text-[#8C937D] overflow-hidden border-b border-[#A5A686]/30">
+    <section id="bestsellers" className="py-14 bg-brand-cream text-brand-sage overflow-hidden border-b border-brand-cream-dark/30">
       <div className="max-w-7xl mx-auto px-6 lg:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
@@ -37,7 +40,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                 {/* Left Arrow Button */}
                 <button
                   onClick={handlePrev}
-                  className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#A5A686] hover:text-white hover:border-[#A5A686] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                  className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-brand-cream-dark hover:text-white hover:border-brand-cream-dark transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
                   aria-label="Scroll left"
                 >
                   <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -48,7 +51,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                 {/* Right Arrow Button */}
                 <button
                   onClick={handleNext}
-                  className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-[#A5A686] hover:text-white hover:border-[#A5A686] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                  className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-brand-cream-dark hover:text-white hover:border-brand-cream-dark transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
                   aria-label="Scroll right"
                 >
                   <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -75,7 +78,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                           className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
-                        <span className="absolute top-3 left-3 bg-[#8C937D] text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-xs">
+                        <span className="absolute top-3 left-3 bg-brand-sage text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-xs">
                           {p.rating}★ Rating
                         </span>
                       </div>
@@ -86,10 +89,10 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                           {translatedName}
                         </h3>
 
-                        <div className="flex items-center justify-between  mt-3 pt-3 border-t border-[#A5A686]">
+                        <div className="flex items-center justify-between  mt-3 pt-3 border-t border-brand-cream-dark">
                           <span className="text-base font-bold text-[#A67C52]">${p.price.toFixed(2)}</span>
                           <button
-                            onClick={() => onAddToCart({ id: p.id, name: translatedName, price: p.price, img: p.img })}
+                            onClick={() => onAddToCart({ id: p.id, name: translatedName, price: p.discountPrice || p.price, discountPrice: p.discountPrice, img: p.img })}
                             className="group/btn flex items-center justify-center gap-0 hover:gap-1.5 px-3.5 py-2.5 bg-[#0B1A28] hover:bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer active:scale-95"
                           >
                             <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -97,7 +100,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                               <circle cx="20" cy="21" r="1" />
                               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                             </svg>
-                            <span className="max-w-0 overflow-hidden opacity-0 group-hover/btn:max-w-[100px] group-hover/btn:opacity-100 transition-all duration-500 ease-in-out whitespace-nowrap">
+                            <span className="max-w-0 overflow-hidden opacity-0 group-hover/btn:max-w-25 group-hover/btn:opacity-100 transition-all duration-500 ease-in-out whitespace-nowrap">
                               {t('btn_add_to_cart')}
                             </span>
                           </button>

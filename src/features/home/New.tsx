@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type CSSProperties } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 
 import p1 from '../../assets/images/product/p1.jpg'
@@ -73,7 +73,7 @@ export default function New() {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [hoveredHotspotIdx, setHoveredHotspotIdx] = useState<number | null>(0)
   const [isHoveredManually, setIsHoveredManually] = useState(false)
-  const [tiltStyle] = useState<React.CSSProperties>({})
+  const [tiltStyle] = useState<CSSProperties>({})
   const activeSlide = SLIDES[selectedSlideIdx]
 
   // Reset to first hotspot when slide changes
@@ -239,7 +239,7 @@ export default function New() {
               <img
                 src={activeSlide.image}
                 alt={t('slide_' + activeSlide.id + '_title')}
-                className="w-full h-full object-fill transition-transform duration-1000 ease-out"
+                className="w-full h-full object-cover transition-transform duration-1000 ease-out"
                 loading="lazy"
               />
 
@@ -340,8 +340,8 @@ export default function New() {
                     {/* Rich Tooltip Detail Popup (Positions at end of callout line with transition delay) */}
                     <div
                       className={`absolute w-52 mt-10 text-white rounded-lg p-3 shadow-xl border text-left transition-all duration-500 z-30 ${isHovered
-                          ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
-                          : 'opacity-0 translate-y-2 scale-95 pointer-events-none'
+                        ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
+                        : 'opacity-0 translate-y-2 scale-95 pointer-events-none'
                         }`}
                       style={{
                         backgroundColor: '#8c937d',

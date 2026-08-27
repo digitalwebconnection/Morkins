@@ -37,7 +37,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
     <div className="space-y-6 animate-fade-in">
       
       {/* ── Section Header ── */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
+      <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#1C331B] via-[#4E7A52] to-[#C49746]" />
 
         <div className="flex flex-wrap justify-between items-center gap-4 pb-5 border-b border-[#E5DEC9]">
@@ -54,14 +54,14 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
         </div>
 
         {savedSettingsNotice && (
-          <div className="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-semibold flex items-center gap-2 animate-fade-in">
+          <div className="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-800 text-xs font-semibold flex items-center gap-2 animate-fade-in">
             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
             <span>Preferences saved successfully!</span>
           </div>
         )}
 
         {exportedDataNotice && (
-          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 text-xs font-semibold flex items-center gap-2 animate-fade-in">
+          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 text-xs font-semibold flex items-center gap-2 animate-fade-in">
             <Download className="w-4 h-4 text-amber-600" />
             <span>Complete patron data dossier exported to encrypted archive (Morkins-Patron-Data.json).</span>
           </div>
@@ -91,7 +91,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
                       setSavedSettingsNotice(true);
                       setTimeout(() => setSavedSettingsNotice(false), 2000);
                     }}
-                    className={`p-4 rounded-xl border text-left transition-all cursor-pointer shadow-2xs flex items-center justify-between ${
+                    className={`p-4 rounded-lg border text-left transition-all cursor-pointer shadow-2xs flex items-center justify-between ${
                       isSelected
                         ? 'bg-linear-to-b from-[#FAF8F2] to-white border-[#547E3D] ring-2 ring-[#6F8C51]/20'
                         : 'bg-white border-[#DDD3C1] hover:border-gray-400'
@@ -127,7 +127,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
 
             <div className="space-y-4">
               {/* SMS Dispatch Alerts */}
-              <div className="p-4 rounded-xl bg-[#FAF8F2] border border-[#DDD3C1] flex items-center justify-between gap-4">
+              <div className="p-4 rounded-lg bg-[#FAF8F2] border border-[#DDD3C1] flex items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white border border-[#DDD3C1] flex items-center justify-center text-[#1C331B] shrink-0 mt-0.5">
                     <MessageSquare className="w-4 h-4" />
@@ -152,7 +152,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
               </div>
 
               {/* VIP Early Drops */}
-              <div className="p-4 rounded-xl bg-[#FAF8F2] border border-[#DDD3C1] flex items-center justify-between gap-4">
+              <div className="p-4 rounded-lg bg-[#FAF8F2] border border-[#DDD3C1] flex items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white border border-[#DDD3C1] flex items-center justify-center text-[#1C331B] shrink-0 mt-0.5">
                     <Sparkles className="w-4 h-4 text-[#C49746]" />
@@ -177,7 +177,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
               </div>
 
               {/* Replenishment Reminders */}
-              <div className="p-4 rounded-xl bg-[#FAF8F2] border border-[#DDD3C1] flex items-center justify-between gap-4">
+              <div className="p-4 rounded-lg bg-[#FAF8F2] border border-[#DDD3C1] flex items-center justify-between gap-4">
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white border border-[#DDD3C1] flex items-center justify-center text-[#1C331B] shrink-0 mt-0.5">
                     <Mail className="w-4 h-4" />
@@ -210,7 +210,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
               <span>Patron Data & Privacy Dossier</span>
             </h4>
 
-            <div className="p-5 rounded-xl bg-white border border-[#DDD3C1] flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-2xs">
+            <div className="p-5 rounded-lg bg-white border border-[#DDD3C1] flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-2xs">
               <div>
                 <strong className="text-xs font-bold text-[#1C2E1A] block">
                   Export Your Personal Skincare History
@@ -222,7 +222,7 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
 
               <button
                 onClick={handleExportData}
-                className="px-4 py-2 bg-[#FAF8F2] hover:bg-[#1C331B] text-[#1C2E1A] hover:text-[#AFD971] border border-[#DDD3C1] rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-2xs flex items-center gap-1.5 shrink-0"
+                className="px-4 py-2 bg-[#FAF8F2] hover:bg-[#1C331B] text-[#1C2E1A] hover:text-[#AFD971] border border-[#DDD3C1] rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-2xs flex items-center gap-1.5 shrink-0"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Export Dossier</span>

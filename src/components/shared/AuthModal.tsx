@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ShieldCheck, ArrowRight, KeyRound, CheckCircle2,
   AlertCircle, X, ChevronDown, ArrowLeft, RefreshCw
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks';
+import OtpInput from './OtpInput';
 
 const COUNTRIES = [
   { code: 'US', name: 'United States', flag: '🇺🇸', dialCode: '+1' },
@@ -34,6 +36,7 @@ interface AuthModalProps {
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const navigate = useNavigate();
+  const { login } = useAuth();
   // Auth Modes: 'login' | 'signup' | 'forgot' | 'reset-password' | 'otp' | 'success'
   const [mode, setMode] = useState<'login' | 'signup' | 'forgot' | 'reset-password' | 'otp' | 'success'>('login');
   const [otpPurpose, setOtpPurpose] = useState<'login' | 'signup' | 'forgot'>('login');
@@ -50,7 +53,6 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
   // OTP inputs
   const [otpVal, setOtpVal] = useState<string[]>(Array(6).fill(''));
-  const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   // UI control states
   const [countryDropdownOpen, setCountryDropdownOpen] = useState(false);
@@ -65,24 +67,16 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     if (isOpen) {
       const loggedInUser = localStorage.getItem('morkins_logged_in_user');
       if (loggedInUser) {
-        try {
-          const user = JSON.parse(loggedInUser);
-          if (user && user.email) {
-            setEmail(user.email);
-            setFullName(user.fullName || '');
-            setPhone(user.phone || '');
-            const countryMatch = COUNTRIES.find(c => c.name.toLowerCase() === (user.country || '').toLowerCase());
-            if (countryMatch) setSelectedCountry(countryMatch);
-            setMode('success');
-          }
-        } catch (e) {
-          // ignore
-        }
+        onClose();
+        navigate('/profile');
       } else {
         setMode('login');
+        setPassword('');
+        setConfirmPassword('');
+        setOtpVal(Array(6).fill(''));
       }
     }
-  }, [isOpen]);
+  }, [isOpen, onClose, navigate]);
 
   // Countdown timer for OTP
   useEffect(() => {
@@ -216,9 +210,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           };
           localUsers.push(newUser);
           localStorage.setItem('morkins_simulated_users', JSON.stringify(localUsers));
-          localStorage.setItem('morkins_logged_in_user', JSON.stringify(newUser));
-          setMode('success');
-          triggerToast('Welcome! Your account has been verified and created.', 'success');
+          login(newUser);
+          onClose();
+          navigate('/profile');
         } else if (otpPurpose === 'login') {
           const localUsers = JSON.parse(localStorage.getItem('morkins_simulated_users') || '[]');
           const userObj = localUsers.find((u: any) => u.email.toLowerCase() === email.toLowerCase()) || {
@@ -227,9 +221,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             phone: '',
             country: 'United States'
           };
-          localStorage.setItem('morkins_logged_in_user', JSON.stringify(userObj));
-          setMode('success');
-          triggerToast('Logged in successfully.', 'success');
+          login(userObj);
+          onClose();
+          navigate('/profile');
         } else if (otpPurpose === 'forgot') {
           setMode('reset-password');
           triggerToast('OTP verified. Set new password.', 'success');
@@ -278,28 +272,24 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     setTimeout(() => {
       setLoading(false);
       const googleEmail = 'google.user@gmail.com';
-      setEmail(googleEmail);
-      setFullName('Google User');
-      sendMockOtp(googleEmail, 'login');
-    }, 1200);
+      const googleUser = {
+        fullName: 'Google User',
+        email: googleEmail,
+        phone: '+1 (555) 019-2834',
+        country: 'United States'
+      };
+      const localUsers = JSON.parse(localStorage.getItem('morkins_simulated_users') || '[]');
+      if (!localUsers.some((u: any) => u.email === googleEmail)) {
+        localUsers.push(googleUser);
+        localStorage.setItem('morkins_simulated_users', JSON.stringify(localUsers));
+      }
+      login(googleUser);
+      onClose();
+      navigate('/profile');
+    }, 800);
   };
 
-  const handleOtpChange = (value: string, index: number) => {
-    if (isNaN(Number(value))) return;
-    const newOtp = [...otpVal];
-    newOtp[index] = value.slice(-1);
-    setOtpVal(newOtp);
 
-    if (value && index < 5) {
-      otpRefs.current[index + 1]?.focus();
-    }
-  };
-
-  const handleOtpKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
-    if (e.key === 'Backspace' && !otpVal[index] && index > 0) {
-      otpRefs.current[index - 1]?.focus();
-    }
-  };
 
   const filteredCountries = COUNTRIES.filter(c =>
     c.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
@@ -314,7 +304,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       <div className="fixed inset-0 bg-[#09170C]/65 backdrop-blur-md transition-opacity animate-modal-backdrop" onClick={onClose} />
 
       {/* Modal popup box */}
-      <div className="relative w-full max-w-md bg-white rounded-3xl shadow-[0_25px_60px_-15px_rgba(18,96,47,0.3)] border border-[#DDD3C1] text-[#1C2E1A] overflow-hidden transform transition-all duration-300 animate-modal-content">
+      <div data-lenis-prevent className="relative w-full max-w-md bg-white rounded-3xl shadow-[0_25px_60px_-15px_rgba(18,96,47,0.3)] border border-[#DDD3C1] text-[#1C2E1A] overflow-hidden transform transition-all duration-300 animate-modal-content">
         
         {/* Top Gold & Emerald Gradient Accent Line */}
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-[#12602F] via-[#C49746] to-[#AFD971]" />
@@ -653,21 +643,17 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <p className="text-xs text-[#464D3F] font-light leading-relaxed mb-4">
                 Please enter the 6-digit OTP code sent to <strong className="text-[#12602F] font-bold">{email}</strong>.
               </p>
-              <div className="flex justify-between gap-2 max-w-xs mx-auto">
-                {Array(6).fill(0).map((_, i) => (
-                  <input
-                    key={i}
-                    ref={(el) => { otpRefs.current[i] = el; }}
-                    type="text"
-                    inputMode="numeric"
-                    pattern="[0-9]*"
-                    maxLength={1}
-                    value={otpVal[i]}
-                    onChange={(e) => handleOtpChange(e.target.value, i)}
-                    onKeyDown={(e) => handleOtpKeyDown(e, i)}
-                    className="w-10 h-12 border border-[#DDD3C1] focus:border-[#12602F] focus:ring-2 focus:ring-[#12602F]/20 focus:scale-105 transition-all outline-none rounded-xl text-center font-serif text-lg font-bold text-[#12602F] bg-white shadow-2xs"
-                  />
-                ))}
+              <div className="py-2">
+                <OtpInput
+                  length={6}
+                  value={otpVal.join('')}
+                  onChange={(val) => {
+                    const arr = val.split('');
+                    while (arr.length < 6) arr.push('');
+                    setOtpVal(arr.slice(0, 6));
+                  }}
+                  autoFocus
+                />
               </div>
 
               <div className="flex items-center justify-between gap-4 pt-2">

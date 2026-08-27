@@ -22,10 +22,17 @@ import {
 } from 'lucide-react';
 import { getBlogPostBySlug, getRelatedBlogPosts, BLOG_POSTS } from './data/blogData';
 import { BlogCard } from './components/BlogCard';
+import { useAuth } from '../../hooks';
 
 export default function BlogDetailsPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const { user } = useAuth();
+
+  // Unique identifier for the active account / session
+  const accountIdentifier = useMemo(() => {
+    return user?.email ? user.email.toLowerCase().trim() : 'guest_patron';
+  }, [user]);
 
   const post = useMemo(() => {
     return slug ? getBlogPostBySlug(slug) : undefined;
@@ -40,7 +47,7 @@ export default function BlogDetailsPage() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [copiedLink, setCopiedLink] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
-  const [clapsCount, setClapsCount] = useState(() => (post ? (post.claps || 120) : 120));
+  const [clapsCount, setClapsCount] = useState<number>(() => (post ? (post.claps || 120) : 120));
   const [hasClapped, setHasClapped] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
@@ -50,7 +57,7 @@ export default function BlogDetailsPage() {
   const [commentText, setCommentText] = useState('');
   const [commentSubmitted, setCommentSubmitted] = useState(false);
 
-  // Saved status from local storage
+  // Saved status & Claps status from local storage
   useEffect(() => {
     if (post) {
       try {
@@ -63,9 +70,25 @@ export default function BlogDetailsPage() {
         // ignore
       }
       setCommentsList(post.comments || []);
-      setClapsCount(post.claps || 120);
+
+      // Load persistent claps per account & post
+      try {
+        const rawClaps = localStorage.getItem('morkins_blog_claps_data');
+        const clapsData = rawClaps ? JSON.parse(rawClaps) : {};
+        const postClapsInfo = clapsData[post.id] || {
+          clappedUsers: {},
+          totalClaps: post.claps || 120,
+        };
+
+        const alreadyClapped = !!postClapsInfo.clappedUsers?.[accountIdentifier];
+        setHasClapped(alreadyClapped);
+        setClapsCount(postClapsInfo.totalClaps ?? (post.claps || 120));
+      } catch {
+        setClapsCount(post.claps || 120);
+        setHasClapped(false);
+      }
     }
-  }, [post]);
+  }, [post, accountIdentifier]);
 
   // Track window scroll progress for reading bar
   useEffect(() => {
@@ -102,9 +125,52 @@ export default function BlogDetailsPage() {
     setTimeout(() => setCopiedLink(false), 2500);
   };
 
+  // Toggle 1 clap per account (click adds +1, click again removes -1)
   const handleClap = () => {
-    setClapsCount((prev) => prev + 1);
-    setHasClapped(true);
+    if (!post) return;
+
+    try {
+      const rawClaps = localStorage.getItem('morkins_blog_claps_data');
+      const clapsData = rawClaps ? JSON.parse(rawClaps) : {};
+      const postClapsInfo = clapsData[post.id] || {
+        clappedUsers: {},
+        totalClaps: post.claps || 120,
+      };
+
+      if (!postClapsInfo.clappedUsers) {
+        postClapsInfo.clappedUsers = {};
+      }
+
+      if (hasClapped) {
+        // Already clapped: clicking again cancels/removes the 1 clap (-1)
+        delete postClapsInfo.clappedUsers[accountIdentifier];
+        const newTotal = Math.max(0, (postClapsInfo.totalClaps ?? clapsCount) - 1);
+        postClapsInfo.totalClaps = newTotal;
+
+        setHasClapped(false);
+        setClapsCount(newTotal);
+      } else {
+        // Not clapped: adds 1 clap for this account (+1)
+        postClapsInfo.clappedUsers[accountIdentifier] = true;
+        const newTotal = (postClapsInfo.totalClaps ?? clapsCount) + 1;
+        postClapsInfo.totalClaps = newTotal;
+
+        setHasClapped(true);
+        setClapsCount(newTotal);
+      }
+
+      clapsData[post.id] = postClapsInfo;
+      localStorage.setItem('morkins_blog_claps_data', JSON.stringify(clapsData));
+    } catch {
+      // In-memory fallback
+      if (hasClapped) {
+        setHasClapped(false);
+        setClapsCount((prev) => Math.max(0, prev - 1));
+      } else {
+        setHasClapped(true);
+        setClapsCount((prev) => prev + 1);
+      }
+    }
   };
 
   const handleAddComment = (e: React.FormEvent) => {
@@ -144,7 +210,7 @@ export default function BlogDetailsPage() {
   if (!post) {
     return (
       <div className="min-h-screen bg-[#F7F6F2] flex items-center justify-center px-4 py-24">
-        <div className="bg-white rounded-3xl p-10 max-w-lg text-center space-y-5 border border-[#184433]/15 shadow-xl">
+        <div className="bg-white rounded-lg p-10 max-w-lg text-center space-y-5 border border-[#184433]/15 shadow-xl">
           <div className="w-16 h-16 rounded-full bg-[#184433]/10 text-[#184433] flex items-center justify-center mx-auto text-2xl font-serif">
             📜
           </div>
@@ -154,7 +220,7 @@ export default function BlogDetailsPage() {
           </p>
           <button
             onClick={() => navigate('/blog')}
-            className="inline-flex items-center gap-2 bg-[#184433] text-white text-xs font-bold uppercase tracking-widest px-6 py-3.5 rounded-2xl hover:bg-[#0F3822] transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 bg-[#184433] text-white text-xs font-bold uppercase tracking-widest px-6 py-3.5 rounded-lg hover:bg-[#0F3822] transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Return to All Journals</span>
@@ -194,7 +260,7 @@ export default function BlogDetailsPage() {
             <div className="flex items-center gap-2">
               <button
                 onClick={handleToggleSave}
-                className="p-2 rounded-xl bg-[#FAF9F5] hover:bg-neutral-100 text-[#184433] transition-colors cursor-pointer border border-neutral-200"
+                className="p-2 rounded-lg bg-[#FAF9F5] hover:bg-neutral-100 text-[#184433] transition-colors cursor-pointer border border-neutral-200"
                 title={isSaved ? 'Remove from Saved' : 'Save Article'}
               >
                 <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-[#184433] text-[#184433]' : 'text-neutral-700'}`} />
@@ -202,7 +268,7 @@ export default function BlogDetailsPage() {
 
               <button
                 onClick={handleShare}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#FAF9F5] hover:bg-neutral-100 text-[#184433] text-xs font-semibold transition-colors cursor-pointer border border-neutral-200"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#FAF9F5] hover:bg-neutral-100 text-[#184433] text-xs font-semibold transition-colors cursor-pointer border border-neutral-200"
                 title="Share Journal"
               >
                 {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
@@ -267,7 +333,7 @@ export default function BlogDetailsPage() {
 
         {/* Audio Player Box (when active) */}
         {isPlayingAudio && (
-          <div className="bg-[#FAF9F5] rounded-2xl p-4 sm:p-5 border border-[#184433]/15 shadow-sm flex items-center justify-between gap-4 animate-fade-in">
+          <div className="bg-[#FAF9F5] rounded-lg p-4 sm:p-5 border border-[#184433]/15 shadow-sm flex items-center justify-between gap-4 animate-fade-in">
             <div className="flex items-center gap-3.5">
               <div className="w-10 h-10 rounded-full bg-[#184433] text-[#AFD971] flex items-center justify-center shrink-0 animate-pulse">
                 <Volume2 className="w-5 h-5" />
@@ -308,7 +374,7 @@ export default function BlogDetailsPage() {
             <div className="sticky top-20 space-y-6">
 
               {/* Table of Contents Box */}
-              <div className="bg-white rounded-2xl p-6 border border-[#184433]/10 shadow-sm space-y-4">
+              <div className="bg-white rounded-lg p-6 border border-[#184433]/10 shadow-sm space-y-4">
                 <h4 className="font-serif text-lg text-[#184433] flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#6F8C51]" />
                   <span>Journal Outline</span>
@@ -353,7 +419,7 @@ export default function BlogDetailsPage() {
               </div>
 
               {/* Author Bio Card */}
-              <div className="bg-white rounded-2xl p-6 border border-[#184433]/10 shadow-sm space-y-4">
+              <div className="bg-white rounded-lg p-6 border border-[#184433]/10 shadow-sm space-y-4">
                 <div className="flex items-center gap-3">
                   <img
                     src={post.author.avatar}
@@ -377,7 +443,7 @@ export default function BlogDetailsPage() {
               </div>
 
               {/* Tags Cloud */}
-              <div className="bg-white rounded-2xl p-6 border border-[#184433]/10 shadow-sm space-y-3">
+              <div className="bg-white rounded-lg p-6 border border-[#184433]/10 shadow-sm space-y-3">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#184433]">
                   Topic Keywords
                 </h4>
@@ -400,14 +466,14 @@ export default function BlogDetailsPage() {
           <article className="lg:col-span-8 space-y-10 order-1 lg:order-2">
 
             {/* Opening Lead Paragraph / Quote */}
-            <div className="bg-white rounded-2xl p-6 sm:p-8 border-l-4 border-[#184433] border shadow-sm">
+            <div className="bg-white rounded-lg p-6 sm:p-8 border-l-4 border-[#184433] border shadow-sm">
               <p className="text-base sm:text-lg text-neutral-800 font-serif italic leading-relaxed">
                 "{post.content.introduction}"
               </p>
             </div>
 
             {/* Key Clinical Takeaways Callout Card */}
-            <section id="takeaways" className="bg-[#FAF9F5] border border-[#184433]/15 rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+            <section id="takeaways" className="bg-[#FAF9F5] border border-[#184433]/15 rounded-lg p-6 sm:p-8 shadow-sm space-y-4">
               <h3 className="text-xs font-bold uppercase tracking-widest text-[#184433] flex items-center gap-2 font-sans">
                 <Sparkles className="w-4 h-4 text-[#6F8C51]" />
                 <span>Key Clinical Takeaways:</span>
@@ -435,7 +501,7 @@ export default function BlogDetailsPage() {
                     {section.body}
                   </p>
                   {section.highlight && (
-                    <div className="bg-[#184433]/5 p-5 rounded-2xl border border-[#184433]/15 text-xs sm:text-sm text-[#184433] font-medium my-4 space-y-1">
+                    <div className="bg-[#184433]/5 p-5 rounded-lg border border-[#184433]/15 text-xs sm:text-sm text-[#184433] font-medium my-4 space-y-1">
                       <div className="text-[10px] font-bold uppercase tracking-wider text-[#6F8C51]">
                         💡 Formulation Note
                       </div>
@@ -449,7 +515,7 @@ export default function BlogDetailsPage() {
             </div>
 
             {/* Clinical Verdict & Summary Card */}
-            <section id="verdict" className="bg-linear-to-br from-[#0c261b] to-[#184433] text-white p-7 sm:p-10 rounded-3xl shadow-xl space-y-3 relative overflow-hidden">
+            <section id="verdict" className="bg-linear-to-br from-[#0c261b] to-[#184433] text-white p-7 sm:p-10 rounded-lg shadow-xl space-y-3 relative overflow-hidden">
               <div className="absolute right-0 bottom-0 w-64 h-64 bg-[#AFD971]/10 rounded-full blur-2xl pointer-events-none" />
               <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#AFD971] bg-white/10 px-3.5 py-1 rounded-full border border-white/15">
                 Clinical Verdict & Summary
@@ -464,7 +530,7 @@ export default function BlogDetailsPage() {
 
             {/* Citations & Peer-Reviewed References */}
             {post.content.citations && post.content.citations.length > 0 && (
-              <div className="bg-white rounded-2xl p-6 border border-[#184433]/10 space-y-2 text-xs text-neutral-500">
+              <div className="bg-white rounded-lg p-6 border border-[#184433]/10 space-y-2 text-xs text-neutral-500">
                 <h4 className="font-bold text-[#184433] uppercase tracking-wider text-[11px]">
                   Scientific References & PubMed Citations:
                 </h4>
@@ -494,13 +560,13 @@ export default function BlogDetailsPage() {
                   {post.content.recommendedProducts.map((prod) => (
                     <div
                       key={prod.id}
-                      className="bg-white p-5 rounded-2xl border border-[#184433]/15 hover:border-[#184433]/40 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group space-y-4"
+                      className="bg-white p-5 rounded-lg border border-[#184433]/15 hover:border-[#184433]/40 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group space-y-4"
                     >
                       <div className="flex items-start gap-4">
                         <img
                           src={prod.img}
                           alt={prod.name}
-                          className="w-20 h-20 rounded-xl object-cover border border-neutral-100 shadow-xs shrink-0"
+                          className="w-20 h-20 rounded-lg object-cover border border-neutral-100 shadow-xs shrink-0"
                         />
                         <div className="space-y-1">
                           {prod.tagline && (
@@ -533,7 +599,7 @@ export default function BlogDetailsPage() {
                         </Link>
                         <Link
                           to={prod.link}
-                          className="bg-[#184433] text-white text-xs font-semibold px-4 py-2 rounded-xl hover:bg-[#0F3822] transition-colors inline-flex items-center gap-1.5 shadow-xs"
+                          className="bg-[#184433] text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-[#0F3822] transition-colors inline-flex items-center gap-1.5 shadow-xs"
                         >
                           <ShoppingBag className="w-3.5 h-3.5" />
                           <span>View Product</span>
@@ -548,22 +614,28 @@ export default function BlogDetailsPage() {
             {/* Engagement & Reaction Bar */}
             <div className="pt-8 border-t border-neutral-200/80 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                {/* Claps button */}
+                {/* Claps button (1 clap per account) */}
                 <button
                   onClick={handleClap}
-                  className={`inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm ${hasClapped
+                  title={hasClapped ? "You clapped for this journal (Click to remove)" : "Clap for this clinical journal (1 clap per account)"}
+                  className={`inline-flex items-center gap-2 px-5 py-1.5 rounded-lg font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm ${hasClapped
                       ? 'bg-[#184433] text-[#AFD971] shadow-lg shadow-[#184433]/20 scale-105'
                       : 'bg-white text-[#184433] border border-[#184433]/15 hover:bg-[#184433]/5'
                     }`}
                 >
                   <span className="text-base">👏</span>
-                  <span>{clapsCount} Claps</span>
+                  <span>{clapsCount} {clapsCount === 1 ? 'Clap' : 'Claps'}</span>
+                  {hasClapped && (
+                    <span className="text-[10px] bg-[#AFD971] text-[#184433] px-1.5 py-0.2 rounded font-extrabold ml-1">
+                      ✓ Clapped
+                    </span>
+                  )}
                 </button>
 
                 {/* Bookmark button */}
                 <button
                   onClick={handleToggleSave}
-                  className={`inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm ${isSaved
+                  className={`inline-flex items-center gap-2 px-5 py-3 rounded-lg font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm ${isSaved
                       ? 'bg-[#184433] text-[#AFD971]'
                       : 'bg-white text-neutral-700 border border-[#184433]/15 hover:bg-[#184433]/5'
                     }`}
@@ -578,7 +650,7 @@ export default function BlogDetailsPage() {
                 <span className="text-xs text-neutral-500 font-medium">Share Journal:</span>
                 <button
                   onClick={handleShare}
-                  className="p-2.5 rounded-xl bg-white border border-neutral-200 hover:bg-neutral-100 text-neutral-700 transition-colors cursor-pointer"
+                  className="p-2.5 rounded-lg bg-white border border-neutral-200 hover:bg-neutral-100 text-neutral-700 transition-colors cursor-pointer"
                   title="Copy link"
                 >
                   {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
@@ -596,7 +668,7 @@ export default function BlogDetailsPage() {
               </div>
 
               {/* Add Comment Form */}
-              <form onSubmit={handleAddComment} className="bg-white rounded-2xl p-6 border border-[#184433]/15 shadow-sm space-y-4">
+              <form onSubmit={handleAddComment} className="bg-white rounded-lg p-6 border border-[#184433]/15 shadow-sm space-y-4">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#184433]">
                   Join the Clinical Discussion
                 </h4>
@@ -607,7 +679,7 @@ export default function BlogDetailsPage() {
                     value={commentName}
                     onChange={(e) => setCommentName(e.target.value)}
                     placeholder="Your Name (e.g. Dr. Sarah L.)"
-                    className="w-full bg-[#F9F8F5] text-xs sm:text-sm px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:border-[#184433]"
+                    className="w-full bg-[#F9F8F5] text-xs sm:text-sm px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:border-[#184433]"
                   />
                 </div>
                 <textarea
@@ -616,7 +688,7 @@ export default function BlogDetailsPage() {
                   value={commentText}
                   onChange={(e) => setCommentText(e.target.value)}
                   placeholder="Share your clinical experience, formulation question, or feedback on this study..."
-                  className="w-full bg-[#F9F8F5] text-xs sm:text-sm px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:border-[#184433]"
+                  className="w-full bg-[#F9F8F5] text-xs sm:text-sm px-4 py-3 rounded-lg border border-neutral-200 focus:outline-none focus:border-[#184433]"
                 />
                 <div className="flex items-center justify-between">
                   <p className="text-[11px] text-neutral-400">
@@ -624,7 +696,7 @@ export default function BlogDetailsPage() {
                   </p>
                   <button
                     type="submit"
-                    className="bg-[#184433] text-white text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-xl hover:bg-[#0F3822] transition-colors cursor-pointer shadow-md inline-flex items-center gap-2"
+                    className="bg-[#184433] text-white text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-lg hover:bg-[#0F3822] transition-colors cursor-pointer shadow-md inline-flex items-center gap-2"
                   >
                     <Send className="w-3.5 h-3.5" />
                     <span>Post Comment</span>
@@ -640,7 +712,7 @@ export default function BlogDetailsPage() {
               {/* Comments List */}
               <div className="space-y-4">
                 {commentsList.map((comm) => (
-                  <div key={comm.id} className="bg-white rounded-2xl p-6 border border-[#184433]/10 shadow-xs space-y-3">
+                  <div key={comm.id} className="bg-white rounded-lg p-6 border border-[#184433]/10 shadow-xs space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <img
@@ -682,7 +754,7 @@ export default function BlogDetailsPage() {
             {prevPost ? (
               <Link
                 to={`/blog/${prevPost.slug}`}
-                className="bg-white p-6 rounded-2xl border border-[#184433]/10 hover:border-[#184433]/30 shadow-xs hover:shadow-md transition-all flex items-center gap-4 group"
+                className="bg-white p-6 rounded-lg border border-[#184433]/10 hover:border-[#184433]/30 shadow-xs hover:shadow-md transition-all flex items-center gap-4 group"
               >
                 <div className="w-10 h-10 rounded-full bg-[#184433]/5 text-[#184433] flex items-center justify-center shrink-0 group-hover:bg-[#184433] group-hover:text-white transition-colors">
                   <ArrowLeft className="w-4 h-4" />
@@ -701,7 +773,7 @@ export default function BlogDetailsPage() {
             {nextPost ? (
               <Link
                 to={`/blog/${nextPost.slug}`}
-                className="bg-white p-6 rounded-2xl border border-[#184433]/10 hover:border-[#184433]/30 shadow-xs hover:shadow-md transition-all flex items-center justify-between gap-4 group text-right"
+                className="bg-white p-6 rounded-lg border border-[#184433]/10 hover:border-[#184433]/30 shadow-xs hover:shadow-md transition-all flex items-center justify-between gap-4 group text-right"
               >
                 <div className="min-w-0">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">

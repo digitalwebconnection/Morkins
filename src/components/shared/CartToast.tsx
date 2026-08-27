@@ -107,23 +107,39 @@ export default function CartToast({ item, show, onClose }: CartToastProps) {
         </div>
 
         {/* Text content */}
+        {/* Text content */}
         <div style={{ flex: 1, minWidth: 0 }}>
-          <p style={{
-            fontSize: '11px',
-            fontWeight: 600,
-            fontFamily: 'Plus Jakarta Sans, sans-serif',
-            color: '#6F8C51',
-            margin: 0,
-            letterSpacing: '0.3px',
-            textTransform: 'uppercase' as const,
-          }}>
-            Added to bag
-          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <p style={{
+              fontSize: '11px',
+              fontWeight: 700,
+              fontFamily: 'Plus Jakarta Sans, sans-serif',
+              color: '#13442C',
+              margin: 0,
+              letterSpacing: '0.5px',
+              textTransform: 'uppercase' as const,
+            }}>
+              {item.qty >= 5 ? 'Bag item (Max Limit)' : 'Added to bag'}
+            </p>
+            {item.qty >= 5 && (
+              <span style={{
+                fontSize: '9px',
+                fontWeight: 700,
+                color: '#0D3322',
+                background: '#D8EFE3',
+                padding: '1px 5px',
+                borderRadius: '4px',
+                textTransform: 'uppercase',
+              }}>
+                Max 5
+              </span>
+            )}
+          </div>
           <p style={{
             fontSize: '13px',
             fontWeight: 700,
             fontFamily: 'Plus Jakarta Sans, sans-serif',
-            color: '#3a4a2e',
+            color: '#162820',
             margin: '2px 0 0',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -135,10 +151,10 @@ export default function CartToast({ item, show, onClose }: CartToastProps) {
             fontSize: '12px',
             fontWeight: 600,
             fontFamily: 'Plus Jakarta Sans, sans-serif',
-            color: '#8C937D',
+            color: '#5E826D',
             margin: '1px 0 0',
           }}>
-            Qty: {item.qty} · ${item.price.toFixed(2)}
+            Qty: {item.qty} · ${item.price.toFixed(2)} {item.qty >= 5 ? '(Max 5 reached)' : ''}
           </p>
         </div>
 

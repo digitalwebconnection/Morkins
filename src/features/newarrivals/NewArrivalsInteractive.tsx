@@ -374,15 +374,12 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() =>
-                      onAddToCart(
-                        {
-                          id: current.id,
-                          name: current.title,
-                          price: current.price,
-                          img: current.image
-                        },
-                        true
-                      )
+                      onAddToCart({
+                        id: current.id,
+                        name: current.title,
+                        price: current.price,
+                        img: current.image
+                      })
                     }
                     className="relative group overflow-hidden inline-flex items-center gap-2.5 px-6 sm:px-8 py-2.5 rounded-full bg-[#1A1A1A] hover:bg-[#2B2B2B] text-white text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 shadow-md hover:shadow-xl cursor-pointer"
                   >
