@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { PRODUCTS_EXTENDED, type ProductExtended } from '../products/data/products';
+import { PRODUCTS_EXTENDED, getProductUrl, type ProductExtended } from '../products/data/products';
 
 interface NewArrivalsGridProps {
   onAddToCart: (product: { id: number; name: string; price: number; img: string }, openCart?: boolean) => void;
@@ -125,7 +125,7 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
               >
                 {/* Full-Bleed Product Image Container */}
                 <div className="relative aspect-4/4.5 sm:aspect-[4/4.2] w-full overflow-hidden bg-[#F5F2EB]">
-                  <Link to={`/products/${product.id}`} className="w-full h-full block overflow-hidden">
+                  <Link to={getProductUrl(product)} className="w-full h-full block overflow-hidden">
                     <img
                       src={product.img}
                       alt={product.name}
@@ -178,7 +178,7 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
                     {product.category}
                   </span>
 
-                  <Link to={`/products/${product.id}`}>
+                  <Link to={getProductUrl(product)}>
                     <h3 className="font-serif text-lg font-medium text-[#000000] group-hover:text-[#9B8A68] transition-colors leading-snug line-clamp-1">
                       {product.name}
                     </h3>
@@ -201,7 +201,7 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
                     </div>
 
                     <Link
-                      to={`/products/${product.id}`}
+                      to={getProductUrl(product)}
                       className="text-[10px] font-bold text-[#815d13] uppercase tracking-wider hover:text-[#1A1A1A] transition-colors flex items-center gap-1"
                     >
                       View

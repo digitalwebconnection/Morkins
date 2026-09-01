@@ -18,6 +18,7 @@ export type { Product };
 export const PRODUCTS: Product[] = [
   {
     id: 1,
+    slug: 'botanical-radiance-glow-serum',
     name: 'Botanical Radiance Glow Serum',
     price: 34.00,
     discountPrice: 28.00,
@@ -30,6 +31,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 2,
+    slug: 'bio-active-barrier-repair-cream',
     name: 'Bio-Active Barrier Repair Cream',
     price: 32.00,
     discountPrice: 26.00,
@@ -42,6 +44,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 3,
+    slug: 'gentle-clarifying-foaming-wash',
     name: 'Gentle Clarifying Foaming Wash',
     price: 24.00,
     discountPrice: 19.00,
@@ -54,6 +57,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 4,
+    slug: 'hyaluronic-dew-plumping-elixir',
     name: 'Hyaluronic Dew Plumping Elixir',
     price: 36.00,
     discountPrice: 30.00,
@@ -66,6 +70,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 5,
+    slug: 'niacinamide-pore-tightening-serum',
     name: 'Niacinamide Pore Tightening Serum',
     price: 30.00,
     discountPrice: 25.00,
@@ -77,6 +82,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 6,
+    slug: 'retinol-cellular-renewal-treatment',
     name: 'Retinol Cellular Renewal Treatment',
     price: 42.00,
     discountPrice: 35.00,
@@ -89,6 +95,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 7,
+    slug: 'centella-soothing-calming-gel',
     name: 'Centella Soothing Calming Gel',
     price: 28.00,
     discountPrice: 22.00,
@@ -100,6 +107,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 8,
+    slug: 'bakuchiol-natural-firming-elixir',
     name: 'Bakuchiol Natural Firming Elixir',
     price: 38.00,
     discountPrice: 31.00,
@@ -112,6 +120,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 9,
+    slug: 'salicylic-purifying-exfoliant-tonic',
     name: 'Salicylic Purifying Exfoliant Tonic',
     price: 26.00,
     discountPrice: 21.00,
@@ -123,6 +132,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 10,
+    slug: 'ceramide-deep-moisture-hydro-gel',
     name: 'Ceramide Deep Moisture Hydro-Gel',
     price: 33.00,
     discountPrice: 27.00,
@@ -134,6 +144,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 11,
+    slug: 'peptide-collagen-boost-fluid',
     name: 'Peptide Collagen Boost Fluid',
     price: 40.00,
     discountPrice: 34.00,
@@ -146,6 +157,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 12,
+    slug: 'vitamin-e-overnight-recovery-mask',
     name: 'Vitamin E Overnight Recovery Mask',
     price: 29.00,
     discountPrice: 24.00,
@@ -157,6 +169,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 13,
+    slug: 'botanical-scalp-hair-density-serum',
     name: 'Botanical Scalp & Hair Density Serum',
     price: 35.00,
     discountPrice: 29.00,

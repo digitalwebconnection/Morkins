@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { PRODUCTS_EXTENDED, type ProductExtended } from '../products/data/products';
+import { PRODUCTS_EXTENDED, getProductUrl, type ProductExtended } from '../products/data/products';
 
 interface BestSellersGridProps {
   onAddToCart: (product: { id: number; name: string; price: number; img: string }, openCart?: boolean) => void;
@@ -222,7 +222,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                 >
                   {/* Card Image Stage */}
                   <div className="relative aspect-square w-full overflow-hidden bg-[#FAF8F2]">
-                    <Link to={`/products/${product.id}`} className="absolute inset-0">
+                    <Link to={getProductUrl(product)} className="absolute inset-0">
                       <img
                         src={product.img}
                         alt={product.name}
@@ -295,7 +295,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                     </div>
 
                     {/* Product Name */}
-                    <Link to={`/products/${product.id}`} className="block mt-1">
+                    <Link to={getProductUrl(product)} className="block mt-1">
                       <h3 className="font-serif text-base font-semibold text-[#182617] group-hover:text-[#3B622E] transition-colors line-clamp-1 leading-snug">
                         {product.name}
                       </h3>
@@ -385,7 +385,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                 >
                   {/* Left: Image (Fill in Box) */}
                   <div className="sm:w-5/12 bg-[#FAF8F2] relative aspect-square sm:aspect-auto overflow-hidden">
-                    <Link to={`/products/${product.id}`} className="w-full h-full flex items-center justify-center">
+                    <Link to={getProductUrl(product)} className="w-full h-full flex items-center justify-center">
                       <img
                         src={product.img}
                         alt={product.name}
@@ -411,7 +411,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                         </div>
                       </div>
 
-                      <Link to={`/products/${product.id}`}>
+                      <Link to={getProductUrl(product)}>
                         <h3 className="font-serif text-xl sm:text-2xl font-semibold text-[#182617] hover:text-[#3B622E] transition-colors leading-tight mb-2">
                           {product.name}
                         </h3>

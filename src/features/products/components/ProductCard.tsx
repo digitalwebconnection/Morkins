@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { ProductExtended } from '../data/products';
+import { getProductUrl, type ProductExtended } from '../data/products';
 
 interface ProductCardProps {
   product: ProductExtended;
@@ -13,7 +13,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
   return (
     <div 
-      onClick={() => navigate(`/products/${product.id}`)}
+      onClick={() => navigate(getProductUrl(product))}
       className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer border border-[#13442C]/10"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

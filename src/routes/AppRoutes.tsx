@@ -4,6 +4,8 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import HomeRoute from './HomeRoute';
 import ProductsRoute from './ProductsRoute';
 import ProductDetailsRoute from './ProductDetailsRoute';
+import SkinCareRoute from './SkinCareRoute';
+import HairCareRoute from './HairCareRoute';
 import BestSellersRoute from './BestSellersRoute';
 import NewArrivalsRoute from './NewArrivalsRoute';
 import AboutRoute from './AboutRoute';
@@ -43,7 +45,15 @@ export default function AppRoutes() {
       {/* ── 1. HOME / LANDING PAGE ── (Hero slider, feature bar, ingredients spotlight, product showcase, quiz) */}
       <Route path="/" element={<HomeRoute />} />
 
-      {/* ── 2. PRODUCT CATALOG & DETAIL ── */}
+      {/* ── 2. DEDICATED SKIN CARE & HAIR CARE EXPERIENCES ── */}
+      {/* Women's Radiant Colorful Clinical Skin Care Experience */}
+      <Route path="/skincare" element={<SkinCareRoute />} />
+      <Route path="/women" element={<SkinCareRoute />} />
+      {/* Men's Sleek Black & Brown Trichology Hair Care Experience */}
+      <Route path="/haircare" element={<HairCareRoute />} />
+      <Route path="/men" element={<HairCareRoute />} />
+
+      {/* ── 3. PRODUCT CATALOG & DETAIL ── */}
       {/* Catalog Listing Page with multi-filter sidebar & sort controls */}
       <Route path="/products" element={<ProductsRoute />} />
       {/* Single Product Details Page with high-res gallery, angle switcher, specs, and reviews */}

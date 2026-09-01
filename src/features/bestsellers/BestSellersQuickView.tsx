@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import type { ProductExtended } from '../products/data/products';
+import { getProductUrl, type ProductExtended } from '../products/data/products';
 
 interface BestSellersQuickViewProps {
   product: ProductExtended | null;
@@ -320,7 +320,7 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
               {/* Full Product Dossier Link */}
               <div className="text-center pt-1">
                 <Link
-                  to={`/products/${product.id}`}
+                  to={getProductUrl(product)}
                   onClick={onClose}
                   className="text-xs font-bold uppercase tracking-widest text-[#8C6D34] hover:text-[#5B451E] transition-colors underline underline-offset-4"
                 >

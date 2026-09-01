@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, X, ArrowRight, Sparkles, Loader2 } from 'lucide-react';
 import { searchProducts } from '../../lib/api/search';
+import { getProductUrl } from '../../lib/utils/slug';
 import type { ProductExtended } from '../../types';
 
 interface SearchBarProps {
@@ -72,8 +73,13 @@ export default function SearchBar({
     }
   };
 
-  const handleSelectProduct = (productId: number) => {
-    navigate(`/products/${productId}`);
+  const handleSelectProduct = (product: ProductExtended | number) => {
+    if (typeof product === 'number') {
+      const found = results.find((p) => p.id === product);
+      navigate(found ? getProductUrl(found) : `/products/${product}`);
+    } else {
+      navigate(getProductUrl(product));
+    }
     setIsOpen(false);
     if (onClose) onClose();
   };
@@ -176,7 +182,7 @@ export default function SearchBar({
                   {results.map((product, index) => (
                     <div
                       key={product.id}
-                      onClick={() => handleSelectProduct(product.id)}
+                      onClick={() => handleSelectProduct(product)}
                       onMouseEnter={() => setSelectedIndex(index)}
                       className={`px-4 py-2.5 flex items-center gap-3 cursor-pointer transition-colors ${
                         selectedIndex === index ? 'bg-[#F0F6F2]' : 'hover:bg-stone-50'

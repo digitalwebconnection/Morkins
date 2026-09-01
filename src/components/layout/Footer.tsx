@@ -117,21 +117,21 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {[
-                  { key: "foot_prod_1", path: "/products" },
-                  { key: "foot_prod_2", path: "/products" },
-                  { key: "foot_prod_3", path: "/products" },
-                  { key: "foot_prod_4", path: "/products" },
-                  { key: "foot_prod_5", path: "/products" },
+                  { label: "🌸 Skin Care Collection (Women)", path: "/skincare" },
+                  { label: "💈 Hair Care & Scalp Labs (Men)", path: "/haircare" },
+                  { key: "foot_prod_1", path: "/products?category=Serums" },
+                  { key: "foot_prod_2", path: "/products?category=Moisturizers" },
+                  { key: "foot_prod_3", path: "/products?category=Cleansers" },
+                  { key: "foot_prod_4", path: "/products?category=Treatments" },
+                  { key: "foot_prod_5", path: "/products?category=Masks" },
                   { key: "foot_prod_6", path: "/products" },
-                  { key: "foot_prod_7", path: "/products" },
-                  { key: "foot_prod_8", path: "/products" },
-                ].map((item) => (
-                  <li key={item.key}>
+                ].map((item, idx) => (
+                  <li key={idx}>
                     <Link
                       to={item.path}
-                      className="text-sm text-white/95 hover:text-white transition-colors duration-200 leading-snug block"
+                      className="text-sm text-white/95 hover:text-[#AFD971] transition-colors duration-200 leading-snug block"
                     >
-                      {t(item.key)}
+                      {item.label || t(item.key!)}
                     </Link>
                   </li>
                 ))}

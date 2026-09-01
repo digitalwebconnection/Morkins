@@ -66,7 +66,7 @@ export const BLOG_POSTS: BlogPost[] = [
           rating: 4.9,
           reviewsCount: 182,
           img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80',
-          link: '/products/1',
+          link: '/products/botanical-radiance-glow-serum',
           tagline: '100% Plant-derived sugarcane squalane with cold-pressed Bakuchiol'
         },
         {
@@ -76,7 +76,7 @@ export const BLOG_POSTS: BlogPost[] = [
           rating: 5.0,
           reviewsCount: 94,
           img: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=400&q=80',
-          link: '/products/2',
+          link: '/products/bio-active-barrier-repair-cream',
           tagline: 'High-potency 2% botanical retinol alternative with Marula oil'
         }
       ],
@@ -156,7 +156,7 @@ export const BLOG_POSTS: BlogPost[] = [
           rating: 4.9,
           reviewsCount: 182,
           img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80',
-          link: '/products/1',
+          link: '/products/botanical-radiance-glow-serum',
           tagline: 'Ultralight non-greasy lipid shield for 24-hour hydration lock'
         }
       ]
@@ -208,7 +208,7 @@ export const BLOG_POSTS: BlogPost[] = [
           rating: 4.8,
           reviewsCount: 119,
           img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80',
-          link: '/products/3',
+          link: '/products/gentle-clarifying-foaming-wash',
           tagline: 'Cooling peptide cream for instant barrier calming'
         }
       ]
@@ -264,7 +264,7 @@ export const BLOG_POSTS: BlogPost[] = [
           rating: 4.9,
           reviewsCount: 182,
           img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80',
-          link: '/products/1',
+          link: '/products/botanical-radiance-glow-serum',
           tagline: 'Ideal nocturnal lipid foundation for all skin types'
         }
       ]
@@ -316,7 +316,7 @@ export const BLOG_POSTS: BlogPost[] = [
           rating: 5.0,
           reviewsCount: 94,
           img: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=400&q=80',
-          link: '/products/2',
+          link: '/products/bio-active-barrier-repair-cream',
           tagline: 'Infused with cold-pressed virgin organic botanicals'
         }
       ]
@@ -367,7 +367,7 @@ export const BLOG_POSTS: BlogPost[] = [
           rating: 4.8,
           reviewsCount: 119,
           img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80',
-          link: '/products/3',
+          link: '/products/gentle-clarifying-foaming-wash',
           tagline: 'Adaptive botanical moisture buffer for shifting climates'
         }
       ]

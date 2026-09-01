@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { PRODUCTS_EXTENDED } from './data/products';
+import { PRODUCTS_EXTENDED, slugify, getProductUrl } from './data/products';
 import ProductCard from './components/ProductCard';
 import { useCart } from '../../hooks';
 
@@ -13,10 +13,33 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
   const navigate = useNavigate();
   const { cartItems } = useCart();
 
-  // Find the product by ID
+  // Find the product by SEO slug OR numeric ID (for full backwards compatibility)
   const product = useMemo(() => {
-    return PRODUCTS_EXTENDED.find((p) => p.id === Number(id));
+    if (!id) return undefined;
+    const cleanParam = id.trim().toLowerCase();
+
+    // 1. Match by explicit slug or slugified name
+    const bySlug = PRODUCTS_EXTENDED.find(
+      (p) => p.slug === cleanParam || slugify(p.name) === cleanParam
+    );
+    if (bySlug) return bySlug;
+
+    // 2. Match by numeric ID (e.g. /products/1)
+    const numericId = Number(id);
+    if (!isNaN(numericId)) {
+      return PRODUCTS_EXTENDED.find((p) => p.id === numericId);
+    }
+
+    return undefined;
   }, [id]);
+
+  // Canonical SEO Redirection: If visited via numeric ID (/products/1), smoothly replace with SEO slug (/products/botanical-radiance-glow-serum)
+  useEffect(() => {
+    if (product && id && !isNaN(Number(id))) {
+      const canonicalUrl = getProductUrl(product);
+      navigate(canonicalUrl, { replace: true });
+    }
+  }, [id, product, navigate]);
 
   const cartItem = cartItems.find((item) => item.id === product?.id);
   const isMaxQty = (cartItem?.qty ?? 0) >= 5;

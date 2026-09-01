@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import navbarLogo from "../../assets/images/logo/logo.png"
 import { useLanguage } from '../../context/LanguageContext'
 import { PRODUCTS_DATA as PRODUCTS_EXTENDED } from '../../lib/api/products'
+import { getProductUrl } from '../../lib/utils/slug'
 import type { ProductExtended } from '../../types'
 
 interface NavbarProps {
@@ -93,8 +94,13 @@ export default function Navbar({
     }
   };
 
-  const handleProductSelect = (productId: number) => {
-    navigate(`/products/${productId}`);
+  const handleProductSelect = (product: ProductExtended | number) => {
+    if (typeof product === 'number') {
+      const found = PRODUCTS_EXTENDED.find((p) => p.id === product);
+      navigate(found ? getProductUrl(found) : `/products/${product}`);
+    } else {
+      navigate(getProductUrl(product));
+    }
     setIsSearchOpen(false);
     setIsMobileMenuOpen(false);
   };
@@ -108,6 +114,8 @@ export default function Navbar({
   const isProductsActive = location.pathname === '/products';
   const isBestsellersActive = location.pathname === '/bestsellers';
   const isNewArrivalsActive = location.pathname === '/new-arrivals';
+  const isSkinActive = location.pathname === '/skincare' || location.pathname === '/women';
+  const isHairActive = location.pathname === '/haircare' || location.pathname === '/men';
 
   return (
     <header
@@ -118,8 +126,8 @@ export default function Navbar({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 h-18 flex items-center justify-between relative">
 
-        {/* ── PART 1: LEFT BRAND EMBLEM & MOBILE HAMBURGER ── */}
-        <div className="flex items-center space-x-3 sm:space-x-4 z-10">
+        {/* ── PART 1: LEFT BRAND EMBLEM & DEPARTMENT TOGGLES & MOBILE HAMBURGER ── */}
+        <div className="flex items-center space-x-2.5 sm:space-x-3.5 z-10">
           {/* Mobile hamburger menu toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -144,56 +152,91 @@ export default function Navbar({
             <img
               src={navbarLogo}
               alt="Morkins Logo"
-              className="h-10 w-auto object-contain transition-transform duration-300"
+              className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300"
             />
           </Link>
+
         </div>
 
         {/* ── PART 2: CENTER PRIMARY NAVIGATION ROUTE LINKS ── */}
-        {/* Products, Best Sellers, New Arrivals, About Us */}
-        <nav className="hidden md:flex space-x-6 lg:space-x-8 items-center font-serif text-lg lg:text-xl font-semibold tracking-wide h-full absolute left-1/2 -translate-x-1/2 z-10">
+        {/* Skin Care, Hair Care, Products, Best Sellers, New Drops, About Us */}
+        <nav className="hidden md:flex space-x-4 lg:space-x-6 items-center font-serif text-base lg:text-lg font-semibold tracking-wide h-full absolute left-1/2 -translate-x-1/2 z-10">
+          <Link
+            to="/skincare"
+            className={`hover:text-[#13442C] transition-colors py-4 flex items-center cursor-pointer relative group ${
+              isSkinActive ? 'text-[#13442C] font-bold' : 'text-black'
+            }`}
+          >
+            Skin Care
+            <span
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#13442C] transition-transform duration-300 origin-left ${
+                isSkinActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
+            />
+          </Link>
+          <Link
+            to="/haircare"
+            className={`hover:text-[#8C5A2B] transition-colors py-4 flex items-center cursor-pointer relative group ${
+              isHairActive ? 'text-[#8C5A2B] font-bold' : 'text-black'
+            }`}
+          >
+            Hair Care
+            <span
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#8C5A2B] transition-transform duration-300 origin-left ${
+                isHairActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
+            />
+          </Link>
           <Link
             to="/products"
-            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${isProductsActive ? 'text-[#6F8C51] font-bold' : 'text-black'
-              }`}
+            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${
+              isProductsActive ? 'text-[#6F8C51] font-bold' : 'text-black'
+            }`}
           >
             {t('nav_products')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${isProductsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                }`}
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${
+                isProductsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
             />
           </Link>
           <Link
             to="/bestsellers"
-            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${isBestsellersActive ? 'text-[#6F8C51] font-bold' : 'text-black'
-              }`}
+            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${
+              isBestsellersActive ? 'text-[#6F8C51] font-bold' : 'text-black'
+            }`}
           >
             {t('nav_bestsellers')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${isBestsellersActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                }`}
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${
+                isBestsellersActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
             />
           </Link>
           <Link
             to="/new-arrivals"
-            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${isNewArrivalsActive ? 'text-[#6F8C51] font-bold' : 'text-black'
-              }`}
+            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${
+              isNewArrivalsActive ? 'text-[#6F8C51] font-bold' : 'text-black'
+            }`}
           >
             {t('nav_newarrivals')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${isNewArrivalsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                }`}
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${
+                isNewArrivalsActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
             />
           </Link>
           <Link
             to="/about"
-            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${isAboutActive ? 'text-[#6F8C51] font-bold' : 'text-black'
-              }`}
+            className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${
+              isAboutActive ? 'text-[#6F8C51] font-bold' : 'text-black'
+            }`}
           >
             {t('nav_about')}
             <span
-              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${isAboutActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                }`}
+              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#6F8C51] transition-transform duration-300 origin-left ${
+                isAboutActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}
             />
           </Link>
         </nav>
@@ -272,7 +315,7 @@ export default function Navbar({
                       {matchingProducts.slice(0, 3).map((product: ProductExtended) => (
                         <div
                           key={product.id}
-                          onClick={() => handleProductSelect(product.id)}
+                          onClick={() => handleProductSelect(product)}
                           className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#F7F6F2] transition-colors cursor-pointer group"
                         >
                           <div className="w-12 h-12 shrink-0 bg-[#F4F3EE] rounded-lg border border-brand-dark/10 overflow-hidden flex items-center justify-center p-0 group-hover:border-[#6F8C51]/40 transition-colors">
@@ -512,7 +555,7 @@ export default function Navbar({
                     {matchingProducts.slice(0, 3).map((product: ProductExtended) => (
                       <div
                         key={product.id}
-                        onClick={() => handleProductSelect(product.id)}
+                        onClick={() => handleProductSelect(product)}
                         className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-gray-50 active:bg-gray-100 cursor-pointer"
                       >
                         <img src={product.img} alt={product.name} className="w-9 h-9 object-cover bg-[#F4F3EE] rounded border border-brand-dark/10 shrink-0" />
@@ -541,7 +584,31 @@ export default function Navbar({
             )}
           </div>
 
-          <nav className="flex flex-col space-y-3 font-semibold text-[15px] text-brand-dark pt-1">
+          <nav className="flex flex-col space-y-2.5 font-semibold text-[15px] text-brand-dark pt-1">
+            <Link
+              to="/skincare"
+              className={`py-1.5 border-b border-brand-dark/10 flex items-center justify-between transition-colors ${
+                isSkinActive ? 'text-[#13442C] font-bold' : 'hover:text-[#13442C]'
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <span>🌸 Skin Care (Women)</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider bg-[#13442C]/10 text-[#13442C] px-2 py-0.5 rounded-full">
+                Radiant
+              </span>
+            </Link>
+            <Link
+              to="/haircare"
+              className={`py-1.5 border-b border-brand-dark/10 flex items-center justify-between transition-colors ${
+                isHairActive ? 'text-[#8C5A2B] font-bold' : 'hover:text-[#8C5A2B]'
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <span>💈 Hair Care (Men)</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider bg-[#241812] text-[#C89D52] px-2 py-0.5 rounded-full">
+                Trichology
+              </span>
+            </Link>
             <Link
               to="/products"
               className={`py-1 border-b border-brand-dark/10 hover:text-brand-light transition-colors ${isProductsActive ? 'text-[#6F8C51] font-bold' : ''

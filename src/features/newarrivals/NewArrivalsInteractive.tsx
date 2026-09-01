@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { getProductUrl } from '../products/data/products';
 import p8 from '../../assets/images/product/p8.avif';
 import p11 from '../../assets/images/product/p11.avif';
 import p12 from '../../assets/images/product/p3.jpg';
@@ -394,7 +395,7 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
                   </button>
 
                   <Link
-                    to={`/products/${current.id}`}
+                    to={getProductUrl({ id: current.id, name: current.title })}
                     className="inline-flex items-center gap-1.5 px-4 sm:px-8 py-2 rounded-full border border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white text-[#1A1A1A] text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300"
                   >
                     <span>Details</span>
