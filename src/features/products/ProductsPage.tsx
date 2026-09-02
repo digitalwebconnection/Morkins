@@ -1,7 +1,9 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import HeroSection from './components/HeroSection';
+import ProductStoriesBar from './components/ProductStoriesBar';
 import FilterSidebar, { type FilterState } from './components/FilterSidebar';
+
 import ProductGrid from './components/ProductGrid';
 import { PRODUCTS_EXTENDED } from './data/products';
 
@@ -240,7 +242,17 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
         onSelectCategory={handleCategoryQuickFilter}
       />
 
+      {/* ── PART 1B: CLINICAL REELS & STORY HIGHLIGHTS BAR ── */}
+      {/* Interactive Instagram/Reels-style circular highlights with gradient rings, live reels, quick-filter, and direct shoppable modal */}
+      <ProductStoriesBar
+        activeCategory={filters.category}
+        activeDepartment={filters.department}
+        onSelectCategory={handleCategoryQuickFilter}
+        onAddToCart={onAddToCart}
+      />
+
       {/* ── PART 2: MAIN CATALOG BODY & RESPONSIVE LAYOUT ── */}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <div className="flex flex-col md:flex-row gap-8">
 

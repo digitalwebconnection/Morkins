@@ -117,8 +117,8 @@ export default function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {[
-                  { label: "🌸 Skin Care Collection (Women)", path: "/skincare" },
-                  { label: "💈 Hair Care & Scalp Labs (Men)", path: "/haircare" },
+                  { label: "Skin Care (Women)", path: "/skincare" },
+                  { label: "Hair Care (Men)", path: "/haircare" },
                   { key: "foot_prod_1", path: "/products?category=Serums" },
                   { key: "foot_prod_2", path: "/products?category=Moisturizers" },
                   { key: "foot_prod_3", path: "/products?category=Cleansers" },

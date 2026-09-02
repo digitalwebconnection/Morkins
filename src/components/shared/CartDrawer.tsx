@@ -515,8 +515,9 @@ export default function CartDrawer({
                               <button
                                 type="button"
                                 onClick={() => onUpdateQty(item.id, 1)}
-                                disabled={item.qty >= 5}
+                                disabled={item.qty >= 99}
                                 aria-label="Increase quantity"
+
                                 style={{
                                   width: '28px',
                                   height: '28px',
@@ -525,15 +526,15 @@ export default function CartDrawer({
                                   justifyContent: 'center',
                                   background: 'transparent',
                                   border: 'none',
-                                  color: item.qty >= 5 ? '#D6D3D1' : '#44403C',
-                                  cursor: item.qty >= 5 ? 'not-allowed' : 'pointer',
-                                  opacity: item.qty >= 5 ? 0.4 : 1,
+                                  color: item.qty >= 99 ? '#D6D3D1' : '#44403C',
+                                  cursor: item.qty >= 99 ? 'not-allowed' : 'pointer',
+                                  opacity: item.qty >= 99 ? 0.4 : 1,
                                   fontSize: '14px',
                                   fontWeight: 700,
                                   transition: 'background 0.15s',
                                 }}
                                 onMouseEnter={(e) => {
-                                  if (item.qty < 5) e.currentTarget.style.background = '#E7E5E4';
+                                  if (item.qty < 99) e.currentTarget.style.background = '#E7E5E4';
                                 }}
                                 onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
                               >
@@ -541,7 +542,7 @@ export default function CartDrawer({
                               </button>
                             </div>
 
-                            {item.qty >= 5 && (
+                            {item.qty >= 99 && (
                               <span
                                 style={{
                                   fontSize: '10px',
@@ -554,9 +555,10 @@ export default function CartDrawer({
                                   letterSpacing: '0.5px',
                                 }}
                               >
-                                Max 5 Limit
+                                Max 99 Limit
                               </span>
                             )}
+
 
                             {/* Trash Delete Button */}
                             <button

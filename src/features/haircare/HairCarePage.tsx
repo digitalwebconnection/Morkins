@@ -1,10 +1,8 @@
 import HairCareHero from './components/HairCareHero';
-import HairCareMatrix from './components/HairCareMatrix';
-import HairCareMechanism from './components/HairCareMechanism';
-import HairCareKits from './components/HairCareKits';
-import HairCarePress from './components/HairCarePress';
-import HairCareAdvisory from './components/HairCareAdvisory';
 import HairCareCatalog from './components/HairCareCatalog';
+import HairCareKits from './components/HairCareKits';
+import HairCareAdvisory from './components/HairCareAdvisory';
+import HairCareFAQ from './components/HairCareFAQ';
 
 interface HairCarePageProps {
   onAddToCart: (product: { id: number; name: string; price: number; discountPrice?: number; img: string }, openCart?: boolean) => void;
@@ -12,27 +10,21 @@ interface HairCarePageProps {
 
 export default function HairCarePage({ onAddToCart }: HairCarePageProps) {
   return (
-    <div className="min-h-screen bg-[#09090B] text-zinc-100 font-sans antialiased overflow-hidden selection:bg-[#E5B869] selection:text-black">
-      {/* ── 1. SLEEK OBSIDIAN & GOLD HERO ── */}
+    <div className="min-h-screen bg-white text-[#1A1A1A] font-sans antialiased overflow-hidden selection:bg-[#2C1810] selection:text-white">
+      {/* ── 1. EDITORIAL HERO ── */}
       <HairCareHero />
 
-      {/* ── 2. CLINICAL TRICHOLOGY MATRIX (Morkins vs Generic) ── */}
-      <HairCareMatrix />
+      {/* ── 2. FULL FILTERABLE MEN'S HAIR CARE CATALOG ── */}
+      <HairCareCatalog onAddToCart={onAddToCart} />
 
-      {/* ── 3. INTERACTIVE 3-PHASE HAIR LOSS MECHANISM ── */}
-      <HairCareMechanism />
+      {/* ── 3. TRICHOLOGY SURGEON ADVISORY PANEL ── */}
+      <HairCareAdvisory />
 
       {/* ── 4. CURATED TRICHOLOGY GROWTH SYSTEMS ── */}
       <HairCareKits onAddToCart={onAddToCart} />
 
-      {/* ── 5. MEN'S LUXURY EDITORIAL PRESS QUOTES ── */}
-      <HairCarePress />
-
-      {/* ── 6. TRICHOLOGY SURGEON ADVISORY PANEL ── */}
-      <HairCareAdvisory />
-
-      {/* ── 7. FULL FILTERABLE MEN'S HAIR CARE CATALOG ── */}
-      <HairCareCatalog onAddToCart={onAddToCart} />
+      {/* ── 5. TRICHOLOGY FAQ & 90-DAY GROWTH GUARANTEE ── */}
+      <HairCareFAQ />
     </div>
   );
 }

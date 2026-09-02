@@ -3,9 +3,10 @@ import type { CartItem, CartContextType } from '../types';
 
 const CART_STORAGE_KEY = 'morkins_cart_items';
 
-export const MAX_QTY_PER_PRODUCT = 5;
+export const MAX_QTY_PER_PRODUCT = 99;
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
+
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {

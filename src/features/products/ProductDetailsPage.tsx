@@ -42,7 +42,7 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
   }, [id, product, navigate]);
 
   const cartItem = cartItems.find((item) => item.id === product?.id);
-  const isMaxQty = (cartItem?.qty ?? 0) >= 5;
+  const isMaxQty = (cartItem?.qty ?? 0) >= 99;
 
   // Find related products (same category, excluding current)
   const relatedProducts = useMemo(() => {
@@ -209,7 +209,8 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              {isMaxQty ? 'Max Limit in Bag (5)' : product.inStock ? 'Add to Cart' : 'Out of Stock'}
+              {isMaxQty ? 'Max Limit in Bag (99)' : product.inStock ? 'Add to Cart' : 'Out of Stock'}
+
             </button>
 
             {/* ── PART 2C: BOTANICAL QUALITY TRUST BADGES ── */}

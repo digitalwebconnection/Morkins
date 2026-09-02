@@ -156,37 +156,38 @@ export default function Navbar({
             />
           </Link>
 
+          {/* Vertical Divider */}
+          <div className="hidden sm:block h-6 w-[1.5px] bg-[#E5DDD5] mx-1 sm:mx-2 self-center" />
+
+          {/* Department Capsule Toggles: SKIN & HAIR */}
+          <div className="hidden sm:flex items-center space-x-2">
+            <Link
+              to="/skincare"
+              className={`px-4 sm:px-5 py-1.5 rounded-lg text-xs sm:text-[13px] font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center cursor-pointer ${
+                isSkinActive
+                  ? 'bg-[#5C3A21] text-white border-2 border-black/50 shadow-sm'
+                  : 'bg-white text-[#784825] border border-[#E5E7EB] hover:bg-[#FAF8F5] shadow-xs'
+              }`}
+            >
+              Skin
+            </Link>
+            <Link
+              to="/haircare"
+              className={`px-4 sm:px-5 py-1.5 rounded-lg text-xs sm:text-[13px] font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center cursor-pointer ${
+                isHairActive
+                  ? 'bg-[#5C3A21] text-white border-2 border-black/50 shadow-sm'
+                  : 'bg-white text-[#784825] border border-[#E5E7EB] hover:bg-[#FAF8F5] shadow-xs'
+              }`}
+            >
+              Hair
+            </Link>
+          </div>
+
         </div>
 
         {/* ── PART 2: CENTER PRIMARY NAVIGATION ROUTE LINKS ── */}
-        {/* Skin Care, Hair Care, Products, Best Sellers, New Drops, About Us */}
+        {/* Products, Best Sellers, New Drops, About Us */}
         <nav className="hidden md:flex space-x-4 lg:space-x-6 items-center font-serif text-base lg:text-lg font-semibold tracking-wide h-full absolute left-1/2 -translate-x-1/2 z-10">
-          <Link
-            to="/skincare"
-            className={`hover:text-[#13442C] transition-colors py-4 flex items-center cursor-pointer relative group ${
-              isSkinActive ? 'text-[#13442C] font-bold' : 'text-black'
-            }`}
-          >
-            Skin Care
-            <span
-              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#13442C] transition-transform duration-300 origin-left ${
-                isSkinActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-              }`}
-            />
-          </Link>
-          <Link
-            to="/haircare"
-            className={`hover:text-[#8C5A2B] transition-colors py-4 flex items-center cursor-pointer relative group ${
-              isHairActive ? 'text-[#8C5A2B] font-bold' : 'text-black'
-            }`}
-          >
-            Hair Care
-            <span
-              className={`absolute bottom-4 left-0 w-full h-0.5 bg-[#8C5A2B] transition-transform duration-300 origin-left ${
-                isHairActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-              }`}
-            />
-          </Link>
           <Link
             to="/products"
             className={`hover:text-[#6F8C51] transition-colors py-4 flex items-center cursor-pointer relative group ${

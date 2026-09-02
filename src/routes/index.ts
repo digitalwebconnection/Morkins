@@ -11,3 +11,5 @@ export { default as BlogDetailsRoute } from './BlogDetailsRoute';
 export { default as SearchRoute } from './SearchRoute';
 export { default as ResetPasswordRoute } from './ResetPasswordRoute';
 export { default as OrderDetailsRoute } from './OrderDetailsRoute';
+export { default as NotFoundRoute } from './NotFoundRoute';
+

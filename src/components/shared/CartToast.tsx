@@ -119,9 +119,9 @@ export default function CartToast({ item, show, onClose }: CartToastProps) {
               letterSpacing: '0.5px',
               textTransform: 'uppercase' as const,
             }}>
-              {item.qty >= 5 ? 'Bag item (Max Limit)' : 'Added to bag'}
+              {item.qty >= 99 ? 'Bag item (Max Limit)' : 'Added to bag'}
             </p>
-            {item.qty >= 5 && (
+            {item.qty >= 99 && (
               <span style={{
                 fontSize: '9px',
                 fontWeight: 700,
@@ -131,7 +131,7 @@ export default function CartToast({ item, show, onClose }: CartToastProps) {
                 borderRadius: '4px',
                 textTransform: 'uppercase',
               }}>
-                Max 5
+                Max 99
               </span>
             )}
           </div>
@@ -154,8 +154,9 @@ export default function CartToast({ item, show, onClose }: CartToastProps) {
             color: '#5E826D',
             margin: '1px 0 0',
           }}>
-            Qty: {item.qty} · ${item.price.toFixed(2)} {item.qty >= 5 ? '(Max 5 reached)' : ''}
+            Qty: {item.qty} · ${item.price.toFixed(2)} {item.qty >= 99 ? '(Max 99 reached)' : ''}
           </p>
+
         </div>
 
         {/* Close button */}
