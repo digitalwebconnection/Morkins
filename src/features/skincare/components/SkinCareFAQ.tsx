@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, RefreshCw } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 interface FAQItem {
   question: string;
@@ -51,10 +51,10 @@ export default function SkinCareFAQ() {
           <span className="text-xs font-bold text-[#8C6221] uppercase tracking-[0.25em] mb-2 block">
             Apothecary Knowledge Base
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-[#123624] font-normal leading-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl text-[#2C1810] font-normal leading-tight">
             Frequently Asked Questions
           </h2>
-          <p className="text-stone-600 text-sm sm:text-base font-light mt-3">
+          <p className="text-[#5C4F46] text-sm sm:text-base font-light mt-3">
             Have questions about clinical layering, cold extraction purity, or sensitivity testing? Find answers from our lab experts.
           </p>
         </div>
@@ -76,7 +76,7 @@ export default function SkinCareFAQ() {
                     <span className="w-6 h-6 rounded-full bg-[#12602F]/10 text-[#12602F] text-xs font-mono font-bold flex items-center justify-center shrink-0">
                       0{idx + 1}
                     </span>
-                    <span className="font-serif text-base sm:text-lg font-bold text-[#1C2E1A] leading-snug">
+                    <span className="font-serif text-base sm:text-lg font-bold text-[#2C1810] leading-snug">
                       {faq.question}
                     </span>
                   </div>
@@ -89,7 +89,7 @@ export default function SkinCareFAQ() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-1 text-xs sm:text-sm text-stone-600 font-light leading-relaxed border-t border-[#EAE3D2]/60 pl-14">
+                  <div className="px-6 pb-6 pt-1 text-xs sm:text-sm text-[#5C4F46] font-light leading-relaxed border-t border-[#EAE3D2]/60 pl-14">
                     <p>{faq.answer}</p>
                     <span className="inline-block mt-3 text-[10px] font-mono font-bold uppercase tracking-wider text-[#8C6221] bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
                       {faq.category}
@@ -101,29 +101,7 @@ export default function SkinCareFAQ() {
           })}
         </div>
 
-        {/* 30-Day Guarantee Banner */}
-        <div className="mt-12 bg-linear-to-r from-[#123624] via-[#165034] to-[#1C603E] rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
-          <div className="flex items-center gap-4 text-center sm:text-left">
-            <div className="w-12 h-12 rounded-2xl bg-[#AFD971]/20 border border-[#AFD971]/30 flex items-center justify-center text-[#AFD971] shrink-0">
-              <RefreshCw className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="font-serif text-lg sm:text-xl font-bold text-white">
-                30-Day Dermal Glow & Barrier Guarantee
-              </h4>
-              <p className="text-xs text-stone-200 font-light mt-0.5 max-w-xl">
-                Experience transformative glass skin and cellular hydration risk-free. If you aren't completely delighted, enjoy a 100% full refund.
-              </p>
-            </div>
-          </div>
-
-          <a
-            href="#skincare-catalog"
-            className="px-6 py-3 rounded-full bg-[#AFD971] hover:bg-[#C2E88F] text-[#123624] text-xs font-bold uppercase tracking-widest transition-all shadow-sm shrink-0"
-          >
-            Start Your Routine
-          </a>
-        </div>
+      
 
       </div>
     </section>

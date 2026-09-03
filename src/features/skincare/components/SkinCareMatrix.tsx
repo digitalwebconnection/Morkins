@@ -22,7 +22,7 @@ interface MatrixItem {
   image: string;
   theme: {
     accentColor: string;
-    gradientText: string;
+    highlightText: string;
     badge: string;
     advantagePill: string;
     morkinsBox: string;
@@ -48,7 +48,7 @@ const MATRIX_ITEMS: MatrixItem[] = [
     image: p8,
     theme: {
       accentColor: '#D95B00',
-      gradientText: 'from-[#D95B00] via-[#EA580C] to-[#B45309]',
+      highlightText: 'text-[#D95B00]',
       badge: 'bg-amber-50 text-[#8C6221] border-amber-200',
       advantagePill: 'bg-[#D95B00] text-white shadow-md shadow-orange-950/20',
       morkinsBox: 'bg-amber-50/70 border-amber-200/90 text-amber-950',
@@ -56,7 +56,7 @@ const MATRIX_ITEMS: MatrixItem[] = [
       morkinsTag: 'text-[#B45309]',
       dotActive: 'bg-[#D95B00]',
       cardRing: 'ring-2 ring-[#D95B00]/40',
-      stageBg: 'bg-linear-to-b from-amber-50/80 to-white',
+      stageBg: 'bg-amber-50',
     },
   },
   {
@@ -72,7 +72,7 @@ const MATRIX_ITEMS: MatrixItem[] = [
     image: p2,
     theme: {
       accentColor: '#12602F',
-      gradientText: 'from-[#12602F] via-[#15803D] to-[#166534]',
+      highlightText: 'text-[#12602F]',
       badge: 'bg-emerald-50 text-[#12602F] border-emerald-200',
       advantagePill: 'bg-[#12602F] text-white shadow-md shadow-emerald-950/20',
       morkinsBox: 'bg-emerald-50/70 border-emerald-200/90 text-emerald-950',
@@ -80,7 +80,7 @@ const MATRIX_ITEMS: MatrixItem[] = [
       morkinsTag: 'text-[#12602F]',
       dotActive: 'bg-[#12602F]',
       cardRing: 'ring-2 ring-[#12602F]/40',
-      stageBg: 'bg-linear-to-b from-emerald-50/80 to-white',
+      stageBg: 'bg-emerald-50',
     },
   },
   {
@@ -96,7 +96,7 @@ const MATRIX_ITEMS: MatrixItem[] = [
     image: p1,
     theme: {
       accentColor: '#BE123C',
-      gradientText: 'from-[#BE123C] via-[#E11D48] to-[#9F1239]',
+      highlightText: 'text-[#BE123C]',
       badge: 'bg-rose-50 text-[#9F1239] border-rose-200',
       advantagePill: 'bg-[#BE123C] text-white shadow-md shadow-rose-950/20',
       morkinsBox: 'bg-rose-50/70 border-rose-200/90 text-rose-950',
@@ -104,7 +104,7 @@ const MATRIX_ITEMS: MatrixItem[] = [
       morkinsTag: 'text-[#9F1239]',
       dotActive: 'bg-[#BE123C]',
       cardRing: 'ring-2 ring-[#BE123C]/40',
-      stageBg: 'bg-linear-to-b from-rose-50/80 to-white',
+      stageBg: 'bg-rose-50',
     },
   },
   {
@@ -120,7 +120,7 @@ const MATRIX_ITEMS: MatrixItem[] = [
     image: p4,
     theme: {
       accentColor: '#0284C7',
-      gradientText: 'from-[#0284C7] via-[#0369A1] to-[#075985]',
+      highlightText: 'text-[#0284C7]',
       badge: 'bg-sky-50 text-[#0369A1] border-sky-200',
       advantagePill: 'bg-[#0284C7] text-white shadow-md shadow-sky-950/20',
       morkinsBox: 'bg-sky-50/70 border-sky-200/90 text-sky-950',
@@ -128,7 +128,7 @@ const MATRIX_ITEMS: MatrixItem[] = [
       morkinsTag: 'text-[#0369A1]',
       dotActive: 'bg-[#0284C7]',
       cardRing: 'ring-2 ring-[#0284C7]/40',
-      stageBg: 'bg-linear-to-b from-sky-50/80 to-white',
+      stageBg: 'bg-sky-50',
     },
   },
   {
@@ -144,7 +144,7 @@ const MATRIX_ITEMS: MatrixItem[] = [
     image: p6,
     theme: {
       accentColor: '#7C3AED',
-      gradientText: 'from-[#7C3AED] via-[#6D28D9] to-[#5B21B6]',
+      highlightText: 'text-[#7C3AED]',
       badge: 'bg-purple-50 text-[#6D28D9] border-purple-200',
       advantagePill: 'bg-[#7C3AED] text-white shadow-md shadow-purple-950/20',
       morkinsBox: 'bg-purple-50/70 border-purple-200/90 text-purple-950',
@@ -152,7 +152,7 @@ const MATRIX_ITEMS: MatrixItem[] = [
       morkinsTag: 'text-[#6D28D9]',
       dotActive: 'bg-[#7C3AED]',
       cardRing: 'ring-2 ring-[#7C3AED]/40',
-      stageBg: 'bg-linear-to-b from-purple-50/80 to-white',
+      stageBg: 'bg-purple-50',
     },
   },
 ];
@@ -190,11 +190,10 @@ export default function SkinCareMatrix() {
   const rotations = useMemo(() => [4, -3, -8, 6, -5], []);
 
   return (
-    <section id="skincare-matrix" className="py-8 sm:py-12 lg:py-16 bg-[#FAF8F5] border-b border-[#EAE3D2] relative overflow-hidden">
+    <section id="skincare-matrix" className="py-8 sm:py-12 lg:py-14 bg-[#FAF8F5] border-b border-[#EAE3D2] relative overflow-hidden">
       {/* ── Dynamic Ambient Background Atmosphere ── */}
       <div className="absolute top-1/4 left-10 w-96 h-96 bg-amber-200/25 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(#D6CDBC_1.2px,transparent_1.2px)] bg-size-[28px_28px] opacity-40 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -205,14 +204,14 @@ export default function SkinCareMatrix() {
             <span>Clinical Formulation Benchmark</span>
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#123624] font-normal leading-tight tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#2C1810] font-normal leading-tight tracking-tight">
             The Botanical Apothecary{' '}
-            <span className="font-bold italic bg-linear-to-r from-[#D95B00] via-[#D95B00] to-[#D95B00]/70 bg-clip-text text-transparent">
+            <span className="font-bold italic text-[#D95B00]">
               Superiority Standards
             </span>
           </h2>
 
-          <p className="text-stone-600 text-sm sm:text-base font-light mt-2.5 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#0c0a08] text-sm sm:text-base font-light mt-2.5 max-w-2xl mx-auto leading-relaxed">
             Experience why cold-pressed botanical pharmacology outperforms generic mass-market synthetic formulations.
           </p>
         </div>
@@ -333,7 +332,7 @@ export default function SkinCareMatrix() {
                 </span>
               </div>
 
-              <span className="font-mono text-xs font-bold text-stone-400">
+              <span className="font-mono text-xs font-bold text-[#8C7E74]">
                 0{activeIndex + 1} / 0{MATRIX_ITEMS.length}
               </span>
             </div>
@@ -349,15 +348,15 @@ export default function SkinCareMatrix() {
                 className="space-y-4"
               >
                 <div>
-                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#123624] leading-tight">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2C1810] leading-tight">
                     {activeItem.title}{' '}
-                    <span className={cn('block sm:inline font-sans text-xl sm:text-2xl font-bold bg-linear-to-r bg-clip-text text-transparent', activeItem.theme.gradientText)}>
+                    <span className={cn('block sm:inline font-sans text-xl sm:text-2xl font-bold', activeItem.theme.highlightText)}>
                       {activeItem.highlight}
                     </span>
                   </h3>
                 </div>
 
-                <p className="text-stone-600 text-sm sm:text-base font-light leading-relaxed">
+                <p className="text-[#5C4F46] text-sm sm:text-base font-light leading-relaxed">
                   {activeItem.description}
                 </p>
 
@@ -372,7 +371,7 @@ export default function SkinCareMatrix() {
                       <span className={cn('text-[10px] font-bold uppercase tracking-wider block', activeItem.theme.morkinsTag)}>
                         🌿 Morkins Botanical Pharmacology:
                       </span>
-                      <span className="text-xs sm:text-sm font-bold text-[#123624]">
+                      <span className="text-xs sm:text-sm font-bold text-[#2C1810]">
                         {activeItem.morkins}
                       </span>
                     </div>
@@ -384,10 +383,10 @@ export default function SkinCareMatrix() {
                       <X className="w-3.5 h-3.5 stroke-2" />
                     </span>
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#8C7E74] block">
                         ✕ Conventional Commercial Standard:
                       </span>
-                      <span className="text-xs sm:text-sm font-medium text-stone-500 line-through decoration-stone-300">
+                      <span className="text-xs sm:text-sm font-medium text-[#7A6D63] line-through decoration-stone-300">
                         {activeItem.others}
                       </span>
                     </div>
@@ -422,14 +421,14 @@ export default function SkinCareMatrix() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrev}
-                  className="flex items-center justify-center w-10 h-10 rounded-full border border-[#DDD3C1] bg-white text-stone-700 hover:bg-[#123624] hover:text-white hover:border-[#123624] transition-all cursor-pointer shadow-xs active:scale-95"
+                  className="flex items-center justify-center w-10 h-10 rounded-full border border-[#DDD3C1] bg-white text-[#2C1810] hover:bg-[#12602F] hover:text-white hover:border-[#12602F] transition-all cursor-pointer shadow-xs active:scale-95"
                   aria-label="Previous standard"
                 >
                   <ArrowLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="flex items-center justify-center w-10 h-10 rounded-full border border-[#DDD3C1] bg-white text-stone-700 hover:bg-[#123624] hover:text-white hover:border-[#123624] transition-all cursor-pointer shadow-xs active:scale-95"
+                  className="flex items-center justify-center w-10 h-10 rounded-full border border-[#DDD3C1] bg-white text-[#2C1810] hover:bg-[#12602F] hover:text-white hover:border-[#12602F] transition-all cursor-pointer shadow-xs active:scale-95"
                   aria-label="Next standard"
                 >
                   <ArrowRight className="w-4 h-4" />

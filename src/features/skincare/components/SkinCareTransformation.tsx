@@ -117,19 +117,19 @@ export default function SkinCareTransformation() {
 
         {/* ── Section Header ── */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-linear-to-r from-emerald-50 via-teal-50 to-emerald-100/60 border border-emerald-200/90 text-emerald-800 text-xs font-bold uppercase tracking-widest shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/90 text-emerald-800 text-xs font-bold uppercase tracking-widest shadow-2xs">
             <Activity className="w-3.5 h-3.5 text-emerald-600" />
             <span>28-Day Quantified Clinical Trial Results</span>
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-slate-900 font-normal tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#2C1810] font-normal tracking-tight">
             Visible Cellular Shift.{' '}
             <span className="italic font-bold text-emerald-800 block sm:inline">
               Quantified In 28 Days.
             </span>
           </h2>
 
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-light">
+          <p className="text-[#5C4F46] text-sm sm:text-base leading-relaxed font-light">
             Slide through the clinical before & after lens below, and explore the biological 
             milestones of a full 28-day stratum corneum renewal cycle.
           </p>
@@ -199,12 +199,12 @@ export default function SkinCareTransformation() {
               </div>
 
               {/* Slider Instructional Caption */}
-              <div className="pt-3 pb-1 px-3 flex items-center justify-between text-[11px] text-slate-500 font-medium">
+              <div className="pt-3 pb-1 px-3 flex items-center justify-between text-[11px] text-[#5C4F46] font-medium">
                 <span className="flex items-center gap-1">
                   <span className="w-2 h-2 rounded-full bg-rose-400" />
                   Day 0 Barrier Baseline
                 </span>
-                <span className="text-slate-400 text-[10px] uppercase tracking-wider font-mono">
+                <span className="text-[#8C7E74] text-[10px] uppercase tracking-wider font-mono">
                   Drag slider to compare
                 </span>
                 <span className="flex items-center gap-1 text-emerald-800 font-bold">
@@ -216,7 +216,7 @@ export default function SkinCareTransformation() {
             </div>
 
             {/* In-Vivo Study Certification Seal */}
-            <div className="mt-4 flex items-center gap-2.5 text-xs text-slate-500">
+            <div className="mt-4 flex items-center gap-2.5 text-xs text-[#5C4F46]">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
               <span>Independent 120-Patient In-Vivo Trial • 100% Verified Outcomes</span>
             </div>
@@ -237,11 +237,11 @@ export default function SkinCareTransformation() {
                     className={`py-3 px-2 rounded-xl text-center transition-all duration-300 cursor-pointer flex flex-col items-center justify-center ${
                       isSelected
                         ? 'bg-slate-900 text-white shadow-md shadow-slate-900/15 scale-[1.02]'
-                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                        : 'text-[#5C4F46] hover:text-[#2C1810] hover:bg-white/60'
                     }`}
                   >
                     <span className={`text-[10px] font-mono uppercase tracking-wider font-bold ${
-                      isSelected ? 'text-[#AFD971]' : 'text-slate-400'
+                      isSelected ? 'text-[#AFD971]' : 'text-[#8C7E74]'
                     }`}>
                       {stage.stageNum}
                     </span>
@@ -269,14 +269,14 @@ export default function SkinCareTransformation() {
                     <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
                       {activeStage.stageNum} Focus
                     </span>
-                    <span className="text-xs font-mono text-slate-400">
+                    <span className="text-xs font-mono text-[#8C7E74]">
                       {activeStage.day} Landmark
                     </span>
                   </div>
-                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2C1810] mt-2">
                     {activeStage.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 font-light mt-1">
+                  <p className="text-xs sm:text-sm text-[#5C4F46] font-light mt-1">
                     {activeStage.tagline}
                   </p>
                 </div>
@@ -284,29 +284,29 @@ export default function SkinCareTransformation() {
                 {/* Biological Cellular Mechanism Note */}
                 <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/70 flex items-start gap-3">
                   <Layers className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
-                  <p className="text-xs text-slate-700 leading-relaxed font-light">
-                    <span className="font-bold text-slate-900">Cellular Action: </span>
+                  <p className="text-xs text-[#5C4F46] leading-relaxed font-light">
+                    <span className="font-bold text-[#2C1810]">Cellular Action: </span>
                     {activeStage.cellularFocus}
                   </p>
                 </div>
 
                 {/* Quantified Metrics Progress Bars */}
                 <div className="space-y-3.5">
-                  <h4 className="text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                  <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#8C7E74]">
                     Quantified Metric Elevation
                   </h4>
                   {activeStage.metrics.map((m, i) => (
                     <div key={i} className="space-y-1.5">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="font-medium text-slate-700">{m.label}</span>
-                        <span className="font-mono font-bold text-slate-900">{m.stat}</span>
+                        <span className="font-medium text-[#5C4F46]">{m.label}</span>
+                        <span className="font-mono font-bold text-[#2C1810]">{m.stat}</span>
                       </div>
                       <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${m.progress}%` }}
                           transition={{ duration: 0.6, ease: 'easeOut' }}
-                          className="h-full rounded-full bg-linear-to-r from-emerald-600 to-[#AFD971]"
+                          className="h-full rounded-full bg-[#12602F]"
                         />
                       </div>
                     </div>
@@ -314,7 +314,7 @@ export default function SkinCareTransformation() {
                 </div>
 
                 {/* Clinical Investigator Note */}
-                <div className="pt-2 border-t border-slate-100 flex items-center gap-2.5 text-[11px] text-slate-500 italic">
+                <div className="pt-2 border-t border-slate-100 flex items-center gap-2.5 text-[11px] text-[#5C4F46] italic">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   <span>"{activeStage.clinicalNote}"</span>
                 </div>

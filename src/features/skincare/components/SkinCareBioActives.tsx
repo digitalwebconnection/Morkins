@@ -208,10 +208,9 @@ export default function SkinCareBioActives({ onAddToCart }: SkinCareBioActivesPr
     <section className="py-10 sm:py-16 bg-[#FAFAF8] text-[#162820] relative overflow-hidden border-b border-zinc-200/80 select-none">
 
       {/* ── Background Aesthetics & Ambient Aura Shadows ── */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-125 bg-linear-to-r from-emerald-200/35 via-teal-100/25 to-amber-200/30 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-125 bg-emerald-200/25 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute -top-32 right-0 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-amber-200/30 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] bg-size-[24px_24px] opacity-25 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -222,14 +221,14 @@ export default function SkinCareBioActives({ onAddToCart }: SkinCareBioActivesPr
             <span>Apothecary Science • Bio-Active Molecule Vault</span>
           </div>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-slate-900 font-normal tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#2C1810] font-normal tracking-tight">
             Raw Living Actives.{' '}
             <span className="italic font-bold text-emerald-800 block sm:inline">
               Pure Cellular Potency.
             </span>
           </h2>
 
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-light">
+          <p className="text-[#5C4F46] text-sm sm:text-base leading-relaxed font-light">
             Every Morkins botanical elixir is cold-extracted under 38°C to ensure 100% enzyme vitality,
             zero lipid degradation, and clinical-grade cellular penetration.
           </p>
@@ -253,9 +252,9 @@ export default function SkinCareBioActives({ onAddToCart }: SkinCareBioActivesPr
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.35 }}
-                  className={`relative bg-linear-to-b from-white via-white to-[#FBFBF9] rounded-2xl p-6 sm:p-7 border ${active.theme.border} shadow-[0_10px_30px_-5px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_22px_45px_-10px_rgba(18,96,47,0.18),0_10px_20px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden h-full`}
+                  className={`relative bg-white rounded-2xl p-6 sm:p-7 border ${active.theme.border} shadow-[0_10px_30px_-5px_rgba(0,0,0,0.06),0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_22px_45px_-10px_rgba(18,96,47,0.18),0_10px_20px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden h-full`}
                 >
-                  {/* Top Subtle Tint Gradient Strip */}
+                  {/* Top Subtle Tint Strip */}
                   <div className={`absolute top-0 left-0 right-0 h-1.5 ${active.theme.lightBg} border-b ${active.theme.border}`} />
 
                   <div>
@@ -265,31 +264,31 @@ export default function SkinCareBioActives({ onAddToCart }: SkinCareBioActivesPr
                         <Sparkles className="w-3 h-3" />
                         {active.potency}
                       </span>
-                      <span className="text-[11px] text-slate-400 font-mono">
+                      <span className="text-[11px] text-[#8C7E74] font-mono">
                         {active.molecularWeight}
                       </span>
                     </div>
 
                     {/* Active Name & Scientific Origin */}
-                    <h3 className="font-serif text-xl sm:text-2xl text-slate-900 font-bold tracking-tight mb-1 group-hover:text-emerald-800 transition-colors">
+                    <h3 className="font-serif text-xl sm:text-2xl text-[#2C1810] font-bold tracking-tight mb-1 group-hover:text-emerald-800 transition-colors">
                       {active.name}
                     </h3>
-                    <p className="text-xs text-slate-500 italic font-mono mb-4">
+                    <p className="text-xs text-[#8C7E74] italic font-mono mb-4">
                       {active.scientificName}
                     </p>
 
                     {/* Action Description */}
-                    <p className="text-xs text-slate-600 leading-relaxed line-clamp-3 mb-5">
+                    <p className="text-xs text-[#5C4F46] leading-relaxed line-clamp-3 mb-5">
                       {active.cellularAction}
                     </p>
 
                     {/* Clinical Proof Box with Inner Depth */}
                     <div className={`p-3.5 rounded-xl ${active.theme.lightBg} border border-slate-200/80 shadow-[0_2px_8px_rgba(0,0,0,0.03)] mb-6`}>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-lg font-bold font-mono tracking-tight text-slate-900">
+                        <span className="text-lg font-bold font-mono tracking-tight text-[#2C1810]">
                           {active.clinicalStat.value}
                         </span>
-                        <span className="text-[11px] text-slate-600 font-medium leading-tight">
+                        <span className="text-[11px] text-[#5C4F46] font-medium leading-tight">
                           {active.clinicalStat.label}
                         </span>
                       </div>

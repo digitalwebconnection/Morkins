@@ -10,15 +10,13 @@ interface SkinCarePageProps {
 
 export default function SkinCarePage({ onAddToCart }: SkinCarePageProps) {
   return (
-    <div className="min-h-screen bg-[#FFFDF9] text-[#162820] font-sans antialiased overflow-hidden selection:bg-[#AFD971] selection:text-[#123624]">
+    <div className="min-h-screen bg-[#FFFDF9] text-[#2C1810] font-sans antialiased overflow-hidden selection:bg-[#AFD971] selection:text-[#2C1810]">
 
       {/* ── 1. GLOWING EDITORIAL HERO WITH CLINICAL STAT PILLARS ── */}
       <SkinCareHero />
 
       {/* ── 2. CLINICAL SUPERIORITY BENCHMARK MATRIX (Morkins vs Others) ── */}
       <SkinCareMatrix />
-
-     
 
       {/* ── 4. INTERACTIVE SKIN CONCERN & ROUTINE CONCIERGE ── */}
       <SkinCareConcierge onAddToCart={onAddToCart} />
