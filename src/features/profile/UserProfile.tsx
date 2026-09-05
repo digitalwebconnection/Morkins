@@ -4,7 +4,7 @@ import {
   User, ShoppingBag, Heart, Compass, MapPin, Gift, Globe,
   LogOut, Award, Camera,
   RotateCcw, LayoutDashboard,
-  CreditCard, Star, ShieldCheck
+  CreditCard, Star, ShieldCheck, X
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -135,13 +135,44 @@ export type ProfileTab =
   | 'security'
   | 'settings';
 
+export interface NavigationItem {
+  id: ProfileTab;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  count?: number;
+  alert?: boolean;
+  highlight?: boolean;
+}
+
+export interface NavigationGroup {
+  group: string;
+  items: NavigationItem[];
+}
+
 export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps) {
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>(() => {
+    try {
+      const stored = localStorage.getItem('morkins_logged_in_user');
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
   const [activeTab, setActiveTab] = useState<ProfileTab>('overview');
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem('morkins_logged_in_user');
+    setUser(null);
+    if (onLogout) {
+      onLogout();
+    }
+    navigate('/', { replace: true });
+  };
 
   // Address State
   const [addresses, setAddresses] = useState<Address[]>([]);
@@ -354,7 +385,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
   ];
 
   // Grouped Navigation Tabs Structure
-  const navigationGroups = [
+  const navigationGroups: NavigationGroup[] = [
     {
       group: 'DASHBOARD',
       items: [
@@ -393,6 +424,10 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
       ],
     },
   ];
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-linear-to-b from-[#FCFBF8] via-[#FAF8F2] to-[#F7F4EB] py-8 sm:py-12 px-4 sm:px-6 lg:px-8 text-[#1C2E1A] selection:bg-[#AFD971] selection:text-[#1C331B]">
@@ -511,7 +546,20 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
                           </div>
 
                           <div className="flex items-center gap-1.5 shrink-0">
-
+                            {tab.count !== undefined && (
+                              <span
+                                className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                                  isActive
+                                    ? 'bg-[#AFD971]/20 text-[#AFD971]'
+                                    : 'bg-stone-100 text-stone-600'
+                                }`}
+                              >
+                                {tab.count}
+                              </span>
+                            )}
+                            {tab.alert && (
+                              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                            )}
                           </div>
                         </button>
                       );
@@ -524,8 +572,8 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
               <div className="pt-3 border-t border-[#E5DEC9]">
                 <button
                   type="button"
-                  onClick={onLogout}
-                  className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-bold text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer"
+                  onClick={() => setShowLogoutConfirm(true)}
+                  className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-bold text-rose-700 hover:bg-rose-50 border border-transparent hover:border-rose-200 transition-all cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <LogOut className="w-4 h-4 text-rose-600" />
@@ -693,7 +741,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
             {/* ── TAB 12: ACCOUNT SECURITY & 2FA (SecurityTab) ── */}
             {/* Two-factor authentication (SMS/App), active session management, and password update */}
             {activeTab === 'security' && (
-              <SecurityTab user={user} onLogout={onLogout} t={t} />
+              <SecurityTab user={user} onLogout={() => setShowLogoutConfirm(true)} t={t} />
             )}
 
             {/* ── TAB 13: PREFERENCES & LOCALIZATION (SettingsTab) ── */}
@@ -711,6 +759,103 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
         </div>
 
       </div>
+
+      {/* ── MORKINS LUXURY BOTANICAL LOGOUT CONFIRMATION POPUP ── */}
+      {showLogoutConfirm && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0A1A10]/70 backdrop-blur-md animate-fade-in"
+          onClick={() => setShowLogoutConfirm(false)}
+        >
+          <div
+            className="relative w-full max-w-md bg-linear-to-b from-[#FCFBF8] via-[#FAF8F3] to-[#F5F0E6] rounded-3xl border border-[#DDD3C1] shadow-[0_25px_70px_-15px_rgba(20,38,26,0.4)] p-6 sm:p-7 text-center transition-all duration-200 animate-scale-up overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Top Multi-Tone Brand Gradient */}
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-[#12602F] via-[#C49746] to-[#AFD971]" />
+
+            {/* Header Brand Bar */}
+            <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-[#E5DEC9] pt-1">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#12602F]" />
+                <span className="font-serif text-sm font-bold tracking-widest text-[#12602F] uppercase">MORKINS</span>
+                <span className="text-stone-300">•</span>
+                <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C6221]">Sanctuary Exit</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowLogoutConfirm(false)}
+                className="w-7 h-7 rounded-full bg-white hover:bg-[#FAF8F2] border border-[#DDD3C1] flex items-center justify-center text-stone-400 hover:text-stone-700 transition-all cursor-pointer shadow-2xs"
+                aria-label="Close modal"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Hero Emblem & Heading */}
+            <div className="text-center space-y-3 mb-5">
+              <div className="relative inline-flex items-center justify-center mx-auto mb-1">
+                <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#12602F] to-[#1F7A3E] text-[#AFD971] flex items-center justify-center shadow-md ring-4 ring-[#12602F]/15">
+                  <LogOut className="w-7 h-7 text-[#AFD971] translate-x-0.5" />
+                </div>
+                <span className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#C49746] text-white flex items-center justify-center text-xs shadow-xs ring-2 ring-white">
+                  ✦
+                </span>
+              </div>
+
+              <h3 className="font-serif text-2xl font-bold text-[#1C2E1A] tracking-tight">
+                Depart Sanctuary?
+              </h3>
+              <p className="text-xs text-[#464D3F] max-w-xs mx-auto leading-relaxed">
+                Are you sure you wish to exit your active session? Your formulations, orders, and botanical leaves will remain safely protected.
+              </p>
+            </div>
+
+            {/* Patron Card Preview */}
+            {user && (
+              <div className="mb-6 p-3.5 rounded-2xl bg-white border border-[#DDD3C1] shadow-2xs flex items-center justify-between gap-3 text-left">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-10 h-10 rounded-xl bg-linear-to-br from-[#FAF8F2] to-[#F2EDE1] border border-[#DDD3C1] flex items-center justify-center font-serif text-sm font-bold text-[#12602F] shrink-0">
+                    {(user.fullName || user.email || 'M').charAt(0).toUpperCase()}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold text-[#1C2E1A] truncate">{user.fullName || 'Botanical Patron'}</p>
+                    <p className="text-[10px] text-stone-500 font-mono truncate">{user.email}</p>
+                  </div>
+                </div>
+                <div className="text-right shrink-0 pl-2.5 border-l border-[#E5DEC9]">
+                  <span className="text-[9px] uppercase font-bold text-[#8C6221] tracking-wider block">Leaves</span>
+                  <span className="font-mono text-xs font-extrabold text-[#12602F]">{(user.loyaltyPoints || 1450).toLocaleString()} 🍃</span>
+                </div>
+              </div>
+            )}
+
+            {/* Stacked Luxury Action Buttons */}
+            <div className="space-y-2.5">
+              <button
+                type="button"
+                onClick={() => setShowLogoutConfirm(false)}
+                className="w-full py-3 rounded-xl bg-[#12602F] hover:bg-[#1B6A45] text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm hover:shadow flex items-center justify-center gap-2"
+              >
+                <span>Stay in Sanctuary</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setShowLogoutConfirm(false);
+                  handleLogout();
+                }}
+                className="w-full py-2.5 rounded-xl bg-white hover:bg-rose-50 text-rose-700 hover:text-rose-800 border border-[#DDD3C1] hover:border-rose-300 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Confirm Sign Out</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
