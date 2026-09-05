@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   User, ShoppingBag, Heart, Compass, MapPin, Gift, Globe,
-  LogOut, Award, Camera,  
+  LogOut, Award, Camera,
   RotateCcw, LayoutDashboard,
   CreditCard, Star, ShieldCheck
 } from 'lucide-react';
@@ -263,13 +263,13 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
       const updated = addresses.map((a) =>
         a.id === editingAddressId
           ? {
-              ...a,
-              label: addrLabel || 'Saved Location',
-              street: addrStreet,
-              city: addrCity,
-              zip: addrZip,
-              phone: addrPhone,
-            }
+            ...a,
+            label: addrLabel || 'Saved Location',
+            street: addrStreet,
+            city: addrCity,
+            zip: addrZip,
+            phone: addrPhone,
+          }
           : a
       );
       setAddresses(updated);
@@ -396,7 +396,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
 
   return (
     <div className="min-h-screen bg-linear-to-b from-[#FCFBF8] via-[#FAF8F2] to-[#F7F4EB] py-8 sm:py-12 px-4 sm:px-6 lg:px-8 text-[#1C2E1A] selection:bg-[#AFD971] selection:text-[#1C331B]">
-      
+
       {/* Hidden File Input for Avatar Upload */}
       <input
         type="file"
@@ -407,10 +407,10 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
       />
 
       <div className="max-w-7xl mx-auto space-y-8">
-        
+
         {/* ── PART 1: TOP PROFILE HERO BANNER & PATRON VAULT SCRATCH CARD ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          
+
           {/* ── PART 1A: SANCTUARY PATRON HERO BANNER ── */}
           {/* Displays patron ID, avatar upload, VIP tier status, loyalty leaves, and carbon offset */}
           <div className="lg:col-span-7 xl:col-span-8 bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1] shadow-md relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
@@ -476,12 +476,12 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
 
         {/* ── PART 2: MAIN PROFILE DASHBOARD (SIDEBAR & TAB VIEWPORT) ── */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          
+
           {/* ── PART 2A: STICKY NAVIGATION SIDEBAR ── */}
           {/* Grouped menu items: Account, Purchases, Loyalty, Security */}
           <div className="lg:col-span-1 space-y-6 lg:sticky lg:top-24 lg:self-start">
             <div className="bg-white rounded-lg p-4 sm:p-5 border border-[#DDD3C1] shadow-sm space-y-5">
-              
+
               {navigationGroups.map((grp, gIdx) => (
                 <div key={gIdx} className="space-y-1.5 first:pt-0 pt-3 border-t first:border-t-0 border-[#E5DEC9]/70">
                   <span className="text-[9px] font-bold uppercase tracking-widest text-[#8C6221] px-3 block">
@@ -500,11 +500,10 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
                             if (tab.id === 'orders') setSelectedDetailOrder(null);
                             setActiveTab(tab.id);
                           }}
-                          className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                            isActive
+                          className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${isActive
                               ? 'bg-linear-to-r from-[#12602F] to-[#1F7A3E] text-[#AFD971] shadow-xs scale-100 ring-2 ring-[#12602F]/15'
                               : 'text-[#464D3F] hover:text-[#12602F] hover:bg-[#FAF8F2]'
-                          }`}
+                            }`}
                         >
                           <div className="flex items-center gap-3 min-w-0">
                             <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#AFD971]' : 'text-[#8C6221]'}`} />
@@ -512,7 +511,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
                           </div>
 
                           <div className="flex items-center gap-1.5 shrink-0">
-                        
+
                           </div>
                         </button>
                       );
@@ -540,7 +539,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
 
           {/* ── PART 2B: ACTIVE TAB DETAILS VIEWPORT ── */}
           <div className="lg:col-span-3 min-h-130">
-            
+
             {/* ── TAB 1: OVERVIEW DASHBOARD (OverviewTab) ── */}
             {/* Summary cards for active orders, loyalty balance, recent shipments, and quick shortcuts */}
             {activeTab === 'overview' && (

@@ -17,6 +17,21 @@ export default function Footer() {
     }
   };
 
+  const scrollToTop = () => {
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo(0, { immediate: true });
+    }
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    document.documentElement.scrollTo({ top: 0, behavior: 'auto' });
+    document.body.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  const handleLinkClick = (path: string) => {
+    if (!path.includes('#')) {
+      scrollToTop();
+    }
+  };
+
   return (
     <footer className="bg-black text-brand-cream relative overflow-hidden">
       {/* ── PART 1: MAIN FOOTER BODY (BRAND, NEWSLETTER, QUICK LINKS) ── */}
@@ -24,7 +39,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-32">
           {/* ── PART 1A: BRAND IDENTITY, NEWSLETTER & SOCIAL NETWORKS ── */}
           <div className="flex flex-col gap-2">
-            <Link to="/">
+            <Link to="/" onClick={scrollToTop}>
               <img
                 src={footerLogo}
                 alt="Morkins Logo"
@@ -129,6 +144,7 @@ export default function Footer() {
                   <li key={idx}>
                     <Link
                       to={item.path}
+                      onClick={() => handleLinkClick(item.path)}
                       className="text-sm text-white/95 hover:text-[#AFD971] transition-colors duration-200 leading-snug block"
                     >
                       {item.label || t(item.key!)}
@@ -157,6 +173,7 @@ export default function Footer() {
                   <li key={item.key}>
                     <Link
                       to={item.path}
+                      onClick={() => handleLinkClick(item.path)}
                       className="text-sm text-white/95 hover:text-[#AFD971] transition-colors duration-200 leading-snug block"
                     >
                       {t(item.key)}
@@ -182,6 +199,7 @@ export default function Footer() {
                   <li key={item.key}>
                     <Link
                       to={item.path}
+                      onClick={() => handleLinkClick(item.path)}
                       className="text-sm text-white/95 hover:text-white transition-colors duration-200 leading-snug block"
                     >
                       {t(item.key)}
@@ -195,7 +213,7 @@ export default function Footer() {
       </div>
 
       {/* ── PART 2: BOTTOM COPYRIGHT & LEGAL BAR ── */}
-      {/* Copyright assertion, digital agency credits, and direct legal policy links */}
+      {/* Copyright assertion, digital agency credits, back-to-top, and direct legal policy links */}
       <div className="border-t border-white/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <p className="text-white/90 text-sm">
@@ -217,16 +235,31 @@ export default function Footer() {
           <div className="flex items-center gap-5">
             <Link
               to="/terms-conditions"
+              onClick={scrollToTop}
               className="text-white/90 hover:text-white/60 text-sm transition-colors"
             >
               {t("foot_supp_4")}
             </Link>
             <Link
               to="/privacy-policy"
+              onClick={scrollToTop}
               className="text-white/90 hover:text-white/60 text-sm transition-colors"
             >
               {t("foot_supp_3")}
             </Link>
+
+            {/* Back to top button */}
+            <button
+              type="button"
+              onClick={scrollToTop}
+              aria-label="Back to Top"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/30 text-white/90 hover:text-[#AFD971] hover:border-[#AFD971] text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ml-1 group"
+            >
+              <span>Top</span>
+              <svg className="w-3.5 h-3.5 transform group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

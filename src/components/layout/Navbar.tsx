@@ -165,8 +165,8 @@ export default function Navbar({
               to="/skincare"
               className={`px-4 sm:px-5 py-1.5 rounded-lg text-xs sm:text-[13px] font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center cursor-pointer ${
                 isSkinActive
-                  ? 'bg-[#5C3A21] text-white border-2 border-black/50 shadow-sm'
-                  : 'bg-white text-[#784825] border border-[#E5E7EB] hover:bg-[#FAF8F5] shadow-xs'
+                  ? 'bg-[#246e07] text-white border border-black/50 shadow-sm'
+                  : 'bg-white text-[#246e07] border border-[#E5E7EB] hover:bg-[#FAF8F5] shadow-xs'
               }`}
             >
               Skin
@@ -175,7 +175,7 @@ export default function Navbar({
               to="/haircare"
               className={`px-4 sm:px-5 py-1.5 rounded-lg text-xs sm:text-[13px] font-bold tracking-wider uppercase transition-all duration-200 flex items-center justify-center cursor-pointer ${
                 isHairActive
-                  ? 'bg-[#5C3A21] text-white border-2 border-black/50 shadow-sm'
+                  ? 'bg-[#5C3A21] text-white border border-black/50 shadow-sm'
                   : 'bg-white text-[#784825] border border-[#E5E7EB] hover:bg-[#FAF8F5] shadow-xs'
               }`}
             >

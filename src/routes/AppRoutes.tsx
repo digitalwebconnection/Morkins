@@ -46,11 +46,12 @@ export default function AppRoutes() {
     if (!location.hash) {
       if ((window as any).lenis) {
         (window as any).lenis.scrollTo(0, { immediate: true });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'auto' });
       }
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTo(0, 0);
+      document.body.scrollTo(0, 0);
     }
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.search, location.hash, location.key]);
 
   return (
     <Suspense fallback={<RouteLoading />}>

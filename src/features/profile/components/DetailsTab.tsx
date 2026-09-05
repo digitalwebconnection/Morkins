@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { 
-  User, Mail, Phone, Edit3, ShieldCheck, 
-  Sparkles, Droplets, CheckCircle2, Lock, Key, Check, X 
+import {
+  User, Mail, Phone, Edit3, ShieldCheck,
+  Sparkles, Droplets, CheckCircle2, Lock, Key, Check, X
 } from 'lucide-react';
 
 interface DetailsTabProps {
@@ -66,7 +66,7 @@ export const DetailsTab: React.FC<DetailsTabProps> = ({
 
   return (
     <div className="space-y-6 animate-fade-in">
-      
+
       {/* ── 1. Personal Credentials Card ── */}
       <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
         {/* Subtle top shimmer */}
@@ -285,11 +285,10 @@ export const DetailsTab: React.FC<DetailsTabProps> = ({
                     key={type}
                     type="button"
                     onClick={() => setSkinType(type)}
-                    className={`p-3 rounded-xl border text-xs font-semibold text-left transition-all cursor-pointer ${
-                      skinType === type
+                    className={`p-3 rounded-xl border text-xs font-semibold text-left transition-all cursor-pointer ${skinType === type
                         ? 'bg-[#1C331B] text-[#AFD971] border-[#1C331B] shadow-xs'
                         : 'bg-white text-[#464D3F] border-[#DDD3C1] hover:bg-[#FAF8F2]'
-                    }`}
+                      }`}
                   >
                     {type}
                   </button>
@@ -310,11 +309,10 @@ export const DetailsTab: React.FC<DetailsTabProps> = ({
                       key={concern}
                       type="button"
                       onClick={() => toggleConcern(concern)}
-                      className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer border flex items-center gap-1.5 ${
-                        isSelected
+                      className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer border flex items-center gap-1.5 ${isSelected
                           ? 'bg-amber-50 text-[#8C6221] border-[#C49746] shadow-2xs font-bold'
                           : 'bg-white text-[#464D3F] border-[#DDD3C1] hover:bg-gray-50'
-                      }`}
+                        }`}
                     >
                       <span>{isSelected ? '✓' : '+'}</span>
                       <span>{concern}</span>

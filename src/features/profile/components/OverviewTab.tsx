@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Sparkles, Truck, Heart, MapPin, CreditCard,
-  RotateCcw, Gift, ArrowRight, ShieldCheck, 
+  RotateCcw, Gift, ArrowRight, ShieldCheck,
   Award, ChevronRight, Compass, Star,
   ShoppingBag
 } from 'lucide-react';
@@ -60,7 +60,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
 
   return (
     <div className="space-y-7 animate-fade-in text-[#1C2E1A]">
-      
+
       {/* ── 1. WELCOME & VIP TIER BANNER ── */}
       <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1] shadow-md relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-[#12602F] via-[#C49746] to-[#AFD971]" />
@@ -241,7 +241,7 @@ export const OverviewTab: React.FC<OverviewTabProps> = ({
 
       {/* ── 3. QUICK ACTIONS HUB & RECOMMENDED FORMULATIONS ── */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
+
         {/* Left 5 Cols: Quick Hub Navigation */}
         <div className="lg:col-span-5 bg-white rounded-lg p-6 border border-[#DDD3C1] shadow-sm space-y-4">
           <h3 className="font-serif text-base font-bold text-[#1C2E1A] flex items-center gap-2">

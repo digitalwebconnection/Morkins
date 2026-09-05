@@ -1,5 +1,6 @@
 import SkinCareHero from './components/SkinCareHero';
 import SkinCareMatrix from './components/SkinCareMatrix';
+import SkinCareBioActives from './components/SkinCareBioActives';
 import SkinCareConcierge from './components/SkinCareConcierge';
 import SkinCareTransformation from './components/SkinCareTransformation';
 import SkinCareFAQ from './components/SkinCareFAQ';
@@ -17,6 +18,9 @@ export default function SkinCarePage({ onAddToCart }: SkinCarePageProps) {
 
       {/* ── 2. CLINICAL SUPERIORITY BENCHMARK MATRIX (Morkins vs Others) ── */}
       <SkinCareMatrix />
+
+      {/* ── 3. BOTANICAL BIO-ACTIVES CLINICAL EXTRACTION LAB ── */}
+      <SkinCareBioActives onAddToCart={onAddToCart} />
 
       {/* ── 4. INTERACTIVE SKIN CONCERN & ROUTINE CONCIERGE ── */}
       <SkinCareConcierge onAddToCart={onAddToCart} />

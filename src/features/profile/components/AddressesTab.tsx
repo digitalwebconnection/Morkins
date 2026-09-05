@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { 
-  MapPin, Plus, Edit3, Trash2, Phone, Check, 
-  Home, Building2, Briefcase, CheckCircle2, X 
+import {
+  MapPin, Plus, Edit3, Trash2, Phone, Check,
+  Home, Building2, Briefcase, CheckCircle2, X
 } from 'lucide-react';
 import type { Address } from '../../../types';
 
@@ -60,7 +60,7 @@ export const AddressesTab: React.FC<AddressesTabProps> = ({
 
   return (
     <div className="space-y-6 animate-fade-in">
-      
+
       {/* ── Section Header ── */}
       <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#12602F] via-[#1F8242] to-[#C49746]" />
@@ -210,11 +210,10 @@ export const AddressesTab: React.FC<AddressesTabProps> = ({
             return (
               <div
                 key={addr.id}
-                className={`p-6 rounded-lg border transition-all duration-300 relative flex flex-col justify-between ${
-                  isDefault
+                className={`p-6 rounded-lg border transition-all duration-300 relative flex flex-col justify-between ${isDefault
                     ? 'bg-linear-to-b from-white via-[#FCFBF8] to-[#FAF8F2] border-[#12602F] shadow-[0_4px_20px_rgba(18,96,47,0.12)] ring-2 ring-[#12602F]/20'
                     : 'bg-white border-[#DDD3C1]/80 hover:border-[#12602F]/50 shadow-2xs hover:shadow-md'
-                }`}
+                  }`}
               >
                 <div>
                   {/* Top Bar with Icon, Label, and Default Badge */}

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {
   CreditCard, Plus, ShieldCheck, CheckCircle2, Trash2,
-  Lock, Sparkles, Smartphone, X} from 'lucide-react';
+  Lock, Sparkles, Smartphone, X
+} from 'lucide-react';
 import type { User } from '../../../types';
 
 interface PaymentMethodsTabProps {
@@ -235,16 +236,14 @@ export const PaymentMethodsTab: React.FC<PaymentMethodsTabProps> = ({ user }) =>
           {cards.map((card) => (
             <div
               key={card.id}
-              className={`p-5 rounded-2xl border transition-all relative overflow-hidden flex flex-col justify-between space-y-4 ${
-                card.isDefault
+              className={`p-5 rounded-2xl border transition-all relative overflow-hidden flex flex-col justify-between space-y-4 ${card.isDefault
                   ? 'bg-linear-to-br from-[#1C2E1A] to-[#124423] text-white border-[#12602F] shadow-md ring-2 ring-[#12602F]/20'
                   : 'bg-linear-to-br from-[#FAF8F2] to-white text-[#1C2E1A] border-[#DDD3C1] hover:border-[#12602F]/50 shadow-2xs'
-              }`}
+                }`}
             >
               <div className="flex items-center justify-between">
-                <span className={`text-xs font-mono font-extrabold uppercase tracking-widest ${
-                  card.isDefault ? 'text-[#AFD971]' : 'text-[#8C6221]'
-                }`}>
+                <span className={`text-xs font-mono font-extrabold uppercase tracking-widest ${card.isDefault ? 'text-[#AFD971]' : 'text-[#8C6221]'
+                  }`}>
                   {card.type.toUpperCase()}
                 </span>
                 {card.isDefault ? (
@@ -263,27 +262,24 @@ export const PaymentMethodsTab: React.FC<PaymentMethodsTabProps> = ({ user }) =>
               </div>
 
               <div className="py-2">
-                <span className={`font-mono text-base sm:text-lg font-extrabold tracking-widest block ${
-                  card.isDefault ? 'text-white' : 'text-[#1C2E1A]'
-                }`}>
+                <span className={`font-mono text-base sm:text-lg font-extrabold tracking-widest block ${card.isDefault ? 'text-white' : 'text-[#1C2E1A]'
+                  }`}>
                   {card.cardNumber}
                 </span>
               </div>
 
               <div className="flex items-center justify-between text-xs pt-2 border-t border-white/10">
                 <div>
-                  <span className={`text-[9px] uppercase tracking-wider block ${
-                    card.isDefault ? 'text-white/60' : 'text-stone-400'
-                  }`}>
+                  <span className={`text-[9px] uppercase tracking-wider block ${card.isDefault ? 'text-white/60' : 'text-stone-400'
+                    }`}>
                     Cardholder
                   </span>
                   <span className="font-mono font-bold">{card.cardHolder}</span>
                 </div>
 
                 <div>
-                  <span className={`text-[9px] uppercase tracking-wider block ${
-                    card.isDefault ? 'text-white/60' : 'text-stone-400'
-                  }`}>
+                  <span className={`text-[9px] uppercase tracking-wider block ${card.isDefault ? 'text-white/60' : 'text-stone-400'
+                    }`}>
                     Expires
                   </span>
                   <span className="font-mono font-bold">{card.expiry}</span>
@@ -292,11 +288,10 @@ export const PaymentMethodsTab: React.FC<PaymentMethodsTabProps> = ({ user }) =>
                 <button
                   type="button"
                   onClick={() => handleDeleteCard(card.id)}
-                  className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                    card.isDefault
+                  className={`p-1.5 rounded-lg transition-colors cursor-pointer ${card.isDefault
                       ? 'text-white/60 hover:text-rose-300 hover:bg-white/10'
                       : 'text-stone-400 hover:text-rose-600 hover:bg-rose-50'
-                  }`}
+                    }`}
                   title="Remove Card"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
@@ -409,22 +404,20 @@ export const PaymentMethodsTab: React.FC<PaymentMethodsTabProps> = ({ user }) =>
               <button
                 type="button"
                 onClick={() => setAddMode('card')}
-                className={`py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                  addMode === 'card'
+                className={`py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${addMode === 'card'
                     ? 'bg-[#12602F] text-white shadow-xs'
                     : 'text-[#464D3F] hover:text-[#12602F]'
-                }`}
+                  }`}
               >
                 Credit / Debit Card
               </button>
               <button
                 type="button"
                 onClick={() => setAddMode('upi')}
-                className={`py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                  addMode === 'upi'
+                className={`py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${addMode === 'upi'
                     ? 'bg-[#12602F] text-white shadow-xs'
                     : 'text-[#464D3F] hover:text-[#12602F]'
-                }`}
+                  }`}
               >
                 UPI ID
               </button>

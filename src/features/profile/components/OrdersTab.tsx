@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Package, Truck, CheckCircle2, RotateCcw, 
+import {
+  Package, Truck, CheckCircle2, RotateCcw,
   FileText, ArrowRight, Copy, Check
 } from 'lucide-react';
 import ReturnRequestModal from '../../../components/shared/ReturnRequestModal';
@@ -59,7 +59,7 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
 
   return (
     <div className="space-y-6 animate-fade-in">
-      
+
       {/* ── Section Header ── */}
       <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1]/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#12602F] via-[#1F8242] to-[#C49746]" />
@@ -80,31 +80,28 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
           <div className="flex items-center gap-1.5 bg-[#FAF8F2] p-1.5 rounded-lg border border-[#DDD3C1]">
             <button
               onClick={() => setFilterStatus('all')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                filterStatus === 'all'
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${filterStatus === 'all'
                   ? 'bg-[#12602F] text-[#AFD971] shadow-2xs'
                   : 'text-[#464D3F] hover:text-[#12602F]'
-              }`}
+                }`}
             >
               All ({orders.length})
             </button>
             <button
               onClick={() => setFilterStatus('in_transit')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                filterStatus === 'in_transit'
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${filterStatus === 'in_transit'
                   ? 'bg-[#12602F] text-[#AFD971] shadow-2xs'
                   : 'text-[#464D3F] hover:text-[#12602F]'
-              }`}
+                }`}
             >
               In Transit
             </button>
             <button
               onClick={() => setFilterStatus('delivered')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                filterStatus === 'delivered'
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${filterStatus === 'delivered'
                   ? 'bg-[#12602F] text-[#AFD971] shadow-2xs'
                   : 'text-[#464D3F] hover:text-[#12602F]'
-              }`}
+                }`}
             >
               Delivered
             </button>
@@ -193,17 +190,15 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
 
                       {/* Status Badge */}
                       <span
-                        className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 shadow-2xs ${
-                          isDelivered
+                        className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 shadow-2xs ${isDelivered
                             ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
                             : isInTransit
-                            ? 'bg-amber-50 text-amber-900 border-amber-200'
-                            : 'bg-blue-50 text-blue-900 border-blue-200'
-                        }`}
+                              ? 'bg-amber-50 text-amber-900 border-amber-200'
+                              : 'bg-blue-50 text-blue-900 border-blue-200'
+                          }`}
                       >
-                        <span className={`w-1.5 h-1.5 rounded-full ${
-                          isDelivered ? 'bg-emerald-500' : isInTransit ? 'bg-amber-500 animate-pulse' : 'bg-blue-500'
-                        }`} />
+                        <span className={`w-1.5 h-1.5 rounded-full ${isDelivered ? 'bg-emerald-500' : isInTransit ? 'bg-amber-500 animate-pulse' : 'bg-blue-500'
+                          }`} />
                         <span>{order.status.replace(/_/g, ' ')}</span>
                       </span>
                     </div>

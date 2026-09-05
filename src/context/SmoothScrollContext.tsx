@@ -60,20 +60,27 @@ export const SmoothScrollProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
   // Handle route change & anchor smooth scrolling
   useEffect(() => {
-    if (!lenisRef.current) return;
-
     if (location.hash) {
       const target = document.querySelector(location.hash);
       if (target) {
         setTimeout(() => {
-          lenisRef.current?.scrollTo(target as HTMLElement, { offset: -80, duration: 1.2 });
+          if (lenisRef.current) {
+            lenisRef.current.scrollTo(target as HTMLElement, { offset: -80, duration: 1.2 });
+          } else {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
         }, 100);
         return;
       }
     }
 
-    lenisRef.current.scrollTo(0, { immediate: true });
-  }, [location.pathname, location.hash]);
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTo(0, 0);
+    document.body.scrollTo(0, 0);
+  }, [location.pathname, location.search, location.hash, location.key]);
 
   const scrollTo = (target: string | HTMLElement | number, options?: any) => {
     lenisRef.current?.scrollTo(target as any, options);

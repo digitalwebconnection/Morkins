@@ -168,8 +168,8 @@ export default function SkinCareConcierge({ onAddToCart }: SkinCareConciergeProp
         }
       `}</style>
 
-      
-      
+
+
 
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -275,11 +275,10 @@ export default function SkinCareConcierge({ onAddToCart }: SkinCareConciergeProp
                     <button
                       onClick={() => handleAddProduct(product.id)}
                       disabled={isAdded}
-                      className={`px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-1.5 shadow-2xs ${
-                        isAdded
+                      className={`px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-1.5 shadow-2xs ${isAdded
                           ? 'bg-emerald-700 text-white shadow-xs'
                           : 'bg-[#12602F] hover:bg-[#0E4723] text-white active:scale-95'
-                      }`}
+                        }`}
                     >
                       {isAdded ? (
                         <>
