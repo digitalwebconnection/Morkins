@@ -69,11 +69,10 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
               });
             }}
             disabled={!inStock}
-            className={`shrink-0 w-16 h-8 flex items-center justify-center text-[9px] font-bold uppercase tracking-widest rounded-none transition-colors ${
-              inStock
+            className={`shrink-0 w-16 h-8 flex items-center justify-center text-[9px] font-bold uppercase tracking-widest rounded-none transition-colors ${inStock
                 ? 'bg-[#0B1A28] text-white hover:bg-black cursor-pointer'
                 : 'bg-stone-300 text-stone-600 cursor-not-allowed'
-            }`}
+              }`}
           >
             {inStock ? 'ADD' : 'OUT'}
           </button>

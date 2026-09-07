@@ -33,7 +33,7 @@ export default function BestSellersPage({ onAddToCart }: BestSellersPageProps) {
     <div className="min-h-screen bg-[#FCFBF8] text-[#1C2E1A] selection:bg-[#AFD971] selection:text-[#1C331B]">
       {/* ── PART 1: EDITORIAL BEST SELLERS HERO (BestSellersHero) ── */}
       {/* Visual luxury header with award accolades and signature curation intro */}
-      <BestSellersHero />      
+      <BestSellersHero />
 
       {/* ── PART 2: FILTERABLE BEST SELLERS GRID & QUICK VIEW (BestSellersGrid) ── */}
       {/* Dynamic catalog grid with category filters, badge overlays, and 1-click Add to Cart */}

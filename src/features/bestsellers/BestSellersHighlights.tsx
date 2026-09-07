@@ -106,7 +106,7 @@ export default function BestSellersHighlights() {
 
   return (
     <section className="relative py-12 sm:py-16 lg:py-20 bg-[#FCFBF8] border-b border-[#D8CCB5]/40 overflow-hidden select-none">
-      
+
       {/* ── Keyframe Animations for Highlights Section ── */}
       <style>{`
         @keyframes floatHighlight1 {
@@ -140,7 +140,7 @@ export default function BestSellersHighlights() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* ── Section Header ── */}
         <div className="text-center max-w-5xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F4EFE6] border border-[#C9B387]/50 text-[#8C6D34] text-[11px] font-bold tracking-[0.25em] uppercase mb-4 backdrop-blur-xs shadow-2xs">

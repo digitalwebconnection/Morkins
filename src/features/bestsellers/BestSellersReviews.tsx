@@ -615,11 +615,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                           {/* Helpful Counter Button */}
                           <button
                             onClick={() => handleToggleHelpful(review.id)}
-                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all duration-200 cursor-pointer shrink-0 ${
-                              isUpvoted
+                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all duration-200 cursor-pointer shrink-0 ${isUpvoted
                                 ? 'bg-[#1C331B] text-[#AFD971] shadow-xs'
                                 : 'bg-[#FAF8F2] hover:bg-[#F4F1E8] text-[#4A5543] border border-[#DDD3C1]'
-                            }`}
+                              }`}
                           >
                             <span>👍</span>
                             <span>{review.helpfulCount}</span>
@@ -644,9 +643,8 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    isActive ? 'w-8 bg-[#1C331B]' : 'w-2 bg-[#C49746]/40 hover:bg-[#C49746]'
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${isActive ? 'w-8 bg-[#1C331B]' : 'w-2 bg-[#C49746]/40 hover:bg-[#C49746]'
+                    }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
               );

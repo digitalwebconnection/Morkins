@@ -63,14 +63,14 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       {/* Backdrop with Smooth Blur */}
-      <div 
-        onClick={onClose} 
+      <div
+        onClick={onClose}
         className="fixed inset-0 bg-black/65 backdrop-blur-md transition-opacity animate-modal-backdrop"
       />
 
       {/* Modal Container */}
       <div className="relative w-full max-w-4xl lg:max-w-5xl bg-white rounded-xl shadow-[0_25px_70px_rgba(0,0,0,0.35)] border border-[#A68A56]/25 overflow-hidden z-10 animate-modal-content max-h-[92vh] md:max-h-[88vh] flex flex-col my-auto">
-        
+
         {/* Floating Close Button */}
         <button
           onClick={onClose}
@@ -83,10 +83,10 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-12 overflow-y-auto">
-          
+
           {/* Left Column: Full-Bleed Edge-to-Edge Product Visual Stage */}
           <div className="md:col-span-6 relative min-h-80 sm:min-h-95 md:min-h-135 bg-[#F4F3EE] overflow-hidden group flex flex-col justify-between">
-            
+
             {/* Full Card Hero Image */}
             <img
               src={selectedImg || product.img}
@@ -115,9 +115,8 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
               <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-black/45 backdrop-blur-md border border-white/20 shadow-lg">
                 <button
                   onClick={() => setSelectedImg(product.img)}
-                  className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
-                    selectedImg === product.img ? 'border-[#AFD971] scale-105 shadow-md' : 'border-transparent opacity-70 hover:opacity-100'
-                  }`}
+                  className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${selectedImg === product.img ? 'border-[#AFD971] scale-105 shadow-md' : 'border-transparent opacity-70 hover:opacity-100'
+                    }`}
                   aria-label="View primary angle"
                 >
                   <img src={product.img} alt="Primary" className="w-full h-full object-cover" />
@@ -126,9 +125,8 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
                 {product.hoverImg && (
                   <button
                     onClick={() => setSelectedImg(product.hoverImg)}
-                    className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
-                      selectedImg === product.hoverImg ? 'border-[#AFD971] scale-105 shadow-md' : 'border-transparent opacity-70 hover:opacity-100'
-                    }`}
+                    className={`w-12 h-12 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${selectedImg === product.hoverImg ? 'border-[#AFD971] scale-105 shadow-md' : 'border-transparent opacity-70 hover:opacity-100'
+                      }`}
                     aria-label="View secondary angle"
                   >
                     <img src={product.hoverImg} alt="Secondary" className="w-full h-full object-cover" />
@@ -193,25 +191,22 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
                 <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-wider mb-3">
                   <button
                     onClick={() => setActiveTab('benefits')}
-                    className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                      activeTab === 'benefits' ? 'border-[#547E3D] text-[#2D5A32] font-semibold' : 'border-transparent text-gray-400 hover:text-[#1C331B]'
-                    }`}
+                    className={`pb-1 border-b-2 transition-all cursor-pointer ${activeTab === 'benefits' ? 'border-[#547E3D] text-[#2D5A32] font-semibold' : 'border-transparent text-gray-400 hover:text-[#1C331B]'
+                      }`}
                   >
                     Clinical Benefits
                   </button>
                   <button
                     onClick={() => setActiveTab('ingredients')}
-                    className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                      activeTab === 'ingredients' ? 'border-[#547E3D] text-[#2D5A32] font-semibold' : 'border-transparent text-gray-400 hover:text-[#1C331B]'
-                    }`}
+                    className={`pb-1 border-b-2 transition-all cursor-pointer ${activeTab === 'ingredients' ? 'border-[#547E3D] text-[#2D5A32] font-semibold' : 'border-transparent text-gray-400 hover:text-[#1C331B]'
+                      }`}
                   >
                     Key Actives
                   </button>
                   <button
                     onClick={() => setActiveTab('howToUse')}
-                    className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                      activeTab === 'howToUse' ? 'border-[#547E3D] text-[#2D5A32] font-semibold' : 'border-transparent text-gray-400 hover:text-[#1C331B]'
-                    }`}
+                    className={`pb-1 border-b-2 transition-all cursor-pointer ${activeTab === 'howToUse' ? 'border-[#547E3D] text-[#2D5A32] font-semibold' : 'border-transparent text-gray-400 hover:text-[#1C331B]'
+                      }`}
                   >
                     Ritual
                   </button>
@@ -287,11 +282,10 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
                 <button
                   onClick={handleAdd}
                   disabled={addedAnimation}
-                  className={`flex-1 py-3.5 px-6 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_6px_20px_rgba(28,51,27,0.25)] cursor-pointer flex items-center justify-center gap-2 ${
-                    addedAnimation
+                  className={`flex-1 py-3.5 px-6 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_6px_20px_rgba(28,51,27,0.25)] cursor-pointer flex items-center justify-center gap-2 ${addedAnimation
                       ? 'bg-emerald-600 text-white scale-98 shadow-none'
                       : 'bg-[#1C331B] hover:bg-[#2B4B27] text-[#AFD971] hover:shadow-[0_8px_25px_rgba(28,51,27,0.35)] active:scale-98'
-                  }`}
+                    }`}
                 >
                   {addedAnimation ? (
                     <>

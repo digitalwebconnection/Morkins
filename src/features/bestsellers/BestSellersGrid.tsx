@@ -111,9 +111,8 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
             <div className="flex items-center bg-[#F1ECE1] p-1 rounded-xl border border-[#D8CCB5]/80 shadow-2xs">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  viewMode === 'grid' ? 'bg-[#1C331B] text-[#AFD971] shadow-xs' : 'text-[#5C6556] hover:text-[#1C331B]'
-                }`}
+                className={`p-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${viewMode === 'grid' ? 'bg-[#1C331B] text-[#AFD971] shadow-xs' : 'text-[#5C6556] hover:text-[#1C331B]'
+                  }`}
                 title="Grid View (4-Col)"
                 aria-label="Grid View"
               >
@@ -123,9 +122,8 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
               </button>
               <button
                 onClick={() => setViewMode('editorial')}
-                className={`p-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  viewMode === 'editorial' ? 'bg-[#1C331B] text-[#AFD971] shadow-xs' : 'text-[#5C6556] hover:text-[#1C331B]'
-                }`}
+                className={`p-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${viewMode === 'editorial' ? 'bg-[#1C331B] text-[#AFD971] shadow-xs' : 'text-[#5C6556] hover:text-[#1C331B]'
+                  }`}
                 title="Editorial View (2-Col)"
                 aria-label="Editorial View"
               >
@@ -148,11 +146,10 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                  selectedCategory === cat
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${selectedCategory === cat
                     ? 'bg-[#1C331B] text-[#AFD971] border border-[#AFD971]/35 shadow-xs scale-100 font-bold'
                     : 'bg-[#FCFBF8] text-[#464D3F] hover:text-[#1C331B] hover:bg-[#F4F1E8] border border-[#DDD3C1]'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -341,11 +338,10 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                         <button
                           onClick={(e) => handleQuickAdd(product, e)}
                           disabled={isJustAdded}
-                          className={`px-4 py-2 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
-                            isJustAdded
+                          className={`px-4 py-2 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${isJustAdded
                               ? 'bg-emerald-600 text-white'
                               : 'bg-[#1C331B] hover:bg-[#2B4B27] text-[#AFD971] shadow-xs hover:shadow-md'
-                          }`}
+                            }`}
                         >
                           {isJustAdded ? 'Added' : 'Add to Bag'}
                         </button>
@@ -356,7 +352,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
               );
             })}
           </div>
-        )} 
+        )}
 
       </div>
     </section>

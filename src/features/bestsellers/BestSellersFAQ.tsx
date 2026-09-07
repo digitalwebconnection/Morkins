@@ -93,7 +93,7 @@ export default function BestSellersFAQ() {
 
   return (
     <section className="relative py-14 sm:py-8 lg:py-14 bg-[#FCFBF8] border-b border-[#D8CCB5]/40 overflow-hidden select-none">
-      
+
       <style>{`
         @keyframes faqFloat1 {
           0%, 100% { transform: translateY(0px) rotate(-10deg); }
@@ -117,7 +117,7 @@ export default function BestSellersFAQ() {
       <div className="absolute -bottom-24 -right-20 w-96 h-96 bg-[#C49746]/12 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-3/4 bg-[#D4B574]/6 rounded-full blur-[100px] pointer-events-none" />
 
- 
+
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -146,11 +146,10 @@ export default function BestSellersFAQ() {
             return (
               <div
                 key={faq.id}
-                className={`rounded-xl border transition-all duration-400 overflow-hidden relative ${
-                  isOpen
+                className={`rounded-xl border transition-all duration-400 overflow-hidden relative ${isOpen
                     ? 'bg-white border-[#547E3D] shadow-[0_16px_40px_-8px_rgba(78,122,82,0.22),0_4px_12px_rgba(0,0,0,0.04)] ring-2 ring-[#6F8C51]/20 -translate-y-0.5'
                     : 'bg-white border-[#DDD3C1]/80 hover:border-[#6F8C51]/60 shadow-[0_4px_22px_-6px_rgba(30,40,25,0.06)] hover:shadow-[0_12px_32px_-6px_rgba(78,122,82,0.15)] hover:-translate-y-0.5'
-                }`}
+                  }`}
               >
                 {isOpen && (
                   <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#6F8C51] pointer-events-none" />
@@ -170,11 +169,10 @@ export default function BestSellersFAQ() {
                   </div>
 
                   <span
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 border ${
-                      isOpen
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 border ${isOpen
                         ? 'rotate-180 bg-[#1C331B] text-[#AFD971] border-[#AFD971]/40 shadow-[0_4px_14px_rgba(28,51,27,0.35)]'
                         : 'bg-[#F2ECE1] text-[#4A5543] border-[#D5CBB8] shadow-2xs hover:bg-[#6F8C51] hover:text-white hover:border-[#6F8C51]'
-                    }`}
+                      }`}
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
