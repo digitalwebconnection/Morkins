@@ -94,10 +94,6 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
               className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
             />
 
-            {/* Gradient Overlays for Badges & Controls Legibility */}
-            <div className="absolute top-0 inset-x-0 h-28 bg-linear-to-b from-black/55 via-black/15 to-transparent pointer-events-none z-10" />
-            <div className="absolute bottom-0 inset-x-0 h-32 bg-linear-to-t from-black/65 via-black/20 to-transparent pointer-events-none z-10" />
-
             {/* Top Floating Badges */}
             <div className="relative z-20 w-full p-4 sm:p-5 flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1C331B]/90 backdrop-blur-md text-[#AFD971] text-[10px] font-bold uppercase tracking-widest border border-[#AFD971]/35 shadow-md">
@@ -294,7 +290,7 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
                   className={`flex-1 py-3.5 px-6 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_6px_20px_rgba(28,51,27,0.25)] cursor-pointer flex items-center justify-center gap-2 ${
                     addedAnimation
                       ? 'bg-emerald-600 text-white scale-98 shadow-none'
-                      : 'bg-linear-to-r from-[#1C331B] to-[#2B4B27] hover:from-[#244222] hover:to-[#355C31] text-[#AFD971] hover:shadow-[0_8px_25px_rgba(28,51,27,0.35)] active:scale-98'
+                      : 'bg-[#1C331B] hover:bg-[#2B4B27] text-[#AFD971] hover:shadow-[0_8px_25px_rgba(28,51,27,0.35)] active:scale-98'
                   }`}
                 >
                   {addedAnimation ? (

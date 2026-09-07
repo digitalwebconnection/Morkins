@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { PRODUCTS } from './productsData'
 import type { Product } from './productsData'
+import { getProductUrl } from '../products/data/products'
 import { useLanguage } from '../../context/LanguageContext'
 
 interface BestSellersProps {
@@ -14,6 +16,7 @@ const BEST_SELLERS: Product[] = PRODUCTS.filter(p => [1, 9, 10].includes(p.id))
 
 export default function BestSellers({ onAddToCart }: BestSellersProps) {
   const { t } = useLanguage()
+  const navigate = useNavigate()
   const [startIndex, setStartIndex] = useState(0)
 
   const handleNext = () => {
@@ -65,46 +68,57 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
             <div className="relative animate-fade-in">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 transition-all duration-500">
                 {BEST_SELLERS.slice(startIndex, startIndex + 2).map((p) => {
-                  const translatedName = t('prod_' + p.id + '_name')
+                  const translatedName = t('prod_' + p.id + '_name') || p.name
+                  const translatedDesc = t('prod_' + p.id + '_desc') || p.description
+                  const activePrice = p.discountPrice || p.price
+
                   return (
                     <div
                       key={p.id}
-                      className="group relative flex flex-col bg-white rounded-md overflow-hidden shadow-xs hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 border border-brand-dark/5 animate-scale-up"
+                      onClick={() => navigate(getProductUrl(p))}
+                      className="group relative flex flex-col h-full bg-white rounded-md overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-brand-dark/5 cursor-pointer"
                     >
-                      <div className="relative aspect-4/4 w-full overflow-hidden bg-brand-cream-dark ">
+                      <div className="relative aspect-square w-full overflow-hidden flex items-center justify-center transition-all duration-500 bg-[#F1EDE9]">
                         <img
                           src={p.img}
                           alt={translatedName}
-                          className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                          className="h-full w-full object-cover object-center transition-all duration-700 ease-out transform group-hover:scale-110"
                           loading="lazy"
                         />
-                        <span className="absolute top-3 left-3 bg-brand-sage text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-xs">
-                          {p.rating}★ Rating
-                        </span>
                       </div>
 
-                      <div className="flex flex-col flex-1 mt-4 p-4">
-                        <p className="text-[12px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">{t('cat_' + p.category.toLowerCase())}</p>
-                        <h3 className="text-black text-[18px] font-serif mt-1 leading-snug">
+                      <div className="flex flex-col flex-1 p-6">
+                        <p className="text-[10px] font-bold text-[#A68A56] uppercase tracking-widest mb-1.5">
+                          {t('cat_' + p.category.toLowerCase()) || p.category}
+                        </p>
+                        <h3 className="text-lg md:text-xl font-serif font-medium text-[#0B1A28] mb-1.5 line-clamp-1 group-hover:text-[#A68A56] transition-colors">
                           {translatedName}
                         </h3>
 
-                        <div className="flex items-center justify-between  mt-3 pt-3 border-t border-brand-cream-dark">
-                          <span className="text-base font-bold text-[#A67C52]">${p.price.toFixed(2)}</span>
-                          <button
-                            onClick={() => onAddToCart({ id: p.id, name: translatedName, price: p.discountPrice || p.price, discountPrice: p.discountPrice, img: p.img })}
-                            className="group/btn flex items-center justify-center gap-0 hover:gap-1.5 px-3.5 py-2.5 bg-[#0B1A28] hover:bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer active:scale-95"
-                          >
-                            <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                              <circle cx="9" cy="21" r="1" />
-                              <circle cx="20" cy="21" r="1" />
-                              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                            </svg>
-                            <span className="max-w-0 overflow-hidden opacity-0 group-hover/btn:max-w-25 group-hover/btn:opacity-100 transition-all duration-500 ease-in-out whitespace-nowrap">
-                              {t('btn_add_to_cart')}
-                            </span>
-                          </button>
+                        <p className="text-[11px] text-gray-500 mb-6 line-clamp-1 font-light tracking-wide">
+                          {translatedDesc}
+                        </p>
 
+                        <div className="flex items-end justify-between mt-auto pt-2">
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="text-xl font-bold text-[#A68A56] leading-none">
+                              ${activePrice.toFixed(2)}
+                            </span>
+                            {p.discountPrice && (
+                              <span className="text-[11px] text-stone-400 line-through leading-none font-mono">
+                                ${p.price.toFixed(2)}
+                              </span>
+                            )}
+                          </div>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onAddToCart({ id: p.id, name: translatedName, price: activePrice, discountPrice: p.discountPrice, img: p.img });
+                            }}
+                            className="shrink-0 w-16 h-8 flex items-center justify-center text-[9px] font-bold uppercase tracking-widest rounded-none transition-colors bg-[#0B1A28] text-white hover:bg-black cursor-pointer"
+                          >
+                            ADD
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -113,6 +127,7 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
               </div>
             </div>
           </div>
+
 
           {/* RIGHT SIDE: Static Image Showcase */}
           <div className="lg:col-span-6 relative h-full rounded-xl overflow-hidden shadow-xl border border-brand-dark/10 group">

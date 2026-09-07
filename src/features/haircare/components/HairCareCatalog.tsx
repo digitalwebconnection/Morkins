@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { ShoppingBag, Star, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Sparkles } from 'lucide-react';
 import { PRODUCTS_EXTENDED, getProductUrl } from '../../products/data/products';
 
 interface HairCareCatalogProps {
@@ -8,6 +8,7 @@ interface HairCareCatalogProps {
 }
 
 export default function HairCareCatalog({ onAddToCart }: HairCareCatalogProps) {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [addedId, setAddedId] = useState<number | null>(null);
 
@@ -97,95 +98,61 @@ export default function HairCareCatalog({ onAddToCart }: HairCareCatalogProps) {
             const hasDiscount = Boolean(prod.discountPrice && prod.discountPrice < prod.price);
             const isJustAdded = addedId === prod.id;
 
-            return (
-              <div
-                key={prod.id}
-                className="group rounded-xl border border-[#EDE4D8] hover:border-[#C49A6C]/70 overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(44,24,16,0.08)] flex flex-col justify-between bg-white relative"
-                style={{ boxShadow: '0 4px 18px rgba(44,24,16,0.53)' }}
-              >
-                {/* Image */}
-                <div className="relative aspect-square w-full overflow-hidden bg-[#FAF7F2]">
-                  <Link to={getProductUrl(prod)} className="block w-full h-full">
+              return (
+                <div
+                  key={prod.id}
+                  onClick={() => navigate(getProductUrl(prod))}
+                  className="group relative flex flex-col h-full bg-white rounded-md overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-brand-dark/5 cursor-pointer"
+                >
+                  {/* Image */}
+                  <div className="relative aspect-square w-full overflow-hidden flex items-center justify-center transition-all duration-500 bg-[#F1EDE9]">
                     <img
-                      src={prod.img}
+                      src={prod.hoverImg ? prod.hoverImg : prod.img}
                       alt={prod.name}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                      className="h-full w-full object-cover object-center transition-all duration-700 ease-out transform group-hover:scale-110"
+                      loading="lazy"
                     />
-                  </Link>
-
-                  {prod.badge && (
-                    <span
-                      className="absolute top-3 left-3 px-2.5 py-1 rounded-md text-[8px] font-extrabold uppercase tracking-wider text-white shadow-sm"
-                      style={{
-                        background: 'linear-gradient(135deg, #2C1810 0%, #3D2516 100%)',
-                        boxShadow: '0 2px 8px rgba(44,24,16,0.25)',
-                      }}
-                    >
-                      {prod.badge}
-                    </span>
-                  )}
-
-                  <div
-                    className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-white/90 border border-[#EDE4D8] text-[10px] font-bold text-[#A67C52] flex items-center gap-1 shadow-sm backdrop-blur-md"
-                  >
-                    <Star className="w-3 h-3 fill-current text-[#C49A6C]" />
-                    <span>{prod.rating}</span>
                   </div>
-                </div>
 
-                {/* Product Info */}
-                <div className="p-5 flex flex-col flex-1 justify-between">
-                  <div>
-                    <span className="text-[8px] font-bold text-[#A67C52] uppercase tracking-[0.2em] block mb-1.5 font-mono">
+                  {/* Product Info */}
+                  <div className="flex flex-col flex-1 p-6">
+                    <p className="text-[10px] font-bold text-[#A68A56] uppercase tracking-widest mb-1.5">
                       {prod.category}
-                    </span>
-                    <Link to={getProductUrl(prod)}>
-                      <h4 className="font-serif text-sm font-bold text-[#1A1210] group-hover:text-[#7A4E2D] transition-colors line-clamp-1">
-                        {prod.name}
-                      </h4>
-                    </Link>
-                    <p className="text-[11px] text-[#7A6E64] font-light line-clamp-2 mt-1.5 leading-relaxed">
+                    </p>
+
+                    <h3 className="text-lg md:text-xl font-serif font-medium text-[#0B1A28] mb-1.5 line-clamp-1 group-hover:text-[#A68A56] transition-colors">
+                      {prod.name}
+                    </h3>
+
+                    <p className="text-[11px] text-gray-500 mb-6 line-clamp-1 font-light tracking-wide">
                       {prod.description}
                     </p>
-                  </div>
 
-                  <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#F0E8DF]">
-                    <div className="flex items-baseline gap-1.5">
-                      <span
-                        className="font-serif text-lg font-bold"
-                        style={{
-                          background: 'linear-gradient(135deg, #8B5A2B 0%, #A67C52 100%)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                        }}
-                      >
-                        ${activePrice.toFixed(2)}
-                      </span>
-                      {hasDiscount && (
-                        <span className="text-[10px] text-[#C4B8AC] font-mono line-through">
-                          ${prod.price.toFixed(2)}
+                    <div className="flex items-end justify-between mt-auto pt-2">
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-xl font-bold text-[#A68A56] leading-none">
+                          ${activePrice.toFixed(2)}
                         </span>
-                      )}
-                    </div>
+                        {hasDiscount && (
+                          <span className="text-[11px] text-stone-400 line-through leading-none font-mono">
+                            ${prod.price.toFixed(2)}
+                          </span>
+                        )}
+                      </div>
 
-                    <button
-                      onClick={() => handleAdd(prod)}
-                      disabled={isJustAdded}
-                      className={`px-4 py-2 rounded-xl text-[9px] font-extrabold uppercase tracking-widest transition-all cursor-pointer flex items-center gap-1.5 active:scale-95 text-white ${isJustAdded
-                          ? 'bg-[#16A34A] shadow-[0_4px_12px_rgba(22,163,74,0.25)]'
-                          : 'hover:scale-[1.05] hover:shadow-[0_4px_14px_rgba(44,24,16,0.2)]'
-                        }`}
-                      style={!isJustAdded ? {
-                        background: 'linear-gradient(135deg, #2C1810 0%, #3D2516 100%)',
-                      } : undefined}
-                    >
-                      <ShoppingBag className="w-3 h-3 text-[#C49A6C]" />
-                      <span>{isJustAdded ? 'Added' : 'Add'}</span>
-                    </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleAdd(prod);
+                        }}
+                        className="shrink-0 w-16 h-8 flex items-center justify-center text-[9px] font-bold uppercase tracking-widest rounded-none transition-colors bg-[#0B1A28] text-white hover:bg-black cursor-pointer"
+                      >
+                        {isJustAdded ? 'ADDED' : 'ADD'}
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
+              );
           })}
         </div>
 

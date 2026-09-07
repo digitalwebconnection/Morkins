@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { PRODUCTS_EXTENDED, getProductUrl, type ProductExtended } from '../products/data/products';
 
 interface BestSellersGridProps {
@@ -23,17 +23,13 @@ const BEST_SELLER_BENEFITS: Record<number, string> = {
 };
 
 export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSellersGridProps) {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState<'rank' | 'rating' | 'reviews' | 'price-low' | 'price-high'>('rank');
   const [viewMode, setViewMode] = useState<'grid' | 'editorial'>('grid');
-  const [wishlist, setWishlist] = useState<number[]>([]);
+  const [] = useState<number[]>([]);
   const [recentlyAddedId, setRecentlyAddedId] = useState<number | null>(null);
 
-  const toggleWishlist = (id: number, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setWishlist(prev => prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]);
-  };
 
   const handleQuickAdd = (product: ProductExtended, e: React.MouseEvent) => {
     e.preventDefault();
@@ -80,7 +76,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
   }, [selectedCategory, sortBy]);
 
   return (
-    <section id="master-grid" className="py-12 sm:py-16 bg-linear-to-b from-[#FCFBF8] via-[#FAF8F2] to-[#F7F4EB] border-b border-[#D8CCB5]/40 relative">
+    <section id="master-grid" className="py-12 sm:py-16 bg-[#FCFBF8] border-b border-[#D8CCB5]/40 relative">
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#4E7A52]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#C49746]/10 rounded-full blur-3xl pointer-events-none" />
@@ -90,13 +86,13 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
         {/* ── Section Header ── */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-linear-to-r from-[#F4EFE6] via-[#EFE8D8] to-[#F4EFE6] border border-[#C9B387]/50 text-[11px] font-bold text-[#8C6D34] uppercase tracking-[0.2em] mb-3 shadow-[0_2px_8px_rgba(196,151,70,0.1)]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F4EFE6] border border-[#C9B387]/50 text-[11px] font-bold text-[#8C6D34] uppercase tracking-[0.2em] mb-3 shadow-[0_2px_8px_rgba(196,151,70,0.1)]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C49746] animate-pulse" />
               The Official Leaderboard
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1C2E1A] tracking-tight">
               Our Best-Selling{' '}
-              <span className="bg-linear-to-r from-[#2D5A32] via-[#5B853F] to-[#B58535] bg-clip-text text-transparent">
+              <span className="text-[#2D5A32]">
                 Formulas
               </span>
             </h2>
@@ -154,7 +150,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-linear-to-r from-[#1C331B] to-[#2B4B27] text-[#AFD971] border border-[#AFD971]/35 shadow-xs scale-100 font-bold'
+                    ? 'bg-[#1C331B] text-[#AFD971] border border-[#AFD971]/35 shadow-xs scale-100 font-bold'
                     : 'bg-[#FCFBF8] text-[#464D3F] hover:text-[#1C331B] hover:bg-[#F4F1E8] border border-[#DDD3C1]'
                 }`}
               >
@@ -199,161 +195,57 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
             {bestSellersList.map((product) => {
               const activePrice = product.discountPrice || product.price;
               const hasDiscount = Boolean(product.discountPrice && product.discountPrice < product.price);
-              const discountPercent = hasDiscount
-                ? Math.round(((product.price - product.discountPrice!) / product.price) * 100)
-                : 0;
-              const rankIndex = BEST_SELLER_IDS.indexOf(product.id) + 1;
-              const isWishlisted = wishlist.includes(product.id);
               const isJustAdded = recentlyAddedId === product.id;
-              const benefitNote = BEST_SELLER_BENEFITS[product.id] || product.category;
 
               // Distinct multi-color rank themes for each best seller
-              const rankBadgeClasses = [
-                'bg-linear-to-r from-[#8C6221] via-[#B88738] to-[#8C6221] text-white border-amber-200/50', // #1 Gold
-                'bg-linear-to-r from-[#1C331B] via-[#2E542A] to-[#1C331B] text-[#AFD971] border-[#AFD971]/35', // #2 Emerald
-                'bg-linear-to-r from-[#944825] via-[#BA5E32] to-[#944825] text-white border-orange-200/40', // #3 Bronze/Terracotta
-                'bg-linear-to-r from-[#244C6B] via-[#3B6B91] to-[#244C6B] text-white border-sky-200/40', // #4 Sapphire Indigo
-              ][(rankIndex - 1) % 4];
 
               return (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col bg-white rounded-xl overflow-hidden border border-[#DDD3C1]/80 hover:border-[#547E3D] shadow-[0_4px_22px_-4px_rgba(30,40,25,0.08)] hover:shadow-[0_16px_40px_-6px_rgba(78,122,82,0.2)] transition-all duration-500 hover:-translate-y-1.5"
+                  onClick={() => navigate(getProductUrl(product))}
+                  className="group relative flex flex-col h-full bg-white rounded-md overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-brand-dark/5 cursor-pointer"
                 >
                   {/* Card Image Stage */}
-                  <div className="relative aspect-square w-full overflow-hidden bg-[#FAF8F2]">
-                    <Link to={getProductUrl(product)} className="absolute inset-0">
-                      <img
-                        src={product.img}
-                        alt={product.name}
-                        className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:opacity-0"
-                      />
-                      {product.hoverImg && (
-                        <img
-                          src={product.hoverImg}
-                          alt={`${product.name} alternate view`}
-                          className="w-full h-full object-cover absolute inset-0 opacity-0 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
-                        />
-                      )}
-                    </Link>
-
-                    {/* Multi-Color Rank Pill & Discount Badges (Top-Left) */}
-                    <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
-                      <span className={`text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-md border flex items-center gap-1 ${rankBadgeClasses}`}>
-                        <span>🏆</span> #{rankIndex} Best Seller
-                      </span>
-
-                      {hasDiscount && (
-                        <span className="bg-linear-to-r from-[#B93826] to-[#D94F3D] text-white text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full shadow-xs self-start border border-red-200/40">
-                          -{discountPercent}% OFF
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Wishlist Button (Top-Right) */}
-                    <button
-                      onClick={(e) => toggleWishlist(product.id, e)}
-                      className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer ${
-                        isWishlisted
-                          ? 'bg-rose-50 text-rose-600 shadow-md scale-110 border border-rose-200'
-                          : 'bg-white/90 backdrop-blur-xs text-gray-400 hover:text-rose-500 hover:bg-white shadow-2xs border border-gray-200/80'
-                      }`}
-                      aria-label="Wishlist"
-                    >
-                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={isWishlisted ? '0' : '2'}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                      </svg>
-                    </button>
-
-                    {/* Floating Quick View Bar (Appears on Hover) */}
-                    <div className="absolute bottom-2.5 inset-x-2.5 z-10 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                      <button
-                        onClick={() => onOpenQuickView(product)}
-                        className="w-full py-2 bg-white/95 backdrop-blur-md hover:bg-[#1C331B] text-[#1C2E1A] hover:text-[#AFD971] text-[10px] font-bold uppercase tracking-wider rounded-xl shadow-md border border-[#DDD3C1] transition-all cursor-pointer flex items-center justify-center gap-1.5"
-                      >
-                        <svg className="w-3.5 h-3.5 text-[#4E7A52] group-hover:text-[#AFD971]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                        <span>Quick View</span>
-                      </button>
-                    </div>
+                  <div className="relative aspect-square w-full overflow-hidden flex items-center justify-center transition-all duration-500 bg-[#F1EDE9]">
+                    <img
+                      src={product.hoverImg ? product.hoverImg : product.img}
+                      alt={product.name}
+                      className="h-full w-full object-cover object-center transition-all duration-700 ease-out transform group-hover:scale-110"
+                      loading="lazy"
+                    />
                   </div>
 
                   {/* Card Content */}
-                  <div className="flex flex-col flex-1 p-4 sm:p-5">
-                    {/* Category & Rating */}
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-bold text-[#2D5A32] uppercase tracking-widest bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
-                        {product.category}
-                      </span>
-                      <div className="flex items-center gap-1 text-[11px] font-bold text-[#8C6221] bg-amber-50/80 px-2 py-0.5 rounded-md border border-amber-200/60 shadow-2xs">
-                        <span className="text-amber-500">★</span>
-                        <span>{product.rating}</span>
-                        <span className="text-[#8C6221]/70 font-normal text-[10px]">({product.reviewsCount})</span>
-                      </div>
-                    </div>
+                  <div className="flex flex-col flex-1 p-6">
+                    <p className="text-[10px] font-bold text-[#A68A56] uppercase tracking-widest mb-1.5">
+                      {product.category}
+                    </p>
 
-                    {/* Product Name */}
-                    <Link to={getProductUrl(product)} className="block mt-1">
-                      <h3 className="font-serif text-base font-semibold text-[#182617] group-hover:text-[#3B622E] transition-colors line-clamp-1 leading-snug">
-                        {product.name}
-                      </h3>
-                    </Link>
+                    <h3 className="text-lg md:text-xl font-serif font-medium text-[#0B1A28] mb-1.5 line-clamp-1 group-hover:text-[#A68A56] transition-colors">
+                      {product.name}
+                    </h3>
 
-                    {/* Botanical Benefit Highlight Note */}
-                    <div className="mt-1.5 mb-2 text-[11px] font-semibold text-[#8C6221] bg-amber-50/60 border border-amber-200/50 px-2 py-0.5 rounded-md flex items-center gap-1.5 line-clamp-1">
-                      <span className="text-[#C49746] shrink-0">✦</span>
-                      <span className="truncate">{benefitNote}</span>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-xs text-[#464D3F] font-light line-clamp-2 leading-relaxed flex-1">
+                    <p className="text-[11px] text-gray-500 mb-6 line-clamp-1 font-light tracking-wide">
                       {product.description}
                     </p>
 
-                    {/* Bottom: Price & Add to Bag */}
-                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#E5DEC9]">
-                      <div>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="text-lg font-bold font-serif text-[#1C331B]">
-                            ${activePrice.toFixed(2)}
+                    <div className="flex items-end justify-between mt-auto pt-2">
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-xl font-bold text-[#A68A56] leading-none">
+                          ${activePrice.toFixed(2)}
+                        </span>
+                        {hasDiscount && (
+                          <span className="text-[11px] text-stone-400 line-through leading-none font-mono">
+                            ${product.price.toFixed(2)}
                           </span>
-                          {hasDiscount && (
-                            <span className="text-xs text-gray-400 font-mono line-through">
-                              ${product.price.toFixed(2)}
-                            </span>
-                          )}
-                        </div>
+                        )}
                       </div>
 
                       <button
                         onClick={(e) => handleQuickAdd(product, e)}
-                        disabled={isJustAdded}
-                        className={`px-3.5 py-2 text-[10px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-xs cursor-pointer flex items-center gap-1.5 ${
-                          isJustAdded
-                            ? 'bg-emerald-600 text-white'
-                            : 'bg-linear-to-r from-[#1C331B] to-[#2B4B27] hover:from-[#244222] hover:to-[#355C31] text-[#AFD971] hover:shadow-md active:scale-95'
-                        }`}
-                        title="Add to Shopping Bag"
+                        className="shrink-0 w-16 h-8 flex items-center justify-center text-[9px] font-bold uppercase tracking-widest rounded-none transition-colors bg-[#0B1A28] text-white hover:bg-black cursor-pointer"
                       >
-                        {isJustAdded ? (
-                          <>
-                            <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span>Added</span>
-                          </>
-                        ) : (
-                          <>
-                            <svg className="w-3.5 h-3.5 text-[#AFD971]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                              <circle cx="9" cy="21" r="1" />
-                              <circle cx="20" cy="21" r="1" />
-                              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                            </svg>
-                            <span>Add</span>
-                          </>
-                        )}
+                        {isJustAdded ? 'ADDED' : 'ADD'}
                       </button>
                     </div>
                   </div>
@@ -372,10 +264,10 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
               const benefitNote = BEST_SELLER_BENEFITS[product.id] || product.category;
 
               const rankBadgeClasses = [
-                'bg-linear-to-r from-[#8C6221] to-[#B88738] text-white',
-                'bg-linear-to-r from-[#1C331B] to-[#2E542A] text-[#AFD971]',
-                'bg-linear-to-r from-[#944825] to-[#BA5E32] text-white',
-                'bg-linear-to-r from-[#244C6B] to-[#3B6B91] text-white',
+                'bg-[#8C6221] text-white',
+                'bg-[#1C331B] text-[#AFD971]',
+                'bg-[#944825] text-white',
+                'bg-[#244C6B] text-white',
               ][(rankIndex - 1) % 4];
 
               return (
@@ -452,7 +344,7 @@ export default function BestSellersGrid({ onAddToCart, onOpenQuickView }: BestSe
                           className={`px-4 py-2 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
                             isJustAdded
                               ? 'bg-emerald-600 text-white'
-                              : 'bg-linear-to-r from-[#1C331B] to-[#2B4B27] hover:from-[#244222] hover:to-[#355C31] text-[#AFD971] shadow-xs hover:shadow-md'
+                              : 'bg-[#1C331B] hover:bg-[#2B4B27] text-[#AFD971] shadow-xs hover:shadow-md'
                           }`}
                         >
                           {isJustAdded ? 'Added' : 'Add to Bag'}

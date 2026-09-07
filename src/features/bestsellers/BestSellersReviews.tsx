@@ -369,17 +369,17 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
     <section
       id="best-sellers-reviews"
       aria-label="Customer Reviews & Ratings"
-      className="relative py-12 sm:py-16 lg:py-20 bg-linear-to-b from-[#FCFBF8] via-[#FAF8F2] to-[#F7F4EB] border-b border-[#D8CCB5]/40 overflow-hidden select-none"
+      className="relative py-12 sm:py-16 lg:py-20 bg-[#FCFBF8] border-b border-[#D8CCB5]/40 overflow-hidden select-none"
     >
       {/* Background Lighting Elements */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-180 h-90 bg-linear-to-b from-[#4E7A52]/10 via-[#C49746]/8 to-transparent rounded-full blur-[110px] pointer-events-none" />
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-180 h-90 bg-[#4E7A52]/8 rounded-full blur-[110px] pointer-events-none" />
       <div className="absolute -bottom-20 right-10 w-96 h-96 bg-[#4E7A52]/10 rounded-full blur-[90px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-linear-to-r from-[#F4EFE6] via-[#EFE8D8] to-[#F4EFE6] border border-[#C9B387]/50 text-[#8C6D34] text-[11px] font-bold tracking-[0.22em] uppercase mb-3.5 backdrop-blur-xs shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F4EFE6] border border-[#C9B387]/50 text-[#8C6D34] text-[11px] font-bold tracking-[0.22em] uppercase mb-3.5 backdrop-blur-xs shadow-2xs">
             <span className="text-[#4E7A52]">✦</span>
             <span>Verified Patron Chronicles</span>
             <span className="text-[#C49746]">✦</span>
@@ -387,7 +387,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1C2E1A] tracking-tight leading-[1.18]">
             Loved By Over{' '}
-            <span className="bg-linear-to-r from-[#2D5A32] via-[#5B853F] to-[#2D5A32] bg-clip-text text-transparent">
+            <span className="text-[#2D5A32]">
               50,000+ Patrons
             </span>
           </h2>
@@ -500,7 +500,6 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                           }}
                           className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
 
                         {/* Top Left: Customer Upload Badge */}
                         <div className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#2D5A32] text-[10px] font-bold shadow-xs">
@@ -520,10 +519,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                         </div>
 
                         {/* Bottom Banner Result Highlight */}
-                        <div className="absolute bottom-3 left-3 right-3 text-white pointer-events-none">
-                          <span className="text-[11px] font-medium tracking-wide drop-shadow-sm flex items-center gap-1.5 line-clamp-1">
+                        <div className="absolute bottom-3 left-3 right-3 pointer-events-none">
+                          <span className="bg-black/65 backdrop-blur-xs px-2.5 py-1 rounded-lg text-white text-[11px] font-medium tracking-wide drop-shadow-sm inline-flex items-center gap-1.5 max-w-full">
                             <span className="text-amber-300 shrink-0">✦</span>
-                            <span>{review.keyResult}</span>
+                            <span className="truncate">{review.keyResult}</span>
                           </span>
                         </div>
                       </div>
@@ -618,7 +617,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                             onClick={() => handleToggleHelpful(review.id)}
                             className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all duration-200 cursor-pointer shrink-0 ${
                               isUpvoted
-                                ? 'bg-linear-to-r from-[#1C331B] to-[#2B4B27] text-[#AFD971] shadow-xs'
+                                ? 'bg-[#1C331B] text-[#AFD971] shadow-xs'
                                 : 'bg-[#FAF8F2] hover:bg-[#F4F1E8] text-[#4A5543] border border-[#DDD3C1]'
                             }`}
                           >

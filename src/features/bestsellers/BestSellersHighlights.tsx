@@ -19,9 +19,7 @@ export default function BestSellersHighlights() {
         badgeBg: 'bg-emerald-50 text-[#3E6541] border-emerald-200/70',
         hoverBorder: 'hover:border-emerald-500/50',
         hoverShadow: 'hover:shadow-[0_22px_50px_-10px_rgba(78,122,82,0.22)]',
-        hoverTo: 'hover:to-emerald-50/60',
-        shimmerLine: 'via-emerald-500',
-        spotlight: 'from-emerald-500/15',
+        accentLine: 'bg-emerald-500',
         cornerOrb: 'bg-emerald-500/12 group-hover:bg-emerald-500/25',
         metricText: 'text-[#4E7A52]',
         metricBg: 'bg-emerald-100/80 text-[#3E6541]',
@@ -46,9 +44,7 @@ export default function BestSellersHighlights() {
         badgeBg: 'bg-amber-50 text-[#8C6221] border-amber-200/70',
         hoverBorder: 'hover:border-amber-500/50',
         hoverShadow: 'hover:shadow-[0_22px_50px_-10px_rgba(181,130,52,0.22)]',
-        hoverTo: 'hover:to-amber-50/60',
-        shimmerLine: 'via-amber-500',
-        spotlight: 'from-amber-500/15',
+        accentLine: 'bg-amber-500',
         cornerOrb: 'bg-amber-500/12 group-hover:bg-amber-500/25',
         metricText: 'text-[#B58234]',
         metricBg: 'bg-amber-100/80 text-[#8C6221]',
@@ -73,9 +69,7 @@ export default function BestSellersHighlights() {
         badgeBg: 'bg-orange-50 text-[#964720] border-orange-200/70',
         hoverBorder: 'hover:border-orange-500/50',
         hoverShadow: 'hover:shadow-[0_22px_50px_-10px_rgba(189,99,56,0.22)]',
-        hoverTo: 'hover:to-orange-50/60',
-        shimmerLine: 'via-orange-500',
-        spotlight: 'from-orange-500/15',
+        accentLine: 'bg-orange-500',
         cornerOrb: 'bg-orange-500/12 group-hover:bg-orange-500/25',
         metricText: 'text-[#BD6338]',
         metricBg: 'bg-orange-100/80 text-[#964720]',
@@ -100,9 +94,7 @@ export default function BestSellersHighlights() {
         badgeBg: 'bg-sky-50 text-[#2D4D65] border-sky-200/70',
         hoverBorder: 'hover:border-sky-500/50',
         hoverShadow: 'hover:shadow-[0_22px_50px_-10px_rgba(74,109,136,0.22)]',
-        hoverTo: 'hover:to-sky-50/60',
-        shimmerLine: 'via-sky-500',
-        spotlight: 'from-sky-500/15',
+        accentLine: 'bg-sky-500',
         cornerOrb: 'bg-sky-500/12 group-hover:bg-sky-500/25',
         metricText: 'text-[#4A6D88]',
         metricBg: 'bg-sky-100/80 text-[#2D4D65]',
@@ -113,7 +105,7 @@ export default function BestSellersHighlights() {
   ];
 
   return (
-    <section className="relative py-12 sm:py-16 lg:py-20 bg-linear-to-b from-[#FCFBF8] via-[#FAF8F2] to-[#F7F4EB] border-b border-[#D8CCB5]/40 overflow-hidden select-none">
+    <section className="relative py-12 sm:py-16 lg:py-20 bg-[#FCFBF8] border-b border-[#D8CCB5]/40 overflow-hidden select-none">
       
       {/* ── Keyframe Animations for Highlights Section ── */}
       <style>{`
@@ -137,7 +129,7 @@ export default function BestSellersHighlights() {
       {/* ── Multi-Tone Layered Atmospheric Ambient Glows ── */}
       <div className="absolute -top-24 right-10 w-96 h-96 bg-[#4E7A52]/12 rounded-full blur-[100px] pointer-events-none highlight-pulse" />
       <div className="absolute -bottom-24 left-10 w-96 h-96 bg-[#B58234]/12 rounded-full blur-[100px] pointer-events-none highlight-pulse" style={{ animationDelay: '3s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-180 h-90 bg-linear-to-r from-[#4E7A52]/8 via-[#B58234]/8 to-[#BD6338]/8 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-180 h-90 bg-[#4E7A52]/8 rounded-full blur-[120px] pointer-events-none" />
 
       {/* ── Background Botanical Watermark ── */}
       <div className="absolute top-12 left-8 w-40 opacity-[0.035] pointer-events-none highlight-float-1">
@@ -151,7 +143,7 @@ export default function BestSellersHighlights() {
         
         {/* ── Section Header ── */}
         <div className="text-center max-w-5xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-linear-to-r from-[#F4EFE6] via-[#EFE8D8] to-[#F4EFE6] border border-[#C9B387]/50 text-[#8C6D34] text-[11px] font-bold tracking-[0.25em] uppercase mb-4 backdrop-blur-xs shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F4EFE6] border border-[#C9B387]/50 text-[#8C6D34] text-[11px] font-bold tracking-[0.25em] uppercase mb-4 backdrop-blur-xs shadow-2xs">
             <span className="text-[#B58234]">✦</span>
             <span>The Morkins Standard</span>
             <span className="text-[#BD6338]">✦</span>
@@ -159,7 +151,7 @@ export default function BestSellersHighlights() {
 
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1C2E1A] tracking-tight leading-[1.18]">
             Why Our Best Sellers{' '}
-            <span className="italic font-normal bg-linear-to-r from-[#2D5A32] via-[#B58234] to-[#BD6338] bg-clip-text text-transparent">
+            <span className="italic font-normal text-[#2D5A32]">
               Outperform
             </span>
           </h2>
@@ -174,13 +166,10 @@ export default function BestSellersHighlights() {
           {pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className={`relative p-7 sm:p-8 rounded-xl bg-linear-to-b from-white/95 via-white/90 to-[#FAF8F2] hover:from-white hover:via-[#FAF9F5] ${pillar.theme.hoverTo} backdrop-blur-md border border-[#DDD3C1]/80 ${pillar.theme.hoverBorder} shadow-[0_4px_22px_-4px_rgba(30,40,25,0.08)] ${pillar.theme.hoverShadow} transition-all duration-500 flex flex-col justify-between group hover:-translate-y-2 overflow-hidden cursor-default`}
+              className={`relative p-7 sm:p-8 rounded-xl bg-white hover:bg-[#FAF9F5] backdrop-blur-md border border-[#DDD3C1]/80 ${pillar.theme.hoverBorder} shadow-[0_4px_22px_-4px_rgba(30,40,25,0.08)] ${pillar.theme.hoverShadow} transition-all duration-500 flex flex-col justify-between group hover:-translate-y-2 overflow-hidden cursor-default`}
             >
-              {/* 1. Interactive Radial Spotlight Hover Effect in Card BG */}
-              <div className={`absolute inset-0 bg-radial ${pillar.theme.spotlight} via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
-
-              {/* 2. Top Luminous Shimmer Line on Hover */}
-              <div className={`absolute top-0 left-0 right-0 h-[2.5px] bg-linear-to-r from-transparent ${pillar.theme.shimmerLine} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              {/* Top Accent Line on Hover */}
+              <div className={`absolute top-0 left-0 right-0 h-[2.5px] ${pillar.theme.accentLine} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
               {/* 3. Ambient Corner Glow in Card Background */}
               <div className={`absolute -top-16 -right-16 w-40 h-40 ${pillar.theme.cornerOrb} rounded-full blur-2xl group-hover:scale-125 transition-all duration-700 pointer-events-none`} />

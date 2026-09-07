@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ShoppingBag, Check, Sparkles, Star } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Sparkles } from 'lucide-react';
 import { PRODUCTS_EXTENDED, getProductUrl } from '../../products/data/products';
 
 interface SkinCareConciergeProps {
@@ -110,6 +110,7 @@ const CONCERNS: ConcernRoutine[] = [
 ];
 
 export default function SkinCareConcierge({ onAddToCart }: SkinCareConciergeProps) {
+  const navigate = useNavigate();
   const [selectedConcernId] = useState<string>('radiance');
   const [routineMode] = useState<'am' | 'pm'>('am');
   const [addedProductIds, setAddedProductIds] = useState<Record<number, boolean>>({});
@@ -167,11 +168,6 @@ export default function SkinCareConcierge({ onAddToCart }: SkinCareConciergeProp
           50% { opacity: 0.85; transform: scale(1.2); }
         }
       `}</style>
-
-
-
-
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
@@ -189,9 +185,6 @@ export default function SkinCareConcierge({ onAddToCart }: SkinCareConciergeProp
             Select your skin goal to discover the optimal 3-step morning & evening ritual formulated to unlock clinical luminosity.
           </p>
         </div>
-
-
-
         {/* ── 3-Step Sequence Product Grid ── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-8 relative">
 
@@ -204,93 +197,57 @@ export default function SkinCareConcierge({ onAddToCart }: SkinCareConciergeProp
 
             const activePrice = product.discountPrice || product.price;
             const isAdded = !!addedProductIds[product.id];
-
+            
             return (
               <div
                 key={`${selectedConcernId}-${routineMode}-${stepItem.productId}-${idx}`}
-                className="bg-white rounded-xl border border-[#DDD3C1] overflow-hidden flex flex-col justify-between hover:border-[#12602F]/60 hover:shadow-lg shadow-md shadow-black transition-all duration-300 group relative z-10"
+                onClick={() => navigate(getProductUrl(product))}
+                className="group relative flex flex-col h-full bg-white rounded-md overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-brand-dark/5 cursor-pointer"
               >
                 {/* Product Image & Thumbnail Stage */}
-                <div className="relative w-full aspect-4/3 overflow-hidden bg-stone-50 border-b border-[#DDD3C1]/60 flex items-center justify-center">
-                  <Link to={getProductUrl(product)} className="w-full h-full items-center justify-center block">
-                    <img
-                      src={product.img}
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </Link>
-
-                  {product.badge && (
-                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider bg-white/95 text-[#2C1810] shadow-xs border border-stone-200/80">
-                      {product.badge}
-                    </span>
-                  )}
-
-                  {product.discountPrice && (
-                    <span className="absolute top-3 right-3 px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-[#D95B00] text-white shadow-xs">
-                      {Math.round(((product.price - product.discountPrice) / product.price) * 100)}% OFF
-                    </span>
-                  )}
+                <div className="relative aspect-square w-full overflow-hidden flex items-center justify-center transition-all duration-500 bg-[#F1EDE9]">
+                  <img
+                    src={product.img}
+                    alt={product.name}
+                    className="h-full w-full object-cover object-center transition-all duration-700 ease-out transform group-hover:scale-110"
+                    loading="lazy"
+                  />
                 </div>
 
-                {/* Bottom Content Area with proper padding */}
-                <div className="p-5 flex flex-col justify-between flex-1 gap-4">
-                  {/* Product Information */}
-                  <div className="space-y-1.5">
-                    <div className="flex items-center gap-1 text-amber-500 text-xs">
-                      <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                      <span className="font-semibold text-[#2C1810] text-xs">{product.rating}</span>
-                      <span className="text-[#8C7E74] text-[11px]">({product.reviewsCount} reviews)</span>
-                    </div>
+                {/* Content Area */}
+                <div className="flex flex-col flex-1 p-6">
+                  <p className="text-[10px] font-bold text-[#A68A56] uppercase tracking-widest mb-1.5">
+                    {product.category}
+                  </p>
 
-                    <Link to={getProductUrl(product)}>
-                      <h4 className="font-serif text-base sm:text-lg font-bold text-[#2C1810] group-hover:text-[#12602F] transition-colors line-clamp-1">
-                        {product.name}
-                      </h4>
-                    </Link>
+                  <h3 className="text-lg md:text-xl font-serif font-medium text-[#0B1A28] mb-1.5 line-clamp-1 group-hover:text-[#A68A56] transition-colors">
+                    {product.name}
+                  </h3>
 
-                    <p className="text-xs text-[#5C4F46] line-clamp-2 leading-relaxed">
-                      {stepItem.note}
-                    </p>
-                  </div>
+                  <p className="text-[11px] text-gray-500 mb-6 line-clamp-1 font-light tracking-wide">
+                    {stepItem.note || product.description}
+                  </p>
 
-                  {/* Price and Add Step Action */}
-                  <div className="pt-3.5 border-t border-stone-100 flex items-center justify-between gap-3">
-                    <div>
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="font-serif text-base sm:text-lg font-bold text-[#12602F]">
-                          ${activePrice.toFixed(2)}
-                        </span>
-                        {product.discountPrice && (
-                          <span className="text-xs text-[#8C7E74] line-through font-mono">
-                            ${product.price.toFixed(2)}
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-[10px] text-[#8C7E74] font-medium block">
-                        {product.category}
+                  <div className="flex items-end justify-between mt-auto pt-2">
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-xl font-bold text-[#A68A56] leading-none">
+                        ${activePrice.toFixed(2)}
                       </span>
+                      {product.discountPrice && (
+                        <span className="text-[11px] text-stone-400 line-through leading-none font-mono">
+                          ${product.price.toFixed(2)}
+                        </span>
+                      )}
                     </div>
 
                     <button
-                      onClick={() => handleAddProduct(product.id)}
-                      disabled={isAdded}
-                      className={`px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-1.5 shadow-2xs ${isAdded
-                          ? 'bg-emerald-700 text-white shadow-xs'
-                          : 'bg-[#12602F] hover:bg-[#0E4723] text-white active:scale-95'
-                        }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddProduct(product.id);
+                      }}
+                      className="shrink-0 w-16 h-8 flex items-center justify-center text-[9px] font-bold uppercase tracking-widest rounded-none transition-colors bg-[#0B1A28] text-white hover:bg-black cursor-pointer"
                     >
-                      {isAdded ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 text-white" />
-                          <span>Added</span>
-                        </>
-                      ) : (
-                        <>
-                          <ShoppingBag className="w-3.5 h-3.5 text-[#AFD971]" />
-                          <span>Add Step</span>
-                        </>
-                      )}
+                      {isAdded ? 'ADDED' : 'ADD'}
                     </button>
                   </div>
                 </div>

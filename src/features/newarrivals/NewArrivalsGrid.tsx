@@ -1,15 +1,15 @@
 import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { PRODUCTS_EXTENDED, getProductUrl, type ProductExtended } from '../products/data/products';
 
 interface NewArrivalsGridProps {
-  onAddToCart: (product: { id: number; name: string; price: number; img: string }, openCart?: boolean) => void;
+  onAddToCart: (product: { id: number; name: string; price: number; discountPrice?: number; img: string }, openCart?: boolean) => void;
 }
 
 export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
+  const navigate = useNavigate();
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [sortBy, setSortBy] = useState('featured');
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(false);
 
   const newArrivalsList = useMemo(() => {
@@ -107,108 +107,64 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
           {displayedList.map((product: ProductExtended) => {
             const activePrice = product.discountPrice || product.price;
-            const isHovered = hoveredId === product.id;
 
             return (
               <div
                 key={product.id}
-                onMouseEnter={() => setHoveredId(product.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                className="group relative flex flex-col bg-white rounded-lg overflow-hidden  border border-[#E8E3D8] transition-all duration-500"
-                style={{
-                  boxShadow: isHovered
-                    ? '0 20px 60px -15px rgba(26,26,26,0.12), 0 8px 25px -8px rgba(196,172,128,0.15)'
-                    : '0 2px 22px -4px rgba(0,0,0,0.94)',
-                  transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
-                  borderColor: isHovered ? '#D4CFC5' : '#E8E3D8',
-                }}
+                onClick={() => navigate(getProductUrl(product))}
+                className="group relative flex flex-col h-full bg-white rounded-md overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 border border-brand-dark/5 cursor-pointer"
               >
                 {/* Full-Bleed Product Image Container */}
-                <div className="relative aspect-4/4.5 sm:aspect-[4/4.2] w-full overflow-hidden bg-[#F5F2EB]">
-                  <Link to={getProductUrl(product)} className="w-full h-full block overflow-hidden">
-                    <img
-                      src={product.img}
-                      alt={product.name}
-                      className="w-full h-full object-cover object-center transition-transform duration-700 ease-out"
-                      style={{ transform: isHovered ? 'scale(1.01)' : 'scale(1)' }}
-                    />
-                  </Link>
-
-                  {/* Badge */}
-                  <span className="absolute top-3.5 left-3.5 bg-[#1A1A1A] text-white text-[9px] font-extrabold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full shadow-md z-10">
-                    {product.badge || 'New Drop'}
-                  </span>
-
-                  {/* Rating */}
-                  <div className="absolute top-3.5 right-3.5 bg-white/95 backdrop-blur-md border border-[#E0DAD0] px-2.5 py-1 rounded-full text-[10px] font-extrabold text-[#1A1A1A] flex items-center gap-1 shadow-md z-10">
-                    <span className="text-[#C4AC80]">★</span>
-                    <span>{product.rating}</span>
-                  </div>
-
-                  {/* Quick-add overlay on hover */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 p-3.5 z-10 transition-all duration-300"
-                    style={{
-                      opacity: isHovered ? 1 : 0,
-                      transform: isHovered ? 'translateY(0)' : 'translateY(8px)',
-                    }}
-                  >
-                    <button
-                      onClick={() => onAddToCart({
-                        id: product.id,
-                        name: product.name,
-                        price: activePrice,
-                        img: product.img
-                      })}
-                      className="w-full py-2.5 bg-[#1A1A1A] hover:bg-[#2B2B2B] text-white text-[10px] font-bold uppercase tracking-[0.15em] rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 shadow-xl"
-                    >
-                      <svg className="w-3.5 h-3.5 text-[#C4AC80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <circle cx="9" cy="21" r="1" />
-                        <circle cx="20" cy="21" r="1" />
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                      </svg>
-                      <span>Add to Bag</span>
-                    </button>
-                  </div>
+                <div className="relative aspect-square w-full overflow-hidden flex items-center justify-center transition-all duration-500 bg-[#F1EDE9]">
+                  <img
+                    src={product.hoverImg ? product.hoverImg : product.img}
+                    alt={product.name}
+                    className="h-full w-full object-cover object-center transition-all duration-700 ease-out transform group-hover:scale-110"
+                    loading="lazy"
+                  />
                 </div>
 
                 {/* Product Info */}
-                <div className="flex flex-col flex-1 p-5 pt-4">
-                  <span className="text-[10px] font-bold text-[#C4AC80] uppercase tracking-[0.15em] mb-1.5">
+                <div className="flex flex-col flex-1 p-6">
+                  <p className="text-[10px] font-bold text-[#A68A56] uppercase tracking-widest mb-1.5">
                     {product.category}
-                  </span>
+                  </p>
 
-                  <Link to={getProductUrl(product)}>
-                    <h3 className="font-serif text-lg font-medium text-[#000000] group-hover:text-[#9B8A68] transition-colors leading-snug line-clamp-1">
-                      {product.name}
-                    </h3>
-                  </Link>
+                  <h3 className="text-lg md:text-xl font-serif font-medium text-[#0B1A28] mb-1.5 line-clamp-1 group-hover:text-[#A68A56] transition-colors">
+                    {product.name}
+                  </h3>
 
-                  <p className="text-[12px] text-[#1b1b1a]  mt-1.5 line-clamp-2 leading-relaxed flex-1">
+                  <p className="text-[11px] text-gray-500 mb-6 line-clamp-1 font-light tracking-wide">
                     {product.description}
                   </p>
 
-                  <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#c9a55e]">
+                  <div className="flex items-end justify-between mt-auto pt-2">
                     <div className="flex items-baseline gap-1.5">
-                      <span className="text-[15px] font-bold font-mono text-[#1A1A1A]">
+                      <span className="text-xl font-bold text-[#A68A56] leading-none">
                         ${activePrice.toFixed(2)}
                       </span>
                       {product.discountPrice && (
-                        <span className="text-[11px] text-[#B5AFA3] font-mono line-through">
+                        <span className="text-[11px] text-stone-400 line-through leading-none font-mono">
                           ${product.price.toFixed(2)}
                         </span>
                       )}
                     </div>
 
-                    <Link
-                      to={getProductUrl(product)}
-                      className="text-[10px] font-bold text-[#815d13] uppercase tracking-wider hover:text-[#1A1A1A] transition-colors flex items-center gap-1"
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onAddToCart({
+                          id: product.id,
+                          name: product.name,
+                          price: activePrice,
+                          discountPrice: product.discountPrice,
+                          img: product.img,
+                        });
+                      }}
+                      className="shrink-0 w-16 h-8 flex items-center justify-center text-[9px] font-bold uppercase tracking-widest rounded-none transition-colors bg-[#0B1A28] text-white hover:bg-black cursor-pointer"
                     >
-                      View
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </Link>
+                      ADD
+                    </button>
                   </div>
                 </div>
               </div>
