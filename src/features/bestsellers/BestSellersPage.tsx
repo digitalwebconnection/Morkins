@@ -30,7 +30,7 @@ export default function BestSellersPage({ onAddToCart }: BestSellersPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FCFBF8] text-[#1C2E1A] selection:bg-[#AFD971] selection:text-[#1C331B]">
+    <div className="min-h-screen bg-[#F2F5F8] text-[#0B1A28] selection:bg-[#AFD971] selection:text-[#0B1A28]">
       {/* ── PART 1: EDITORIAL BEST SELLERS HERO (BestSellersHero) ── */}
       {/* Visual luxury header with award accolades and signature curation intro */}
       <BestSellersHero />

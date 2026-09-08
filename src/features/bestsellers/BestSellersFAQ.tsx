@@ -92,7 +92,7 @@ export default function BestSellersFAQ() {
     : FAQS.filter(faq => faq.category === selectedCategory);
 
   return (
-    <section className="relative py-14 sm:py-8 lg:py-14 bg-[#FCFBF8] border-b border-[#D8CCB5]/40 overflow-hidden select-none">
+    <section className="relative py-14 sm:py-8 lg:py-14 bg-[#F4F8F5] border-b border-[#13442C]/10 overflow-hidden select-none">
 
       <style>{`
         @keyframes faqFloat1 {
@@ -112,29 +112,21 @@ export default function BestSellersFAQ() {
         .faq-pulse { animation: pulseAtmosphere 8s ease-in-out infinite; }
       `}</style>
 
-      <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-180 sm:w-220 h-96 bg-[#4E7A52]/10 rounded-full blur-[120px] pointer-events-none faq-pulse" />
-      <div className="absolute -bottom-24 -left-20 w-96 h-96 bg-[#3E6541]/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute -bottom-24 -right-20 w-96 h-96 bg-[#C49746]/12 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-3/4 bg-[#D4B574]/6 rounded-full blur-[100px] pointer-events-none" />
-
-
+      <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-180 sm:w-220 h-96 bg-[#12602F]/5 rounded-full blur-[120px] pointer-events-none faq-pulse" />
+      <div className="absolute -bottom-24 -left-20 w-96 h-96 bg-[#A68A56]/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute -bottom-24 -right-20 w-96 h-96 bg-[#12602F]/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <div className="text-center mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4EFE6] border border-[#C9B387]/50 text-[#8C6D34] text-[11px] font-bold tracking-[0.25em] uppercase mb-4 backdrop-blur-xs shadow-[0_2px_10px_rgba(196,151,70,0.12)]">
-            <span className="text-[#4E7A52]">✦</span>
-            <span>Knowledge & Ritual Concierge</span>
-            <span className="text-[#C49746]">✦</span>
-          </div>
+          <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-2">
+            COMMON INQUIRIES
+          </p>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1B2B19] tracking-tight leading-[1.18]">
-            Frequently Asked{' '}
-            <span className="italic text-[#2D5028]">
-              Questions
-            </span>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#0B1A28] leading-tight">
+            Frequently Asked Questions
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[#464D3F] font-light max-w-4xl mx-auto leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base text-gray-600 font-light max-w-4xl mx-auto leading-relaxed">
             Everything you need to know about our biological formulation standards, clinical efficacy, and application rituals.
           </p>
         </div>
@@ -146,32 +138,32 @@ export default function BestSellersFAQ() {
             return (
               <div
                 key={faq.id}
-                className={`rounded-xl border transition-all duration-400 overflow-hidden relative ${isOpen
-                    ? 'bg-white border-[#547E3D] shadow-[0_16px_40px_-8px_rgba(78,122,82,0.22),0_4px_12px_rgba(0,0,0,0.04)] ring-2 ring-[#6F8C51]/20 -translate-y-0.5'
-                    : 'bg-white border-[#DDD3C1]/80 hover:border-[#6F8C51]/60 shadow-[0_4px_22px_-6px_rgba(30,40,25,0.06)] hover:shadow-[0_12px_32px_-6px_rgba(78,122,82,0.15)] hover:-translate-y-0.5'
+                className={`rounded-md border transition-all duration-400 overflow-hidden relative ${isOpen
+                    ? 'bg-white border-[#0B1A28] shadow-md ring-1 ring-[#0B1A28]/10 -translate-y-0.5'
+                    : 'bg-white border-stone-200 hover:border-[#A68A56]/60 shadow-xs hover:-translate-y-0.5'
                   }`}
               >
                 {isOpen && (
-                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#6F8C51] pointer-events-none" />
+                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#A68A56] pointer-events-none" />
                 )}
 
                 <button
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left font-serif text-base sm:text-lg font-medium text-[#182617] hover:text-[#3B622E] transition-colors cursor-pointer gap-4 group"
+                  className="w-full px-6 py-5 flex items-center justify-between text-left font-serif text-base sm:text-lg font-medium text-[#0B1A28] hover:text-[#A68A56] transition-colors cursor-pointer gap-4 group"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <span className={`text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full border shrink-0 ${faq.badgeTheme.bg} ${faq.badgeTheme.text} ${faq.badgeTheme.border}`}>
+                    <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-none border shrink-0 bg-[#F2F5F8] text-[#A68A56] border-stone-200">
                       {faq.categoryLabel}
                     </span>
-                    <span className="font-semibold leading-snug group-hover:text-[#3B622E] transition-colors">
+                    <span className="font-medium leading-snug group-hover:text-[#A68A56] transition-colors">
                       {faq.q}
                     </span>
                   </div>
 
                   <span
                     className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 border ${isOpen
-                        ? 'rotate-180 bg-[#1C331B] text-[#AFD971] border-[#AFD971]/40 shadow-[0_4px_14px_rgba(28,51,27,0.35)]'
-                        : 'bg-[#F2ECE1] text-[#4A5543] border-[#D5CBB8] shadow-2xs hover:bg-[#6F8C51] hover:text-white hover:border-[#6F8C51]'
+                        ? 'rotate-180 bg-[#0B1A28] text-white border-[#0B1A28]'
+                        : 'bg-stone-100 text-stone-600 border-stone-200 hover:bg-[#0B1A28] hover:text-white'
                       }`}
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -181,16 +173,16 @@ export default function BestSellersFAQ() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-3.5 border-t border-[#E5DEC9] bg-[#FAF8F3]/90 shadow-[inset_0_2px_8px_rgba(0,0,0,0.025)] animate-fade-in space-y-3.5">
-                    <p className="text-xs sm:text-sm text-[#30382E] font-normal leading-relaxed">
+                  <div className="px-6 pb-6 pt-3.5 border-t border-stone-100 bg-white animate-fade-in space-y-3.5">
+                    <p className="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed">
                       {faq.a}
                     </p>
 
                     {faq.tip && (
-                      <div className="bg-emerald-50/80 border-l-3 border-[#4E7A52] text-[#244727] p-3 rounded-r-xl text-xs flex items-start gap-2.5 shadow-2xs">
-                        <span className="text-[#4E7A52] font-bold text-sm shrink-0 leading-none mt-0.5">✦</span>
+                      <div className="bg-[#F4F8F5] border-l-4 border-[#12602F] text-[#0B1A28] p-3.5 rounded-r-md text-xs flex items-start gap-2.5 shadow-2xs">
+                        <span className="text-[#12602F] font-bold text-sm shrink-0 leading-none mt-0.5">✦</span>
                         <span className="leading-relaxed">
-                          <strong className="font-semibold text-[#1C3A1F]">Ritual Tip:</strong> {faq.tip}
+                          <strong className="font-semibold text-[#12602F]">Ritual Tip:</strong> {faq.tip}
                         </span>
                       </div>
                     )}

@@ -13,19 +13,6 @@ export default function BestSellersHighlights() {
       title: 'Pharmaceutical Purity',
       description: 'Tested in ISO-certified laboratories under clinical dermatology protocols to ensure zero micro-contaminants, heavy metals, or irritants.',
       metric: '0.00% Irritation Rate',
-      theme: {
-        accent: '#4E7A52',
-        iconBg: 'bg-emerald-50/80 border-emerald-200/60 text-[#4E7A52]',
-        badgeBg: 'bg-emerald-50 text-[#3E6541] border-emerald-200/70',
-        hoverBorder: 'hover:border-emerald-500/50',
-        hoverShadow: 'hover:shadow-[0_22px_50px_-10px_rgba(78,122,82,0.22)]',
-        accentLine: 'bg-emerald-500',
-        cornerOrb: 'bg-emerald-500/12 group-hover:bg-emerald-500/25',
-        metricText: 'text-[#4E7A52]',
-        metricBg: 'bg-emerald-100/80 text-[#3E6541]',
-        hoverText: 'group-hover:text-[#4E7A52]',
-        numColor: 'group-hover:text-emerald-800/15'
-      }
     },
     {
       num: '02',
@@ -38,19 +25,6 @@ export default function BestSellersHighlights() {
       title: 'Clinical Peptide Concentration',
       description: 'Engineered at exact physiological concentrations proven in peer-reviewed dermatology literature to activate cellular collagen synthesis.',
       metric: '4x Bioavailability',
-      theme: {
-        accent: '#B58234',
-        iconBg: 'bg-amber-50/80 border-amber-200/60 text-[#B58234]',
-        badgeBg: 'bg-amber-50 text-[#8C6221] border-amber-200/70',
-        hoverBorder: 'hover:border-amber-500/50',
-        hoverShadow: 'hover:shadow-[0_22px_50px_-10px_rgba(181,130,52,0.22)]',
-        accentLine: 'bg-amber-500',
-        cornerOrb: 'bg-amber-500/12 group-hover:bg-amber-500/25',
-        metricText: 'text-[#B58234]',
-        metricBg: 'bg-amber-100/80 text-[#8C6221]',
-        hoverText: 'group-hover:text-[#B58234]',
-        numColor: 'group-hover:text-amber-800/15'
-      }
     },
     {
       num: '03',
@@ -63,19 +37,6 @@ export default function BestSellersHighlights() {
       title: 'Cold-Enzyme Extraction',
       description: 'Zero-thermal extraction technology preserves 99.4% of live raw botanical enzymes, flavonoids, and active polyphenol potency.',
       metric: '99.4% Bio-Active Enzymes',
-      theme: {
-        accent: '#BD6338',
-        iconBg: 'bg-orange-50/80 border-orange-200/60 text-[#BD6338]',
-        badgeBg: 'bg-orange-50 text-[#964720] border-orange-200/70',
-        hoverBorder: 'hover:border-orange-500/50',
-        hoverShadow: 'hover:shadow-[0_22px_50px_-10px_rgba(189,99,56,0.22)]',
-        accentLine: 'bg-orange-500',
-        cornerOrb: 'bg-orange-500/12 group-hover:bg-orange-500/25',
-        metricText: 'text-[#BD6338]',
-        metricBg: 'bg-orange-100/80 text-[#964720]',
-        hoverText: 'group-hover:text-[#BD6338]',
-        numColor: 'group-hover:text-orange-800/15'
-      }
     },
     {
       num: '04',
@@ -88,24 +49,11 @@ export default function BestSellersHighlights() {
       title: 'Apothecary Shielded Glass',
       description: 'Heavyweight amber UV-filtering Italian apothecary glass shields delicate bio-compounds against light-induced oxidation.',
       metric: '36-Month Potency Guard',
-      theme: {
-        accent: '#4A6D88',
-        iconBg: 'bg-sky-50/80 border-sky-200/60 text-[#4A6D88]',
-        badgeBg: 'bg-sky-50 text-[#2D4D65] border-sky-200/70',
-        hoverBorder: 'hover:border-sky-500/50',
-        hoverShadow: 'hover:shadow-[0_22px_50px_-10px_rgba(74,109,136,0.22)]',
-        accentLine: 'bg-sky-500',
-        cornerOrb: 'bg-sky-500/12 group-hover:bg-sky-500/25',
-        metricText: 'text-[#4A6D88]',
-        metricBg: 'bg-sky-100/80 text-[#2D4D65]',
-        hoverText: 'group-hover:text-[#4A6D88]',
-        numColor: 'group-hover:text-sky-800/15'
-      }
     }
   ];
 
   return (
-    <section className="relative py-12 sm:py-16 lg:py-20 bg-[#FCFBF8] border-b border-[#D8CCB5]/40 overflow-hidden select-none">
+    <section className="relative py-12 sm:py-16 lg:py-20 bg-white border-b border-gray-200 overflow-hidden select-none">
 
       {/* ── Keyframe Animations for Highlights Section ── */}
       <style>{`
@@ -127,15 +75,15 @@ export default function BestSellersHighlights() {
       `}</style>
 
       {/* ── Multi-Tone Layered Atmospheric Ambient Glows ── */}
-      <div className="absolute -top-24 right-10 w-96 h-96 bg-[#4E7A52]/12 rounded-full blur-[100px] pointer-events-none highlight-pulse" />
-      <div className="absolute -bottom-24 left-10 w-96 h-96 bg-[#B58234]/12 rounded-full blur-[100px] pointer-events-none highlight-pulse" style={{ animationDelay: '3s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-180 h-90 bg-[#4E7A52]/8 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -top-24 right-10 w-96 h-96 bg-[#12602F]/5 rounded-full blur-[100px] pointer-events-none highlight-pulse" />
+      <div className="absolute -bottom-24 left-10 w-96 h-96 bg-[#A68A56]/10 rounded-full blur-[100px] pointer-events-none highlight-pulse" style={{ animationDelay: '3s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-180 h-90 bg-[#12602F]/5 rounded-full blur-[120px] pointer-events-none" />
 
       {/* ── Background Botanical Watermark ── */}
-      <div className="absolute top-12 left-8 w-40 opacity-[0.035] pointer-events-none highlight-float-1">
+      <div className="absolute top-12 left-8 w-40 opacity-[0.03] pointer-events-none highlight-float-1">
         <img src={morkinsEmblem} alt="" className="w-full h-auto object-contain" />
       </div>
-      <div className="absolute bottom-8 right-8 w-52 opacity-[0.035] pointer-events-none highlight-float-2">
+      <div className="absolute bottom-8 right-8 w-52 opacity-[0.03] pointer-events-none highlight-float-2">
         <img src={morkinsEmblem} alt="" className="w-full h-auto object-contain" />
       </div>
 
@@ -143,20 +91,15 @@ export default function BestSellersHighlights() {
 
         {/* ── Section Header ── */}
         <div className="text-center max-w-5xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F4EFE6] border border-[#C9B387]/50 text-[#8C6D34] text-[11px] font-bold tracking-[0.25em] uppercase mb-4 backdrop-blur-xs shadow-2xs">
-            <span className="text-[#B58234]">✦</span>
-            <span>The Morkins Standard</span>
-            <span className="text-[#BD6338]">✦</span>
-          </div>
+          <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-2">
+            THE MORKINS STANDARD
+          </p>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1C2E1A] tracking-tight leading-[1.18]">
-            Why Our Best Sellers{' '}
-            <span className="italic font-normal text-[#2D5A32]">
-              Outperform
-            </span>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#0B1A28] leading-tight">
+            Why Our Best Sellers Outperform
           </h2>
 
-          <p className="mt-3.5 text-sm sm:text-base text-[#464D3F] font-normal leading-relaxed max-w-4xl mx-auto">
+          <p className="mt-3.5 text-sm sm:text-base text-gray-600 font-normal leading-relaxed max-w-4xl mx-auto">
             Every best-selling formulation adheres to uncompromising biological purity, clinical cellular efficacy thresholds, and sustainable apothecary craftsmanship.
           </p>
         </div>
@@ -166,21 +109,13 @@ export default function BestSellersHighlights() {
           {pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className={`relative p-7 sm:p-8 rounded-xl bg-white hover:bg-[#FAF9F5] backdrop-blur-md border border-[#DDD3C1]/80 ${pillar.theme.hoverBorder} shadow-[0_4px_22px_-4px_rgba(30,40,25,0.08)] ${pillar.theme.hoverShadow} transition-all duration-500 flex flex-col justify-between group hover:-translate-y-2 overflow-hidden cursor-default`}
+              className="relative p-7 sm:p-8 rounded-md bg-[#F2F5F8] hover:bg-white border border-brand-dark/5 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-1.5 overflow-hidden cursor-default"
             >
               {/* Top Accent Line on Hover */}
-              <div className={`absolute top-0 left-0 right-0 h-[2.5px] ${pillar.theme.accentLine} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#A68A56] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              {/* 3. Ambient Corner Glow in Card Background */}
-              <div className={`absolute -top-16 -right-16 w-40 h-40 ${pillar.theme.cornerOrb} rounded-full blur-2xl group-hover:scale-125 transition-all duration-700 pointer-events-none`} />
-
-              {/* 4. Subtle Botanical Leaf Watermark inside Card */}
-              <div className="absolute -bottom-6 -right-6 w-28 h-28 opacity-[0.03] group-hover:opacity-[0.09] group-hover:scale-115 group-hover:rotate-12 transition-all duration-700 pointer-events-none">
-                <img src={morkinsEmblem} alt="" className="w-full h-full object-contain" />
-              </div>
-
-              {/* 5. Large Stylized Background Number Watermark */}
-              <span className={`absolute -bottom-4 -left-1 font-serif text-7xl sm:text-8xl font-bold text-[#A68A56]/10 select-none pointer-events-none ${pillar.theme.numColor} transition-colors duration-500`}>
+              {/* Large Stylized Background Number Watermark */}
+              <span className="absolute -bottom-4 -left-1 font-serif text-7xl sm:text-8xl font-bold text-[#A68A56]/15 select-none pointer-events-none group-hover:text-[#A68A56]/25 transition-colors duration-500">
                 {pillar.num}
               </span>
 
@@ -189,40 +124,38 @@ export default function BestSellersHighlights() {
                 <div className="flex items-center justify-between mb-6">
                   {/* Glowing Icon Stage */}
                   <div className="relative">
-                    <div className={`w-13 h-13 rounded-2xl ${pillar.theme.iconBg} border flex items-center justify-center shadow-xs group-hover:shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                    <div className="w-13 h-13 rounded-xl bg-white border border-stone-200 text-[#12602F] flex items-center justify-center shadow-xs group-hover:shadow-md group-hover:scale-105 transition-all duration-500">
                       {pillar.icon}
                     </div>
-                    {/* Pulsing Aura Ping on Hover */}
-                    <div className={`absolute inset-0 rounded-2xl ${pillar.theme.iconBg} opacity-0 group-hover:opacity-100 group-hover:scale-125 blur-sm transition-all duration-500 -z-10`} />
                   </div>
 
                   {/* Shimmer Badge */}
-                  <span className={`text-[10px] font-bold uppercase tracking-wider ${pillar.theme.badgeBg} border px-3 py-1 rounded-full shadow-2xs transition-all duration-300`}>
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-white text-[#0B1A28] border border-stone-200 px-3 py-1 rounded-none shadow-2xs transition-all duration-300">
                     {pillar.badge}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className={`font-serif text-xl font-bold text-[#182617] mb-2.5 leading-snug ${pillar.theme.hoverText} transition-colors duration-300`}>
+                <h3 className="font-serif text-xl font-medium text-[#0B1A28] mb-2.5 leading-snug group-hover:text-[#A68A56] transition-colors duration-300">
                   {pillar.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-xs text-[#464D3F] font-normal leading-relaxed mb-4">
+                <p className="text-xs text-gray-500 font-light leading-relaxed mb-4">
                   {pillar.description}
                 </p>
               </div>
 
               {/* Card Footer: Verified Metric Proof */}
-              <div className="relative z-10 mt-6 pt-4 border-t border-[#E5DEC9] flex items-center justify-between text-xs transition-colors">
-                <div className={`flex items-center gap-1.5 font-bold ${pillar.theme.metricText} text-[11px]`}>
-                  <span className={`w-4 h-4 rounded-full ${pillar.theme.metricBg} flex items-center justify-center text-[10px]`}>
+              <div className="relative z-10 mt-6 pt-4 border-t border-stone-200 flex items-center justify-between text-xs transition-colors">
+                <div className="flex items-center gap-1.5 font-bold text-[#12602F] text-[11px]">
+                  <span className="w-4 h-4 rounded-full bg-[#12602F]/10 flex items-center justify-center text-[10px]">
                     ✓
                   </span>
                   <span>{pillar.metric}</span>
                 </div>
 
-                <span className="text-[10px] text-[#8C6221] font-mono tracking-wider opacity-70 group-hover:opacity-100 transition-opacity">
+                <span className="text-[10px] text-[#A68A56] font-mono tracking-wider opacity-70 group-hover:opacity-100 transition-opacity">
                   ISO-CERT
                 </span>
               </div>

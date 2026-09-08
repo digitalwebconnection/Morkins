@@ -369,45 +369,40 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
     <section
       id="best-sellers-reviews"
       aria-label="Customer Reviews & Ratings"
-      className="relative py-12 sm:py-16 lg:py-20 bg-[#FCFBF8] border-b border-[#D8CCB5]/40 overflow-hidden select-none"
+      className="relative py-12 sm:py-16 lg:py-20 bg-[#F1EDE9] border-b border-brand-cream/30 overflow-hidden select-none"
     >
       {/* Background Lighting Elements */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-180 h-90 bg-[#4E7A52]/8 rounded-full blur-[110px] pointer-events-none" />
-      <div className="absolute -bottom-20 right-10 w-96 h-96 bg-[#4E7A52]/10 rounded-full blur-[90px] pointer-events-none" />
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-180 h-90 bg-[#12602F]/5 rounded-full blur-[110px] pointer-events-none" />
+      <div className="absolute -bottom-20 right-10 w-96 h-96 bg-[#A68A56]/10 rounded-full blur-[90px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F4EFE6] border border-[#C9B387]/50 text-[#8C6D34] text-[11px] font-bold tracking-[0.22em] uppercase mb-3.5 backdrop-blur-xs shadow-2xs">
-            <span className="text-[#4E7A52]">✦</span>
-            <span>Verified Patron Chronicles</span>
-            <span className="text-[#C49746]">✦</span>
-          </div>
+          <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">
+            VERIFIED REVIEWS
+          </p>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1C2E1A] tracking-tight leading-[1.18]">
-            Loved By Over{' '}
-            <span className="text-[#2D5A32]">
-              50,000+ Patrons
-            </span>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#0B1A28] leading-tight">
+            Loved By Over 50,000+ Patrons
           </h2>
 
-          <p className="mt-3 text-sm sm:text-base text-[#464D3F] font-normal leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base text-gray-600 font-normal leading-relaxed">
             Real chronicles from patrons who made Morkins clinical botanicals their essential ritual for radiant skin.
           </p>
         </div>
 
         {/* ── Carousel Slider Navigation Controls ── */}
         <div className="flex items-center justify-between mb-4 px-1">
-          <div className="text-xs text-[#1C2E1A] font-bold flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+          <div className="text-xs text-[#0B1A28] font-bold flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#12602F] animate-pulse" />
             <span>Community Stories ({filteredReviews.length})</span>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsWriteModalOpen(true)}
-              className="mr-2 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-[#1C331B] text-[#2D5A32] hover:text-[#AFD971] border border-emerald-200/80 text-xs font-bold transition-all cursor-pointer shadow-2xs hover:shadow-xs"
+              className="mr-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-none bg-[#0B1A28] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs"
             >
               <span>✍️</span>
               <span>Write a Review</span>
@@ -416,7 +411,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
             <button
               onClick={handlePrev}
               disabled={filteredReviews.length <= cardsPerView}
-              className="w-8.5 h-8.5 rounded-full bg-white hover:bg-[#F4F1E8] border border-[#DDD3C1] disabled:opacity-30 disabled:cursor-not-allowed shadow-2xs flex items-center justify-center text-[#1C2E1A] hover:text-[#2D5A32] transition-all cursor-pointer"
+              className="w-9 h-9 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-brand-cream-dark hover:text-white hover:border-brand-cream-dark transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               aria-label="Previous Review"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -426,7 +421,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
             <button
               onClick={handleNext}
               disabled={filteredReviews.length <= cardsPerView}
-              className="w-8.5 h-8.5 rounded-full bg-white hover:bg-[#F4F1E8] border border-[#DDD3C1] disabled:opacity-30 disabled:cursor-not-allowed shadow-2xs flex items-center justify-center text-[#1C2E1A] hover:text-[#2D5A32] transition-all cursor-pointer"
+              className="w-9 h-9 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-brand-cream-dark hover:text-white hover:border-brand-cream-dark transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               aria-label="Next Review"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -451,10 +446,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
           {filteredReviews.length === 0 ? (
             <div className="bg-white rounded-xl p-12 text-center border border-dashed border-gray-300 my-4">
               <div className="text-4xl mb-3">🔍</div>
-              <h3 className="font-serif text-xl font-medium text-[#1C2E1A]">No reviews found</h3>
+              <h3 className="font-serif text-xl font-medium text-[#0B1A28]">No reviews found</h3>
               <button
                 onClick={() => setRatingFilter('all')}
-                className="mt-4 px-4 py-2 rounded-full bg-[#1C331B] text-[#AFD971] text-xs font-bold cursor-pointer"
+                className="mt-4 px-4 py-2 rounded-full bg-[#0B1A28] text-white hover:bg-[#12602F] text-xs font-bold cursor-pointer transition-colors"
               >
                 Show All Reviews
               </button>
@@ -474,7 +469,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                     className="shrink-0 px-2.5 sm:px-3"
                     style={{ width: `${100 / cardsPerView}%` }}
                   >
-                    <div className="h-full bg-white rounded-xl border border-[#DDD3C1]/80 hover:border-[#547E3D] shadow-[0_4px_22px_-4px_rgba(30,40,25,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(78,122,82,0.18)] transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+                    <div className="h-full bg-white rounded-md border border-brand-dark/5 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
 
                       {/* 1. Customer Uploaded Product Photo Banner */}
                       <div
@@ -487,7 +482,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                             productImg: review.productImg
                           })
                         }
-                        className="relative w-full h-48 sm:h-52 bg-[#F4F1E8] overflow-hidden cursor-pointer shrink-0 group/img"
+                        className="relative w-full h-48 sm:h-52 bg-[#F1EDE9] overflow-hidden cursor-pointer shrink-0 group/img flex items-center justify-center"
                       >
                         <img
                           src={review.reviewPhoto}
@@ -502,7 +497,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                         />
 
                         {/* Top Left: Customer Upload Badge */}
-                        <div className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#2D5A32] text-[10px] font-bold shadow-xs">
+                        <div className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#12602F] text-[10px] font-bold shadow-xs">
                           <span>📸</span>
                           <span>Customer Photo</span>
                         </div>
@@ -520,7 +515,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
                         {/* Bottom Banner Result Highlight */}
                         <div className="absolute bottom-3 left-3 right-3 pointer-events-none">
-                          <span className="bg-black/65 backdrop-blur-xs px-2.5 py-1 rounded-lg text-white text-[11px] font-medium tracking-wide drop-shadow-sm inline-flex items-center gap-1.5 max-w-full">
+                          <span className="bg-black/65 backdrop-blur-xs px-2.5 py-1 rounded-md text-white text-[11px] font-medium tracking-wide drop-shadow-sm inline-flex items-center gap-1.5 max-w-full">
                             <span className="text-amber-300 shrink-0">✦</span>
                             <span className="truncate">{review.keyResult}</span>
                           </span>
@@ -531,18 +526,18 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                       <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
                         <div>
                           {/* Mini Product Bar */}
-                          <div className="bg-[#FAF8F2] rounded-xl p-2 mb-4 border border-[#E5DEC9] flex items-center justify-between gap-2.5">
+                          <div className="bg-[#F2F5F8] rounded-md p-2 mb-4 border border-stone-200 flex items-center justify-between gap-2.5">
                             <div className="flex items-center gap-2.5 min-w-0">
                               <img
                                 src={review.productImg}
                                 alt={review.productBought}
-                                className="w-9 h-9 rounded-lg object-cover bg-white border border-[#DDD3C1] shrink-0"
+                                className="w-9 h-9 rounded-md object-cover bg-white border border-stone-200 shrink-0"
                               />
                               <div className="min-w-0">
-                                <span className="text-[9px] font-bold tracking-wider text-[#8C6221] uppercase block truncate">
+                                <span className="text-[9px] font-bold tracking-wider text-[#A68A56] uppercase block truncate">
                                   {review.productCategory}
                                 </span>
-                                <span className="text-xs font-semibold text-[#1C2E1A] truncate block leading-tight">
+                                <span className="text-xs font-medium text-[#0B1A28] truncate block leading-tight">
                                   {review.productBought}
                                 </span>
                               </div>
@@ -558,7 +553,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                                     img: review.productImg
                                   }, true);
                                 }}
-                                className="shrink-0 px-2.5 py-1 rounded-md bg-emerald-100/80 hover:bg-[#1C331B] text-[#2D5A32] hover:text-[#AFD971] border border-emerald-200/60 text-[10px] font-bold tracking-wide transition-colors cursor-pointer"
+                                className="shrink-0 w-16 h-7 flex items-center justify-center text-[9px] font-bold uppercase tracking-widest rounded-none transition-colors bg-[#0B1A28] text-white hover:bg-black cursor-pointer"
                               >
                                 Shop
                               </button>
@@ -567,9 +562,9 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
                           {/* Star Rating & Date */}
                           <div className="flex items-center justify-between mb-2">
-                            <div className="flex text-amber-400 text-sm tracking-tight drop-shadow-xs">
+                            <div className="flex text-amber-500 text-sm tracking-tight drop-shadow-xs">
                               {Array.from({ length: 5 }).map((_, i) => (
-                                <span key={i} className={i < review.rating ? 'text-amber-400' : 'text-gray-200'}>
+                                <span key={i} className={i < review.rating ? 'text-amber-400' : 'text-stone-300'}>
                                   ★
                                 </span>
                               ))}
@@ -580,18 +575,18 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                           </div>
 
                           {/* Headline */}
-                          <h3 className="font-serif text-base sm:text-lg font-bold text-[#182617] mb-2 leading-snug line-clamp-2 min-h-12">
+                          <h3 className="font-serif text-base sm:text-lg font-medium text-[#0B1A28] mb-2 leading-snug line-clamp-2 min-h-12">
                             "{review.headline}"
                           </h3>
 
                           {/* Review Comment */}
-                          <p className="text-xs text-[#464D3F] font-normal leading-relaxed mb-4 line-clamp-3 min-h-13.5">
+                          <p className="text-xs text-gray-500 font-light leading-relaxed mb-4 line-clamp-3 min-h-13.5">
                             {review.comment}
                           </p>
                         </div>
 
                         {/* 3. Footer: Customer Profile & Helpful Button */}
-                        <div className="mt-auto pt-4 border-t border-[#E5DEC9] flex items-center justify-between gap-2 text-xs">
+                        <div className="mt-auto pt-4 border-t border-stone-200 flex items-center justify-between gap-2 text-xs">
                           <div className="flex items-center gap-2.5 min-w-0">
                             <img
                               src={review.avatar}
@@ -600,10 +595,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                                 const target = e.target as HTMLImageElement;
                                 target.style.display = 'none';
                               }}
-                              className="w-8 h-8 rounded-full object-cover border border-[#DDD3C1] shrink-0"
+                              className="w-8 h-8 rounded-full object-cover border border-stone-200 shrink-0"
                             />
                             <div className="min-w-0">
-                              <span className="font-semibold text-[#1C2E1A] text-xs block truncate leading-tight">
+                              <span className="font-semibold text-[#0B1A28] text-xs block truncate leading-tight">
                                 {review.author}
                               </span>
                               <span className="text-[10px] text-gray-500 block truncate">
@@ -616,8 +611,8 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                           <button
                             onClick={() => handleToggleHelpful(review.id)}
                             className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all duration-200 cursor-pointer shrink-0 ${isUpvoted
-                                ? 'bg-[#1C331B] text-[#AFD971] shadow-xs'
-                                : 'bg-[#FAF8F2] hover:bg-[#F4F1E8] text-[#4A5543] border border-[#DDD3C1]'
+                              ? 'bg-[#0B1A28] text-white shadow-xs'
+                              : 'bg-[#F2F5F8] hover:bg-stone-200 text-stone-600 border border-stone-200'
                               }`}
                           >
                             <span>👍</span>
@@ -643,7 +638,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${isActive ? 'w-8 bg-[#1C331B]' : 'w-2 bg-[#C49746]/40 hover:bg-[#C49746]'
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${isActive ? 'w-8 bg-[#0B1A28]' : 'w-2 bg-[#A68A56]/40 hover:bg-[#A68A56]'
                     }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
@@ -685,20 +680,20 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
               </div>
               <div className="p-6 flex flex-col justify-between bg-white">
                 <div>
-                  <div className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#6F8C51] bg-[#6F8C51]/10 px-2.5 py-1 rounded-full mb-3">
+                  <div className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#12602F] bg-[#12602F]/10 px-2.5 py-1 rounded-full mb-3">
                     📸 Verified Customer Upload
                   </div>
-                  <h4 className="font-serif text-lg font-bold text-brand-dark mb-2">
+                  <h4 className="font-serif text-lg font-medium text-[#0B1A28] mb-2">
                     "{lightboxPhoto.quote}"
                   </h4>
                   <p className="text-xs text-gray-500 mb-4">
                     Product photo uploaded by {lightboxPhoto.author} alongside their verified formulation review.
                   </p>
-                  <div className="p-3 bg-[#FAF9F5] rounded-xl border border-[#A68A56]/20">
+                  <div className="p-3 bg-[#F2F5F8] rounded-xl border border-stone-200">
                     <span className="text-[10px] uppercase font-bold text-[#A68A56] block">
                       Product Formulation
                     </span>
-                    <span className="text-xs font-semibold text-brand-dark block mt-0.5">
+                    <span className="text-xs font-semibold text-[#0B1A28] block mt-0.5">
                       {lightboxPhoto.product}
                     </span>
                   </div>
@@ -707,7 +702,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                 <div className="mt-6 pt-4 border-t border-gray-100">
                   <button
                     onClick={() => setLightboxPhoto(null)}
-                    className="w-full py-2.5 rounded-xl bg-brand-dark text-white text-xs font-bold uppercase tracking-wider hover:bg-black transition-colors cursor-pointer"
+                    className="w-full py-2.5 rounded-none bg-[#0B1A28] text-white text-xs font-bold uppercase tracking-wider hover:bg-black transition-colors cursor-pointer"
                   >
                     Close Preview
                   </button>
@@ -741,10 +736,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
             {writeSubmitted ? (
               <div className="text-center py-12">
-                <div className="w-16 h-16 rounded-full bg-[#6F8C51]/15 text-[#6F8C51] flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
+                <div className="w-16 h-16 rounded-full bg-[#12602F]/15 text-[#12602F] flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
                   ✨
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-brand-dark mb-2">
+                <h3 className="font-serif text-2xl font-medium text-[#0B1A28] mb-2">
                   Thank You For Your Voice
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-600 max-w-sm mx-auto">
@@ -757,7 +752,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                   <span className="text-[10px] font-bold tracking-widest text-[#A68A56] uppercase">
                     Morkins Community Voice
                   </span>
-                  <h3 id={writeModalTitleId} className="font-serif text-2xl font-bold text-brand-dark mt-1">
+                  <h3 id={writeModalTitleId} className="font-serif text-2xl font-medium text-[#0B1A28] mt-1">
                     Share Your Ritual & Experience
                   </h3>
                   <p className="text-xs text-gray-500 mt-1">
@@ -768,7 +763,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                 <form onSubmit={handleAddReview} className="space-y-4">
                   {/* Star Rating Picker */}
                   <div>
-                    <label className="text-xs font-semibold text-brand-dark block mb-1.5">
+                    <label className="text-xs font-semibold text-[#0B1A28] block mb-1.5">
                       Your Overall Rating
                     </label>
                     <div className="flex items-center gap-1.5 text-2xl text-amber-400 cursor-pointer">
@@ -788,14 +783,14 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
                   {/* Product Selection */}
                   <div>
-                    <label htmlFor="product-select" className="text-xs font-semibold text-brand-dark block mb-1.5">
+                    <label htmlFor="product-select" className="text-xs font-semibold text-[#0B1A28] block mb-1.5">
                       Product Formulation Reviewed
                     </label>
                     <select
                       id="product-select"
                       value={newProductId}
                       onChange={(e) => setNewProductId(Number(e.target.value))}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] focus:ring-1 focus:ring-[#6F8C51] outline-none"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-xs text-[#0B1A28] focus:border-[#0B1A28] focus:ring-1 focus:ring-[#0B1A28] outline-none"
                     >
                       <option value={1}>Botanical Radiance Glow Serum</option>
                       <option value={2}>Bio-Active Barrier Repair Cream</option>
@@ -809,7 +804,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                   {/* Author Name & Location */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="author-name-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                      <label htmlFor="author-name-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
                         Your Name / Pseudonym
                       </label>
                       <input
@@ -819,11 +814,11 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                         placeholder="e.g. Genevieve L."
                         value={newAuthor}
                         onChange={(e) => setNewAuthor(e.target.value)}
-                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-[#0B1A28] focus:border-[#0B1A28] outline-none"
                       />
                     </div>
                     <div>
-                      <label htmlFor="location-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                      <label htmlFor="location-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
                         Location
                       </label>
                       <input
@@ -832,7 +827,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                         placeholder="e.g. Zurich, Switzerland"
                         value={newLocation}
                         onChange={(e) => setNewLocation(e.target.value)}
-                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-[#0B1A28] focus:border-[#0B1A28] outline-none"
                       />
                     </div>
                   </div>
@@ -840,7 +835,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                   {/* Skin Type & Timeframe */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="skin-type-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                      <label htmlFor="skin-type-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
                         Skin Type / Primary Concern
                       </label>
                       <input
@@ -849,11 +844,11 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                         placeholder="e.g. Sensitive & Dehydrated"
                         value={newSkinType}
                         onChange={(e) => setNewSkinType(e.target.value)}
-                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-[#0B1A28] focus:border-[#0B1A28] outline-none"
                       />
                     </div>
                     <div>
-                      <label htmlFor="timeframe-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                      <label htmlFor="timeframe-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
                         Usage Duration
                       </label>
                       <input
@@ -862,21 +857,21 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                         placeholder="e.g. Used for 3 weeks"
                         value={newTimeframe}
                         onChange={(e) => setNewTimeframe(e.target.value)}
-                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                        className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-[#0B1A28] focus:border-[#0B1A28] outline-none"
                       />
                     </div>
                   </div>
 
                   {/* Category Pill Tag */}
                   <div>
-                    <label htmlFor="category-tag-select" className="text-xs font-semibold text-brand-dark block mb-1">
+                    <label htmlFor="category-tag-select" className="text-xs font-semibold text-[#0B1A28] block mb-1">
                       Primary Benefit
                     </label>
                     <select
                       id="category-tag-select"
                       value={newTag}
                       onChange={(e) => setNewTag(e.target.value as any)}
-                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-[#0B1A28] focus:border-[#0B1A28] outline-none"
                     >
                       <option value="Glow">Glow & Radiance</option>
                       <option value="Barrier">Barrier Repair</option>
@@ -888,7 +883,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
                   {/* Review Headline */}
                   <div>
-                    <label htmlFor="headline-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                    <label htmlFor="headline-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
                       Headline / One-Line Summary
                     </label>
                     <input
@@ -898,13 +893,13 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                       placeholder="e.g. My redness completely calmed in 5 days!"
                       value={newHeadline}
                       onChange={(e) => setNewHeadline(e.target.value)}
-                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-[#0B1A28] focus:border-[#0B1A28] outline-none"
                     />
                   </div>
 
                   {/* Detailed Review Comment */}
                   <div>
-                    <label htmlFor="review-body-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                    <label htmlFor="review-body-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
                       Detailed Review
                     </label>
                     <textarea
@@ -914,13 +909,13 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                       placeholder="Describe the texture, scent, skin feel, and visible changes you noticed..."
                       value={newComment}
                       onChange={(e) => setNewComment(e.target.value)}
-                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none resize-none"
+                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-[#0B1A28] focus:border-[#0B1A28] outline-none resize-none"
                     />
                   </div>
 
                   {/* Key Result Highlight */}
                   <div>
-                    <label htmlFor="key-result-input" className="text-xs font-semibold text-brand-dark block mb-1">
+                    <label htmlFor="key-result-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
                       Key Result Tag (Optional)
                     </label>
                     <input
@@ -929,7 +924,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                       placeholder="e.g. Soothed inflammation & zero flaking"
                       value={newKeyResult}
                       onChange={(e) => setNewKeyResult(e.target.value)}
-                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-brand-dark focus:border-[#6F8C51] outline-none"
+                      className="w-full px-3.5 py-2 rounded-xl bg-gray-50 border border-gray-200 text-xs text-[#0B1A28] focus:border-[#0B1A28] outline-none"
                     />
                   </div>
 
@@ -937,7 +932,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-xl bg-[#6F8C51] hover:bg-[#5C7741] text-white text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md cursor-pointer active:scale-98"
+                      className="w-full py-3.5 rounded-none bg-[#0B1A28] hover:bg-black text-white text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md cursor-pointer active:scale-98"
                     >
                       Publish Verified Patron Review
                     </button>

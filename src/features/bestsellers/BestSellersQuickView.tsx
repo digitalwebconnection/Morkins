@@ -144,15 +144,15 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
           </div>
 
           {/* Right Column: Refined Editorial Product Info & Checkout */}
-          <div className="md:col-span-6 p-6 sm:p-8 lg:p-9 flex flex-col justify-between bg-[#FCFBF8]">
+          <div className="md:col-span-6 p-6 sm:p-8 lg:p-9 flex flex-col justify-between bg-[#F2F5F8]">
             <div>
               {/* Category Eyebrow & Star Rating */}
               <div className="flex items-center justify-between gap-2 mb-2.5">
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6F8C51] bg-[#6F8C51]/10 px-2.5 py-0.5 rounded-full">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#A68A56] bg-[#A68A56]/10 px-2.5 py-0.5 rounded-full">
                   {product.category}
                 </span>
 
-                <div className="flex items-center gap-1.5 bg-[#FAF8F2] border border-[#E5DEC9] px-3 py-1 rounded-full text-xs font-semibold text-[#8C6221] shadow-2xs">
+                <div className="flex items-center gap-1.5 bg-white border border-stone-200 px-3 py-1 rounded-full text-xs font-semibold text-[#A68A56] shadow-2xs">
                   <span className="text-amber-500">★</span>
                   <span>{product.rating}</span>
                   <span className="text-gray-400 font-normal">({product.reviewsCount} reviews)</span>
@@ -160,13 +160,13 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
               </div>
 
               {/* Product Title */}
-              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-[#1C2E1A] leading-tight mb-2.5">
+              <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[#0B1A28] leading-tight mb-2.5">
                 {product.name}
               </h2>
 
               {/* Price & Savings Display */}
               <div className="flex items-baseline gap-3 mb-4">
-                <span className="font-serif text-2xl sm:text-3xl font-bold text-[#1C331B]">
+                <span className="font-serif text-2xl sm:text-3xl font-bold text-[#0B1A28]">
                   ${currentPrice.toFixed(2)}
                 </span>
                 {originalPrice && (
@@ -175,70 +175,70 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
                   </span>
                 )}
                 {savings && (
-                  <span className="text-[11px] font-bold bg-emerald-100 text-[#2D5A32] border border-emerald-300/70 px-2.5 py-0.5 rounded-full">
+                  <span className="text-[11px] font-bold bg-[#12602F]/10 text-[#12602F] border border-[#12602F]/20 px-2.5 py-0.5 rounded-full">
                     Save ${savings}
                   </span>
                 )}
               </div>
 
               {/* Short Formula Description */}
-              <p className="text-xs sm:text-sm text-[#464D3F] font-light leading-relaxed mb-5">
+              <p className="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed mb-5">
                 {product.description}
               </p>
 
               {/* Interactive Tabbed Product Details */}
-              <div className="border-t border-b border-[#E5DEC9]/70 py-3.5 mb-5">
+              <div className="border-t border-b border-stone-200/80 py-3.5 mb-5">
                 <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-wider mb-3">
                   <button
                     onClick={() => setActiveTab('benefits')}
-                    className={`pb-1 border-b-2 transition-all cursor-pointer ${activeTab === 'benefits' ? 'border-[#547E3D] text-[#2D5A32] font-semibold' : 'border-transparent text-gray-400 hover:text-[#1C331B]'
+                    className={`pb-1 border-b-2 transition-all cursor-pointer ${activeTab === 'benefits' ? 'border-[#A68A56] text-[#0B1A28] font-bold' : 'border-transparent text-gray-400 hover:text-[#0B1A28]'
                       }`}
                   >
                     Clinical Benefits
                   </button>
                   <button
                     onClick={() => setActiveTab('ingredients')}
-                    className={`pb-1 border-b-2 transition-all cursor-pointer ${activeTab === 'ingredients' ? 'border-[#547E3D] text-[#2D5A32] font-semibold' : 'border-transparent text-gray-400 hover:text-[#1C331B]'
+                    className={`pb-1 border-b-2 transition-all cursor-pointer ${activeTab === 'ingredients' ? 'border-[#A68A56] text-[#0B1A28] font-bold' : 'border-transparent text-gray-400 hover:text-[#0B1A28]'
                       }`}
                   >
                     Key Actives
                   </button>
                   <button
                     onClick={() => setActiveTab('howToUse')}
-                    className={`pb-1 border-b-2 transition-all cursor-pointer ${activeTab === 'howToUse' ? 'border-[#547E3D] text-[#2D5A32] font-semibold' : 'border-transparent text-gray-400 hover:text-[#1C331B]'
+                    className={`pb-1 border-b-2 transition-all cursor-pointer ${activeTab === 'howToUse' ? 'border-[#A68A56] text-[#0B1A28] font-bold' : 'border-transparent text-gray-400 hover:text-[#0B1A28]'
                       }`}
                   >
                     Ritual
                   </button>
                 </div>
 
-                <div className="text-xs text-[#30382E] font-normal leading-relaxed min-h-16">
+                <div className="text-xs text-gray-700 font-normal leading-relaxed min-h-16">
                   {activeTab === 'benefits' && (
-                    <ul className="space-y-1.5 text-[#30382E]">
+                    <ul className="space-y-1.5 text-gray-700">
                       <li className="flex items-start gap-2">
-                        <span className="text-[#4E7A52] font-bold">✓</span>
+                        <span className="text-[#12602F] font-bold">✓</span>
                         <span>Promotes deep dermal hydration and cellular bio-renewal.</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-[#4E7A52] font-bold">✓</span>
+                        <span className="text-[#12602F] font-bold">✓</span>
                         <span>Clinically proven 94% improvement in skin luminosity within 14 days.</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-[#4E7A52] font-bold">✓</span>
+                        <span className="text-[#12602F] font-bold">✓</span>
                         <span>Fortifies the lipid barrier against environmental oxidation.</span>
                       </li>
                     </ul>
                   )}
                   {activeTab === 'ingredients' && (
                     <div className="flex flex-wrap gap-2 pt-0.5">
-                      <span className="px-2.5 py-1 rounded-lg bg-[#F4F1E8] border border-[#E0D7C3] text-[11px] font-semibold text-[#2D472B]">Bio-Peptides 5%</span>
-                      <span className="px-2.5 py-1 rounded-lg bg-[#F4F1E8] border border-[#E0D7C3] text-[11px] font-semibold text-[#2D472B]">Cold-Pressed Botanicals</span>
-                      <span className="px-2.5 py-1 rounded-lg bg-[#F4F1E8] border border-[#E0D7C3] text-[11px] font-semibold text-[#2D472B]">4D Hyaluronic Complex</span>
-                      <span className="px-2.5 py-1 rounded-lg bg-[#F4F1E8] border border-[#E0D7C3] text-[11px] font-semibold text-[#2D472B]">Ceramide Complex NP</span>
+                      <span className="px-2.5 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-semibold text-[#0B1A28]">Bio-Peptides 5%</span>
+                      <span className="px-2.5 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-semibold text-[#0B1A28]">Cold-Pressed Botanicals</span>
+                      <span className="px-2.5 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-semibold text-[#0B1A28]">4D Hyaluronic Complex</span>
+                      <span className="px-2.5 py-1 rounded-md bg-white border border-stone-200 text-[11px] font-semibold text-[#0B1A28]">Ceramide Complex NP</span>
                     </div>
                   )}
                   {activeTab === 'howToUse' && (
-                    <p className="text-xs text-[#384234] leading-relaxed pt-0.5 bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/60">
+                    <p className="text-xs text-[#0B1A28] leading-relaxed pt-0.5 bg-[#F4F8F5] p-3 rounded-md border border-[#13442C]/15">
                       Warm 3-4 drops between clean palms and gently press onto face, neck, and décolletage after cleansing. Use morning and evening for optimal vitality.
                     </p>
                   )}
@@ -248,9 +248,9 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
               {/* Skin Compatibility Chips */}
               <div className="flex items-center flex-wrap gap-2 mb-6">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500">Suitable For:</span>
-                <span className="text-[11px] bg-white border border-[#DDD3C1] px-2.5 py-0.5 rounded-full text-[#2B3528] font-medium shadow-2xs">Sensitive</span>
-                <span className="text-[11px] bg-white border border-[#DDD3C1] px-2.5 py-0.5 rounded-full text-[#2B3528] font-medium shadow-2xs">Dry & Dehydrated</span>
-                <span className="text-[11px] bg-white border border-[#DDD3C1] px-2.5 py-0.5 rounded-full text-[#2B3528] font-medium shadow-2xs">All Skin Types</span>
+                <span className="text-[11px] bg-white border border-stone-200 px-2.5 py-0.5 rounded-full text-[#0B1A28] font-medium shadow-2xs">Sensitive</span>
+                <span className="text-[11px] bg-white border border-stone-200 px-2.5 py-0.5 rounded-full text-[#0B1A28] font-medium shadow-2xs">Dry & Dehydrated</span>
+                <span className="text-[11px] bg-white border border-stone-200 px-2.5 py-0.5 rounded-full text-[#0B1A28] font-medium shadow-2xs">All Skin Types</span>
               </div>
             </div>
 
@@ -258,20 +258,20 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
             <div>
               <div className="flex items-center gap-3.5 mb-3.5">
                 {/* Quantity Pill Selector */}
-                <div className="flex items-center border border-[#DDD3C1] rounded-2xl bg-white p-1 shadow-xs">
+                <div className="flex items-center border border-stone-200 rounded-lg bg-white p-1 shadow-xs">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-8 h-8 rounded-xl flex items-center justify-center text-[#1C331B] hover:bg-[#F4F1E8] transition-colors cursor-pointer font-bold text-sm"
+                    className="w-8 h-8 rounded flex items-center justify-center text-[#0B1A28] hover:bg-[#F2F5F8] transition-colors cursor-pointer font-bold text-sm"
                     aria-label="Decrease quantity"
                   >
                     −
                   </button>
-                  <span className="w-9 text-center font-mono font-bold text-sm text-[#1C331B]">
+                  <span className="w-9 text-center font-mono font-bold text-sm text-[#0B1A28]">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-8 h-8 rounded-xl flex items-center justify-center text-[#1C331B] hover:bg-[#F4F1E8] transition-colors cursor-pointer font-bold text-sm"
+                    className="w-8 h-8 rounded flex items-center justify-center text-[#0B1A28] hover:bg-[#F2F5F8] transition-colors cursor-pointer font-bold text-sm"
                     aria-label="Increase quantity"
                   >
                     +
@@ -282,9 +282,9 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
                 <button
                   onClick={handleAdd}
                   disabled={addedAnimation}
-                  className={`flex-1 py-3.5 px-6 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-[0_6px_20px_rgba(28,51,27,0.25)] cursor-pointer flex items-center justify-center gap-2 ${addedAnimation
-                      ? 'bg-emerald-600 text-white scale-98 shadow-none'
-                      : 'bg-[#1C331B] hover:bg-[#2B4B27] text-[#AFD971] hover:shadow-[0_8px_25px_rgba(28,51,27,0.35)] active:scale-98'
+                  className={`flex-1 py-3.5 px-6 rounded-md font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-sm cursor-pointer flex items-center justify-center gap-2 ${addedAnimation
+                      ? 'bg-[#12602F] text-white scale-98 shadow-none'
+                      : 'bg-[#0B1A28] hover:bg-black text-white active:scale-98'
                     }`}
                 >
                   {addedAnimation ? (
@@ -296,7 +296,7 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
                     </>
                   ) : (
                     <>
-                      <svg className="w-4 h-4 text-[#AFD971]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <svg className="w-4 h-4 text-[#A68A56]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <circle cx="9" cy="21" r="1" />
                         <circle cx="20" cy="21" r="1" />
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
@@ -312,7 +312,7 @@ export default function BestSellersQuickView({ product, isOpen, onClose, onAddTo
                 <Link
                   to={getProductUrl(product)}
                   onClick={onClose}
-                  className="text-xs font-bold uppercase tracking-widest text-[#8C6D34] hover:text-[#5B451E] transition-colors underline underline-offset-4"
+                  className="text-xs font-bold uppercase tracking-widest text-[#A68A56] hover:text-[#0B1A28] transition-colors underline underline-offset-4"
                 >
                   View Full Product Dossier & Clinical Specs →
                 </Link>
