@@ -21,11 +21,12 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
   return (
     <section id="products" className="py-12 bg-[#F2F5F8]">
       <div className="max-w-7xl mx-auto px-6 lg:px-4">
-        <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
-          <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">
+        {/* Section Header */}
+        <div className="text-center mb-5 sm:mb-18">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
             BEST SELLERS
           </p>
-          <h2 className="font-serif text-4xl sm:text-5xl font-medium text-[#0B1A28] leading-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
             Loved By Our Clients
           </h2>
         </div>
@@ -60,16 +61,19 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
 
                 {/* Content */}
                 <div className="flex flex-col flex-1 p-6">
-                  <p className="text-[10px] font-bold text-[#A68A56] uppercase tracking-widest mb-1.5">
+                  <p className="text-[                                                                                                                  10px] font-bold text-[#A68A56] uppercase tracking-widest mb-1.5">
                     {t('cat_' + p.category.toLowerCase()) || p.category}
                   </p>
                   <h3 className="text-lg md:text-xl font-serif font-medium text-[#0B1A28] mb-1.5 line-clamp-1 group-hover:text-[#A68A56] transition-colors">
                     {translatedName}
                   </h3>
 
-                  <p className="text-[11px] text-gray-500 mb-6 line-clamp-1 font-light tracking-wide">
+                  {/* 1-2 line short description */}
+                  <p className="text-[13px] text-gray-500 mb-2.5 line-clamp-2 font-light tracking-wide leading-relaxed">
                     {translatedDesc}
                   </p>
+
+               
 
                   <div className="flex items-end justify-between mt-auto pt-2">
                     <div className="flex items-baseline gap-1.5">

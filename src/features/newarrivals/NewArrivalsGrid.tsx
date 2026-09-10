@@ -8,7 +8,7 @@ interface NewArrivalsGridProps {
 
 export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
   const navigate = useNavigate();
-  const [selectedFilter, setSelectedFilter] = useState('All');
+  const [selectedFilter] = useState('All');
   const [sortBy, setSortBy] = useState('featured');
   const [showAll, setShowAll] = useState(false);
 
@@ -36,7 +36,6 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
     return showAll ? newArrivalsList : newArrivalsList.slice(0, 4);
   }, [newArrivalsList, showAll]);
 
-  const categories = ['All', 'Serums', 'Moisturizers', 'Treatments', 'Masks'];
 
   return (
     <section className="py-8 lg:py-14 relative overflow-hidden"
@@ -51,37 +50,14 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row  justify-between mb-8 gap-8">
           <div className="max-w-xl">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-8 bg-[#9e7427]" />
-              <span className="text-sm font-bold text-[#926a1f] uppercase tracking-[0.3em]">
-                Curated Collection
-              </span>
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1A1A1A] leading-[1.15] tracking-[-0.01em]">
-              Newly Launched <br className="hidden sm:block" />
-              <span className="text-[#b48320] font-bold">Batch </span>
-              <span className="text-[#184433] font-bold">Formulations</span>
+            <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+              Curated Collection
+            </p>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
+              Newly Launched Batch Formulations
             </h2>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center  gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => {
-                  setSelectedFilter(cat);
-                  setShowAll(false);
-                }}
-                className={`px-6 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-all duration-300 shadow-[#f3e2bf] shadow-lg cursor-pointer ${selectedFilter === cat
-                    ? 'bg-[#1A1A1A] text-white shadow-md'
-                    : 'bg-white text-[#8B7D65] hover:text-[#1A1A1A] border border-[#beb9b0] hover:border-[#C4AC80]'
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
           {/* Toolbar */}
           <div className="flex items-center   ">
 
@@ -134,9 +110,12 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
                     {product.name}
                   </h3>
 
-                  <p className="text-[11px] text-gray-500 mb-6 line-clamp-1 font-light tracking-wide">
+                  {/* 1-2 line short description */}
+                  <p className="text-[13px] text-gray-500 mb-2.5 line-clamp-2 font-light tracking-wide leading-relaxed">
                     {product.description}
                   </p>
+
+                  
 
                   <div className="flex items-end justify-between mt-auto pt-2">
                     <div className="flex items-baseline gap-1.5">
@@ -177,13 +156,13 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
           <div className="flex flex-col items-center justify-center mt-12 gap-3">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="group px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 shadow-[#f3e2bf] shadow-lg cursor-pointer bg-[#1A1A1A] hover:bg-[#b48320] text-white flex items-center gap-2.5"
+              className="group px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 shadow-[#f3e2bf] shadow-lg cursor-pointer bg-[#1A1A1A] hover:bg-[#184433] text-white flex items-center gap-2.5"
             >
               <span>
                 {showAll ? 'Show Less Releases' : `View All Formulations (${newArrivalsList.length})`}
               </span>
               <svg
-                className={`w-4 h-4 text-[#C4AC80] transition-transform duration-300 ${
+                className={`w-4 h-4 text-[#184433] transition-transform duration-300 ${
                   showAll ? 'rotate-180' : 'group-hover:translate-y-0.5'
                 }`}
                 fill="none"

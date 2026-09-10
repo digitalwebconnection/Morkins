@@ -90,12 +90,12 @@ export default function BestSellersHighlights() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
-        <div className="text-center max-w-5xl mx-auto mb-12 sm:mb-16">
-          <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-2">
+        <div className="text-center mb-5 sm:mb-18 max-w-5xl mx-auto">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
             THE MORKINS STANDARD
           </p>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#0B1A28] leading-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
             Why Our Best Sellers Outperform
           </h2>
 

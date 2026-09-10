@@ -32,10 +32,14 @@ export default function AboutTeam() {
       <div className="max-w-7xl mx-auto px-6 sm:px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-         
-          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] mt-2">Dermatology Experts</h2>
-          <p className="text-neutral-800 mt-4 text-sm sm:text-base font-light leading-relaxed">
+        <div className="text-center mb-5 sm:mb-18 max-w-3xl mx-auto">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+            MEDICAL BOARD
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
+            Dermatology Experts
+          </h2>
+          <p className="text-neutral-800 mt-3 text-sm sm:text-base font-light leading-relaxed">
             The scientific pioneers committed to researching and engineering your daily skincare regimen.
           </p>
         </div>

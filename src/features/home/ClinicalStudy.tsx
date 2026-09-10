@@ -176,8 +176,11 @@ export default function ClinicalStudy() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-7xl mx-auto mb-14">
-          <h2 className="font-serif text-4xl sm:text-5xl font-medium text-[#0B1A28] leading-tight">
+        <div className="text-center mb-5 sm:mb-18 max-w-7xl mx-auto">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+            CLINICAL TRIALS
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
             Clinical Efficacy & Results
           </h2>
           <p className="text-gray-700 tracking-wide text-sm mt-3 leading-relaxed max-w-4xl mx-auto">
@@ -263,8 +266,8 @@ export default function ClinicalStudy() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`py-3 px-4 text-xs font-bold uppercase tracking-wider border-b-2 transition-all duration-300 whitespace-nowrap cursor-pointer ${activeTab === tab.id
-                      ? "border-[#A68A56] text-[#A68A56]"
-                      : "border-transparent text-gray-400 hover:text-[#0B1A28]"
+                    ? "border-[#A68A56] text-[#A68A56]"
+                    : "border-transparent text-gray-400 hover:text-[#0B1A28]"
                     }`}
                 >
                   {tab.title}

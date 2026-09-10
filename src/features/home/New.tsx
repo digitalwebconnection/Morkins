@@ -156,7 +156,7 @@ export default function New() {
           {/* Column 1: Info text panel with individual delay transitions */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
             <h2
-              className={`font-serif text-black text-3xl sm:text-4xl lg:text-4xl font-bold leading-tight tracking-wide mb-6 transition-all duration-700 transform ${isTransitioning ? 'opacity-0 ' : 'opacity-100 translate-y-0'
+              className={`font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] font-normal tracking-tight transform ${isTransitioning ? 'opacity-0 ' : 'opacity-100 translate-y-0'
                 }`}
             >
               {t('slide_' + activeSlide.id + '_title')}

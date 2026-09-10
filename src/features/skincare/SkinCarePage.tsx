@@ -19,14 +19,17 @@ export default function SkinCarePage({ onAddToCart }: SkinCarePageProps) {
       {/* ── 2. CLINICAL SUPERIORITY BENCHMARK MATRIX (Morkins vs Others) ── */}
       <SkinCareMatrix />
 
-      {/* ── 3. BOTANICAL BIO-ACTIVES CLINICAL EXTRACTION LAB ── */}
-      <SkinCareBioActives onAddToCart={onAddToCart} />
 
       {/* ── 4. INTERACTIVE SKIN CONCERN & ROUTINE CONCIERGE ── */}
       <SkinCareConcierge onAddToCart={onAddToCart} />
+      
 
       {/* ── 5. QUANTIFIED 28-DAY CLINICAL TRANSFORMATION & BEFORE/AFTER LENS ── */}
       <SkinCareTransformation />
+
+      
+      {/* ── 3. BOTANICAL BIO-ACTIVES CLINICAL EXTRACTION LAB ── */}
+      <SkinCareBioActives onAddToCart={onAddToCart} />
 
       {/* ── 6. APOTHECARY KNOWLEDGE BASE & 30-DAY GUARANTEE ── */}
       <SkinCareFAQ />

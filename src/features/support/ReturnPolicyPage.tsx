@@ -116,10 +116,10 @@ export default function ReturnPolicyPage() {
         {/* Step-by-Step Return Process Workflow */}
         <div className="bg-white rounded-xl p-8 sm:p-12 border border-[#184433]/10 shadow-xs">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6F8C51]">
+            <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
               Seamless Workflow
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#184433] mt-1">
+            </p>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
               How the Doorstep Return Works
             </h2>
             <p className="text-neutral-600 text-sm sm:text-base font-light mt-2">

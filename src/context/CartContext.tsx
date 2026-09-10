@@ -31,7 +31,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const addToCart = (
     product: { id: number; name: string; price: number; discountPrice?: number; img: string },
-    openCartAfter = false
+    openCartAfter = true
   ) => {
     const finalPrice =
       typeof product.discountPrice === 'number' && product.discountPrice > 0
@@ -67,10 +67,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     if (openCartAfter) {
       setIsCartOpen(true);
+      setShowToast(false);
+    } else {
+      setShowToast(false);
+      setTimeout(() => setShowToast(true), 50);
     }
-
-    setShowToast(false);
-    setTimeout(() => setShowToast(true), 50);
   };
 
   const updateQty = (id: number, delta: number) => {

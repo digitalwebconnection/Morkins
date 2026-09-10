@@ -16,10 +16,10 @@ export default function Newsletter() {
   return (
     <section className="bg-[#F4F8F5] py-6 lg:py-10 px-4 text-center border-t border-b border-[#13442C]/10">
       <div className="max-w-5xl mx-auto">
-        <p className="text-[13px] font-bold text-[#5E826D] uppercase tracking-[0.2em] mb-2.5">
+        <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
           JOIN THE MORKINS COMMUNITY
         </p>
-        <h2 className="font-serif text-4xl sm:text-5xl font-medium text-[#13442C] leading-tight">
+        <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
           Healthy Skin Starts Here
         </h2>
         <p className="text-stone-900 text-sm sm:text-base leading-relaxed mb-8 max-w-5xl mx-auto mt-3">

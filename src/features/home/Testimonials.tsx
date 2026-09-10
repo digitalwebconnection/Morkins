@@ -97,7 +97,7 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
   const [selectedPost, setSelectedPost] = useState<SocialPost | null>(null)
   const [modalMuted, setModalMuted] = useState(true)
   const [quantity, setQuantity] = useState(1)
-  const [showSuccess, setShowSuccess] = useState(false)
+  const [showSuccess] = useState(false)
 
   const handleScroll = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
@@ -112,24 +112,18 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
   const handleAddToCartClick = () => {
     if (selectedPost && onAddToCart) {
       const itemPrice = parseFloat(selectedPost.price.replace('$', ''))
-      onAddToCart({
-        id: selectedPost.id + 1000,
-        name: selectedPost.productName,
-        price: itemPrice,
-        img: selectedPost.productImg
-      }, false)
-      for (let i = 1; i < quantity; i++) {
-        onAddToCart({
-          id: selectedPost.id + 1000,
-          name: selectedPost.productName,
-          price: itemPrice,
-          img: selectedPost.productImg
-        }, false)
+      for (let i = 0; i < quantity; i++) {
+        onAddToCart(
+          {
+            id: selectedPost.id + 1000,
+            name: selectedPost.productName,
+            price: itemPrice,
+            img: selectedPost.productImg
+          },
+          i === quantity - 1
+        )
       }
-      setShowSuccess(true)
-      setTimeout(() => {
-        setShowSuccess(false)
-      }, 2500)
+      setSelectedPost(null)
     }
   }
 
@@ -166,7 +160,10 @@ export default function Testimonials({ onAddToCart }: TestimonialsProps) {
         
         {/* Section Header */}
         <div className="mb-8 flex flex-col text-left">
-          <h2 className="font-serif text-4xl sm:text-5xl font-medium text-[#0B1A28] leading-tight">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+            COMMUNITY & REVIEWS
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
             Trending On Feed
           </h2>
           <p className="text-[#2D452B] tracking-wide text-sm sm:text-base mt-2 font-medium">

@@ -147,9 +147,33 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
             <p className="text-[11px] font-bold text-[#5E826D] uppercase tracking-[0.2em] mb-3">
               {product.brand} • {product.category}
             </p>
-            <h1 className="text-3xl lg:text-4xl font-serif font-bold text-[#13442C] leading-tight mb-4">
+            <h1 className="text-3xl lg:text-4xl font-serif font-bold text-[#13442C] leading-tight mb-3">
               {product.name}
             </h1>
+
+            {/* 1-2 line short description under product name */}
+            <p className="text-stone-600 text-sm sm:text-base leading-relaxed mb-3.5 font-light">
+              {product.description}
+            </p>
+
+            {/* Key Active Ingredients under product name & short description */}
+            {product.keyIngredients && product.keyIngredients.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2 mb-6 p-3 sm:p-3.5 rounded-2xl bg-[#13442C]/5 border border-[#13442C]/10">
+                <span className="text-[11px] font-bold text-[#13442C] uppercase tracking-wider flex items-center gap-1.5 shrink-0">
+                  <span>🌿</span> Key Actives:
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {product.keyIngredients.map((ingredient, idx) => (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full bg-white text-[#13442C] border border-[#13442C]/15 shadow-2xs"
+                    >
+                      {ingredient}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="flex items-center gap-4 mb-8">
               <div className="flex items-center gap-1">
@@ -210,7 +234,6 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
               {isMaxQty ? 'Max Limit in Bag (99)' : product.inStock ? 'Add to Cart' : 'Out of Stock'}
-
             </button>
 
             {/* ── PART 2C: BOTANICAL QUALITY TRUST BADGES ── */}
@@ -223,7 +246,7 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
               </div>
               <div className="flex flex-col items-center text-center">
                 <svg className="w-8 h-8 text-[#13442C] mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span className="text-xs text-[#162820]/80 font-bold uppercase tracking-wider">Cruelty<br />Free</span>
               </div>
@@ -242,7 +265,7 @@ export default function ProductDetailsPage({ onAddToCart }: ProductDetailsPagePr
         {relatedProducts.length > 0 && (
           <div className="mt-24">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-serif font-bold text-[#13442C]">You May Also Like</h2>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight">You May Also Like</h2>
               <Link to="/products" className="text-[#5E826D] font-semibold hover:text-[#13442C] transition-colors hidden sm:block">
                 View All Products &rarr;
               </Link>

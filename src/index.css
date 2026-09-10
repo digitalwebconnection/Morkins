@@ -68,6 +68,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: var(--font-sans);
     background-color: var(--color-brand-cream);
@@ -76,4 +80,20 @@
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
   }
+}
+
+@keyframes pageSmoothOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-smooth-open {
+  animation: pageSmoothOpen 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
 }

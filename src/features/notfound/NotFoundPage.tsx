@@ -77,7 +77,7 @@ export default function NotFoundPage({ onAddToCart }: NotFoundPageProps) {
               404
             </h1>
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#1C1917] font-normal leading-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
                 This Pathway Does{' '}
                 <span 
                   className="italic"

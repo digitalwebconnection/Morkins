@@ -96,7 +96,7 @@ export default function AboutAppointment() {
 
             {/* Title */}
             <h2
-              className={`font-serif font-medium leading-tight mb-20 text-3xl sm:text-[2.2rem] md:text-[2.6rem] text-[#184433]
+              className={`font-serif font-medium leading-tight mb-20 text-3xl sm:text-[2.2rem] md:text-[2.6rem] text-[#0C1B33]
                 ${visible ? 'appt-fade-up appt-d1' : 'opacity-0'}`}
 
             >

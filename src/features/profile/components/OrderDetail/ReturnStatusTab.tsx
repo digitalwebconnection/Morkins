@@ -4,7 +4,7 @@ import {
   RotateCcw, ArrowRight, RefreshCw, Truck, CheckCircle2,
   ShieldCheck, CreditCard, Sparkles, Plus,
   Search, QrCode, Download, Calendar, X, AlertCircle,
-  Copy, Check, ChevronDown, ChevronUp, MessageCircle,
+  Copy, Check, ChevronDown, MessageCircle,
   Box, HelpCircle
 } from 'lucide-react';
 import {
@@ -75,7 +75,7 @@ export default function ReturnStatusTab({ onSelectOrderTab }: ReturnStatusTabPro
   const [wizardReason, setWizardReason] = useState(RETURN_REASONS[0]);
   const [wizardResolution, setWizardResolution] = useState<'wallet' | 'refund' | 'exchange'>('wallet');
   const [wizardPickupSlot, setWizardPickupSlot] = useState<'morning' | 'afternoon'>('morning');
-  const [wizardNotes] = useState('');
+  const [wizardNotes, setWizardNotes] = useState('');
   const [isSubmittingWizard, setIsSubmittingWizard] = useState(false);
 
   const selectedOrderForWizard = allOrders.find((o) => o.id === wizardOrderId);
@@ -625,11 +625,7 @@ export default function ReturnStatusTab({ onSelectOrderTab }: ReturnStatusTabPro
                         <span className="hidden sm:inline text-[10px]">
                           {isExpanded ? 'Hide Details' : 'View Full Details'}
                         </span>
-                        {isExpanded ? (
-                          <ChevronUp className="w-4 h-4" />
-                        ) : (
-                          <ChevronDown className="w-4 h-4" />
-                        )}
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-400 ease-out ${isExpanded ? 'rotate-180 text-white' : ''}`} />
                       </button>
                     </div>
 
@@ -637,8 +633,15 @@ export default function ReturnStatusTab({ onSelectOrderTab }: ReturnStatusTabPro
                 </div>
 
                 {/* ── EXPANDABLE BODY (OPENS WHEN CLICKED) ── */}
-                {isExpanded && (
-                  <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-2 border-t border-[#E5DEC9] space-y-5 bg-white animate-fade-in">
+                <div
+                  className={`grid transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    isExpanded
+                      ? 'grid-rows-[1fr] opacity-100'
+                      : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-2 border-t border-[#E5DEC9] space-y-5 bg-white">
                     
                     {/* 1. Itemized Formulas in Return */}
                     <div className="space-y-2 pt-2">
@@ -864,9 +867,10 @@ export default function ReturnStatusTab({ onSelectOrderTab }: ReturnStatusTabPro
                         </Link>
                       </div>
                     </div>
+                    </div>
 
                   </div>
-                )}
+                </div>
               </div>
             );
           })
@@ -931,17 +935,23 @@ export default function ReturnStatusTab({ onSelectOrderTab }: ReturnStatusTabPro
                 className="w-full flex items-center justify-between text-left font-serif text-sm font-bold text-[#1C2E1A] hover:text-[#12602F] cursor-pointer transition-colors"
               >
                 <span>{faq.q}</span>
-                {expandedFaq === idx ? (
-                  <ChevronUp className="w-4 h-4 text-[#12602F] shrink-0" />
-                ) : (
-                  <ChevronDown className="w-4 h-4 text-stone-400 shrink-0" />
-                )}
+                <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-400 ease-out ${
+                  expandedFaq === idx ? 'rotate-180 text-[#12602F]' : 'text-stone-400'
+                }`} />
               </button>
-              {expandedFaq === idx && (
-                <p className="text-xs text-[#464D3F] mt-2 leading-relaxed font-light pl-1 animate-fade-in">
-                  {faq.a}
-                </p>
-              )}
+              <div
+                className={`grid transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  expandedFaq === idx
+                    ? 'grid-rows-[1fr] opacity-100'
+                    : 'grid-rows-[0fr] opacity-0'
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <p className="text-xs text-[#464D3F] pt-2 leading-relaxed font-light pl-1">
+                    {faq.a}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -1426,6 +1436,19 @@ export default function ReturnStatusTab({ onSelectOrderTab }: ReturnStatusTabPro
                 </div>
               </div>
 
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
+                  6. Special Notes / Batch Feedback (Optional)
+                </label>
+                <textarea
+                  value={wizardNotes}
+                  onChange={(e) => setWizardNotes(e.target.value)}
+                  placeholder="Share details regarding formulation texture, aroma, or sensitivity for laboratory QA review..."
+                  rows={2}
+                  className="w-full px-3.5 py-2 rounded-lg border border-stone-200 text-xs font-medium text-[#1C2E1A] bg-[#FAF8F2] outline-none resize-none focus:border-[#12602F]"
+                />
+              </div>
+
               <div className="p-3.5 bg-[#FAF8F2] rounded-lg border border-[#DDD3C1] flex items-center justify-between text-xs">
                 <div>
                   <p className="text-stone-500 font-medium">
@@ -1466,5 +1489,6 @@ export default function ReturnStatusTab({ onSelectOrderTab }: ReturnStatusTabPro
         </div>
       )}
     </div>
+     
   );
 }

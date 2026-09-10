@@ -84,10 +84,10 @@ export default function SearchResultsPage({ onAddToCart }: SearchResultsPageProp
                 <Search className="w-3 h-3 text-[#1B6A45]" />
                 <span>Search Results</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-[#162820] tracking-tight">
+              <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
                 {rawQuery ? (
                   <>
-                    Results for <span className="text-[#13442C]">"{rawQuery}"</span>
+                    Results for <span className="text-[#01442e]">"{rawQuery}"</span>
                   </>
                 ) : (
                   'All Clinical Formulations'

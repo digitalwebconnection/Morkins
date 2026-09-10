@@ -118,12 +118,12 @@ export default function BestSellersFAQ() {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        <div className="text-center mb-10 sm:mb-12">
-          <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-2">
+        <div className="text-center mb-5 sm:mb-18">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
             COMMON INQUIRIES
           </p>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#0B1A28] leading-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
             Frequently Asked Questions
           </h2>
           <p className="mt-3 text-sm sm:text-base text-gray-600 font-light max-w-4xl mx-auto leading-relaxed">
@@ -143,9 +143,11 @@ export default function BestSellersFAQ() {
                     : 'bg-white border-stone-200 hover:border-[#A68A56]/60 shadow-xs hover:-translate-y-0.5'
                   }`}
               >
-                {isOpen && (
-                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#A68A56] pointer-events-none" />
-                )}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-[2.5px] bg-[#A68A56] pointer-events-none transition-opacity duration-300 ${
+                    isOpen ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
 
                 <button
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
@@ -161,33 +163,42 @@ export default function BestSellersFAQ() {
                   </div>
 
                   <span
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 border ${isOpen
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-400 ease-out border ${isOpen
                         ? 'rotate-180 bg-[#0B1A28] text-white border-[#0B1A28]'
                         : 'bg-stone-100 text-stone-600 border-stone-200 hover:bg-[#0B1A28] hover:text-white'
                       }`}
                   >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <svg className="w-4 h-4 transition-transform duration-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                   </span>
                 </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-6 pt-3.5 border-t border-stone-100 bg-white animate-fade-in space-y-3.5">
-                    <p className="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed">
-                      {faq.a}
-                    </p>
+                {/* Smooth CSS Grid Height & Opacity Transition */}
+                <div
+                  className={`grid transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    isOpen
+                      ? 'grid-rows-[1fr] opacity-100'
+                      : 'grid-rows-[0fr] opacity-0'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-6 pb-6 pt-3.5 border-t border-stone-100 bg-white space-y-3.5">
+                      <p className="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed">
+                        {faq.a}
+                      </p>
 
-                    {faq.tip && (
-                      <div className="bg-[#F4F8F5] border-l-4 border-[#12602F] text-[#0B1A28] p-3.5 rounded-r-md text-xs flex items-start gap-2.5 shadow-2xs">
-                        <span className="text-[#12602F] font-bold text-sm shrink-0 leading-none mt-0.5">✦</span>
-                        <span className="leading-relaxed">
-                          <strong className="font-semibold text-[#12602F]">Ritual Tip:</strong> {faq.tip}
-                        </span>
-                      </div>
-                    )}
+                      {faq.tip && (
+                        <div className="bg-[#F4F8F5] border-l-4 border-[#12602F] text-[#0B1A28] p-3.5 rounded-r-md text-xs flex items-start gap-2.5 shadow-2xs">
+                          <span className="text-[#12602F] font-bold text-sm shrink-0 leading-none mt-0.5">✦</span>
+                          <span className="leading-relaxed">
+                            <strong className="font-semibold text-[#12602F]">Ritual Tip:</strong> {faq.tip}
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

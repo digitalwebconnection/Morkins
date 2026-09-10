@@ -82,20 +82,29 @@ export default function SkinCareFAQ() {
                   </div>
 
                   <ChevronDown
-                    className={`w-5 h-5 text-stone-500 shrink-0 transition-transform duration-300 ${
+                    className={`w-5 h-5 text-stone-500 shrink-0 transition-transform duration-400 ease-out ${
                       isOpen ? 'rotate-180 text-[#12602F]' : ''
                     }`}
                   />
                 </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-6 pt-1 text-xs sm:text-sm text-[#5C4F46] font-light leading-relaxed border-t border-[#EAE3D2]/60 pl-14">
-                    <p>{faq.answer}</p>
-                    <span className="inline-block mt-3 text-[10px] font-mono font-bold uppercase tracking-wider text-[#8C6221] bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-                      {faq.category}
-                    </span>
+                {/* Smooth CSS Grid Height & Opacity Transition */}
+                <div
+                  className={`grid transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    isOpen
+                      ? 'grid-rows-[1fr] opacity-100'
+                      : 'grid-rows-[0fr] opacity-0'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-6 pb-6 pt-2 text-xs sm:text-sm text-[#5C4F46] font-light leading-relaxed border-t border-[#EAE3D2]/60 pl-14">
+                      <p>{faq.answer}</p>
+                      <span className="inline-block mt-3 text-[10px] font-mono font-bold uppercase tracking-wider text-[#8C6221] bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                        {faq.category}
+                      </span>
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

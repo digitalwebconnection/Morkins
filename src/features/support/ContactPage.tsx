@@ -174,10 +174,10 @@ export default function ContactPage() {
           <div className="lg:col-span-7 bg-white rounded-xl p-6 sm:p-8 border border-[#184433]/10 shadow-sm flex flex-col justify-between">
             <div className="space-y-6">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6F8C51]">
+                <span className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3 block">
                   Self-Service Desk
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#184433] mt-1">
+                <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
                   Send Us a Note
                 </h2>
                 <p className="text-neutral-600 text-sm font-light mt-1.5">
@@ -338,10 +338,10 @@ export default function ContactPage() {
         <div className="  space-y-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-neutral-100 pb-6">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6F8C51]">
+              <span className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3 block">
                 Physical Sanctuaries
               </span>
-              <h3 className="font-serif text-3xl sm:text-4xl font-normal text-[#184433] mt-1">
+              <h3 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
                 Visit Our Experience Lounges
               </h3>
               <p className="text-neutral-600 text-sm font-light mt-1">
@@ -421,10 +421,10 @@ export default function ContactPage() {
         <div className=" space-y-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#6F8C51]">
+              <span className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3 block">
                 Quick Help
               </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#184433] mt-1">
+              <h3 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
                 Frequently Asked Contact Questions
               </h3>
             </div>
@@ -443,8 +443,8 @@ export default function ContactPage() {
               return (
                 <div
                   key={i}
-                  className={`rounded-xl border transition-all duration-200 overflow-hidden ${
-                    isOpen ? 'bg-[#FAF9F5] border-[#184433]/30' : 'bg-white border-[#184433]/10'
+                  className={`rounded-xl border transition-all duration-400 overflow-hidden ${
+                    isOpen ? 'bg-[#FAF9F5] border-[#184433]/30 shadow-xs' : 'bg-white border-[#184433]/10'
                   }`}
                 >
                   <button
@@ -454,13 +454,23 @@ export default function ContactPage() {
                     <h4 className="font-sans text-sm sm:text-base font-bold text-[#184433]">
                       {faq.q}
                     </h4>
-                    <ChevronDown className={`w-4 h-4 text-[#184433] shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-4 h-4 text-[#184433] shrink-0 transition-transform duration-400 ease-out ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
-                  {isOpen && (
-                    <div className="px-5 pb-5 text-xs sm:text-sm text-neutral-600 font-light leading-relaxed border-t border-[#184433]/5 pt-3">
-                      {faq.a}
+
+                  {/* Smooth CSS Grid Height & Opacity Transition */}
+                  <div
+                    className={`grid transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      isOpen
+                        ? 'grid-rows-[1fr] opacity-100'
+                        : 'grid-rows-[0fr] opacity-0'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="px-5 pb-5 text-xs sm:text-sm text-neutral-600 font-light leading-relaxed border-t border-[#184433]/5 pt-3">
+                        {faq.a}
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               );
             })}

@@ -31,15 +31,13 @@ export default function HeroSection({
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header Title & Breadcrumb */}
-        <div className="text-center max-w-3xl mx-auto mb-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/90 border border-[#13442C]/15 shadow-2xs text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#13442C] mb-3">
-            <span>Morkins Botanical Apothecary</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#13442C]"></span>
-            <span>{totalProducts} Formulas</span>
-          </div>
+        {/* Header Title */}
+        <div className="text-center mb-5 sm:mb-18 max-w-3xl mx-auto">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+            Morkins Botanical Apothecary • {totalProducts} Formulas
+          </p>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#13442C] tracking-tight mb-3">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5 mb-3">
             {department === 'women'
               ? (t('sec_women_skincare_title') || "Women's Skincare Collection")
               : department === 'men'

@@ -24,8 +24,11 @@ export function BlogHero({  }: BlogHeroProps) {
         </div>
 
         {/* Hero Title */}
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#184433] leading-tight">
-          The Dermal Science <span className="italic  text-[#6F8C51]">Journal</span>
+        <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+          EDITORIAL JOURNAL
+        </p>
+        <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
+          The Dermal Science Journal
         </h1>
 
         {/* Subtitle */}

@@ -36,8 +36,12 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
           <div className="lg:col-span-6 flex flex-col">
             <div className="flex items-end justify-between mb-10">
               <div>
-                <span className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">{t('sec_cust_favs')}</span>
-                <h2 className="font-serif text-4xl sm:text-5xl font-medium text-[#0B1A28] leading-tight">{t('sec_bestsellers')}</h2>
+                <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+                  {t('sec_cust_favs')}
+                </p>
+                <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
+                  {t('sec_bestsellers')}
+                </h2>
               </div>
               <div className="flex items-center gap-6">
                 {/* Left Arrow Button */}
@@ -95,9 +99,27 @@ export default function BestSellers({ onAddToCart }: BestSellersProps) {
                           {translatedName}
                         </h3>
 
-                        <p className="text-[11px] text-gray-500 mb-6 line-clamp-1 font-light tracking-wide">
+                        {/* 1-2 line short description */}
+                        <p className="text-[11px] text-gray-500 mb-2.5 line-clamp-2 font-light tracking-wide leading-relaxed">
                           {translatedDesc}
                         </p>
+
+                        {/* Key Ingredients */}
+                        {p.keyIngredients && p.keyIngredients.length > 0 && (
+                          <div className="flex flex-wrap items-center gap-1 mb-4">
+                            <span className="text-[9px] font-bold text-[#A68A56] uppercase tracking-wider mr-0.5">
+                              Actives:
+                            </span>
+                            {p.keyIngredients.slice(0, 3).map((ing: string, idx: number) => (
+                              <span
+                                key={idx}
+                                className="text-[9.5px] font-medium px-2 py-0.5 rounded-full bg-[#13442C]/5 text-[#13442C] border border-[#13442C]/10"
+                              >
+                                {ing}
+                              </span>
+                            ))}
+                          </div>
+                        )}
 
                         <div className="flex items-end justify-between mt-auto pt-2">
                           <div className="flex items-baseline gap-1.5">

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { PRODUCTS_EXTENDED } from '../../features/products/data/products';
 
 export interface CartItem {
   id: number;
@@ -14,6 +15,11 @@ interface CartDrawerProps {
   cartItems: CartItem[];
   onUpdateQty: (id: number, delta: number) => void;
   onRemove: (id: number) => void;
+  lastAddedId?: number | null;
+  onAddToCart?: (
+    product: { id: number; name: string; price: number; discountPrice?: number; img: string },
+    openCartAfter?: boolean
+  ) => void;
 }
 
 const FREE_SHIPPING_THRESHOLD = 75;
@@ -24,25 +30,141 @@ export default function CartDrawer({
   cartItems,
   onUpdateQty,
   onRemove,
+  lastAddedId,
+  onAddToCart,
 }: CartDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null);
+  const itemsContainerRef = useRef<HTMLDivElement>(null);
   const [removingId, setRemovingId] = useState<number | null>(null);
+  const [isRendered, setIsRendered] = useState(isOpen);
   const [isVisible, setIsVisible] = useState(false);
+  const [addedUpsellIds, setAddedUpsellIds] = useState<number[]>([]);
+  const [loadingUpsellId, setLoadingUpsellId] = useState<number | null>(null);
+  const isAddingFromUpsellRef = useRef(false);
+
+  // Smart Complementary Recommendations Engine
+  const upsellProducts = useMemo(() => {
+    const cartIds = new Set(cartItems.map((item) => item.id));
+    // Items that were in cart before this upsell session
+    const priorCartIds = new Set([...cartIds].filter(id => !addedUpsellIds.includes(id)));
+
+    // Categorize cart contents
+    const cartCategories = new Set(
+      PRODUCTS_EXTENDED.filter(p => cartIds.has(p.id)).map(p => p.category)
+    );
+
+    // Candidates not already in cart (except those added via upsell in this session, to keep feedback visible)
+    const available = PRODUCTS_EXTENDED.filter((p) => !priorCartIds.has(p.id) && p.inStock);
+
+    // Score based on complementarity, popularity & discounts
+    const scored = available.map(p => {
+      let score = 0;
+      // Keep items added via upsell at the top with "Added" state
+      if (addedUpsellIds.includes(p.id)) {
+        score += 100;
+      }
+      // Complementary pairings
+      if (cartCategories.has('Serums') && (p.category === 'Moisturizers' || p.category === 'Cleansers')) {
+        score += 15;
+      }
+      if (cartCategories.has('Cleansers') && (p.category === 'Serums' || p.category === 'Toners')) {
+        score += 15;
+      }
+      if (cartCategories.has('Moisturizers') && (p.category === 'Serums' || p.category === 'Masks')) {
+        score += 15;
+      }
+      // Bestsellers & ratings
+      if (p.badge === 'Best Seller' || p.badge === 'Popular') score += 10;
+      if (p.rating >= 4.8) score += 5;
+      if (p.discountPrice) score += 8;
+
+      return { product: p, score };
+    });
+
+    scored.sort((a, b) => b.score - a.score);
+    return scored.slice(0, 3).map(s => s.product);
+  }, [cartItems, addedUpsellIds]);
+
+  const handleUpsellAdd = (product: (typeof PRODUCTS_EXTENDED)[0]) => {
+    if (!onAddToCart || loadingUpsellId === product.id) return;
+    const finalPrice = product.discountPrice || product.price;
+
+    // Prevent scroll jump to top
+    isAddingFromUpsellRef.current = true;
+    setLoadingUpsellId(product.id);
+
+    // 1-Click instant add to cart
+    onAddToCart(
+      {
+        id: product.id,
+        name: product.name,
+        price: finalPrice,
+        discountPrice: product.discountPrice,
+        img: product.img,
+      },
+      false
+    );
+
+    // Retain item in upsell list with "Added" checkmark
+    setAddedUpsellIds((prev) => (prev.includes(product.id) ? prev : [...prev, product.id]));
+
+    setTimeout(() => {
+      setLoadingUpsellId(null);
+    }, 320);
+  };
 
   useEffect(() => {
     if (isOpen) {
+      setIsRendered(true);
       document.body.style.overflow = 'hidden';
-      requestAnimationFrame(() => setIsVisible(true));
+      // Double RAF ensures initial off-screen transform is rendered before transitioning in
+      const raf = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsVisible(true);
+          if (itemsContainerRef.current) {
+            itemsContainerRef.current.scrollTop = 0;
+          }
+        });
+      });
+      return () => cancelAnimationFrame(raf);
     } else {
       setIsVisible(false);
       document.body.style.overflow = '';
+      const timer = setTimeout(() => {
+        setIsRendered(false);
+      }, 450);
+      return () => clearTimeout(timer);
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (isOpen && lastAddedId) {
+      if (isAddingFromUpsellRef.current) {
+        // Prevent disorienting scroll jump when item is added via upsell at the bottom
+        isAddingFromUpsellRef.current = false;
+        return;
+      }
+      const timer = setTimeout(() => {
+        const el = document.getElementById(`cart-item-${lastAddedId}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 250);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, lastAddedId]);
+
+  if (!isRendered && !isOpen) return null;
 
   const cartCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
   const cartSubtotal = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
@@ -54,7 +176,7 @@ export default function CartDrawer({
     setTimeout(() => {
       onRemove(id);
       setRemovingId(null);
-    }, 280);
+    }, 320);
   };
 
   return (
@@ -63,6 +185,9 @@ export default function CartDrawer({
       aria-labelledby="cart-drawer-title"
       role="dialog"
       aria-modal="true"
+      style={{
+        pointerEvents: isVisible ? 'auto' : 'none',
+      }}
     >
       {/* ── Dark Glass Backdrop ── */}
       <div
@@ -70,11 +195,12 @@ export default function CartDrawer({
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'rgba(28, 25, 23, 0.45)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
+          background: isVisible ? 'rgba(24, 20, 16, 0.52)' : 'rgba(24, 20, 16, 0)',
+          backdropFilter: isVisible ? 'blur(10px)' : 'blur(0px)',
+          WebkitBackdropFilter: isVisible ? 'blur(10px)' : 'blur(0px)',
           opacity: isVisible ? 1 : 0,
-          transition: 'opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: 'all 0.42s cubic-bezier(0.22, 1, 0.36, 1)',
+          cursor: 'pointer',
         }}
       />
 
@@ -85,8 +211,10 @@ export default function CartDrawer({
           data-lenis-prevent
           className="pointer-events-auto w-screen max-w-105"
           style={{
-            transform: isVisible ? 'translateX(0)' : 'translateX(100%)',
-            transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)',
+            transform: isVisible ? 'translate3d(0, 0, 0)' : 'translate3d(100%, 0, 0)',
+            transition: 'transform 0.48s cubic-bezier(0.22, 1, 0.36, 1)',
+            willChange: 'transform',
+            boxShadow: isVisible ? '-24px 0 70px rgba(28, 25, 23, 0.22)' : 'none',
           }}
         >
           <div
@@ -109,6 +237,9 @@ export default function CartDrawer({
                 background: '#FFFFFF',
                 borderBottom: '1px solid rgba(197, 155, 39, 0.12)',
                 boxShadow: '0 2px 12px rgba(28, 25, 23, 0.03)',
+                transform: isVisible ? 'translateY(0)' : 'translateY(-10px)',
+                opacity: isVisible ? 1 : 0,
+                transition: 'transform 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.06s, opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.06s',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -233,6 +364,9 @@ export default function CartDrawer({
                     background: '#FFFFFF',
                     border: '1px solid rgba(197, 155, 39, 0.2)',
                     boxShadow: '0 2px 10px rgba(197, 155, 39, 0.05)',
+                    transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
+                    opacity: isVisible ? 1 : 0,
+                    transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.12s, opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.12s',
                   }}
                 >
                   <div
@@ -323,9 +457,11 @@ export default function CartDrawer({
                         width: `${shippingProgress}%`,
                         background:
                           shippingProgress >= 100
-                            ? 'linear-gradient(90deg, #10B981, #059669)'
-                            : 'linear-gradient(90deg, #D4AF37, #C59B27)',
-                        transition: 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                            ? 'linear-gradient(90deg, #10B981 0%, #34D399 50%, #059669 100%)'
+                            : 'linear-gradient(90deg, #D4AF37 0%, #F5E5A4 50%, #C59B27 100%)',
+                        backgroundSize: '200% 100%',
+                        animation: 'progressShimmer 3s ease infinite',
+                        transition: 'width 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
                       }}
                     />
                   </div>
@@ -335,6 +471,7 @@ export default function CartDrawer({
 
             {/* ─────── CART ITEMS LIST ─────── */}
             <div
+              ref={itemsContainerRef}
               style={{
                 flex: 1,
                 overflowY: 'auto',
@@ -345,30 +482,43 @@ export default function CartDrawer({
             >
               {cartItems.length > 0 ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  {cartItems.map((item) => (
+                  {cartItems.map((item, index) => {
+                    const isJustAdded = lastAddedId === item.id;
+                    const delayMs = isVisible ? Math.min(index * 45 + 90, 320) : 0;
+                    return (
                     <div
                       key={item.id}
+                      id={`cart-item-${item.id}`}
                       style={{
                         borderRadius: '16px',
                         padding: '14px',
                         background: '#FFFFFF',
-                        border: '1px solid rgba(197, 155, 39, 0.12)',
-                        boxShadow: '0 4px 16px rgba(28, 25, 23, 0.04)',
-                        transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-                        opacity: removingId === item.id ? 0 : 1,
-                        transform: removingId === item.id ? 'translateX(30px) scale(0.96)' : 'translateX(0) scale(1)',
+                        border: isJustAdded ? '1.5px solid #C59B27' : '1px solid rgba(197, 155, 39, 0.12)',
+                        boxShadow: isJustAdded ? '0 6px 22px rgba(197, 155, 39, 0.22)' : '0 4px 16px rgba(28, 25, 23, 0.04)',
+                        transition: 'transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease, border-color 0.3s ease, box-shadow 0.3s ease, max-height 0.35s ease, margin 0.35s ease, padding 0.35s ease',
+                        opacity: removingId === item.id ? 0 : (isVisible ? 1 : 0),
+                        transform: removingId === item.id 
+                          ? 'translateX(50px) scale(0.9)' 
+                          : isVisible 
+                            ? 'translateY(0) scale(1)' 
+                            : 'translateY(12px) scale(0.97)',
+                        maxHeight: removingId === item.id ? '0px' : '220px',
+                        overflow: 'hidden',
+                        transitionDelay: `${delayMs}ms`,
+                        position: 'relative',
+                        animation: isJustAdded ? 'itemGlowPulse 2.4s ease-in-out infinite' : 'none',
                       }}
                       onMouseEnter={(e) => {
                         if (removingId !== item.id) {
                           e.currentTarget.style.borderColor = '#C59B27';
-                          e.currentTarget.style.boxShadow = '0 8px 24px rgba(197, 155, 39, 0.12)';
+                          e.currentTarget.style.boxShadow = '0 8px 24px rgba(197, 155, 39, 0.18)';
                           e.currentTarget.style.transform = 'translateY(-2px)';
                         }
                       }}
                       onMouseLeave={(e) => {
                         if (removingId !== item.id) {
-                          e.currentTarget.style.borderColor = 'rgba(197, 155, 39, 0.12)';
-                          e.currentTarget.style.boxShadow = '0 4px 16px rgba(28, 25, 23, 0.04)';
+                          e.currentTarget.style.borderColor = isJustAdded ? '#C59B27' : 'rgba(197, 155, 39, 0.12)';
+                          e.currentTarget.style.boxShadow = isJustAdded ? '0 6px 22px rgba(197, 155, 39, 0.22)' : '0 4px 16px rgba(28, 25, 23, 0.04)';
                           e.currentTarget.style.transform = 'translateY(0)';
                         }
                       }}
@@ -417,6 +567,30 @@ export default function CartDrawer({
                           }}
                         >
                           <div>
+                            {isJustAdded && (
+                              <div style={{ marginBottom: '4px' }}>
+                                <span
+                                  style={{
+                                    fontSize: '9px',
+                                    fontWeight: 800,
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.06em',
+                                    color: '#C59B27',
+                                    background: 'rgba(197, 155, 39, 0.1)',
+                                    border: '1px solid rgba(197, 155, 39, 0.25)',
+                                    padding: '2px 8px',
+                                    borderRadius: '9999px',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '4px',
+                                    fontFamily: 'Plus Jakarta Sans, sans-serif',
+                                  }}
+                                >
+                                  <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#C59B27' }} />
+                                  Just Added
+                                </span>
+                              </div>
+                            )}
                             <h3
                               style={{
                                 fontSize: '14px',
@@ -597,7 +771,8 @@ export default function CartDrawer({
                         </div>
                       </div>
                     </div>
-                  ))}
+                  );
+                  })}
                 </div>
               ) : (
                 /* ─────── EMPTY STATE ─────── */
@@ -682,6 +857,368 @@ export default function CartDrawer({
                   </button>
                 </div>
               )}
+
+              {/* ─────── YOU MIGHT ALSO LIKE (IN-CART UPSELLING) ─────── */}
+              {upsellProducts.length > 0 && (
+                <div
+                  style={{
+                    marginTop: '22px',
+                    marginBottom: '16px',
+                    padding: '18px 16px',
+                    borderRadius: '18px',
+                    background: '#FFFFFF',
+                    border: '1px solid rgba(197, 155, 39, 0.25)',
+                    boxShadow: '0 6px 24px rgba(28, 25, 23, 0.05)',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {/* Subtle Top Gold Accent Line */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: '3px',
+                      background: 'linear-gradient(90deg, #D4AF37 0%, #F5E5A4 50%, #C59B27 100%)',
+                    }}
+                  />
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      justifyContent: 'space-between',
+                      marginBottom: '14px',
+                      gap: '10px',
+                    }}
+                  >
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ fontSize: '13px' }}>✨</span>
+                        <h4
+                          style={{
+                            margin: 0,
+                            fontSize: '12px',
+                            fontWeight: 800,
+                            fontFamily: 'Plus Jakarta Sans, sans-serif',
+                            color: '#1C1917',
+                            letterSpacing: '0.05em',
+                            textTransform: 'uppercase',
+                          }}
+                        >
+                          {cartItems.length > 0 ? 'You Might Also Like' : 'Trending Botanical Picks'}
+                        </h4>
+                      </div>
+                      <p
+                        style={{
+                          margin: '3px 0 0',
+                          fontSize: '10.5px',
+                          color: '#78716C',
+                          fontFamily: 'Plus Jakarta Sans, sans-serif',
+                        }}
+                      >
+                        {cartItems.length > 0
+                          ? 'Pairs harmoniously with your routine'
+                          : '1-Click add our highest rated botanical formulas'}
+                      </p>
+                    </div>
+
+                    <span
+                      style={{
+                        flexShrink: 0,
+                        fontSize: '9px',
+                        fontWeight: 800,
+                        color: '#C59B27',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.06em',
+                        background: 'rgba(197, 155, 39, 0.1)',
+                        padding: '3px 9px',
+                        borderRadius: '9999px',
+                        border: '1px solid rgba(197, 155, 39, 0.28)',
+                        fontFamily: 'Plus Jakarta Sans, sans-serif',
+                      }}
+                    >
+                      1-Click Add
+                    </span>
+                  </div>
+
+                  {/* Upsell Cards List */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    {upsellProducts.map((p) => {
+                      const isAdded = addedUpsellIds.includes(p.id);
+                      const isLoading = loadingUpsellId === p.id;
+                      const activePrice = p.discountPrice || p.price;
+                      const savings = p.discountPrice ? p.price - p.discountPrice : 0;
+
+                      return (
+                        <div
+                          key={p.id}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '12px',
+                            padding: '11px',
+                            borderRadius: '14px',
+                            background: isAdded ? '#F2FDF6' : '#FAF8F5',
+                            border: isAdded ? '1.5px solid #10B981' : '1px solid rgba(197, 155, 39, 0.14)',
+                            boxShadow: isAdded
+                              ? '0 3px 12px rgba(16, 185, 129, 0.12)'
+                              : '0 2px 8px rgba(28, 25, 23, 0.03)',
+                            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                          }}
+                        >
+                          {/* Thumbnail with Hover Zoom */}
+                          <div
+                            style={{
+                              width: '58px',
+                              height: '58px',
+                              borderRadius: '11px',
+                              overflow: 'hidden',
+                              flexShrink: 0,
+                              background: '#F5F3EF',
+                              border: isAdded ? '1px solid #A7F3D0' : '1px solid rgba(28, 25, 23, 0.08)',
+                              position: 'relative',
+                            }}
+                          >
+                            <img
+                              src={p.img}
+                              alt={p.name}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                transition: 'transform 0.4s ease',
+                              }}
+                            />
+                            {p.badge && !isAdded && (
+                              <span
+                                style={{
+                                  position: 'absolute',
+                                  top: '2px',
+                                  left: '2px',
+                                  fontSize: '7.5px',
+                                  fontWeight: 800,
+                                  background: 'rgba(28, 25, 23, 0.85)',
+                                  color: '#FFFFFF',
+                                  padding: '1px 4px',
+                                  borderRadius: '4px',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.04em',
+                                  lineHeight: 1.2,
+                                }}
+                              >
+                                {p.badge}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Product Info */}
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '2px' }}>
+                              <span
+                                style={{
+                                  fontSize: '9px',
+                                  fontWeight: 800,
+                                  color: '#A68A56',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.08em',
+                                }}
+                              >
+                                {p.category}
+                              </span>
+                              {savings > 0 && (
+                                <span
+                                  style={{
+                                    fontSize: '8.5px',
+                                    fontWeight: 800,
+                                    color: '#059669',
+                                    background: '#ECFDF5',
+                                    padding: '1px 5px',
+                                    borderRadius: '4px',
+                                  }}
+                                >
+                                  Save ${savings.toFixed(0)}
+                                </span>
+                              )}
+                            </div>
+
+                            <h5
+                              style={{
+                                margin: 0,
+                                fontSize: '12.5px',
+                                fontWeight: 700,
+                                color: '#1C1917',
+                                whiteSpace: 'nowrap',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                fontFamily: 'Plus Jakarta Sans, sans-serif',
+                              }}
+                              title={p.name}
+                            >
+                              {p.name}
+                            </h5>
+
+                            {/* Key Ingredients Snippet */}
+                            {p.keyIngredients && p.keyIngredients.length > 0 ? (
+                              <p
+                                style={{
+                                  margin: '2px 0 4px',
+                                  fontSize: '10px',
+                                  color: '#78716C',
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                }}
+                              >
+                                🌿 {p.keyIngredients.slice(0, 2).join(' • ')}
+                              </p>
+                            ) : (
+                              <p
+                                style={{
+                                  margin: '2px 0 4px',
+                                  fontSize: '10px',
+                                  color: '#78716C',
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                }}
+                              >
+                                {p.description}
+                              </p>
+                            )}
+
+                            {/* Price */}
+                            <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                              <span
+                                style={{
+                                  fontSize: '13px',
+                                  fontWeight: 800,
+                                  color: isAdded ? '#059669' : '#13442C',
+                                  fontFamily: 'Plus Jakarta Sans, sans-serif',
+                                }}
+                              >
+                                ${activePrice.toFixed(2)}
+                              </span>
+                              {p.discountPrice && (
+                                <span
+                                  style={{
+                                    fontSize: '10px',
+                                    color: '#A8A29E',
+                                    textDecoration: 'line-through',
+                                    fontFamily: 'monospace',
+                                  }}
+                                >
+                                  ${p.price.toFixed(2)}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* 1-Click Direct Add / Added CTA */}
+                          {isAdded ? (
+                            <button
+                              type="button"
+                              onClick={() => onUpdateQty(p.id, 1)}
+                              title="Click to add another to cart"
+                              style={{
+                                flexShrink: 0,
+                                padding: '7px 13px',
+                                borderRadius: '9999px',
+                                border: '1px solid #10B981',
+                                fontSize: '10.5px',
+                                fontWeight: 800,
+                                letterSpacing: '0.04em',
+                                background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+                                color: '#FFFFFF',
+                                cursor: 'pointer',
+                                boxShadow: '0 2px 10px rgba(16, 185, 129, 0.35)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                fontFamily: 'Plus Jakarta Sans, sans-serif',
+                                animation: 'addedBounce 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                                transition: 'all 0.2s ease',
+                              }}
+                              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.04)')}
+                              onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                            >
+                              <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                              <span>In Bag</span>
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => handleUpsellAdd(p)}
+                              disabled={isLoading}
+                              style={{
+                                flexShrink: 0,
+                                padding: '7px 15px',
+                                borderRadius: '9999px',
+                                border: 'none',
+                                fontSize: '11px',
+                                fontWeight: 800,
+                                letterSpacing: '0.04em',
+                                background: 'linear-gradient(135deg, #1C1917 0%, #292524 100%)',
+                                color: '#FFFFFF',
+                                cursor: isLoading ? 'wait' : 'pointer',
+                                boxShadow: '0 2px 8px rgba(28, 25, 23, 0.25)',
+                                transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '5px',
+                                fontFamily: 'Plus Jakarta Sans, sans-serif',
+                              }}
+                              onMouseEnter={(e) => {
+                                if (!isLoading) {
+                                  e.currentTarget.style.background = 'linear-gradient(135deg, #D4AF37 0%, #C59B27 100%)';
+                                  e.currentTarget.style.transform = 'scale(1.04)';
+                                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(197, 155, 39, 0.35)';
+                                }
+                              }}
+                              onMouseLeave={(e) => {
+                                if (!isLoading) {
+                                  e.currentTarget.style.background = 'linear-gradient(135deg, #1C1917 0%, #292524 100%)';
+                                  e.currentTarget.style.transform = 'scale(1)';
+                                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(28, 25, 23, 0.25)';
+                                }
+                              }}
+                            >
+                              {isLoading ? (
+                                <>
+                                  <svg
+                                    style={{ animation: 'spinSlow 0.8s linear infinite' }}
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth={3}
+                                  >
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeOpacity="0.25" />
+                                    <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeLinecap="round" />
+                                  </svg>
+                                  <span>Adding</span>
+                                </>
+                              ) : (
+                                <>
+                                  <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                                  </svg>
+                                  <span>+ Add</span>
+                                </>
+                              )}
+                            </button>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* ─────── FOOTER / CHECKOUT ─────── */}
@@ -691,7 +1228,10 @@ export default function CartDrawer({
                   padding: '20px 24px 24px',
                   background: '#FFFFFF',
                   borderTop: '1px solid rgba(197, 155, 39, 0.15)',
-                  boxShadow: '0 -4px 20px rgba(28, 25, 23, 0.04)',
+                  boxShadow: '0 -4px 24px rgba(28, 25, 23, 0.06)',
+                  transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+                  opacity: isVisible ? 1 : 0,
+                  transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.16s, opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.16s',
                 }}
               >
                 {/* Subtotal Display */}
@@ -754,27 +1294,41 @@ export default function CartDrawer({
                     textTransform: 'uppercase',
                     color: '#FFFFFF',
                     cursor: 'pointer',
-                    background: '#1C1917',
+                    background: 'linear-gradient(135deg, #1C1917 0%, #292524 100%)',
                     boxShadow: '0 6px 20px rgba(28, 25, 23, 0.28)',
-                    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '8px',
+                    position: 'relative',
+                    overflow: 'hidden',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#C59B27';
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #D4AF37 0%, #C59B27 100%)';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                     e.currentTarget.style.boxShadow = '0 10px 28px rgba(197, 155, 39, 0.38)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#1C1917';
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #1C1917 0%, #292524 100%)';
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.boxShadow = '0 6px 20px rgba(28, 25, 23, 0.28)';
                   }}
                 >
-                  <span>Proceed to Checkout</span>
-                  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '40%',
+                      height: '100%',
+                      background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
+                      animation: 'buttonSheen 4s ease-in-out infinite',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                  <span style={{ position: 'relative', zIndex: 2 }}>Proceed to Checkout</span>
+                  <svg style={{ position: 'relative', zIndex: 2 }} width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </button>
@@ -868,6 +1422,42 @@ export default function CartDrawer({
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes progressShimmer {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes itemGlowPulse {
+          0%, 100% {
+            border-color: #C59B27;
+            box-shadow: 0 4px 18px rgba(197, 155, 39, 0.16);
+          }
+          50% {
+            border-color: #D4AF37;
+            box-shadow: 0 8px 30px rgba(197, 155, 39, 0.34);
+          }
+        }
+        @keyframes badgePopIn {
+          0% { transform: scale(0.6); opacity: 0; }
+          70% { transform: scale(1.15); }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes buttonSheen {
+          0% { transform: translateX(-150%) skewX(-20deg); }
+          25%, 100% { transform: translateX(350%) skewX(-20deg); }
+        }
+        @keyframes addedBounce {
+          0% { transform: scale(0.85); opacity: 0.8; }
+          60% { transform: scale(1.08); }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes spinSlow {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }

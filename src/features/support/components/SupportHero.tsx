@@ -83,7 +83,7 @@ export default function SupportHero({
         </div>
 
         {/* ── Editorial Headline with Cormorant Serif ── */}
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#1B2B19] font-medium tracking-tight max-w-4xl mx-auto leading-[1.15] mb-3">
+        <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5 max-w-4xl mx-auto leading-tight mb-3">
           {title}
         </h1>
 

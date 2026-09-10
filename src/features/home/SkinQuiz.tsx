@@ -127,9 +127,11 @@ export default function SkinQuiz({ onAddToCart }: SkinQuizProps) {
       <div className="max-w-7xl mx-auto px-4 relative">
 
         {/* Title Block */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">Interactive Routine Builder</span>
-          <h2 className="font-serif text-4xl sm:text-5xl font-medium text-[#0B1A28] leading-tight">
+        <div className="text-center mb-5 sm:mb-18 max-w-2xl mx-auto">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+            Interactive Routine Builder
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
             Discover Your Daily Regimen
           </h2>
           <p className="text-[#0B1A28]/80 text-sm mt-3">

@@ -6,10 +6,12 @@ export default function AboutDetails() {
           
           {/* Left Column: Description Content */}
           <div className="lg:col-span-6 text-left space-y-6 animate-fade-in">
-            <span className="text-xs font-bold tracking-widest text-[#184433] uppercase">OUR PHILOSOPHY</span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] leading-tight">
+            <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+              OUR PHILOSOPHY
+            </p>
+            <h2 className="font-serif text-3xl font-bold sm:text-4xl lg:text-[54px] text-[#0C1B33] tracking-tight mt-2.5">
               Honoring Your Skin’s <br />
-              <span className=" font-light text-[#303030]">Natural Intelligence</span>
+              <span className=" text-[#0C1B33]">Natural Intelligence</span>
             </h2>
             <p className="text-neutral-900 text-base leading-relaxed font-light">
               Your skin is a living, breathing ecosystem. Rather than stripping it with aggressive chemicals, Morkins supports its innate biological functions. We believe true radiance comes from a fully restored lipid barrier, protected by biocompatible nourishment.

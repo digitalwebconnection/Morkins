@@ -40,12 +40,11 @@ export default function AboutIngredientsEthics() {
          ──────────────────────────────────────────────────────────── */}
       <section id="sustainability" className="scroll-mt-24 max-w-7xl mx-auto px-6 sm:px-8 pt-6">
         <div className=" ">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.25em] text-[#6F8C51] bg-[#184433]/5 px-4 py-1.5 rounded-full">
-              <TreePine className="w-3.5 h-3.5 text-[#6F8C51]" />
-              <span>Ecological Responsibility</span>
-            </span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] mt-3">
+          <div className="text-center mb-5 sm:mb-18 max-w-3xl mx-auto">
+            <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+              ECOLOGICAL RESPONSIBILITY
+            </p>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
               Our Sustainability Mission
             </h2>
             <p className="text-neutral-600 mt-3 text-sm sm:text-base font-light leading-relaxed">

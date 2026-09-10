@@ -28,7 +28,8 @@ export const PRODUCTS: Product[] = [
     img: p1,
     hoverImg: p4,
     badge: 'Best Seller',
-    description: 'High-potency botanical serum infused with active plant peptides for instant luminosity and deep cellular renewal.'
+    description: 'High-potency botanical serum infused with active plant peptides for instant luminosity and deep cellular renewal.',
+    keyIngredients: ['Plant Peptides', 'Vitamin C 15%', 'Ferulic Acid']
   },
   {
     id: 2,
@@ -42,7 +43,8 @@ export const PRODUCTS: Product[] = [
     img: p2,
     hoverImg: p7,
     badge: 'Popular',
-    description: 'Ultra-nourishing lipid-replenishing moisturizer that restores epidermal strength and locks in 24h hydration.'
+    description: 'Ultra-nourishing lipid-replenishing moisturizer that restores epidermal strength and locks in 24h hydration.',
+    keyIngredients: ['Triple Ceramides', 'Squalane', 'Centella Asiatica']
   },
   {
     id: 3,
@@ -56,7 +58,8 @@ export const PRODUCTS: Product[] = [
     img: p3,
     hoverImg: p8,
     badge: 'Essential',
-    description: 'pH-balanced purifying botanical cleanser that lifts impurities without stripping essential moisture.'
+    description: 'pH-balanced purifying botanical cleanser that lifts impurities without stripping essential moisture.',
+    keyIngredients: ['Green Tea Extract', 'Salicylic Acid 0.5%', 'Aloe Vera']
   },
   {
     id: 4,
@@ -70,7 +73,8 @@ export const PRODUCTS: Product[] = [
     img: p4,
     hoverImg: p1,
     badge: 'Trending',
-    description: 'Multi-molecular hyaluronic acid formula delivering multi-depth moisture surge and bouncy smoothness.'
+    description: 'Multi-molecular hyaluronic acid formula delivering multi-depth moisture surge and bouncy smoothness.',
+    keyIngredients: ['Multi-Weight Hyaluronic', 'Vitamin B5', 'Snow Mushroom']
   },
   {
     id: 5,
@@ -83,7 +87,8 @@ export const PRODUCTS: Product[] = [
     category: 'Serums',
     img: p5,
     hoverImg: p9,
-    description: 'Clinical-grade 10% Niacinamide + Zinc PCA to refine enlarged pores, regulate sebum, and even skin tone.'
+    description: 'Clinical-grade 10% Niacinamide + Zinc PCA to refine enlarged pores, regulate sebum, and even skin tone.',
+    keyIngredients: ['10% Niacinamide', '1% Zinc PCA', 'Willow Bark']
   },
   {
     id: 6,
@@ -97,7 +102,8 @@ export const PRODUCTS: Product[] = [
     img: p6,
     hoverImg: p10,
     badge: 'Clinical Grade',
-    description: 'Advanced encapsulated retinol treatment that reduces fine lines and triggers natural cellular turnover.'
+    description: 'Advanced encapsulated retinol treatment that reduces fine lines and triggers natural cellular turnover.',
+    keyIngredients: ['Encapsulated Retinol', 'Bakuchiol', 'Peptide Matrix']
   },
   {
     id: 7,
@@ -110,7 +116,8 @@ export const PRODUCTS: Product[] = [
     category: 'Moisturizers',
     img: p7,
     hoverImg: p2,
-    description: 'Lightweight soothing emulsion with Asiaticoside and Madecassoside to quickly relieve irritation and redness.'
+    description: 'Lightweight soothing emulsion with Asiaticoside and Madecassoside to quickly relieve irritation and redness.',
+    keyIngredients: ['Madecassoside', 'Centella Asiatica', 'Allantoin']
   },
   {
     id: 8,
@@ -124,7 +131,8 @@ export const PRODUCTS: Product[] = [
     img: p8,
     hoverImg: p5,
     badge: 'New',
-    description: 'Plant-derived retinol alternative that refines skin texture, improves elasticity, and smooths wrinkles.'
+    description: 'Plant-derived retinol alternative that refines skin texture, improves elasticity, and smooths wrinkles.',
+    keyIngredients: ['2% Pure Bakuchiol', 'Rosehip Seed Oil', 'Squalane']
   },
   {
     id: 9,
@@ -137,7 +145,8 @@ export const PRODUCTS: Product[] = [
     category: 'Treatments',
     img: p9,
     hoverImg: p3,
-    description: '2% BHA botanical clarifying tonic clearing clogged pores, blackheads, and uneven skin surface.'
+    description: '2% BHA botanical clarifying tonic clearing clogged pores, blackheads, and uneven skin surface.',
+    keyIngredients: ['2% Salicylic Acid (BHA)', 'Tea Tree Leaf', 'Niacinamide']
   },
   {
     id: 10,
@@ -150,7 +159,8 @@ export const PRODUCTS: Product[] = [
     category: 'Moisturizers',
     img: p10,
     hoverImg: p6,
-    description: 'Triple-ceramide quenching gel that locks in hydration and reinforces natural moisture retention.'
+    description: 'Triple-ceramide quenching gel that locks in hydration and reinforces natural moisture retention.',
+    keyIngredients: ['Ceramide NP Complex', 'Beta-Glucan', 'Hyaluronic Acid']
   },
   {
     id: 11,
@@ -164,7 +174,8 @@ export const PRODUCTS: Product[] = [
     img: p11,
     hoverImg: p1,
     badge: 'Top Rated',
-    description: 'Multi-peptide firming fluid stimulating pro-collagen synthesis and restoring skin bounce.'
+    description: 'Multi-peptide firming fluid stimulating pro-collagen synthesis and restoring skin bounce.',
+    keyIngredients: ['Copper Tripeptides', 'Matrixyl 3000', 'Argireline']
   },
   {
     id: 12,
@@ -177,7 +188,8 @@ export const PRODUCTS: Product[] = [
     category: 'Masks',
     img: p12,
     hoverImg: p2,
-    description: 'Velvety sleep-in mask infused with Vitamin E, jojoba, and rosehip to restore depleted skin overnight.'
+    description: 'Velvety sleep-in mask infused with Vitamin E, jojoba, and rosehip to restore depleted skin overnight.',
+    keyIngredients: ['Pure Tocopherol (Vit E)', 'Organic Jojoba', 'Evening Primrose']
   },
   {
     id: 13,
@@ -191,7 +203,7 @@ export const PRODUCTS: Product[] = [
     img: p13,
     hoverImg: p11,
     badge: 'Hair Care',
-    description: 'Targeted root-energizing serum supporting thicker, fuller, and resilient hair density.'
+    description: 'Targeted root-energizing serum supporting thicker, fuller, and resilient hair density.',
+    keyIngredients: ['Redensyl 3%', 'Caffeine', 'Biotinoyl Tripeptide']
   },
 ]
-

@@ -1,5 +1,6 @@
 import { useEffect, lazy, Suspense } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { useCart } from '../hooks';
 
 // Code-split route components using React.lazy
 const HomeRoute = lazy(() => import('./HomeRoute'));
@@ -38,6 +39,18 @@ function RouteLoading() {
   );
 }
 
+function CartRedirectRoute() {
+  const { openCart } = useCart();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    openCart();
+    navigate('/', { replace: true });
+  }, [openCart, navigate]);
+
+  return null;
+}
+
 export default function AppRoutes() {
   const location = useLocation();
 
@@ -55,7 +68,8 @@ export default function AppRoutes() {
 
   return (
     <Suspense fallback={<RouteLoading />}>
-      <Routes>
+      <div key={location.pathname} className="page-smooth-open flex-1 flex flex-col w-full">
+        <Routes>
         {/* ── 1. HOME / LANDING PAGE ── (Hero slider, feature bar, ingredients spotlight, product showcase, quiz) */}
         <Route path="/" element={<HomeRoute />} />
 
@@ -135,9 +149,13 @@ export default function AppRoutes() {
         <Route path="/blog/:slug" element={<BlogDetailsRoute />} />
         <Route path="/blogs/:slug" element={<BlogDetailsRoute />} />
 
-        {/* ── 12. 404 NOT FOUND FALLBACK ROUTE ── */}
+        {/* ── 12. AUTO SLIDE-CART PANEL FALLBACK (Opens slide-over cart drawer instead of separate page) ── */}
+        <Route path="/cart" element={<CartRedirectRoute />} />
+
+        {/* ── 13. 404 NOT FOUND FALLBACK ROUTE ── */}
         <Route path="*" element={<NotFoundRoute />} />
       </Routes>
+      </div>
 
     </Suspense>
   );

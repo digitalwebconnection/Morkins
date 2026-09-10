@@ -76,7 +76,7 @@ export default function IngredientsSpotlight() {
       <div className="max-w-7xl mx-auto px-6 lg:px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-5 sm:mb-18">
-          <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">
+          <p className="text-[16px] font-bold text-[#01442e] uppercase tracking-[0.2em] mb-3">
             SHOP BY CATEGORY
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] font-normal tracking-tight mt-2.5">

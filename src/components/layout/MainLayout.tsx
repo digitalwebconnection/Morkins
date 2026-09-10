@@ -23,6 +23,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
     cartCount,
     openCart,
     closeCart,
+    addToCart,
     updateQty,
     removeItem,
     closeToast,
@@ -87,13 +88,15 @@ export default function MainLayout({ children }: MainLayoutProps) {
         cartItems={cartItems}
         onUpdateQty={updateQty}
         onRemove={removeItem}
+        lastAddedId={lastAddedItem?.id}
+        onAddToCart={addToCart}
       />
 
       {/* ── PART 6: INSTANT ADD-TO-BAG POPUP TOAST (CartToast) ── */}
       {/* Floating notification showing recently added product with 1-click cart open */}
       <CartToast
         item={lastAddedItem}
-        show={showToast}
+        show={showToast && !isCartOpen}
         onClose={closeToast}
       />
 

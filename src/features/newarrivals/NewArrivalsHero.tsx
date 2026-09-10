@@ -32,25 +32,7 @@ export default function NewArrivalsHero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 pt-8 pb-6 lg:pt-20 lg:pb-2">
 
-        {/* Top Row: Breadcrumb + Edition Tag */}
-        {/* <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-14">
-          <nav className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-[#B5AFA3]">
-            <Link to="/" className="hover:text-[#1A1A1A] transition-colors">Home</Link>
-            <span className="text-[#D4CFC5]">—</span>
-            <span className="text-[#C4AC80]">New Arrivals</span>
-          </nav>
-
-          <div className="flex items-center gap-2.5 px-8 py-2 rounded-full shadow-[#c5b591] shadow-lg border border-[#c5b591]"
-            style={{ background: 'linear-gradient(335deg, #FDFCFA 80%, #F8F5EF 100%)' }}>
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C4AC80] opacity-50" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C4AC80]" />
-            </span>
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#8B7D65]">
-              Edition 2026 · The New Batch
-            </span>
-          </div>
-        </div> */}
+       
 
         {/* Main Hero Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-4 ">
@@ -64,10 +46,10 @@ export default function NewArrivalsHero() {
                 transform: loaded ? 'translateY(0)' : 'translateY(30px)'
               }}
             >
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-normal text-[#1A1A1A] leading-[1.1] tracking-[-0.02em]">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl font-normal text-[#0C1B33] leading-[1.1] tracking-[-0.02em]">
                 Pioneering
                 <br />
-                <span className="relative inline-block text-[#184433]">
+                <span className="relative inline-block text-[#0C1B33]">
                   Formulas
                   <svg className="absolute -bottom-1 left-0 w-full" height="8" viewBox="0 0 200 8" preserveAspectRatio="none">
                     <path d="M0 7 Q50 0 100 4 Q150 8 200 1" stroke="#C4AC80" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.9" />

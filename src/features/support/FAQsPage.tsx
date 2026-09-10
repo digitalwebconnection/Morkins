@@ -306,19 +306,28 @@ export default function FAQsPage() {
                         </h3>
                       </div>
                       <div
-                        className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-400 ease-out ${
                           isOpen ? 'bg-[#184433] text-white rotate-180' : 'bg-[#184433]/5 text-[#184433]'
                         }`}
                       >
-                        <ChevronDown className="w-4 h-4" />
+                        <ChevronDown className="w-4 h-4 transition-transform duration-400" />
                       </div>
                     </button>
 
-                    {isOpen && (
-                      <div className="px-6 sm:px-7 pb-7 pt-1 text-sm sm:text-base text-neutral-700 font-light leading-relaxed border-t border-[#184433]/5 bg-[#fcfcfb] animate-slide-up-fade">
-                        <p>{faq.answer}</p>
+                    {/* Smooth CSS Grid Height & Opacity Transition */}
+                    <div
+                      className={`grid transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                        isOpen
+                          ? 'grid-rows-[1fr] opacity-100'
+                          : 'grid-rows-[0fr] opacity-0'
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="px-6 sm:px-7 pb-7 pt-2 text-sm sm:text-base text-neutral-700 font-light leading-relaxed border-t border-[#184433]/5 bg-[#fcfcfb]">
+                          <p>{faq.answer}</p>
+                        </div>
                       </div>
-                    )}
+                    </div>
                   </div>
                 );
               })

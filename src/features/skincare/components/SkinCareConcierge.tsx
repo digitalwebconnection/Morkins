@@ -148,7 +148,7 @@ export default function SkinCareConcierge({ onAddToCart }: SkinCareConciergeProp
 
 
   return (
-    <section id="skincare-concierge" className="py-8 sm:py-12 lg:py-16 bg-[#FAF8F5] border-b border-[#EAE3D2] relative overflow-hidden">
+    <section id="skincare-concierge" className="py-8 sm:py-12 lg:py-14 bg-[#FAF8F5] border-b border-[#EAE3D2] relative overflow-hidden">
       {/* ── Keyframe Animations for Botanical Background Atmosphere ── */}
       <style>{`
         @keyframes floatOrbSlow {
@@ -171,7 +171,7 @@ export default function SkinCareConcierge({ onAddToCart }: SkinCareConciergeProp
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
-        <div className="text-center max-w-5xl mx-auto mb-10 sm:mb-12">
+        <div className="text-center max-w-5xl mx-auto mb-10 sm:mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-[#8C6221] text-[11px] font-bold uppercase tracking-[0.18em] shadow-2xs mb-3">
             <Sparkles className="w-3.5 h-3.5 text-[#D95B00]" />
             <span>Botanical Routine Concierge</span>

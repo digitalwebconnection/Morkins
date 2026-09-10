@@ -208,11 +208,11 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
         <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between">
 
           {/* ═══════════════ 1. COMPACT EDITORIAL TOP HEADER ═══════════════ */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-[#E5E0D5]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 ">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#9e7427]" />
-                <span className="text-[11px] font-extrabold tracking-[0.25em] uppercase text-[#9e7427]">
+                <span className="w-2 h-2 rounded-full bg-[#000000]" />
+                <span className="text-[11px] font-extrabold tracking-[0.25em] uppercase text-[#000000]">
                   Formula Exploration Lab
                 </span>
                 <span className="text-[#A8A195]">·</span>
@@ -220,8 +220,8 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
                   Interactive Active Compound Analysis
                 </span>
               </div>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1A1A1A] leading-none tracking-tight">
-                Inspect The <span className="font-medium text-[#184433]">Formulation</span> In <span className="font-medium text-[#b48320]">Real-Time</span>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
+                Inspect The <span className="font-medium text-[#0C1B33]">Formulation</span> In <span className="font-medium text-[#184433]">Real-Time</span>
               </h2>
             </div>
 
@@ -291,7 +291,7 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
                 }`}
             >
               {/* Category & Status Pills */}
-              <div className="flex flex-wrap items-center gap-2.5 mb-2.5">
+              <div className="flex flex-wrap items-center gap-2.5 mb-5.5">
                 <span
                   className="px-3.5 py-1 rounded-full text-xs font-bold tracking-[0.18em] uppercase border bg-[#F8F5EE] border-[#C8BFA] text-[#6E5522]"
                 >
@@ -303,15 +303,15 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
               </div>
 
               {/* Title & Narrative */}
-              <h3 className="font-serif text-2xl sm:text-3xl lg:text-[2.5rem] font-normal text-[#1A1A1A] leading-[1.12] tracking-tight mb-2">
+              <h3 className="font-serif text-2xl sm:text-3xl lg:text-[3rem] font-normal text-[#1A1A1A] leading-[1.12] tracking-tight mb-5">
                 {current.title}
               </h3>
-              <p className="text-sm sm:text-base text-[#2E2A24] font-normal leading-relaxed mb-4 max-w-xl">
+              <p className="text-sm sm:text-base text-[#2E2A24] font-normal leading-relaxed mb-8 max-w-xl">
                 {current.subtitle}
               </p>
 
               {/* ── Active Compound Spotlight Card ── */}
-              <div className="mb-4 rounded-xl p-4 sm:p-5 border border-[#D8D0C3] bg-linear-to-br from-[#FAF8F5] to-[#FFFFFF] shadow-sm relative overflow-hidden">
+              <div className="mb-8 rounded-xl p-4 sm:p-5 border border-[#D8D0C3] bg-linear-to-br from-[#FAF8F5] to-[#FFFFFF] shadow-sm relative overflow-hidden">
                 {/* Top Bar */}
                 <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-[#E8E1D5]">
                   <div className="flex items-center gap-2">
@@ -339,24 +339,7 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
                 </div>
               </div>
 
-              {/* ── Clinical Trial Highlights ── */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-4">
-                {current.clinicalHighlights.map((highlight, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-start gap-2 p-2.5 rounded-lg bg-[#F8F6F1] border border-[#D5CDC0]"
-                  >
-                    <div className="w-4 h-4 rounded-full bg-white border border-[#8B7443] flex items-center justify-center shrink-0 mt-0.5">
-                      <svg className="w-2.5 h-2.5 text-[#7A6028]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                        <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </div>
-                    <span className="text-xs text-[#1A1A1A] font-medium leading-snug">
-                      {highlight}
-                    </span>
-                  </div>
-                ))}
-              </div>
+              
 
               {/* ── Price & Call to Actions ── */}
               <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-[#E5E0D5]">
@@ -410,37 +393,7 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
 
           </div>
 
-          {/* ═══════════════ 3. BOTTOM BATCH METRIC RIBBON (Integrated into 90vh) ═══════════════ */}
-          <div className="grid grid-cols-3 gap-3 pt-3 border-t border-[#E5E0D5]">
-            {current.hotspots.map((spot, i) => {
-              const isSelected = activeHotspot === i;
-              return (
-                <button
-                  key={i}
-                  onClick={() => setActiveHotspot(i)}
-                  className={`p-3 rounded-xl border text-left transition-all duration-300 cursor-pointer flex items-center justify-between gap-3 ${isSelected
-                      ? 'bg-[#F9F7F2] border-[#8B7443] shadow-sm ring-1 ring-[#8B7443]/40'
-                      : 'bg-white border-[#DCD5C8] hover:border-[#8B7443] hover:bg-[#FAF8F5]'
-                    }`}
-                >
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <span className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-[#8B7443]' : 'bg-[#C4AC80]'}`} />
-                      <span className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#1A1A1A] truncate">
-                        {spot.label}
-                      </span>
-                    </div>
-                    <span className="block text-xs text-[#3E3933] font-normal truncate">
-                      {spot.tooltip}
-                    </span>
-                  </div>
-                  <span className="font-mono text-sm sm:text-base font-extrabold text-[#7A6028] shrink-0 pl-2">
-                    {spot.value}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+         
 
         </div>
       </section>

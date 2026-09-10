@@ -36,6 +36,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p4,
     badge: 'Best Seller',
     description: 'High-potency botanical serum infused with active plant peptides for instant luminosity and deep cellular renewal.',
+    keyIngredients: ['Plant Peptides', 'Vitamin C 15%', 'Ferulic Acid'],
     inStock: true,
   },
   {
@@ -54,6 +55,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p7,
     badge: 'Popular',
     description: 'Ultra-nourishing lipid-replenishing moisturizer that restores epidermal strength and locks in 24h hydration.',
+    keyIngredients: ['Triple Ceramides', 'Squalane', 'Centella Asiatica'],
     inStock: true,
   },
   {
@@ -72,6 +74,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p8,
     badge: 'Essential',
     description: 'pH-balanced purifying botanical cleanser that lifts impurities without stripping essential moisture.',
+    keyIngredients: ['Green Tea Extract', 'Salicylic Acid 0.5%', 'Aloe Vera'],
     inStock: true,
   },
   {
@@ -90,6 +93,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p1,
     badge: 'Trending',
     description: 'Multi-molecular hyaluronic acid formula delivering multi-depth moisture surge and bouncy smoothness.',
+    keyIngredients: ['Multi-Weight Hyaluronic', 'Vitamin B5', 'Snow Mushroom'],
     inStock: true,
   },
   {
@@ -107,6 +111,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     img: p5,
     hoverImg: p9,
     description: 'Clinical-grade 10% Niacinamide + Zinc PCA to refine enlarged pores, regulate sebum, and even skin tone.',
+    keyIngredients: ['10% Niacinamide', '1% Zinc PCA', 'Willow Bark'],
     inStock: true,
   },
   {
@@ -125,6 +130,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p10,
     badge: 'Clinical Grade',
     description: 'Encapsulated pure retinol targeting fine lines, hyperpigmentation, and accelerating collagen regeneration.',
+    keyIngredients: ['Encapsulated Retinol', 'Bakuchiol', 'Peptide Matrix'],
     inStock: true,
   },
   {
@@ -142,6 +148,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     img: p7,
     hoverImg: p2,
     description: 'Instant cooling relief and skin-barrier reinforcement for sensitive, stressed, or red-prone complexions.',
+    keyIngredients: ['Madecassoside', 'Centella Asiatica', 'Allantoin'],
     inStock: true,
   },
   {
@@ -160,6 +167,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p5,
     badge: 'New',
     description: 'Gentle plant-derived retinol alternative that visibly firms and smooths texture without irritation.',
+    keyIngredients: ['2% Pure Bakuchiol', 'Rosehip Seed Oil', 'Squalane'],
     inStock: true,
   },
   {
@@ -177,6 +185,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     img: p9,
     hoverImg: p3,
     description: '2% BHA salicylic clarifying solution that clears congestion, blackheads, and dead skin build-up.',
+    keyIngredients: ['2% Salicylic Acid (BHA)', 'Tea Tree Leaf', 'Niacinamide'],
     inStock: true,
   },
   {
@@ -194,6 +203,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     img: p10,
     hoverImg: p6,
     description: 'Tri-ceramide lipid infusion that strengthens weakened barrier and defends against environmental stressors.',
+    keyIngredients: ['Ceramide NP Complex', 'Beta-Glucan', 'Hyaluronic Acid'],
     inStock: true,
   },
   {
@@ -212,6 +222,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p1,
     badge: 'Top Rated',
     description: 'Multi-peptide matrix revitalizing skin elasticity and boosting facial contour definition.',
+    keyIngredients: ['Copper Tripeptides', 'Matrixyl 3000', 'Argireline'],
     inStock: true,
   },
   {
@@ -229,6 +240,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     img: p12,
     hoverImg: p2,
     description: 'Rich antioxidant overnight treatment creating a protective moisture cocoon for waking up with dewy skin.',
+    keyIngredients: ['Pure Tocopherol (Vit E)', 'Organic Jojoba', 'Evening Primrose'],
     inStock: true,
   },
 
@@ -251,6 +263,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p11,
     badge: 'Best Seller',
     description: 'Targeted peptide and caffeine blend to stimulate roots, strengthen follicles, and improve hair density.',
+    keyIngredients: ['Redensyl 3%', 'Caffeine', 'Biotinoyl Tripeptide'],
     inStock: true,
   },
   {
@@ -269,6 +282,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p6,
     badge: 'Hair Essential',
     description: 'Sulfate-free scalp purifying wash infused with Saw Palmetto and Biotin to reduce shedding and strengthen roots.',
+    keyIngredients: ['Saw Palmetto', 'Pure Biotin', 'Nettle Leaf Extract'],
     inStock: true,
   },
   {
@@ -287,6 +301,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p4,
     badge: 'Clinical Grade',
     description: 'Fast-absorbing leave-on micro-spray that awakens dormant hair follicles and improves microcirculation.',
+    keyIngredients: ['Green Coffee Caffeine', 'Rosemary Hydrosol', 'Niacinamide'],
     inStock: true,
   },
   {
@@ -305,6 +320,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p8,
     badge: 'Pure Botanical',
     description: 'Pure cold-pressed rosemary and cedarwood oil elixir for deep root nourishment and flake-free scalp health.',
+    keyIngredients: ['Cold-Pressed Rosemary', 'Cedarwood Essential Oil', 'Argan Oil'],
     inStock: true,
   },
   {
@@ -323,6 +339,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p10,
     badge: 'Strengthening',
     description: 'Weightless protein-infused conditioner that repairs hair shaft integrity and seals moisture without build-up.',
+    keyIngredients: ['Hydrolyzed Keratin', 'Silk Amino Acids', 'Shea Butter'],
     inStock: true,
   },
   {
@@ -341,6 +358,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p13,
     badge: 'Clarifying',
     description: 'Clarifying antimicrobial scalp serum that eliminates flaking, soothes itchiness, and rebalances scalp microbiota.',
+    keyIngredients: ['Australian Tea Tree', 'Piroctone Olamine', 'Peppermint Oil'],
     inStock: true,
   },
   {
@@ -359,6 +377,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p12,
     badge: 'Matte Finish',
     description: 'Botanical bentonite clay and beeswax blend providing medium flexible hold, zero shine, and added volume.',
+    keyIngredients: ['Bentonite Clay', 'Kaolin Clay', 'Organic Beeswax'],
     inStock: true,
   },
   {
@@ -377,6 +396,7 @@ export const PRODUCTS_EXTENDED: ProductExtended[] = [
     hoverImg: p13,
     badge: 'Top Rated',
     description: 'Intensive overnight peptide complex that boosts cellular hair follicle regeneration for visibly thicker, fuller hair.',
+    keyIngredients: ['Capixyl 5%', 'Procapil Complex', 'Copper Peptides'],
     inStock: true,
   },
 ];

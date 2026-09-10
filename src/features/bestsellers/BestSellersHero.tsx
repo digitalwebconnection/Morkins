@@ -42,17 +42,17 @@ export default function BestSellersHero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
 
         {/* ── Top Category Eyebrow Tag ── */}
-        <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">
+        <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
           AWARD-WINNING FORMULATIONS
         </p>
 
-        {/* ── Editorial Headline with Solid Home Color ── */}
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium text-[#0B1A28] leading-tight max-w-4xl mx-auto mb-4">
+        {/* ── Editorial Headline ── */}
+        <h1 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5 max-w-4xl mx-auto mb-4">
           Our Most Coveted Best Sellers & Botanical Masterpieces
         </h1>
 
         {/* ── Concise Subtitle ── */}
-        <p className="text-xs sm:text-sm lg:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed font-normal">
+        <p className="text-xs sm:text-sm lg:text-base text-gray-800 max-w-5xl mx-auto leading-relaxed font-normal">
           Clinically engineered with cold-pressed bioactive enzymes. Discover why these cult-favorite formulations have transformed over 50,000+ complexions worldwide.
         </p>
 

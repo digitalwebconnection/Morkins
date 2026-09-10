@@ -200,7 +200,7 @@ export default function TrackOrderPage() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-neutral-100 pb-6 mb-8">
                 <div>
                   <div className="flex items-center gap-3">
-                    <h2 className="font-serif text-3xl sm:text-4xl text-[#184433] font-normal">
+                    <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
                       Order #{activeOrder.id}
                     </h2>
                     <span className={`text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full ${

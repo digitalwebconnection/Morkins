@@ -41,8 +41,13 @@ export default function AboutMission() {
       <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-[#184433]/5 blur-3xl pointer-events-none -translate-x-1/2" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] mt-2">Driven by Purpose</h2>
+        <div className="text-center mb-5 sm:mb-18 max-w-3xl mx-auto">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+            OUR MISSION
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
+            Driven by Purpose
+          </h2>
           <p className="text-neutral-900 mt-4 text-base sm:text-lg font-light leading-relaxed">
             We operate with complete clarity. By stripping away fillers and focusing exclusively on science, we elevate your daily routine to clinical care.
           </p>

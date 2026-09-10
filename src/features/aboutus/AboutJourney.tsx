@@ -45,10 +45,14 @@ export default function AboutJourney() {
       <div className="absolute bottom-10 right-0 w-96 h-96 rounded-full bg-[#184433]/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-0">
-
-          <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#184433] mt-2">Evolution of Morkins</h2>
-          <p className="text-neutral-500 mt-4 text-sm sm:text-base font-light leading-relaxed">
+        <div className="text-center mb-5 sm:mb-18 max-w-2xl mx-auto">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
+            OUR EVOLUTION
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
+            Evolution of Morkins
+          </h2>
+          <p className="text-neutral-800 mt-3 text-sm sm:text-base font-light leading-relaxed">
             Scroll down to see the path we paved to redefine transdermal science.
           </p>
         </div>

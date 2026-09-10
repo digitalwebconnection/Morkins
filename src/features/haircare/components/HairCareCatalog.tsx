@@ -124,9 +124,27 @@ export default function HairCareCatalog({ onAddToCart }: HairCareCatalogProps) {
                       {prod.name}
                     </h3>
 
-                    <p className="text-[11px] text-gray-500 mb-6 line-clamp-1 font-light tracking-wide">
+                    {/* 1-2 line short description */}
+                    <p className="text-[11px] text-gray-500 mb-2.5 line-clamp-2 font-light tracking-wide leading-relaxed">
                       {prod.description}
                     </p>
+
+                    {/* Key Ingredients */}
+                    {prod.keyIngredients && prod.keyIngredients.length > 0 && (
+                      <div className="flex flex-wrap items-center gap-1 mb-4">
+                        <span className="text-[9px] font-bold text-[#A68A56] uppercase tracking-wider mr-0.5">
+                          Actives:
+                        </span>
+                        {prod.keyIngredients.slice(0, 3).map((ing: string, idx: number) => (
+                          <span
+                            key={idx}
+                            className="text-[9.5px] font-medium px-2 py-0.5 rounded-full bg-[#13442C]/5 text-[#13442C] border border-[#13442C]/10"
+                          >
+                            {ing}
+                          </span>
+                        ))}
+                      </div>
+                    )}
 
                     <div className="flex items-end justify-between mt-auto pt-2">
                       <div className="flex items-baseline gap-1.5">

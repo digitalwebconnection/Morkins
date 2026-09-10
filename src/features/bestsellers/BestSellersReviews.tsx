@@ -378,12 +378,12 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Section Header ── */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <p className="text-[16px] font-bold text-[#A68A56] uppercase tracking-[0.2em] mb-3">
+        <div className="text-center mb-5 sm:mb-18 max-w-3xl mx-auto">
+          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
             VERIFIED REVIEWS
           </p>
 
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#0B1A28] leading-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
             Loved By Over 50,000+ Patrons
           </h2>
 
@@ -400,13 +400,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsWriteModalOpen(true)}
-              className="mr-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-none bg-[#0B1A28] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs"
-            >
-              <span>✍️</span>
-              <span>Write a Review</span>
-            </button>
+         
 
             <button
               onClick={handlePrev}
