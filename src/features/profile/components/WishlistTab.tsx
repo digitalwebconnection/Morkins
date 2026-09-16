@@ -69,10 +69,6 @@ export const WishlistTab: React.FC<WishlistTabProps> = ({
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5DEC9]">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-linear-to-r from-[#F4EFE6] to-[#EFE8D8] border border-[#C9B387]/50 text-[10px] font-bold uppercase tracking-widest text-[#8C6D34] mb-1">
-              <span>✦</span>
-              <span>Saved Formulations</span>
-            </div>
             <h3 className="font-serif text-2xl font-bold text-[#1C2E1A]">{t('profile_tab_wishlist')}</h3>
             <p className="text-xs text-[#464D3F] mt-0.5">
               Personal harvest of biological skincare blends awaiting your next daily routine

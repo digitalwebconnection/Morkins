@@ -31,10 +31,6 @@ export default function AboutIngredientsEthics() {
 
   return (
     <div className="space-y-20 py-8 bg-[#F7F6F2]">
-      
-      
-
-
       {/* ────────────────────────────────────────────────────────────
           SECTION 2: SUSTAINABILITY (#sustainability)
          ──────────────────────────────────────────────────────────── */}
@@ -56,7 +52,7 @@ export default function AboutIngredientsEthics() {
             {SUSTAINABILITY_PILLARS.map((item, idx) => (
               <div 
                 key={idx} 
-                className="bg-[#FAF9F5] rounded-xl p-6 sm:p-7 border border-[#184433]/5 flex flex-col justify-between hover:border-[#184433]/20 transition-all group"
+                className="bg-white rounded-xl p-6 sm:p-7 border border-[#184433]/5 flex flex-col justify-between hover:border-[#184433]/20 transition-all group"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-[#184433] flex items-center justify-center mb-5 shadow-md shadow-[#184433]/20 group-hover:scale-105 transition-transform">

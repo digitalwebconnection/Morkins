@@ -1,26 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  User, ShoppingBag, Heart, Compass, MapPin, Gift, Globe,
-  LogOut, Award, Camera,
-  RotateCcw, LayoutDashboard,
-  CreditCard, Star, ShieldCheck, X
+  User, ShoppingBag, Compass, MapPin, Globe,
+  LogOut, Camera,
+  RotateCcw,
+  ShieldCheck, X
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 // Import organized subcomponents
-import { OverviewTab } from './components/OverviewTab';
 import { DetailsTab } from './components/DetailsTab';
 import { AddressesTab } from './components/AddressesTab';
-import { PaymentMethodsTab } from './components/PaymentMethodsTab';
 import { OrdersTab } from './components/OrdersTab';
 import { OrderDetailView } from './components/OrderDetail/OrderDetailView';
 import { TrackingTab } from './components/OrderDetail/TrackingTab';
 import ReturnStatusTab from './components/OrderDetail/ReturnStatusTab';
 import { WishlistTab } from './components/WishlistTab';
-import { ReviewsTab } from './components/ReviewsTab';
-import { ReferralTab } from './components/ReferralTab';
-import { VaultScratchCard } from './components/VaultScratchCard';
 import { SecurityTab } from './components/SecurityTab';
 import { SettingsTab } from './components/SettingsTab';
 
@@ -77,8 +72,8 @@ const DEFAULT_ORDERS: Order[] = [
         img: 'https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=200&auto=format&fit=crop',
       },
     ],
-    paymentMethod: 'Visa ending in •••• 4242',
     shippingAddress: 'Plot 12, Gulmohar Avenue, Bandra West, Mumbai, MH 400050',
+    paymentMethod: 'Visa ending in •••• 4242',
   },
   {
     id: 'MK-87102',
@@ -96,8 +91,8 @@ const DEFAULT_ORDERS: Order[] = [
         img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=200&auto=format&fit=crop',
       },
     ],
-    paymentMethod: 'Google Pay UPI (ananya@okhdfcbank)',
     shippingAddress: 'Plot 12, Gulmohar Avenue, Bandra West, Mumbai, MH 400050',
+    paymentMethod: 'DHL Express Payment',
   },
 ];
 
@@ -121,16 +116,13 @@ const DEFAULT_WISHLIST = [
 ];
 
 export type ProfileTab =
-  | 'overview'
   | 'details'
   | 'addresses'
-  | 'payments'
   | 'orders'
   | 'order_detail'
   | 'tracking'
   | 'returns'
   | 'wishlist'
-  | 'reviews'
   | 'referral'
   | 'security'
   | 'settings';
@@ -162,7 +154,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
       return null;
     }
   });
-  const [activeTab, setActiveTab] = useState<ProfileTab>('overview');
+  const [activeTab, setActiveTab] = useState<ProfileTab>('details');
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const handleLogout = () => {
@@ -193,8 +185,6 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
   const [selectedTrackingOrder, setSelectedTrackingOrder] = useState<Order>(DEFAULT_ORDERS[0]);
   const [selectedDetailOrder, setSelectedDetailOrder] = useState<Order | null>(null);
 
-  // Settings states
-  const [copiedReferral, setCopiedReferral] = useState(false);
 
   // Edit user detail states
   const [isEditingUser, setIsEditingUser] = useState(false);
@@ -355,49 +345,13 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
     localStorage.setItem(`morkins_wishlist_${user.email}`, JSON.stringify(updated));
   };
 
-  const handleCopyReferral = () => {
-    navigator.clipboard.writeText(`https://morkins.com/ref/${user.referralCode || 'MRK-VIP-88'}`);
-    setCopiedReferral(true);
-    setTimeout(() => setCopiedReferral(false), 2000);
-  };
-
-  const trackingSteps = [
-    { label: t('track_placed'), desc: t('track_placed_desc'), time: 'July 10, 10:24 AM', completed: true },
-    { label: t('track_processing'), desc: t('track_processing_desc'), time: 'July 11, 02:40 PM', completed: true },
-    {
-      label: t('track_shipped'),
-      desc: t('track_shipped_desc'),
-      time: 'July 13, 09:12 AM',
-      completed: selectedTrackingOrder.status !== 'processing',
-    },
-    {
-      label: t('track_out'),
-      desc: t('track_out_desc'),
-      time: 'July 15, 08:30 AM',
-      completed: ['out_for_delivery', 'delivered'].includes(selectedTrackingOrder.status),
-    },
-    {
-      label: t('track_delivered'),
-      desc: t('track_delivered_desc'),
-      time: 'July 16, Expected',
-      completed: selectedTrackingOrder.status === 'delivered',
-    },
-  ];
-
   // Grouped Navigation Tabs Structure
   const navigationGroups: NavigationGroup[] = [
-    {
-      group: 'DASHBOARD',
-      items: [
-        { id: 'overview' as const, label: 'Sanctuary Overview', icon: LayoutDashboard },
-      ],
-    },
     {
       group: 'ACCOUNT & VAULT',
       items: [
         { id: 'details' as const, label: 'Personal Information', icon: User },
         { id: 'addresses' as const, label: 'Saved Addresses', icon: MapPin, count: addresses.length },
-        { id: 'payments' as const, label: 'Payment Methods & Vault', icon: CreditCard },
       ],
     },
     {
@@ -408,14 +362,7 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
         { id: 'returns' as const, label: 'Returns & Refunds', icon: RotateCcw, count: returnCount },
       ],
     },
-    {
-      group: 'REWARDS & REVIEWS',
-      items: [
-        { id: 'wishlist' as const, label: 'My Wishlist', icon: Heart, count: wishlist.length },
-        { id: 'reviews' as const, label: 'Clinical Reviews', icon: Star },
-        { id: 'referral' as const, label: 'VIP Rewards & Referrals', icon: Gift, highlight: true },
-      ],
-    },
+    
     {
       group: 'SECURITY & SETTINGS',
       items: [
@@ -444,11 +391,11 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
       <div className="max-w-7xl mx-auto space-y-8">
 
         {/* ── PART 1: TOP PROFILE HERO BANNER & PATRON VAULT SCRATCH CARD ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div className="gap-6 items-stretch">
 
           {/* ── PART 1A: SANCTUARY PATRON HERO BANNER ── */}
           {/* Displays patron ID, avatar upload, VIP tier status, loyalty leaves, and carbon offset */}
-          <div className="lg:col-span-7 xl:col-span-8 bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1] shadow-md relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1] shadow-md relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-5">
               {/* Avatar with Camera Trigger */}
               <div className="relative group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
@@ -466,46 +413,17 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
 
               {/* Profile Greeting */}
               <div>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#D8EFE3] text-[#0D3322] text-[10px] font-extrabold uppercase tracking-widest mb-1 shadow-2xs">
-                  <Award className="w-3 h-3 text-[#12602F]" />
-                  <span>Sanctuary Patron #{user.id || '8849'}</span>
-                </div>
                 <h1 className="font-serif text-2xl sm:text-3xl font-bold text-[#1C2E1A]">
                   {user.fullName || 'Botanical Patron'}
                 </h1>
                 <p className="text-xs text-[#464D3F] mt-0.5">{user.email}</p>
               </div>
             </div>
-
-            {/* Quick Metrics Badge */}
-            <div className="flex items-center gap-3 bg-[#FAF8F2] p-2 sm:p-3 rounded-lg border border-[#DDD3C1] w-full md:w-auto justify-around md:justify-start">
-              <div className="px-3 text-center border-r border-[#E5DEC9]">
-                <span className="text-[10px] font-bold uppercase text-[#8C6221] block">Tier Status</span>
-                <span className="font-serif text-sm font-bold text-[#12602F]">Gold Botanist</span>
-              </div>
-              <div className="px-3 text-center border-r border-[#E5DEC9]">
-                <span className="text-[10px] font-bold uppercase text-[#8C6221] block">Leaves</span>
-                <span className="font-mono text-sm font-extrabold text-[#1C2E1A]">
-                  {user.loyaltyPoints || 1450} 🍃
-                </span>
-              </div>
-              <div className="px-3 text-center">
-                <span className="text-[10px] font-bold uppercase text-[#8C6221] block">Eco Offset</span>
-                <span className="font-mono text-sm font-bold text-[#12602F]">42 kg CO₂</span>
-              </div>
-            </div>
           </div>
 
           {/* ── PART 1B: PATRON VAULT SCRATCH CARD (VaultScratchCard) ── */}
           {/* Interactive scratch-to-reveal VIP coupon, flip card animations, and 1-click code copying */}
-          <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-stretch">
-            <VaultScratchCard
-              userEmail={user.email}
-              points={user.loyaltyPoints || 380}
-              tier="Gold"
-              nextTierPoints={120}
-            />
-          </div>
+         
 
         </div>
 
@@ -588,22 +506,6 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
           {/* ── PART 2B: ACTIVE TAB DETAILS VIEWPORT ── */}
           <div className="lg:col-span-3 min-h-130">
 
-            {/* ── TAB 1: OVERVIEW DASHBOARD (OverviewTab) ── */}
-            {/* Summary cards for active orders, loyalty balance, recent shipments, and quick shortcuts */}
-            {activeTab === 'overview' && (
-              <OverviewTab
-                user={user}
-                orders={orders}
-                addresses={addresses}
-                wishlist={wishlist}
-                returnCount={returnCount}
-                setActiveTab={setActiveTab}
-                setSelectedTrackingOrder={setSelectedTrackingOrder}
-                onAddToCart={onAddToCart}
-                t={t}
-              />
-            )}
-
             {/* ── TAB 2: PERSONAL CREDENTIALS (DetailsTab) ── */}
             {/* Full name, verified email, phone number, and avatar editing */}
             {activeTab === 'details' && (
@@ -644,12 +546,6 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
                 resetAddressForm={resetAddressForm}
                 t={t}
               />
-            )}
-
-            {/* ── TAB 4: PAYMENT METHODS & VAULT (PaymentMethodsTab) ── */}
-            {/* Tokenized credit cards, UPI IDs, netbanking profiles, and encrypted payment vault */}
-            {activeTab === 'payments' && (
-              <PaymentMethodsTab user={user} t={t} />
             )}
 
             {/* ── TAB 5: ORDER HISTORY (OrdersTab) ── */}
@@ -694,9 +590,6 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
             {activeTab === 'tracking' && (
               <TrackingTab
                 selectedTrackingOrder={selectedTrackingOrder}
-                trackingSteps={trackingSteps}
-                orders={orders}
-                setSelectedTrackingOrder={setSelectedTrackingOrder}
                 setActiveTab={setActiveTab}
                 t={t}
               />
@@ -717,23 +610,6 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
                 wishlist={wishlist}
                 handleRemoveWishlist={handleRemoveWishlist}
                 onAddToCart={onAddToCart}
-                t={t}
-              />
-            )}
-
-            {/* ── TAB 10: VERIFIED REVIEWS & RATINGS (ReviewsTab) ── */}
-            {/* Patron submitted reviews, photo attachments, and star ratings across past purchases */}
-            {activeTab === 'reviews' && (
-              <ReviewsTab user={user} orders={orders} t={t} />
-            )}
-
-            {/* ── TAB 11: VIP REFERRALS & REWARDS (ReferralTab) ── */}
-            {/* Personalized referral link, shared rewards credit, and referral milestone tracker */}
-            {activeTab === 'referral' && (
-              <ReferralTab
-                user={user}
-                copiedReferral={copiedReferral}
-                handleCopyReferral={handleCopyReferral}
                 t={t}
               />
             )}
@@ -769,88 +645,49 @@ export default function UserProfile({ onAddToCart, onLogout }: UserProfileProps)
           onClick={() => setShowLogoutConfirm(false)}
         >
           <div
-            className="relative w-full max-w-md bg-linear-to-b from-[#FCFBF8] via-[#FAF8F3] to-[#F5F0E6] rounded-3xl border border-[#DDD3C1] shadow-[0_25px_70px_-15px_rgba(20,38,26,0.4)] p-6 sm:p-7 text-center transition-all duration-200 animate-scale-up overflow-hidden"
+            className="relative w-full max-w-sm bg-white rounded-2xl border border-stone-200 shadow-xl p-6 sm:p-8 text-center transition-all duration-200 animate-scale-up overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Top Multi-Tone Brand Gradient */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-[#12602F] via-[#C49746] to-[#AFD971]" />
-
-            {/* Header Brand Bar */}
-            <div className="flex items-center justify-between pb-3.5 mb-5 border-b border-[#E5DEC9] pt-1">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#12602F]" />
-                <span className="font-serif text-sm font-bold tracking-widest text-[#12602F] uppercase">MORKINS</span>
-                <span className="text-stone-300">•</span>
-                <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C6221]">Sanctuary Exit</span>
-              </div>
+            <div className="flex justify-end mb-2">
               <button
                 type="button"
                 onClick={() => setShowLogoutConfirm(false)}
-                className="w-7 h-7 rounded-full bg-white hover:bg-[#FAF8F2] border border-[#DDD3C1] flex items-center justify-center text-stone-400 hover:text-stone-700 transition-all cursor-pointer shadow-2xs"
+                className="w-8 h-8 rounded-full hover:bg-stone-100 flex items-center justify-center text-stone-500 transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Hero Emblem & Heading */}
-            <div className="text-center space-y-3 mb-5">
-              <div className="relative inline-flex items-center justify-center mx-auto mb-1">
-                <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-[#12602F] to-[#1F7A3E] text-[#AFD971] flex items-center justify-center shadow-md ring-4 ring-[#12602F]/15">
-                  <LogOut className="w-7 h-7 text-[#AFD971] translate-x-0.5" />
-                </div>
-                <span className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#C49746] text-white flex items-center justify-center text-xs shadow-xs ring-2 ring-white">
-                  ✦
-                </span>
+            <div className="flex flex-col items-center mb-6">
+              <div className="w-16 h-16 rounded-full bg-rose-50 flex items-center justify-center mb-4">
+                <LogOut className="w-8 h-8 text-rose-500 ml-1" />
               </div>
-
-              <h3 className="font-serif text-2xl font-bold text-[#1C2E1A] tracking-tight">
-                Depart Sanctuary?
+              <h3 className="text-xl font-bold text-stone-900 mb-2">
+                Sign Out
               </h3>
-              <p className="text-xs text-[#464D3F] max-w-xs mx-auto leading-relaxed">
-                Are you sure you wish to exit your active session? Your formulations, orders, and botanical leaves will remain safely protected.
+              <p className="text-sm text-stone-500">
+                Are you sure you want to sign out of your account?
               </p>
             </div>
 
-            {/* Patron Card Preview */}
-            {user && (
-              <div className="mb-6 p-3.5 rounded-2xl bg-white border border-[#DDD3C1] shadow-2xs flex items-center justify-between gap-3 text-left">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-10 h-10 rounded-xl bg-linear-to-br from-[#FAF8F2] to-[#F2EDE1] border border-[#DDD3C1] flex items-center justify-center font-serif text-sm font-bold text-[#12602F] shrink-0">
-                    {(user.fullName || user.email || 'M').charAt(0).toUpperCase()}
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs font-bold text-[#1C2E1A] truncate">{user.fullName || 'Botanical Patron'}</p>
-                    <p className="text-[10px] text-stone-500 font-mono truncate">{user.email}</p>
-                  </div>
-                </div>
-                <div className="text-right shrink-0 pl-2.5 border-l border-[#E5DEC9]">
-                  <span className="text-[9px] uppercase font-bold text-[#8C6221] tracking-wider block">Leaves</span>
-                  <span className="font-mono text-xs font-extrabold text-[#12602F]">{(user.loyaltyPoints || 1450).toLocaleString()} 🍃</span>
-                </div>
-              </div>
-            )}
-
-            {/* Stacked Luxury Action Buttons */}
-            <div className="space-y-2.5">
-              <button
-                type="button"
-                onClick={() => setShowLogoutConfirm(false)}
-                className="w-full py-3 rounded-xl bg-[#12602F] hover:bg-[#1B6A45] text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm hover:shadow flex items-center justify-center gap-2"
-              >
-                <span>Stay in Sanctuary</span>
-              </button>
-
+            <div className="flex flex-col gap-3">
               <button
                 type="button"
                 onClick={() => {
                   setShowLogoutConfirm(false);
                   handleLogout();
                 }}
-                className="w-full py-2.5 rounded-xl bg-white hover:bg-rose-50 text-rose-700 hover:text-rose-800 border border-[#DDD3C1] hover:border-rose-300 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold transition-colors cursor-pointer"
               >
-                <LogOut className="w-3.5 h-3.5" />
-                <span>Confirm Sign Out</span>
+                Sign Out
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowLogoutConfirm(false)}
+                className="w-full py-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-900 text-sm font-bold transition-colors cursor-pointer"
+              >
+                Cancel
               </button>
             </div>
           </div>

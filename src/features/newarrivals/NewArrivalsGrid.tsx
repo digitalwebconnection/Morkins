@@ -66,7 +66,7 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-white shadow-[#dbc598] shadow-lg border border-[#b6a891] text-[#1A1A1A] px-3.5 py-2 rounded-lg outline-none cursor-pointer focus:border-[#C4AC80] text-[11px] font-semibold"
+                className="bg-white border border-[#b6a891] text-[#1A1A1A] px-3.5 py-2 rounded-lg outline-none cursor-pointer focus:border-[#C4AC80] text-[11px] font-semibold"
               >
                 <option value="featured">Featured Drops</option>
                 <option value="rating">Highest Rated</option>
@@ -156,13 +156,13 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
           <div className="flex flex-col items-center justify-center mt-12 gap-3">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="group px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 shadow-[#f3e2bf] shadow-lg cursor-pointer bg-[#1A1A1A] hover:bg-[#184433] text-white flex items-center gap-2.5"
+              className="group px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-[0.18em] transition-all duration-300 cursor-pointer bg-[#1A1A1A] hover:bg-[#184433] text-white flex items-center gap-2.5"
             >
               <span>
                 {showAll ? 'Show Less Releases' : `View All Formulations (${newArrivalsList.length})`}
               </span>
               <svg
-                className={`w-4 h-4 text-[#184433] transition-transform duration-300 ${
+                className={`w-4 h-4 text-white transition-transform duration-300 ${
                   showAll ? 'rotate-180' : 'group-hover:translate-y-0.5'
                 }`}
                 fill="none"
@@ -173,7 +173,7 @@ export default function NewArrivalsGrid({ onAddToCart }: NewArrivalsGridProps) {
                 <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
-            <span className="text-[11px] font-medium text-[#8B7D65]">
+            <span className="text-[13px] font-medium text-[#8B7D65]">
               Showing <strong className="text-[#1A1A1A] font-bold">{displayedList.length}</strong> of <strong className="text-[#1A1A1A] font-bold">{newArrivalsList.length}</strong> new releases
             </span>
           </div>

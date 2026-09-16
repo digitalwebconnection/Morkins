@@ -201,7 +201,7 @@ export default function TrackOrderPage() {
                 <div>
                   <div className="flex items-center gap-3">
                     <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
-                      Order #{activeOrder.id}
+                      Order
                     </h2>
                     <span className={`text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full ${
                       activeOrder.status === 'delivered'

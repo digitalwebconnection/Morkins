@@ -69,7 +69,7 @@ export default function NewArrivalsHero() {
               <div className="flex flex-wrap items-center gap-4 mt-8">
                 <Link
                   to="/products"
-                  className="group inline-flex items-center gap-3 px-7 py-2.5 bg-[#1A1A1A] hover:bg-[#333] text-white text-[11px] font-bold uppercase tracking-[0.2em] rounded-full shadow-[#c5b591] shadow-lg transition-all duration-300 hover:shadow-xl"
+                  className="group inline-flex items-center gap-3 px-7 py-3 bg-[#1A1A1A] hover:bg-[#333] text-white text-[11px] font-bold uppercase tracking-[0.2em] rounded-full shadow-[#c5b591] shadow-lg transition-all duration-300 hover:shadow-xl"
                 >
                   <span>Shop New Drops</span>
                   <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@ export default function NewArrivalsHero() {
                 </Link>
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 px-8 py-2 border border-[#8b867b] hover:border-[#1A1A1A] text-[#1A1A1A] text-[11px] font-bold uppercase tracking-widest shadow-[#c5b591] shadow-lg rounded-full transition-all duration-300"
+                  className="inline-flex items-center gap-2 px-8 py-3 border border-[#8b867b] hover:border-[#1A1A1A] text-[#1A1A1A] text-[11px] font-bold uppercase tracking-widest shadow-[#c5b591] shadow-lg rounded-full transition-all duration-300"
                 >
                   Our Science
                 </Link>
@@ -128,7 +128,7 @@ export default function NewArrivalsHero() {
                       />
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 px-4 py-3 text-center bg-white">
-                      <span className="text-xs font-bold  font-serif uppercase tracking-[0.15em] text-black drop-shadow-sm">{prod.label}</span>
+                      <span className="text-xs font-bold font-serif uppercase tracking-[0.15em] text-black ">{prod.label}</span>
                     </div>
                   </div>
                 </div>

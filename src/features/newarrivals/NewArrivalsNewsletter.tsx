@@ -40,7 +40,7 @@ export default function NewArrivalsNewsletter() {
           
           <div className="relative z-10 max-w-7xl mx-auto text-center">
             <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
-              VIP Reservation List
+              Drop email if any inquairy 
             </p>
             
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5 mb-4">
@@ -76,9 +76,9 @@ export default function NewArrivalsNewsletter() {
                 />
                 <button
                   type="submit"
-                  className="group px-7 py-2.5 bg-[#1A1A1A] hover:bg-[#333] text-white text-[11px] font-bold uppercase tracking-[0.15em] rounded-r-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2 shrink-0"
+                  className="group px-7 py-2.5 bg-[#1A1A1A] hover:bg-[#333333] text-white text-[11px] font-bold uppercase tracking-[0.15em] rounded-r-lg transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2 shrink-0"
                 >
-                  <span>Get Private Access</span>
+                  <span>send</span>
                   <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -96,12 +96,10 @@ export default function NewArrivalsNewsletter() {
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span className="text-[12px] font-semibold text-[#1A1A1A]">
-                  You're on the VIP list. We'll notify you before public release.
+                  We'll notify you before public release.
                 </span>
               </div>
             )}
-
-           
           </div>
         </div>
       </div>

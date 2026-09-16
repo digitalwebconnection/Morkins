@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   ShieldCheck, Lock, Smartphone, Laptop, 
-  Download, CheckCircle2, KeyRound, Eye, EyeOff, LogOut
+  CheckCircle2, KeyRound, Eye, EyeOff
 } from 'lucide-react';
 import type { User } from '../../../types';
 
@@ -11,7 +11,7 @@ interface SecurityTabProps {
   t?: (key: string) => string;
 }
 
-export const SecurityTab: React.FC<SecurityTabProps> = ({ user, onLogout }) => {
+export const SecurityTab: React.FC<SecurityTabProps> = ({ user: _user, onLogout: _onLogout }) => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -50,16 +50,7 @@ export const SecurityTab: React.FC<SecurityTabProps> = ({ user, onLogout }) => {
     setConfirmPassword('');
   };
 
-  const handleDownloadData = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(user, null, 2));
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `morkins_sanctuary_archive_${user.email}.json`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
-    showToast('Sanctuary account data downloaded.');
-  };
+
 
   return (
     <div className="space-y-7 animate-fade-in text-[#1C2E1A]">
@@ -297,68 +288,6 @@ export const SecurityTab: React.FC<SecurityTabProps> = ({ user, onLogout }) => {
               Revoke
             </button>
           </div>
-        </div>
-      </div>
-
-      {/* ── 5. DATA PRIVACY & DATA DOWNLOAD ── */}
-      <div className="bg-white rounded-lg p-6 sm:p-8 border border-[#DDD3C1] shadow-sm space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-[#E5DEC9]">
-          <h3 className="font-serif text-lg font-bold text-[#1C2E1A] flex items-center gap-2">
-            <Download className="w-4 h-4 text-[#8C6221]" />
-            <span>GDPR Data Portability & Account Governance</span>
-          </h3>
-        </div>
-
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-lg bg-[#FAF8F2] border border-[#E5DEC9]">
-          <div>
-            <h4 className="font-serif text-xs sm:text-sm font-bold text-[#1C2E1A]">
-              Download My Botanical Sanctuary Data
-            </h4>
-            <p className="text-xs text-[#464D3F] mt-0.5">
-              Export your profile parameters, saved addresses, purchase history, and reviews into a secure JSON archive.
-            </p>
-          </div>
-
-          <button
-            type="button"
-            onClick={handleDownloadData}
-            className="px-4 py-2 rounded-lg bg-white hover:bg-[#FAF8F2] border border-[#DDD3C1] text-[#1C2E1A] text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs whitespace-nowrap"
-          >
-            <Download className="w-3.5 h-3.5 text-[#12602F]" />
-            <span>Export Archive</span>
-          </button>
-        </div>
-      </div>
-
-      {/* ── 6. DANGER ZONE & SESSION TERMINATION ── */}
-      <div className="bg-white rounded-lg p-6 sm:p-8 border border-rose-200 shadow-sm space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-rose-100">
-          <h3 className="font-serif text-lg font-bold text-rose-800 flex items-center gap-2">
-            <LogOut className="w-4 h-4 text-rose-600" />
-            <span>Sanctuary Session & Termination</span>
-          </h3>
-        </div>
-
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-lg bg-rose-50/60 border border-rose-200">
-          <div>
-            <h4 className="font-serif text-xs sm:text-sm font-bold text-rose-950">
-              Log Out of Sanctuary
-            </h4>
-            <p className="text-xs text-rose-700/90 mt-0.5">
-              Securely terminate your active session and sign out of your account on this device.
-            </p>
-          </div>
-
-          {onLogout && (
-            <button
-              type="button"
-              onClick={onLogout}
-              className="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer shadow-xs whitespace-nowrap"
-            >
-              <LogOut className="w-3.5 h-3.5 text-white" />
-              <span>Log Out Sanctuary</span>
-            </button>
-          )}
         </div>
       </div>
     </div>

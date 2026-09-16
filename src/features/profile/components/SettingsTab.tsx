@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Globe, Bell, Shield, Download, 
+  Globe, Bell, Download, 
   CheckCircle2, Sparkles, MessageSquare, Mail 
 } from 'lucide-react';
 
@@ -20,17 +20,12 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
   const [replenishReminders, setReplenishReminders] = useState(true);
   
   const [savedSettingsNotice, setSavedSettingsNotice] = useState(false);
-  const [exportedDataNotice, setExportedDataNotice] = useState(false);
+  const [exportedDataNotice] = useState(false);
 
   const handleToggle = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
     setter(prev => !prev);
     setSavedSettingsNotice(true);
     setTimeout(() => setSavedSettingsNotice(false), 2000);
-  };
-
-  const handleExportData = () => {
-    setExportedDataNotice(true);
-    setTimeout(() => setExportedDataNotice(false), 3000);
   };
 
   return (
@@ -42,10 +37,6 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
 
         <div className="flex flex-wrap justify-between items-center gap-4 pb-5 border-b border-[#E5DEC9]">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-linear-to-r from-[#F4EFE6] to-[#EFE8D8] border border-[#C9B387]/50 text-[10px] font-bold uppercase tracking-widest text-[#8C6D34] mb-1">
-              <span>✦</span>
-              <span>Sanctuary Preferences</span>
-            </div>
             <h3 className="font-serif text-2xl font-bold text-[#1C2E1A]">{t('profile_tab_prefs')}</h3>
             <p className="text-xs text-[#464D3F] mt-0.5">
               Customize your localization language, shipment notification alerts, and data settings
@@ -200,33 +191,6 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
                   <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1C331B]" />
                 </label>
               </div>
-            </div>
-          </div>
-
-          {/* ── 3. Data Governance & Privacy Vault ── */}
-          <div className="pt-6 border-t border-[#E5DEC9]">
-            <h4 className="text-xs uppercase font-bold tracking-widest text-[#8C6221] mb-3 flex items-center gap-2">
-              <Shield className="w-4 h-4 text-[#1C331B]" />
-              <span>Patron Data & Privacy Dossier</span>
-            </h4>
-
-            <div className="p-5 rounded-lg bg-white border border-[#DDD3C1] flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-2xs">
-              <div>
-                <strong className="text-xs font-bold text-[#1C2E1A] block">
-                  Export Your Personal Skincare History
-                </strong>
-                <p className="text-[11px] text-[#464D3F] font-light mt-0.5">
-                  Download a complete portable archive of your skin diagnosis, order invoices, and saved formulations.
-                </p>
-              </div>
-
-              <button
-                onClick={handleExportData}
-                className="px-4 py-2 bg-[#FAF8F2] hover:bg-[#1C331B] text-[#1C2E1A] hover:text-[#AFD971] border border-[#DDD3C1] rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-2xs flex items-center gap-1.5 shrink-0"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Export Dossier</span>
-              </button>
             </div>
           </div>
 

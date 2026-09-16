@@ -59,17 +59,17 @@ export default function AboutTeam() {
                 
                 {/* Dark Overlay with details on hover */}
                 <div className="absolute inset-0 bg-linear-to-t from-[#184433]/90 via-[#184433]/35 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6 text-left">
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#B8D5C8]">{member.credentials}</span>
-                  <p className="text-white text-xs leading-relaxed font-light mt-1.5 opacity-90">{member.bio}</p>
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-white">{member.credentials}</span>
+                  <p className="text-white text-xs leading-relaxed font-light mt-1.5">{member.bio}</p>
                 </div>
               </div>
 
               {/* Text Info */}
               <div className="mt-4 flex flex-col items-center">
-                <h3 className="font-serif text-2xl font-normal text-[#184433] tracking-wide">
+                <h3 className="font-serif text-2xl font-normal text-black">
                   {member.name}
                 </h3>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#184433] mt-1.5 block">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-black mt-1.5 block">
                   {member.role}
                 </span>
                 

@@ -184,7 +184,7 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
         ref={sectionRef}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="relative bg-white text-[#1A1A1A] overflow-hidden lg:h-[90vh] lg:min-h-170 lg:max-h-230 flex flex-col justify-between py-6 sm:py-8 lg:py-6 border-b border-[#F0ECE1]"
+        className="relative bg-white text-[#1A1A1A] overflow-hidden lg:h-[90vh] lg:min-h-170 lg:max-h-230 flex flex-col justify-between py-6 sm:py-8 lg:py-14 border-b border-[#F0ECE1]"
       >
         {/* Subtle Ambient Light Gradients on White */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -211,18 +211,11 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 ">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#000000]" />
-                <span className="text-[11px] font-extrabold tracking-[0.25em] uppercase text-[#000000]">
+                <span className="text-[18px] text-[#01442e] uppercase tracking-[0.2em]">
                   Formula Exploration Lab
                 </span>
-                <span className="text-[#A8A195]">·</span>
-                <span className="text-[11px] font-bold tracking-[0.15em] uppercase text-[#184433]">
-                  Interactive Active Compound Analysis
-                </span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
-                Inspect The <span className="font-medium text-[#0C1B33]">Formulation</span> In <span className="font-medium text-[#184433]">Real-Time</span>
-              </h2>
+              
             </div>
 
             {/* Drop Segment Switcher with 10s Timer Indicator */}
@@ -260,7 +253,7 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
           </div>
 
           {/* ═══════════════ 2. MAIN INTERACTIVE SHOWCASE STAGE (Fit in 90vh) ═══════════════ */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center my-auto py-2 lg:py-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center my-auto py-2 lg:py-8">
 
             {/* LEFT: Full Card Product Visual Stage (5 Cols) */}
             <div className="lg:col-span-5 relative flex items-center justify-center">
@@ -293,12 +286,9 @@ export default function NewArrivalsInteractive({ onAddToCart }: NewArrivalsInter
               {/* Category & Status Pills */}
               <div className="flex flex-wrap items-center gap-2.5 mb-5.5">
                 <span
-                  className="px-3.5 py-1 rounded-full text-xs font-bold tracking-[0.18em] uppercase border bg-[#F8F5EE] border-[#C8BFA] text-[#6E5522]"
+                  className="px-3.5 py-1 rounded-full text-xs font-bold tracking-[0.18em] uppercase border bg-[#F8F5EE] border-black/20 text-[#6E5522]"
                 >
                   {current.category}
-                </span>
-                <span className="text-xs font-bold tracking-[0.15em] uppercase text-[#1A1A1A]">
-                  2026 Batch Release · Micro-Stabilized
                 </span>
               </div>
 

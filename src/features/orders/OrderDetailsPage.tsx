@@ -148,7 +148,7 @@ export default function OrderDetailsPage({ onAddToCart }: OrderDetailsPageProps)
               to="/orders/MK-98211"
               className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#F0F6F2] text-[#12602F] text-xs font-bold uppercase tracking-wider hover:bg-[#D8EFE3] transition-colors"
             >
-              <span>View Sample Order #MK-98211</span>
+              <span>View Sample Order</span>
             </Link>
           </div>
         </div>
@@ -334,7 +334,7 @@ export default function OrderDetailsPage({ onAddToCart }: OrderDetailsPageProps)
           <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-900 text-xs font-bold flex items-center justify-between animate-fade-in no-print">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>All formulas from Order #{order.id} have been added to your shopping bag!</span>
+              <span>All formulas from this order have been added to your shopping bag!</span>
             </div>
             <span className="text-emerald-700">✓ Added to Cart</span>
           </div>
@@ -682,7 +682,7 @@ export default function OrderDetailsPage({ onAddToCart }: OrderDetailsPageProps)
               Morkins Botanical Apothecary • Pure Clean Clinical Formulations • www.morkins.com
             </p>
             <p>
-              This is a computer-generated tax invoice for Order #{order.id}. No physical signature is required.
+              This is a computer-generated tax invoice for this order. No physical signature is required.
             </p>
             <p className="italic">
               Thank you for trusting Morkins with your botanical skincare journey.

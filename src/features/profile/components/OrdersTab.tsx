@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Package, Truck, CheckCircle2, RotateCcw,
-  FileText, ArrowRight, Copy, Check
+  FileText, ArrowRight, ChevronDown, ChevronUp
 } from 'lucide-react';
 import ReturnRequestModal from '../../../components/shared/ReturnRequestModal';
 import type { Order } from '../../../types';
@@ -25,9 +25,15 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
   t,
 }) => {
   const [filterStatus, setFilterStatus] = useState<'all' | 'in_transit' | 'delivered'>('all');
-  const [copiedOrderId, setCopiedOrderId] = useState<string | null>(null);
   const [reorderedId, setReorderedId] = useState<string | null>(null);
   const [selectedReturnOrder, setSelectedReturnOrder] = useState<Order | null>(null);
+  const [expandedOrderIds, setExpandedOrderIds] = useState<string[]>(orders.length > 0 ? [orders[0].id] : []);
+
+  const toggleOrderExpansion = (id: string) => {
+    setExpandedOrderIds((prev) =>
+      prev.includes(id) ? prev.filter((orderId) => orderId !== id) : [...prev, id]
+    );
+  };
 
   const filteredOrders = orders.filter((order) => {
     if (filterStatus === 'all') return true;
@@ -36,11 +42,7 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
     return true;
   });
 
-  const handleCopyOrderId = (id: string) => {
-    navigator.clipboard.writeText(id);
-    setCopiedOrderId(id);
-    setTimeout(() => setCopiedOrderId(null), 2000);
-  };
+
 
   const handleReorder = (order: Order) => {
     if (onAddToCart) {
@@ -66,10 +68,6 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5DEC9]">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-linear-to-r from-[#F4EFE6] to-[#EFE8D8] border border-[#C9B387]/50 text-[10px] font-bold uppercase tracking-widest text-[#8C6D34] mb-1">
-              <span>✦</span>
-              <span>Purchase Archive</span>
-            </div>
             <h3 className="font-serif text-2xl font-bold text-[#1C2E1A]">{t('profile_tab_orders')}</h3>
             <p className="text-xs text-[#464D3F] mt-0.5">
               Trace active clinical shipments, reorder previous formulas, and download official invoices
@@ -137,14 +135,18 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
             filteredOrders.map((order) => {
               const isDelivered = order.status === 'delivered';
               const isInTransit = ['shipped', 'out_for_delivery'].includes(order.status);
+              const isExpanded = expandedOrderIds.includes(order.id);
 
               return (
                 <div
                   key={order.id}
-                  className="rounded-lg border border-[#DDD3C1] overflow-hidden bg-white shadow-2xs hover:shadow-md hover:border-[#12602F]"
+                  className="rounded-lg border border-[#DDD3C1] overflow-hidden bg-white shadow-2xs hover:shadow-md hover:border-[#12602F] transition-all"
                 >
                   {/* Order Card Header */}
-                  <div className="bg-linear-to-r from-[#FAF8F2] via-[#F7F4EB] to-[#FAF8F2] p-4 sm:p-5 border-b border-[#E5DEC9] flex flex-wrap items-center justify-between gap-4 text-xs">
+                  <div 
+                    className="bg-linear-to-r from-[#FAF8F2] via-[#F7F4EB] to-[#FAF8F2] p-4 sm:p-5 border-b border-[#E5DEC9] flex flex-wrap items-center justify-between gap-4 text-xs cursor-pointer hover:bg-[#F2EFE8] transition-colors"
+                    onClick={() => toggleOrderExpansion(order.id)}
+                  >
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-white border border-[#DDD3C1] flex items-center justify-center text-[#12602F] shadow-2xs shrink-0">
                         {isDelivered ? (
@@ -158,19 +160,8 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="font-serif text-base font-bold text-[#1C2E1A]">
-                            Order #{order.id}
+                            Order
                           </span>
-                          <button
-                            onClick={() => handleCopyOrderId(order.id)}
-                            className="p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-800 transition-colors cursor-pointer"
-                            title="Copy Order ID"
-                          >
-                            {copiedOrderId === order.id ? (
-                              <Check className="w-3.5 h-3.5 text-emerald-600" />
-                            ) : (
-                              <Copy className="w-3.5 h-3.5" />
-                            )}
-                          </button>
                         </div>
                         <span className="text-[11px] text-[#464D3F] block mt-0.5">
                           Placed on {order.date}
@@ -201,11 +192,17 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
                           }`} />
                         <span>{order.status.replace(/_/g, ' ')}</span>
                       </span>
+
+                      <div className="ml-2 text-[#8C6221]">
+                        {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                      </div>
                     </div>
                   </div>
 
                   {/* Order Items List */}
-                  <div className="p-5 divide-y divide-[#E5DEC9]/60">
+                  {isExpanded && (
+                    <>
+                      <div className="p-5 divide-y divide-[#E5DEC9]/60">
                     {order.items.map((item) => {
                       const translatedName = t('prod_' + item.id + '_name') || item.name;
                       return (
@@ -297,6 +294,8 @@ export const OrdersTab: React.FC<OrdersTabProps> = ({
                       </button>
                     </div>
                   </div>
+                  </>
+                  )}
                 </div>
               );
             })

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   ArrowLeft, Download, RotateCcw, Truck, MapPin,
   CreditCard, ShieldCheck, CheckCircle2, Copy, Check,
-  ShoppingBag} from 'lucide-react';
+} from 'lucide-react';
 import { downloadInvoicePdf } from '../../../../lib/utils/invoicePdf';
 import type { Order } from '../../../../types';
 
@@ -24,7 +24,6 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
 }) => {
   const [copiedAwb, setCopiedAwb] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [isReordering, setIsReordering] = useState(false);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -41,21 +40,7 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
     showToast(`Tracking Code #${trackingAwb} copied.`);
   };
 
-  const handleReorder = () => {
-    if (onAddToCart) {
-      order.items.forEach((item) => {
-        onAddToCart({
-          id: item.id,
-          name: item.name,
-          price: item.price,
-          img: item.img,
-        });
-      });
-    }
-    setIsReordering(true);
-    showToast(`All ${order.items.length} items added to your botanical cart!`);
-    setTimeout(() => setIsReordering(false), 2500);
-  };
+
 
   const getStatusBadge = (status: string) => {
     switch (status.toLowerCase()) {
@@ -126,7 +111,7 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
 
             <div className="flex items-center gap-3 flex-wrap">
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1C2E1A]">
-                Order #{order.id}
+                Order
               </h2>
               {getStatusBadge(order.status)}
             </div>
@@ -169,16 +154,7 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
                 <RotateCcw className="w-3.5 h-3.5 text-[#12602F]" />
                 <span>Return Claim</span>
               </button>
-            )}
-
-            <button
-              type="button"
-              onClick={handleReorder}
-              className="px-3.5 py-2.5 rounded-xl bg-[#FAF8F2] hover:bg-white border border-[#DDD3C1] text-[#12602F] text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
-            >
-              <ShoppingBag className="w-3.5 h-3.5" />
-              <span>{isReordering ? 'Added to Cart!' : 'Re-Order All'}</span>
-            </button>
+            )}  
           </div>
         </div>
 
@@ -262,9 +238,6 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
               Each formulation is batch-certified, cold-sealed, and backed by the 30-Day Guarantee.
             </p>
           </div>
-          <span className="text-[10px] font-mono font-bold text-[#12602F] bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-            100% Bio-Active
-          </span>
         </div>
 
         {/* Items List */}
@@ -283,9 +256,6 @@ export const OrderDetailView: React.FC<OrderDetailViewProps> = ({
                   </h4>
                   <p className="text-xs font-mono text-[#464D3F] mt-0.5">
                     Qty: <strong>{item.qty}</strong> &bull; ${item.price.toFixed(2)} USD each
-                  </p>
-                  <p className="text-[10px] text-stone-400 font-mono mt-0.5">
-                    Clinical Lot: LOT-MRK-2026-B{item.id * 23} &bull; Sealed Cold Batch
                   </p>
                 </div>
               </div>
