@@ -1,17 +1,25 @@
-import { useState, useRef, useEffect, useMemo, useId, type KeyboardEvent, type TouchEvent, type FormEvent } from 'react';
-import p1 from '../../assets/images/product/p1.jpg';
-import p2 from '../../assets/images/product/p2.jpg';
-import p3 from '../../assets/images/product/p3.jpg';
-import p4 from '../../assets/images/product/p4.jpg';
-import p5 from '../../assets/images/product/p5.jpg';
-import p6 from '../../assets/images/product/p6.jpg';
-import hero1 from '../../assets/images/hero/1.jpg';
-import hero2 from '../../assets/images/hero/2.jpg';
-import hero3 from '../../assets/images/hero/3.jpg';
-import hero4 from '../../assets/images/hero/4.jpg';
-import hero5 from '../../assets/images/hero/5.jpg';
-import hero6 from '../../assets/images/hero/6.jpg';
-
+import {
+  useState,
+  useRef,
+  useEffect,
+  useMemo,
+  useId,
+  type KeyboardEvent,
+  type TouchEvent,
+  type FormEvent,
+} from "react";
+import p1 from "../../assets/images/product/p1.jpg";
+import p2 from "../../assets/images/product/p2.jpg";
+import p3 from "../../assets/images/product/p3.jpg";
+import p4 from "../../assets/images/product/p4.jpg";
+import p5 from "../../assets/images/product/p5.jpg";
+import p6 from "../../assets/images/product/p6.jpg";
+import hero1 from "../../assets/images/hero/1.jpg";
+import hero2 from "../../assets/images/hero/2.jpg";
+import hero3 from "../../assets/images/hero/3.jpg";
+import hero4 from "../../assets/images/hero/4.jpg";
+import hero5 from "../../assets/images/hero/5.jpg";
+import hero6 from "../../assets/images/hero/6.jpg";
 
 export interface ReviewItem {
   id: number;
@@ -34,182 +42,207 @@ export interface ReviewItem {
   reviewPhoto: string;
   helpfulCount: number;
   date: string;
-  tag: 'Glow' | 'Barrier' | 'Hydration' | 'Sensitive' | 'Anti-Aging' | 'Clearing';
+  tag:
+    | "Glow"
+    | "Barrier"
+    | "Hydration"
+    | "Sensitive"
+    | "Anti-Aging"
+    | "Clearing";
 }
 
 const INITIAL_REVIEWS: ReviewItem[] = [
   {
     id: 1,
-    author: 'Genevieve L.',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80',
-    location: 'Geneva, Switzerland',
-    ageGroup: '30-35',
+    author: "Genevieve L.",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80",
+    location: "Geneva, Switzerland",
+    ageGroup: "30-35",
     rating: 5,
     productId: 1,
-    productBought: 'Botanical Radiance Glow Serum',
-    productCategory: 'Active Glow Serum',
+    productBought: "Botanical Radiance Glow Serum",
+    productCategory: "Active Glow Serum",
     productImg: p1,
-    skinType: 'Sensitive & Dull Skin',
-    skinConcern: 'Post-Acne Marks & Dullness',
-    timeframe: 'Used for 3 weeks',
-    headline: 'Truly transformed my skin texture within 14 days!',
+    skinType: "Sensitive & Dull Skin",
+    skinConcern: "Post-Acne Marks & Dullness",
+    timeframe: "Used for 3 weeks",
+    headline: "Truly transformed my skin texture within 14 days!",
     comment:
-      'I was skeptical because my sensitive skin reacts to almost every serum. Morkins Botanical Radiance absorbed like water with zero stinging. My post-acne dark marks have visibly faded and my skin has that lit-from-within glass glow.',
+      "I was skeptical because my sensitive skin reacts to almost every serum. Morkins Botanical Radiance absorbed like water with zero stinging.",
     verified: true,
-    keyResult: 'Dark marks faded & 24h glass radiance',
+    keyResult: "Dark marks faded & 24h glass radiance",
     reviewPhoto: hero1,
     helpfulCount: 42,
-    date: 'August 14, 2026',
-    tag: 'Glow'
+    date: "August 14, 2026",
+    tag: "Glow",
   },
   {
     id: 2,
-    author: 'Clara M.',
-    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&h=200&q=80',
-    location: 'New York, USA',
-    ageGroup: '28-34',
+    author: "Clara M.",
+    avatar:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&h=200&q=80",
+    location: "New York, USA",
+    ageGroup: "28-34",
     rating: 5,
     productId: 2,
-    productBought: 'Bio-Active Barrier Repair Cream',
-    productCategory: 'Ceramide Lipid Cream',
+    productBought: "Bio-Active Barrier Repair Cream",
+    productCategory: "Ceramide Lipid Cream",
     productImg: p2,
-    skinType: 'Compromised Barrier / Rosacea',
-    skinConcern: 'Tightness & Extreme Redness',
-    timeframe: 'Used for 1 month',
-    headline: 'Saved my peeling, winter-wrecked skin barrier in 48 hours.',
+    skinType: "Compromised Barrier / Rosacea",
+    skinConcern: "Tightness & Extreme Redness",
+    timeframe: "Used for 1 month",
+    headline: "Saved my peeling, winter-wrecked skin barrier in 48 hours.",
     comment:
-      'After over-exfoliating with harsh peels, my barrier was in agony. This cream healed the stinging and tightness literally overnight. It melts into a velvety cloud without clogging pores. Officially my holy-grail staple.',
+      "After over-exfoliating with harsh peels, my barrier was in agony. This cream healed the stinging and tightness literally overnight.",
     verified: true,
-    keyResult: 'Barrier healed overnight & redness stopped',
+    keyResult: "Barrier healed overnight & redness stopped",
     reviewPhoto: hero2,
     helpfulCount: 38,
-    date: 'August 08, 2026',
-    tag: 'Barrier'
+    date: "August 08, 2026",
+    tag: "Barrier",
   },
   {
     id: 3,
-    author: 'Sophia R.',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&h=200&q=80',
-    location: 'London, UK',
-    ageGroup: '35-40',
+    author: "Sophia R.",
+    avatar:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&h=200&q=80",
+    location: "London, UK",
+    ageGroup: "35-40",
     rating: 5,
     productId: 4,
-    productBought: 'Hyaluronic Dew Plumping Elixir',
-    productCategory: 'Multi-Depth Hydration',
+    productBought: "Hyaluronic Dew Plumping Elixir",
+    productCategory: "Multi-Depth Hydration",
     productImg: p4,
-    skinType: 'Dehydrated Dry Skin',
-    skinConcern: 'Fine Lines & Dull Moisture Drop',
-    timeframe: 'Used for 2 weeks',
-    headline: 'Fine lines around my eyes and forehead simply smoothed out.',
+    skinType: "Dehydrated Dry Skin",
+    skinConcern: "Fine Lines & Dull Moisture Drop",
+    timeframe: "Used for 2 weeks",
+    headline: "Fine lines around my eyes and forehead simply smoothed out.",
     comment:
-      'The 4D hyaluronic acid makes an undeniable difference compared to standard drugstore formulas. It keeps my face plumped and bouncy through long workdays. Makeup glides on flawlessly without flaking.',
+      "The 4D hyaluronic acid makes an undeniable difference compared to standard drugstore formulas. It keeps my face plumped and bouncy through long workdays.",
     verified: true,
-    keyResult: 'Bouncy hydration & fine lines diminished',
+    keyResult: "Bouncy hydration & fine lines diminished",
     reviewPhoto: hero3,
     helpfulCount: 29,
-    date: 'July 29, 2026',
-    tag: 'Hydration'
+    date: "July 29, 2026",
+    tag: "Hydration",
   },
   {
     id: 4,
-    author: 'Evelyn K.',
-    avatar: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&h=200&q=80',
-    location: 'Stockholm, Sweden',
-    ageGroup: '26-30',
+    author: "Evelyn K.",
+    avatar:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&h=200&q=80",
+    location: "Stockholm, Sweden",
+    ageGroup: "26-30",
     rating: 5,
     productId: 5,
-    productBought: 'Niacinamide Pore Tightening Serum',
-    productCategory: 'Blemish & Pore Refining',
+    productBought: "Niacinamide Pore Tightening Serum",
+    productCategory: "Blemish & Pore Refining",
     productImg: p5,
-    skinType: 'Combination / Oily T-Zone',
-    skinConcern: 'Enlarged Pores & Excess Sebum',
-    timeframe: 'Used for 3 weeks',
-    headline: 'Pores on my nose and cheeks look virtually airbrushed.',
+    skinType: "Combination / Oily T-Zone",
+    skinConcern: "Enlarged Pores & Excess Sebum",
+    timeframe: "Used for 3 weeks",
+    headline: "Pores on my nose and cheeks look virtually airbrushed.",
     comment:
-      'I have struggled with congested pores and midday grease for years. Combining 10% pure Niacinamide with Zinc PCA created magic. My T-zone stays naturally satin-matte while maintaining a hydrated luminosity all day.',
+      "I have struggled with congested pores and midday grease for years. Combining 10% pure Niacinamide with Zinc PCA created magic.",
     verified: true,
-    keyResult: 'Balanced sebum & refined pore structure',
+    keyResult: "Balanced sebum & refined pore structure",
     reviewPhoto: hero4,
     helpfulCount: 31,
-    date: 'July 22, 2026',
-    tag: 'Clearing'
+    date: "July 22, 2026",
+    tag: "Clearing",
   },
   {
     id: 5,
-    author: 'Elena D.',
-    avatar: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&h=200&q=80',
-    location: 'Milan, Italy',
-    ageGroup: '40-48',
+    author: "Elena D.",
+    avatar:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&h=200&q=80",
+    location: "Milan, Italy",
+    ageGroup: "40-48",
     rating: 5,
     productId: 6,
-    productBought: 'Bakuchiol Youth Restoring Oil',
-    productCategory: 'Natural Retinol Alternative',
+    productBought: "Bakuchiol Youth Restoring Oil",
+    productCategory: "Natural Retinol Alternative",
     productImg: p6,
-    skinType: 'Sensitive Aging Skin',
-    skinConcern: 'Loss of Firmness & Irritation',
-    timeframe: 'Used for 5 weeks',
-    headline: 'All the firming power of retinol with zero irritation.',
+    skinType: "Sensitive Aging Skin",
+    skinConcern: "Loss of Firmness & Irritation",
+    timeframe: "Used for 5 weeks",
+    headline: "All the firming power of retinol with zero irritation.",
     comment:
-      'I can never tolerate conventional retinol without burning redness and peeling. Bakuchiol from Morkins is in a league of its own. My jawline and neck feel noticeably firmer, skin tone is luminous, and wild botanicals soothe deeply.',
+      "I can never tolerate conventional retinol without burning redness and peeling. Bakuchiol from Morkins is in a league of its own.",
     verified: true,
-    keyResult: 'Enhanced elasticity without retinol purge',
+    keyResult: "Enhanced elasticity without retinol purge",
     reviewPhoto: hero5,
     helpfulCount: 26,
-    date: 'July 15, 2026',
-    tag: 'Anti-Aging'
+    date: "July 15, 2026",
+    tag: "Anti-Aging",
   },
   {
     id: 6,
-    author: 'Isabelle V.',
-    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&h=200&q=80',
-    location: 'Paris, France',
-    ageGroup: '30-36',
+    author: "Isabelle V.",
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&h=200&q=80",
+    location: "Paris, France",
+    ageGroup: "30-36",
     rating: 5,
     productId: 3,
-    productBought: 'Gentle Clarifying Foaming Wash',
-    productCategory: 'pH-Balanced Cleanser',
+    productBought: "Gentle Clarifying Foaming Wash",
+    productCategory: "pH-Balanced Cleanser",
     productImg: p3,
-    skinType: 'Dry & Reactive Skin',
-    skinConcern: 'Stiffness After Face Washing',
-    timeframe: 'Used for 4 weeks',
-    headline: 'Luxurious velvety cleanse that never leaves skin stripped.',
+    skinType: "Dry & Reactive Skin",
+    skinConcern: "Stiffness After Face Washing",
+    timeframe: "Used for 4 weeks",
+    headline: "Luxurious velvety cleanse that never leaves skin stripped.",
     comment:
-      'Finding a cleanser that effortlessly breaks down sunscreen and makeup without stripping lipid moisture is rare. This botanical foam leaves skin supple and calm. I only wish the bottle was twice as big!',
+      "Finding a cleanser that effortlessly breaks down sunscreen and makeup without stripping lipid moisture is rare.",
     verified: true,
-    keyResult: 'Zero tightness & velvety clean feel',
+    keyResult: "Zero tightness & velvety clean feel",
     reviewPhoto: hero6,
     helpfulCount: 19,
-    date: 'June 30, 2026',
-    tag: 'Sensitive'
-  }
+    date: "June 30, 2026",
+    tag: "Sensitive",
+  },
 ];
 
 interface BestSellersReviewsProps {
-  onAddToCart?: (product: { id: number; name: string; price: number; img: string }, openCart?: boolean) => void;
+  onAddToCart?: (
+    product: { id: number; name: string; price: number; img: string },
+    openCart?: boolean,
+  ) => void;
 }
 
-export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsProps) {
+export default function BestSellersReviews({
+  onAddToCart,
+}: BestSellersReviewsProps) {
   const [reviews, setReviews] = useState<ReviewItem[]>(INITIAL_REVIEWS);
-  const [ratingFilter, setRatingFilter] = useState<number | 'all'>('all');
+  const [ratingFilter, setRatingFilter] = useState<number | "all">("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [upvotedIds, setUpvotedIds] = useState<Record<number, boolean>>({});
-  const [lightboxPhoto, setLightboxPhoto] = useState<{ photo: string; author: string; product: string; quote: string; productImg: string } | null>(null);
+  const [lightboxPhoto, setLightboxPhoto] = useState<{
+    photo: string;
+    author: string;
+    product: string;
+    quote: string;
+    productImg: string;
+  } | null>(null);
   const [isWriteModalOpen, setIsWriteModalOpen] = useState(false);
   const [writeSubmitted, setWriteSubmitted] = useState(false);
 
   // Form State for Write Review Modal
-  const [newAuthor, setNewAuthor] = useState('');
-  const [newLocation, setNewLocation] = useState('');
+  const [newAuthor, setNewAuthor] = useState("");
+  const [newLocation, setNewLocation] = useState("");
   const [newRating, setNewRating] = useState(5);
   const [newProductId, setNewProductId] = useState(1);
-  const [newSkinType, setNewSkinType] = useState('Combination Skin');
-  const [newTimeframe, setNewTimeframe] = useState('Used for 2 weeks');
-  const [newHeadline, setNewHeadline] = useState('');
-  const [newComment, setNewComment] = useState('');
-  const [newKeyResult, setNewKeyResult] = useState('');
-  const [newTag, setNewTag] = useState<'Glow' | 'Barrier' | 'Hydration' | 'Sensitive' | 'Anti-Aging' | 'Clearing'>('Glow');
+  const [newSkinType, setNewSkinType] = useState("Combination Skin");
+  const [newTimeframe, setNewTimeframe] = useState("Used for 2 weeks");
+  const [newHeadline, setNewHeadline] = useState("");
+  const [newComment, setNewComment] = useState("");
+  const [newKeyResult, setNewKeyResult] = useState("");
+  const [newTag, setNewTag] = useState<
+    "Glow" | "Barrier" | "Hydration" | "Sensitive" | "Anti-Aging" | "Clearing"
+  >("Glow");
 
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
@@ -230,14 +263,14 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
       }
     };
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Filter logic based on clicked rating
   const filteredReviews = useMemo(() => {
     return reviews.filter((r) => {
-      if (ratingFilter !== 'all' && r.rating !== ratingFilter) return false;
+      if (ratingFilter !== "all" && r.rating !== ratingFilter) return false;
       return true;
     });
   }, [reviews, ratingFilter]);
@@ -253,7 +286,8 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
   // Auto-play timer
   useEffect(() => {
-    if (!isAutoPlay || isHovered || filteredReviews.length <= cardsPerView) return;
+    if (!isAutoPlay || isHovered || filteredReviews.length <= cardsPerView)
+      return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
     }, 5000);
@@ -269,8 +303,8 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowLeft') handlePrev();
-    if (e.key === 'ArrowRight') handleNext();
+    if (e.key === "ArrowLeft") handlePrev();
+    if (e.key === "ArrowRight") handleNext();
   };
 
   const handleTouchStart = (e: TouchEvent) => {
@@ -302,11 +336,11 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
         if (r.id === id) {
           return {
             ...r,
-            helpfulCount: isUpvoted ? r.helpfulCount - 1 : r.helpfulCount + 1
+            helpfulCount: isUpvoted ? r.helpfulCount - 1 : r.helpfulCount + 1,
           };
         }
         return r;
-      })
+      }),
     );
   };
 
@@ -314,13 +348,40 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
     e.preventDefault();
     if (!newAuthor || !newHeadline || !newComment) return;
 
-    const productMap: Record<number, { name: string; category: string; img: string }> = {
-      1: { name: 'Botanical Radiance Glow Serum', category: 'Active Glow Serum', img: p1 },
-      2: { name: 'Bio-Active Barrier Repair Cream', category: 'Ceramide Lipid Cream', img: p2 },
-      3: { name: 'Gentle Clarifying Foaming Wash', category: 'pH-Balanced Cleanser', img: p3 },
-      4: { name: 'Hyaluronic Dew Plumping Elixir', category: 'Multi-Depth Hydration', img: p4 },
-      5: { name: 'Niacinamide Pore Tightening Serum', category: 'Blemish & Pore Refining', img: p5 },
-      6: { name: 'Bakuchiol Youth Restoring Oil', category: 'Natural Retinol Alternative', img: p6 }
+    const productMap: Record<
+      number,
+      { name: string; category: string; img: string }
+    > = {
+      1: {
+        name: "Botanical Radiance Glow Serum",
+        category: "Active Glow Serum",
+        img: p1,
+      },
+      2: {
+        name: "Bio-Active Barrier Repair Cream",
+        category: "Ceramide Lipid Cream",
+        img: p2,
+      },
+      3: {
+        name: "Gentle Clarifying Foaming Wash",
+        category: "pH-Balanced Cleanser",
+        img: p3,
+      },
+      4: {
+        name: "Hyaluronic Dew Plumping Elixir",
+        category: "Multi-Depth Hydration",
+        img: p4,
+      },
+      5: {
+        name: "Niacinamide Pore Tightening Serum",
+        category: "Blemish & Pore Refining",
+        img: p5,
+      },
+      6: {
+        name: "Bakuchiol Youth Restoring Oil",
+        category: "Natural Retinol Alternative",
+        img: p6,
+      },
     };
 
     const selProd = productMap[newProductId] || productMap[1];
@@ -328,25 +389,27 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
     const newReview: ReviewItem = {
       id: Date.now(),
       author: newAuthor,
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80',
-      location: newLocation || 'Verified Patron',
-      ageGroup: '25-34',
+      avatar:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=80",
+      location: newLocation || "Verified Patron",
+      ageGroup: "25-34",
       rating: newRating,
       productId: newProductId,
       productBought: selProd.name,
       productCategory: selProd.category,
       productImg: selProd.img,
       skinType: newSkinType,
-      skinConcern: 'Radiance & Moisture Barrier',
+      skinConcern: "Radiance & Moisture Barrier",
       timeframe: newTimeframe,
       headline: newHeadline,
       comment: newComment,
       verified: true,
-      keyResult: newKeyResult || 'Noticeable improvement in skin comfort & radiance',
+      keyResult:
+        newKeyResult || "Noticeable improvement in skin comfort & radiance",
       reviewPhoto: selProd.img,
       helpfulCount: 1,
-      date: 'Just now',
-      tag: newTag
+      date: "Just now",
+      tag: newTag,
     };
 
     setReviews([newReview, ...reviews]);
@@ -355,12 +418,12 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
     setTimeout(() => {
       setWriteSubmitted(false);
       setIsWriteModalOpen(false);
-      setNewAuthor('');
-      setNewLocation('');
-      setNewHeadline('');
-      setNewComment('');
-      setNewKeyResult('');
-      setRatingFilter('all');
+      setNewAuthor("");
+      setNewLocation("");
+      setNewHeadline("");
+      setNewComment("");
+      setNewKeyResult("");
+      setRatingFilter("all");
       setCurrentIndex(0);
     }, 1800);
   };
@@ -369,57 +432,66 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
     <section
       id="best-sellers-reviews"
       aria-label="Customer Reviews & Ratings"
-      className="relative py-12 sm:py-16 lg:py-20 bg-[#F1EDE9] border-b border-brand-cream/30 overflow-hidden select-none"
+      className="relative py-6 sm:py-8 lg:py-14 bg-[#F1EDE9] border-b border-brand-cream/30 overflow-hidden"
     >
       {/* Background Lighting Elements */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-180 h-90 bg-[#12602F]/5 rounded-full blur-[110px] pointer-events-none" />
       <div className="absolute -bottom-20 right-10 w-96 h-96 bg-[#A68A56]/10 rounded-full blur-[90px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
         {/* ── Section Header ── */}
         <div className="text-center mb-5 sm:mb-18 max-w-3xl mx-auto">
-          <p className="text-[16px] text-[#01442e] uppercase tracking-[0.2em] mb-3">
-            VERIFIED REVIEWS
-          </p>
-
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#0C1B33] tracking-tight mt-2.5">
             Loved By Over 50,000+ Patrons
           </h2>
 
           <p className="mt-3 text-sm sm:text-base text-gray-600 font-normal leading-relaxed">
-            Real chronicles from patrons who made Morkins clinical botanicals their essential ritual for radiant skin.
+            Real chronicles from patrons who made Morkins clinical botanicals
+            their essential ritual for radiant skin.
           </p>
         </div>
 
         {/* ── Carousel Slider Navigation Controls ── */}
-        <div className="flex items-center justify-between mb-4 px-1">
-          <div className="text-xs text-[#0B1A28] font-bold flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#12602F] animate-pulse" />
-            <span>Community Stories ({filteredReviews.length})</span>
-          </div>
-
+        <div className="flex items-end justify-end mb-4 px-2.5">
           <div className="flex items-center gap-2">
-         
-
             <button
               onClick={handlePrev}
               disabled={filteredReviews.length <= cardsPerView}
-              className="w-9 h-9 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-brand-cream-dark hover:text-white hover:border-brand-cream-dark transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-brand-cream-dark hover:text-white hover:border-brand-cream-dark transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               aria-label="Previous Review"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
             </button>
             <button
               onClick={handleNext}
               disabled={filteredReviews.length <= cardsPerView}
-              className="w-9 h-9 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-brand-cream-dark hover:text-white hover:border-brand-cream-dark transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+              className="w-12 h-12 rounded-full border border-brand-dark/20 flex items-center justify-center text-brand-dark hover:bg-brand-cream-dark hover:text-white hover:border-brand-cream-dark transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
               aria-label="Next Review"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </button>
           </div>
@@ -440,9 +512,11 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
           {filteredReviews.length === 0 ? (
             <div className="bg-white rounded-xl p-12 text-center border border-dashed border-gray-300 my-4">
               <div className="text-4xl mb-3">🔍</div>
-              <h3 className="font-serif text-xl font-medium text-[#0B1A28]">No reviews found</h3>
+              <h3 className="font-serif text-xl font-medium text-[#0B1A28]">
+                No reviews found
+              </h3>
               <button
-                onClick={() => setRatingFilter('all')}
+                onClick={() => setRatingFilter("all")}
                 className="mt-4 px-4 py-2 rounded-full bg-[#0B1A28] text-white hover:bg-[#12602F] text-xs font-bold cursor-pointer transition-colors"
               >
                 Show All Reviews
@@ -452,7 +526,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
             <div
               className="flex transition-transform duration-500 ease-out"
               style={{
-                transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`
+                transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`,
               }}
             >
               {filteredReviews.map((review) => {
@@ -464,7 +538,6 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                     style={{ width: `${100 / cardsPerView}%` }}
                   >
                     <div className="h-full bg-white rounded-md border border-brand-dark/5 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden group">
-
                       {/* 1. Customer Uploaded Product Photo Banner */}
                       <div
                         onClick={() =>
@@ -473,7 +546,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                             author: review.author,
                             product: review.productBought,
                             quote: review.headline,
-                            productImg: review.productImg
+                            productImg: review.productImg,
                           })
                         }
                         className="relative w-full h-48 sm:h-52 bg-[#F1EDE9] overflow-hidden cursor-pointer shrink-0 group/img flex items-center justify-center"
@@ -489,31 +562,6 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                           }}
                           className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
                         />
-
-                        {/* Top Left: Customer Upload Badge */}
-                        <div className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#12602F] text-[10px] font-bold shadow-xs">
-                          <span>📸</span>
-                          <span>Customer Photo</span>
-                        </div>
-
-                        {/* Top Right: Usage Timeframe */}
-                        <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-medium tracking-wide">
-                          ✓ {review.timeframe}
-                        </div>
-
-                        {/* Center Hover Overlay */}
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-bold gap-1.5">
-                          <span>🔍</span>
-                          <span>Click to Enlarge</span>
-                        </div>
-
-                        {/* Bottom Banner Result Highlight */}
-                        <div className="absolute bottom-3 left-3 right-3 pointer-events-none">
-                          <span className="bg-black/65 backdrop-blur-xs px-2.5 py-1 rounded-md text-white text-[11px] font-medium tracking-wide drop-shadow-sm inline-flex items-center gap-1.5 max-w-full">
-                            <span className="text-amber-300 shrink-0">✦</span>
-                            <span className="truncate">{review.keyResult}</span>
-                          </span>
-                        </div>
                       </div>
 
                       {/* 2. Structured Card Content Body */}
@@ -540,12 +588,15 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                             {onAddToCart && (
                               <button
                                 onClick={() => {
-                                  onAddToCart({
-                                    id: review.productId,
-                                    name: review.productBought,
-                                    price: 34.0,
-                                    img: review.productImg
-                                  }, true);
+                                  onAddToCart(
+                                    {
+                                      id: review.productId,
+                                      name: review.productBought,
+                                      price: 34.0,
+                                      img: review.productImg,
+                                    },
+                                    true,
+                                  );
                                 }}
                                 className="shrink-0 w-16 h-7 flex items-center justify-center text-[9px] font-bold uppercase tracking-widest rounded-none transition-colors bg-[#0B1A28] text-white hover:bg-black cursor-pointer"
                               >
@@ -558,7 +609,14 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                           <div className="flex items-center justify-between mb-2">
                             <div className="flex text-amber-500 text-sm tracking-tight drop-shadow-xs">
                               {Array.from({ length: 5 }).map((_, i) => (
-                                <span key={i} className={i < review.rating ? 'text-amber-400' : 'text-stone-300'}>
+                                <span
+                                  key={i}
+                                  className={
+                                    i < review.rating
+                                      ? "text-amber-400"
+                                      : "text-stone-300"
+                                  }
+                                >
                                   ★
                                 </span>
                               ))}
@@ -587,7 +645,7 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                               alt={review.author}
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement;
-                                target.style.display = 'none';
+                                target.style.display = "none";
                               }}
                               className="w-8 h-8 rounded-full object-cover border border-stone-200 shrink-0"
                             />
@@ -601,20 +659,31 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                             </div>
                           </div>
 
-                          {/* Helpful Counter Button */}
                           <button
+                            type="button"
                             onClick={() => handleToggleHelpful(review.id)}
-                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all duration-200 cursor-pointer shrink-0 ${isUpvoted
-                              ? 'bg-[#0B1A28] text-white shadow-xs'
-                              : 'bg-[#F2F5F8] hover:bg-stone-200 text-stone-600 border border-stone-200'
-                              }`}
+                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer shrink-0 ${
+                              isUpvoted
+                                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                                : "text-stone-500 hover:text-stone-700 hover:bg-stone-100 border border-transparent"
+                            }`}
+                            title="Helpful review"
                           >
-                            <span>👍</span>
+                            <svg
+                              className={`w-3.5 h-3.5 ${
+                                isUpvoted
+                                  ? "fill-emerald-600 text-emerald-600"
+                                  : "text-stone-400"
+                              }`}
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                            </svg>
                             <span>{review.helpfulCount}</span>
                           </button>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 );
@@ -632,8 +701,11 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${isActive ? 'w-8 bg-[#0B1A28]' : 'w-2 bg-[#A68A56]/40 hover:bg-[#A68A56]'
-                    }`}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? "w-8 bg-[#0B1A28]"
+                      : "w-2 bg-[#A68A56]/40 hover:bg-[#A68A56]"
+                  }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
               );
@@ -665,7 +737,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                   alt={`${lightboxPhoto.author} - ${lightboxPhoto.product}`}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    if (lightboxPhoto.productImg && target.src !== lightboxPhoto.productImg) {
+                    if (
+                      lightboxPhoto.productImg &&
+                      target.src !== lightboxPhoto.productImg
+                    ) {
                       target.src = lightboxPhoto.productImg;
                     }
                   }}
@@ -681,7 +756,8 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                     "{lightboxPhoto.quote}"
                   </h4>
                   <p className="text-xs text-gray-500 mb-4">
-                    Product photo uploaded by {lightboxPhoto.author} alongside their verified formulation review.
+                    Product photo uploaded by {lightboxPhoto.author} alongside
+                    their verified formulation review.
                   </p>
                   <div className="p-3 bg-[#F2F5F8] rounded-xl border border-stone-200">
                     <span className="text-[10px] uppercase font-bold text-[#A68A56] block">
@@ -737,7 +813,8 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                   Thank You For Your Voice
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-600 max-w-sm mx-auto">
-                  Your verified patron review and photo have been added to our community chronicle.
+                  Your verified patron review and photo have been added to our
+                  community chronicle.
                 </p>
               </div>
             ) : (
@@ -746,11 +823,15 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                   <span className="text-[10px] font-bold tracking-widest text-[#A68A56] uppercase">
                     Morkins Community Voice
                   </span>
-                  <h3 id={writeModalTitleId} className="font-serif text-2xl font-medium text-[#0B1A28] mt-1">
+                  <h3
+                    id={writeModalTitleId}
+                    className="font-serif text-2xl font-medium text-[#0B1A28] mt-1"
+                  >
                     Share Your Ritual & Experience
                   </h3>
                   <p className="text-xs text-gray-500 mt-1">
-                    Help fellow patrons discover what works best for their skin biology.
+                    Help fellow patrons discover what works best for their skin
+                    biology.
                   </p>
                 </div>
 
@@ -768,16 +849,21 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                           onClick={() => setNewRating(star)}
                           className="hover:scale-125 transition-transform cursor-pointer"
                         >
-                          {star <= newRating ? '★' : '☆'}
+                          {star <= newRating ? "★" : "☆"}
                         </button>
                       ))}
-                      <span className="text-xs font-mono text-gray-400 ml-2">({newRating} of 5 Stars)</span>
+                      <span className="text-xs font-mono text-gray-400 ml-2">
+                        ({newRating} of 5 Stars)
+                      </span>
                     </div>
                   </div>
 
                   {/* Product Selection */}
                   <div>
-                    <label htmlFor="product-select" className="text-xs font-semibold text-[#0B1A28] block mb-1.5">
+                    <label
+                      htmlFor="product-select"
+                      className="text-xs font-semibold text-[#0B1A28] block mb-1.5"
+                    >
                       Product Formulation Reviewed
                     </label>
                     <select
@@ -790,7 +876,9 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                       <option value={2}>Bio-Active Barrier Repair Cream</option>
                       <option value={3}>Gentle Clarifying Foaming Wash</option>
                       <option value={4}>Hyaluronic Dew Plumping Elixir</option>
-                      <option value={5}>Niacinamide Pore Tightening Serum</option>
+                      <option value={5}>
+                        Niacinamide Pore Tightening Serum
+                      </option>
                       <option value={6}>Bakuchiol Youth Restoring Oil</option>
                     </select>
                   </div>
@@ -798,7 +886,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                   {/* Author Name & Location */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="author-name-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
+                      <label
+                        htmlFor="author-name-input"
+                        className="text-xs font-semibold text-[#0B1A28] block mb-1"
+                      >
                         Your Name / Pseudonym
                       </label>
                       <input
@@ -812,7 +903,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                       />
                     </div>
                     <div>
-                      <label htmlFor="location-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
+                      <label
+                        htmlFor="location-input"
+                        className="text-xs font-semibold text-[#0B1A28] block mb-1"
+                      >
                         Location
                       </label>
                       <input
@@ -829,7 +923,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                   {/* Skin Type & Timeframe */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="skin-type-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
+                      <label
+                        htmlFor="skin-type-input"
+                        className="text-xs font-semibold text-[#0B1A28] block mb-1"
+                      >
                         Skin Type / Primary Concern
                       </label>
                       <input
@@ -842,7 +939,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
                       />
                     </div>
                     <div>
-                      <label htmlFor="timeframe-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
+                      <label
+                        htmlFor="timeframe-input"
+                        className="text-xs font-semibold text-[#0B1A28] block mb-1"
+                      >
                         Usage Duration
                       </label>
                       <input
@@ -858,7 +958,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
                   {/* Category Pill Tag */}
                   <div>
-                    <label htmlFor="category-tag-select" className="text-xs font-semibold text-[#0B1A28] block mb-1">
+                    <label
+                      htmlFor="category-tag-select"
+                      className="text-xs font-semibold text-[#0B1A28] block mb-1"
+                    >
                       Primary Benefit
                     </label>
                     <select
@@ -877,7 +980,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
                   {/* Review Headline */}
                   <div>
-                    <label htmlFor="headline-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
+                    <label
+                      htmlFor="headline-input"
+                      className="text-xs font-semibold text-[#0B1A28] block mb-1"
+                    >
                       Headline / One-Line Summary
                     </label>
                     <input
@@ -893,7 +999,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
                   {/* Detailed Review Comment */}
                   <div>
-                    <label htmlFor="review-body-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
+                    <label
+                      htmlFor="review-body-input"
+                      className="text-xs font-semibold text-[#0B1A28] block mb-1"
+                    >
                       Detailed Review
                     </label>
                     <textarea
@@ -909,7 +1018,10 @@ export default function BestSellersReviews({ onAddToCart }: BestSellersReviewsPr
 
                   {/* Key Result Highlight */}
                   <div>
-                    <label htmlFor="key-result-input" className="text-xs font-semibold text-[#0B1A28] block mb-1">
+                    <label
+                      htmlFor="key-result-input"
+                      className="text-xs font-semibold text-[#0B1A28] block mb-1"
+                    >
                       Key Result Tag (Optional)
                     </label>
                     <input

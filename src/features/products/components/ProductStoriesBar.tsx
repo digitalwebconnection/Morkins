@@ -228,15 +228,15 @@ export default function ProductStoriesBar({
   };
 
   return (
-    <div className="relative py-4 sm:py-6 bg-[#FCFBF8] border-b border-[#EDE4D8]/80 select-none">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div className="relative py-4 sm:py-6 bg-[#FCFBF8] border-b border-[#EDE4D8]/80">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative items-center justify-center flex">
         {/* Stories Horizontal Carousel */}
         <div className="relative">
           {/* Scrollable Container */}
           <div
             ref={scrollContainerRef}
             onScroll={checkScroll}
-            className="flex items-start gap-4 sm:gap-6 overflow-x-auto pb-1.5 scrollbar-none scroll-smooth snap-x"
+            className="flex items-start gap-4 sm:gap-6 scrollbar-none scroll-smooth"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {filteredStories.map((story, idx) => {
@@ -249,7 +249,6 @@ export default function ProductStoriesBar({
                 <div
                   key={story.id}
                   className="flex flex-col items-center py-6 shrink-0 group cursor-pointer snap-start"
-
                 >
 
                   {/* ── Outer Gradient Ring ── */}

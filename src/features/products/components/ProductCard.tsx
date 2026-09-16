@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Star } from 'lucide-react';
 import { getProductUrl, type ProductExtended } from '../data/products';
 
 interface ProductCardProps {
@@ -29,6 +30,22 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
           className="h-full w-full object-cover object-center transition-all duration-700 ease-out transform group-hover:scale-110"
           loading="lazy"
         />
+        {product.badge && (
+          <div className={`absolute top-0 right-0 z-10 inline-flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-bl-lg shadow-sm ${
+            product.badge === 'Best Seller'
+              ? 'border-b border-l border-[#F97316]'
+              : 'border-b border-l border-stone-200'
+          }`}>
+            <span className={`text-xs font-black uppercase tracking-wider leading-none ${
+              product.badge === 'Best Seller' ? 'text-[#F97316]' : 'text-[#0B1A28]'
+            }`}>
+              {product.badge === 'Best Seller' ? 'BESTSELLER' : product.badge}
+            </span>
+            {product.badge === 'Best Seller' && (
+              <Star className="w-3.5 h-3.5 text-[#F97316] fill-[#F97316] shrink-0" />
+            )}
+          </div>
+        )}
       </div>
 
       {/* Content */}

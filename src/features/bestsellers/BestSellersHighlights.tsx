@@ -1,5 +1,3 @@
-import morkinsEmblem from '../../assets/images/logo/morkins_leaf_icon.png';
-
 export default function BestSellersHighlights() {
   const pillars = [
     {
@@ -53,7 +51,7 @@ export default function BestSellersHighlights() {
   ];
 
   return (
-    <section className="relative py-12 sm:py-16 lg:py-20 bg-white border-b border-gray-200 overflow-hidden select-none">
+    <section className="relative py-12 sm:py-16 lg:py-20 bg-white border-b border-gray-200 overflow-hidden">
 
       {/* ── Keyframe Animations for Highlights Section ── */}
       <style>{`
@@ -79,13 +77,7 @@ export default function BestSellersHighlights() {
       <div className="absolute -bottom-24 left-10 w-96 h-96 bg-[#A68A56]/10 rounded-full blur-[100px] pointer-events-none highlight-pulse" style={{ animationDelay: '3s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-180 h-90 bg-[#12602F]/5 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* ── Background Botanical Watermark ── */}
-      <div className="absolute top-12 left-8 w-40 opacity-[0.03] pointer-events-none highlight-float-1">
-        <img src={morkinsEmblem} alt="" className="w-full h-auto object-contain" />
-      </div>
-      <div className="absolute bottom-8 right-8 w-52 opacity-[0.03] pointer-events-none highlight-float-2">
-        <img src={morkinsEmblem} alt="" className="w-full h-auto object-contain" />
-      </div>
+      
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -109,15 +101,11 @@ export default function BestSellersHighlights() {
           {pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className="relative p-7 sm:p-8 rounded-md bg-[#F2F5F8] hover:bg-white border border-brand-dark/5 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-1.5 overflow-hidden cursor-default"
+              className="relative p-7 sm:p-8 rounded-md bg-white border border-stone-200 shadow-md hover:shadow-2xl hover:border-[#A68A56]/40 transition-all duration-500 flex flex-col justify-between group hover:-translate-y-2 overflow-hidden cursor-default"
             >
-              {/* Top Accent Line on Hover */}
-              <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#A68A56] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Top Accent Line - Applied as default luxury hallmark */}
+              <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#A68A56] group-hover:h-[3.5px] transition-all duration-500" />
 
-              {/* Large Stylized Background Number Watermark */}
-              <span className="absolute -bottom-4 -left-1 font-serif text-7xl sm:text-8xl font-bold text-[#A68A56]/15 select-none pointer-events-none group-hover:text-[#A68A56]/25 transition-colors duration-500">
-                {pillar.num}
-              </span>
 
               <div className="relative z-10">
                 {/* Top Row: Icon Stage + Badge */}

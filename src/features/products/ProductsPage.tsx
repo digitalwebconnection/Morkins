@@ -230,17 +230,7 @@ export default function ProductsPage({ onAddToCart }: ProductsPageProps) {
   return (
     <div className="min-h-screen bg-[#FCFBF8]">
       {/* ── PART 1: CATALOG EDITORIAL HERO HEADER (HeroSection) ── */}
-      {/* Dynamic banner with Women/Men department toggles, total count, and category quick-filter pills */}
-      <HeroSection
-        department={filters.department}
-        activeCategory={filters.category}
-        totalProducts={filteredAndSortedProducts.length}
-        womenCount={womenCount}
-        menCount={menCount}
-        categories={categories}
-        onSelectDepartment={handleDepartmentSwitch}
-        onSelectCategory={handleCategoryQuickFilter}
-      />
+      <HeroSection />
 
       {/* ── PART 1B: CLINICAL REELS & STORY HIGHLIGHTS BAR ── */}
       {/* Interactive Instagram/Reels-style circular highlights with gradient rings, live reels, quick-filter, and direct shoppable modal */}
